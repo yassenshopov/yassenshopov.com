@@ -1,0 +1,86 @@
+:root {
+    --color-1: #242327;
+    --color-2: #f5f5f8;
+    --font-1: "Noto Sans", sans-serif;
+}
+
+body {
+    background-color: var(--color-1);
+    padding: 0;
+    margin: 0;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+nav {
+    display: flex;
+    position: sticky;
+    top: 0;
+    flex-direction: row;
+    gap: 3vw;
+    align-items: center;
+    background-color: var(--color-2);
+    opacity: 1;
+    padding: 0 6vw 0 6vw;
+    box-shadow: 0 0 15px #ffffff90;
+    border-radius: 0 0 50px 50px;
+}
+
+nav img {
+    width: 6vw;
+}
+
+nav a {
+    display: inline;
+    text-decoration: none;
+    color: var(--color-1);
+    font-family: var(--font-1);
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+nav a:nth-child(1) {
+    margin-right: 48vw;
+}
+
+nav:hover, footer:hover {
+    
+}
+
+footer {
+    color: var(--color-1);
+    font-family: var(--font-1);
+    backdrop-filter: invert(1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4vh 10vw 4vh 10vw;
+    border-radius: 50px 50px 0 0;
+    box-shadow: 0 0 15px #ffffff90;
+}
+
+footer > * {
+    display: inline;
+}
+
+footer div {
+    display: flex;
+    flex-direction: row;
+    gap: 4vw;
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--color-1);
+    transition: 0.5s all ease-in-out;
+}
+
+footer a:hover {
+    opacity: 0.8;
+}
+
