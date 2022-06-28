@@ -1,11 +1,14 @@
 :root {
-    --color-1: #242327;
-    --color-2: #f5f5f8;
+    --color-1: #1c103a;
+    --color-2: #2e2d30;
+    --color-3: #f8f8f8;
+    --color-4: #FFFFFF;
     --font-1: "Noto Sans", sans-serif;
+    --font-2: 'Merriweather', serif;
 }
 
 body {
-    background-color: var(--color-1);
+    background-color: var(--color-3);
     padding: 0;
     margin: 0;
     -ms-overflow-style: none;  /* IE and Edge */
@@ -23,49 +26,46 @@ nav {
     flex-direction: row;
     gap: 3vw;
     align-items: center;
-    background-color: var(--color-2);
+    /* background-color: var(--color-2); */
     opacity: 1;
     padding: 0 6vw 0 6vw;
-    box-shadow: 0 0 15px #ffffff90;
-    border-radius: 0 0 50px 50px;
+    /* box-shadow: 0 0 15px #ffffff90; */
+    z-index: 10;
+    opacity: 1;
+    backdrop-filter: blur(4px) brightness(1.2) contrast(1.2);
 }
 
 nav img {
-    width: 6vw;
+    width: 5vw;
 }
 
 nav a {
     display: inline;
     text-decoration: none;
-    color: var(--color-1);
+    color: var(--color-2);
     font-family: var(--font-1);
     text-transform: uppercase;
     font-size: 1rem;
+    text-shadow: 0 0 4px #FFFFFF;
 }
 
 nav a:nth-child(1) {
     margin-right: 48vw;
 }
 
-nav:hover, footer:hover {
-    
-}
-
 footer {
-    color: var(--color-1);
+    width: 100%;
+    color: var(--color-2);
     font-family: var(--font-1);
-    backdrop-filter: invert(1);
+    /* background-color: var(--color-2); */
+    backdrop-filter: blur(4px) brightness(1.2) contrast(1.2);
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    padding: 4vh 10vw 4vh 10vw;
-    border-radius: 50px 50px 0 0;
-    box-shadow: 0 0 15px #ffffff90;
-}
-
-footer > * {
-    display: inline;
+    padding: 4vh 0vw 4vh 0vw;
+    gap: 0;
+    justify-content: space-evenly;
+    /* box-shadow: 0 0 15px #ffffff90; */
 }
 
 footer div {
@@ -76,8 +76,12 @@ footer div {
 
 footer a {
     text-decoration: none;
-    color: var(--color-1);
+    color: var(--color-2);
     transition: 0.5s all ease-in-out;
+}
+
+footer p a {
+    text-decoration: underline;
 }
 
 footer a:hover {

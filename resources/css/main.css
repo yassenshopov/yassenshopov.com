@@ -1,6 +1,97 @@
 main {
-    height: 100vh;
     padding: 0 10vw 0 10vw;
     font-family: var(--font-1);
     color: var(--color-2);
 }
+
+header {
+    display: flex;
+    flex-direction: row;
+    padding: 50px 0 100px 0;
+    gap: 3vw;
+}
+
+header h1 {
+    font-family: var(--font-2);
+    font-size: 40px;
+}
+
+header a {
+    padding: 22px;
+    background-color: var(--color-2);
+    color: var(--color-4);
+    text-decoration: solid;
+    border-radius: 12.5px;
+    width: fit-content;
+    margin-top: 20px;
+}
+
+#hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+#hero-text h2 {
+    font-size: 18px;
+}
+
+header #hero-text, #hero-image {
+    width: 40%;
+}
+
+#hero-image {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+#hero-image img {
+    display: inline;
+    width: 70%;
+    border-radius: 25px;
+    border: 3px solid var(--color-2);
+    box-shadow: 10px 10px 15px var(--color-2);
+    transform: skewX(-5deg);
+    transition: 0.3s all ease-in-out;
+}
+
+#hero-image img:nth-child(1) {
+    margin-left: 3vw;
+    margin-top: 50px;
+    z-index: 2;
+}
+
+#hero-image img:nth-child(1):hover {
+    margin-left: 5vw;
+    margin-top: 50px;
+    z-index: 2;
+}
+
+#hero-image img:nth-child(2) {
+    margin-left: 10vw;
+    margin-top: -350px;
+    z-index: 1;
+}
+
+#hero-image img:nth-child(2):hover {
+    margin-left: 15vw;
+    margin-top: -350px;
+    z-index: 1;
+}
+
+#hero-image img:nth-child(3) {
+    margin-left: 20vw;
+    margin-top: -350px;
+    z-index: 0;
+}
+
+#hero-image img:nth-child(3):hover {
+    margin-left: 27vw;
+    margin-top: -350px;
+    z-index: 0;
+}
+
+/* #hero-image img:hover {
+    margin-top: 20px;
+} */
