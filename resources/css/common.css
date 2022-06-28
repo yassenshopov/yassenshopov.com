@@ -66,6 +66,7 @@ footer {
     padding: 4vh 0vw 4vh 0vw;
     gap: 0;
     justify-content: space-evenly;
+    margin-top: 50px;
     /* box-shadow: 0 0 15px #ffffff90; */
 }
 
