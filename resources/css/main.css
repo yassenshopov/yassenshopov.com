@@ -14,7 +14,7 @@ header {
 
 header h1 {
     font-family: var(--font-2);
-    font-size: 40px;
+    font-size: 3.5rem;
 }
 
 header a {
@@ -30,26 +30,25 @@ header a {
 #hero-text {
     display: flex;
     flex-direction: column;
-    gap: 0px;
 }
 
 #hero-text h2 {
-    font-size: 18px;
+    font-size: 1.5rem;
 }
 
 header #hero-text, #hero-image {
-    width: 40%;
+    width: 50%;
 }
 
 #hero-image {
     margin-top: 50px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
 }
 
 #hero-image img {
     display: inline;
-    width: 70%;
+    width: 50%;
     border-radius: 25px;
     border: 3px solid var(--color-2);
     box-shadow: 10px 10px 15px var(--color-2);
@@ -58,41 +57,62 @@ header #hero-text, #hero-image {
 }
 
 #hero-image img:nth-child(1) {
-    margin-left: 3vw;
-    margin-top: 50px;
+    margin-left: 0vw;
+    margin-top: -160px;
     z-index: 2;
 }
-
-#hero-image img:nth-child(1):hover {
+/* #hero-image img:nth-child(1):hover {
     margin-left: 5vw;
-    margin-top: 50px;
-    z-index: 2;
-}
+} */
 
 #hero-image img:nth-child(2) {
-    margin-left: 10vw;
-    margin-top: -350px;
+    margin-left: 8vw;
+    margin-top: -160px;
     z-index: 1;
 }
 
-#hero-image img:nth-child(2):hover {
+/* #hero-image img:nth-child(2):hover {
     margin-left: 15vw;
-    margin-top: -350px;
-    z-index: 1;
-}
+} */
 
 #hero-image img:nth-child(3) {
-    margin-left: 20vw;
-    margin-top: -350px;
+    margin-left: 15vw;
+    margin-top: 0px;
     z-index: 0;
 }
 
-#hero-image img:nth-child(3):hover {
+/* #hero-image img:nth-child(3):hover {
     margin-left: 27vw;
-    margin-top: -350px;
-    z-index: 0;
-}
-
-/* #hero-image img:hover {
-    margin-top: 20px;
 } */
+
+@media screen and (max-width:800px) {
+
+    /* * {
+        border: 1px solid black;
+    } */
+
+    header {
+        flex-direction: column;
+    }
+
+    header #hero-text, #hero-image {
+        width: 100%;
+    }
+    
+    header h1 {
+        font-size: 10vw;
+    }
+
+    header h2 {
+        font-size: 0.5rem;
+    }
+
+    header a {
+        align-self: center;
+    }
+
+    #hero-image img {
+        width: 80%;
+    }
+
+}
