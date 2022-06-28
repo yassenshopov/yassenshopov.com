@@ -2,6 +2,7 @@ main {
     padding: 0 10vw 0 10vw;
     font-family: var(--font-1);
     color: var(--color-2);
+    overflow: hidden;
 }
 
 header {
