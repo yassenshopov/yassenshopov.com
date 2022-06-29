@@ -1,0 +1,48 @@
+main {
+    padding: 50px 10vw 0 10vw;
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+
+main article {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px 25px 10px;
+    background-color: var(--color-4);
+    box-shadow: 0px 5px 5px #94939340;
+    /* border: 1px solid var(--color-2); */
+    border-radius: 12px;
+    transition: all 300ms ease-in-out;
+}
+
+main article:hover {
+    box-shadow: 0px 5px 10px #94939381;
+    filter: saturate(3) brightness(0.99);
+}
+
+main article img {
+    width: 100%;
+}
+
+main article h2, main article p {
+    width: 80%;
+    font-family: var(--font-1);
+    opacity: 0.8;
+}
+
+main article p {
+    color: var(--color-2);
+    line-height: 1.5;
+    margin: 0 0 25px 0;
+}
+
+main article a {
+    border-radius: 20px;
+    background-color: red;
+}
