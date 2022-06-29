@@ -55,3 +55,52 @@ main article p {
 main article a {
 
 }
+
+
+@media screen and (max-width:800px) {
+
+    /* * {
+        border: 1px solid black;
+    } */
+
+    main {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 50px 2% 0 2%;
+    }
+
+    header {
+        flex-direction: column;
+    }
+
+    header #hero-text, #hero-image {
+        width: 100%;
+    }
+    
+    header h1 {
+        font-size: 10vw;
+        text-align: center;
+    }
+
+    header h2 {
+        font-size: 10px;
+        text-align: center;
+    }
+
+    header a {
+        align-self: center;
+    }
+
+    #hero-image img {
+        width: 80%;
+    }
+
+    #about {
+        flex-direction: column;
+    }
+
+    #about img, #about-text  {
+        width: 100%;
+    }
+
+}
