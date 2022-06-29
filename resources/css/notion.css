@@ -108,6 +108,8 @@ main article p {
 }
 
 main article a {
+    text-decoration: none;
+    color: var(--color-2);
 
 }
 
