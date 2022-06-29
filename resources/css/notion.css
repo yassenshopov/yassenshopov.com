@@ -6,6 +6,7 @@ main {
     align-items: center;
     gap: 50px;
     padding: 100px 100px 50px 100px;
+    height: fit-content;
 }
 
 main article {
