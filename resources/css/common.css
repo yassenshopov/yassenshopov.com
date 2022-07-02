@@ -91,6 +91,10 @@ footer a {
     transition: 0.5s all ease-in-out;
 }
 
+footer a img {
+    width: 40px;
+}
+
 footer p a {
     text-decoration: underline;
 }
