@@ -52,6 +52,12 @@ nav a {
     text-transform: uppercase;
     font-size: 1rem;
     text-shadow: 0 0 4px #FFFFFF;
+    transition: all 0.5s ease-in-out;
+}
+
+nav a:hover {
+    text-shadow: 0 0 10px #FFFFFF;
+    color: #000000;
 }
 
 nav a:nth-child(1) {
