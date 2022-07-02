@@ -101,3 +101,32 @@ aside {
     align-items: center;
     height: fit-content;
 }
+
+@media screen and (max-width:800px) {
+
+    /* * {
+        border: 1px solid black;
+    } */
+
+    main {
+        flex-direction: column;
+        gap: 50px;
+        padding: 0;
+        margin: 20px 0 0 0;
+        width: 100%;
+    }
+
+    article {
+        max-width: fit-content;
+        width: 100%;
+        padding: 25px;
+        margin: 0;
+    }
+
+    aside {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+}

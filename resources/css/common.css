@@ -124,8 +124,10 @@ footer a:hover {
     }
 
     footer {
+        margin-top: 50px;
         width: 100%;
-        flex-direction: column-reverse;
+        flex-direction: column;
+        text-align: center;
     }
 
     footer p {
