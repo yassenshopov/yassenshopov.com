@@ -123,12 +123,14 @@ footer a:hover {
         display: block;
         padding: 0;
         margin: 0;
+        z-index: 3;
     }
 
     nav a:nth-child(1) img {
         width: 120px;
         padding: 0;
         margin: 0;
+
     }
 
     #mobile {
@@ -138,6 +140,7 @@ footer a:hover {
         right: 5vw;
         top: 5vh;
         padding: 10px;
+        z-index: 3;
     }
 
     #bar1, #bar2, #bar3 {
@@ -145,13 +148,14 @@ footer a:hover {
         background-color: var(--color-2);
         height: 2px;
         width: 40px;
-        border: 1px solid white;
+        /* border: 0px solid white; */
+        /* box-shadow: 0 0 10px white; */
         border-radius: 15px;
-        transition: all 300ms ease-in-out;
+        transition: all 250ms ease-in-out;
     }
 
     #mobile:hover > #bar1 {
-        transform:  translate(-2px, 9px) rotate(45deg);
+        transform:  translate(-4px, 5px) rotate(45deg);
         width: 45px;
     }
 
@@ -162,6 +166,33 @@ footer a:hover {
     #mobile:hover > #bar3 {
         transform:  translate(-5px, -8px) rotate(-45deg);
         width: 45px;
+    }
+
+    #overlay {
+        width: 100%;
+        height: 0vh;
+        position: fixed; /* Stay in place */
+        z-index: 2; /* Sit on top */
+        left: 0;
+        top: 0;
+        background-color: #111111; 
+        overflow-x: hidden; 
+        overflow-y: hidden;
+        transition: 0.4s;   
+    }
+
+    #overlay a {
+        display: block;
+        top: 25%;
+        text-align: center;
+        margin-top: 30px; 
+        font-size: 36px;
+        color: var(--color-4);
+        padding: 0 10vw 0 10vw;
+    }
+
+    #overlay a:nth-child(1) {
+        margin-top: 270px;
     }
 
     footer {
