@@ -31,6 +31,7 @@ nav {
     flex-direction: row;
     gap: 3vw;
     align-items: center;
+    /* height: 100px; */
     /* background-color: var(--color-2); */
     opacity: 1;
     padding: 0 6vw 0 6vw;
@@ -125,7 +126,7 @@ footer a:hover {
     }
 
     nav a:nth-child(1) img {
-        width: 20vw;
+        width: 120px;
         padding: 0;
         margin: 0;
     }
@@ -133,17 +134,34 @@ footer a:hover {
     #mobile {
         display: flex;
         flex-direction: column;
-        gap: 1vh;
         position: absolute;
-        right: 8vw;
+        right: 5vw;
+        top: 5vh;
         padding: 10px;
     }
 
     #bar1, #bar2, #bar3 {
-        display: block;
+        margin-top: 4px;
         background-color: var(--color-2);
         height: 2px;
         width: 40px;
+        border: 1px solid white;
+        border-radius: 15px;
+        transition: all 300ms ease-in-out;
+    }
+
+    #mobile:hover > #bar1 {
+        transform:  translate(-2px, 9px) rotate(45deg);
+        width: 45px;
+    }
+
+    #mobile:hover > #bar2 {
+        transform: scaleX(0);
+    }
+
+    #mobile:hover > #bar3 {
+        transform:  translate(-5px, -8px) rotate(-45deg);
+        width: 45px;
     }
 
     footer {
