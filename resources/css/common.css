@@ -69,6 +69,10 @@ nav a:nth-child(1) {
     display: none;
 }
 
+#overlay a {
+    display: none;
+}
+
 footer {
     width: 100%;
     color: var(--color-2);
