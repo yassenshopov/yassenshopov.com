@@ -64,6 +64,10 @@ nav a:nth-child(1) {
     margin-right: 48vw;
 }
 
+#mobile {
+    display: none;
+}
+
 footer {
     width: 100%;
     color: var(--color-2);
@@ -108,7 +112,6 @@ footer a:hover {
 
     nav {
         justify-content: center;
-
     }
 
     nav a {
@@ -125,6 +128,22 @@ footer a:hover {
         width: 20vw;
         padding: 0;
         margin: 0;
+    }
+
+    #mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 1vh;
+        position: absolute;
+        right: 8vw;
+        padding: 10px;
+    }
+
+    #bar1, #bar2, #bar3 {
+        display: block;
+        background-color: var(--color-2);
+        height: 2px;
+        width: 40px;
     }
 
     footer {
