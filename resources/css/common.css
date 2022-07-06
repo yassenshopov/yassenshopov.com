@@ -131,7 +131,7 @@ footer a:hover {
     }
 
     nav a:nth-child(1) img {
-        width: 120px;
+        width: 100px;
         padding: 0;
         margin: 0;
 
@@ -141,10 +141,11 @@ footer a:hover {
         display: flex;
         flex-direction: column;
         position: absolute;
-        right: 5vw;
-        top: 5vh;
+        right: 4vw;
+        top: 4vh;
         padding: 10px;
         z-index: 3;
+        filter: drop-shadow(0 0 2px white);
     }
 
     #bar1, #bar2, #bar3 {
@@ -158,18 +159,16 @@ footer a:hover {
         transition: all 250ms ease-in-out;
     }
 
-    #mobile:hover > #bar1 {
-        transform:  translate(-4px, 5px) rotate(45deg);
-        width: 45px;
+    .onClick1 {
+        transform:  translate(0px, 3px) rotate(45deg);
     }
 
-    #mobile:hover > #bar2 {
+    .onClick2 {
         transform: scaleX(0);
     }
 
-    #mobile:hover > #bar3 {
-        transform:  translate(-5px, -8px) rotate(-45deg);
-        width: 45px;
+    .onClick3 {
+        transform:  translate(0px, -9px) rotate(-45deg);
     }
 
     #overlay {
@@ -187,7 +186,6 @@ footer a:hover {
 
     #overlay a {
         display: block;
-        top: 25%;
         text-align: center;
         margin-top: 30px; 
         font-size: 36px;
@@ -196,7 +194,7 @@ footer a:hover {
     }
 
     #overlay a:nth-child(1) {
-        margin-top: 270px;
+        margin-top: 31vh;
     }
 
     footer {
