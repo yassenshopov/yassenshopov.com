@@ -10,7 +10,11 @@ In this article, I will go into several ways in which one can increase the page 
 
 ## Reduce the sizing of your images
 
+Maybe it hasn't occurred to you if you don't use Notion too often, but one of the biggest impacts to speed is the sizing of the images on the page.
 
+This includes the cover image, the logo, and any other image and visual elements on the page itself.
+
+Many people, including myself, decide to populate our pages with aesthetically pleasing gifs and images. However, this makes Notion take much longer to load.
 
 ## Be cautious with widgets
 
