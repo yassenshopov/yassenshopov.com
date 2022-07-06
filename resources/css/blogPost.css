@@ -31,6 +31,11 @@ article {
 
 }
 
+article p {
+    font-family: var(--font-1);
+    font-size: 18px;
+}
+
 article img {
     width: 100%;
     border-radius: 12.5px;
@@ -121,6 +126,11 @@ aside {
         width: 100%;
         padding: 25px;
         margin: 0;
+    }
+
+    article p {
+        font-size: 20px;
+        line-height: 1.7;
     }
 
     aside {
