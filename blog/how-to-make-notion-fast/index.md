@@ -32,6 +32,24 @@ Now, I'm not saying that widgets are forbidden for fast workspaces, but their pr
 
 At one point, I decided to do a "quick" backup of my Notion workspace. If you are wondering, [you can find out how to do it yourself here](https://www.notion.so/help/back-up-your-data).
 
+Amazingly, the total number of pages on my personal Notion workspace was 8,000+! And that's not counting the individual page sizes which varied across the workspace. Yes, the bulk of those came from my to-do list, which has been expanding incrementally over time.
+
+This means that there is a simple trick you can do to make your Notion workspace go a bit faster. You can go over your to-do list database, for example, and routinely archive or delete any old content you feel like you don't need anymore. For example, some of my earliest to-do list entries allude to lectures and assignments that are long behind me, and I no longer need to be reminded of them.
+
+Doing this cleanup routinely ensures you keep a "healhty" Notion workspace and betters its performance significantly.
+
 ## Use a tree structure
 
-outro
+The Tree Folder Structure is simple, and you have probably been taught about it in your first IT classes in school. In essense, it comes down to starting off with 1 main root and then branching off to multiple main folders. Let's follow the example I personally use in my workspace to get a better view.
+
+To start off, the main page in my workspace is my Command Centre. This is the first page I see when I open the app and all the other pages are inside of it, directly or indirectly. You may wonder whether it's not actually a cluttered mess, but you will be surprised.
+
+The next main step is to configure the main branches. Inside the Command Centre I have created different databases, the main one of which is my Pillars database. Each Pillar represents an important aspect of my life - Health, Business, Education, Social. Once we go into the Education pillar, I can find all the data for my University courses, extracurricular activities, courses, projects, and so on. It all goes under the hood of the education pillar.
+
+Having the folder structure set up in this specific way makes the navigation process easier for two reasons.
+
+1. When I'm in that Anatomy lecture, I know that all the folders and pages I'll need are in the Education pillar, so I don't have to remember their individual "breadcrumbs".
+
+2. When 2 pages are closely related in Notion, it becomes faster to search them up. The loading speed is directly proportional to their proximity in folders.
+
+And those were the few tips I have proven to work in increasing your Notion workspace's operating speed. You may not notice the difference immediately, but I am sure that those habits and quick fixes will build up to revolutionize your productivity.
