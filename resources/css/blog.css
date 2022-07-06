@@ -158,18 +158,19 @@ main article a:nth-child(4) {
         text-align: center;
     }
 
-    header #mc_embed_signup input:nth-child(2) {
-        width: 80%;
+    header #mc_embed_signup input:nth-child(1) {
+        width: 90%;
         background-color: #94939340;
         color: var(--color-2);
-        font-size: 20px;
+        font-size: 16px;
+        text-align: center;
         margin-top: 20px;
     }
 
-    header #mc_embed_signup input:nth-child(4) {
+    header #mc_embed_signup input:nth-child(3) {
         width: 100%;
         font-size: 20px;
-        margin-top: 20px;
+        margin-top: 30px;
     }
 
     header img {
