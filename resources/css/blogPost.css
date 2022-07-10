@@ -73,6 +73,19 @@ article #date, article #author, article #tags {
     line-height: 0.8;
 }
 
+article blockquote {
+    text-align: center;
+    padding: 15px 0 15px 0;
+}
+
+article ol, article ul {
+    font-size: 18px;
+}
+
+article ol li, article ul li {
+    margin: 30px 0 30px 0;
+}
+
 article #mc_embed_signup form {
     text-align: center;
     display: flex;
