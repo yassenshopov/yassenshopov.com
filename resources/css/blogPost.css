@@ -37,7 +37,7 @@ article h2 {
 article p {
     font-family: var(--font-3);
     font-size: 19px;
-    line-height: 2;
+    line-height: 2.3;
 }
 
 article img {
@@ -68,7 +68,7 @@ article img:hover {
 }
 
 article #date, article #author, article #tags {
-    color: #949393;
+    color: #39393b;
     font-size: 15px;
     line-height: 0.8;
 }
