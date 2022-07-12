@@ -1,0 +1,50 @@
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+    <channel>
+        <title>
+        <![CDATA[ Life Engineering • Blog series by Yassen Shopov ]]>
+        </title>
+        <description>
+        <![CDATA[ The blog is a collection of my best articles, how-to's and other digital content about Notion, productivity, digital organization and life engineering. ]]>
+        </description>
+        <link>https://yassenshopov.com/blog</link>
+        <image>
+        <url>https://yassenshopov.com/resources/images/logo/apple-touch-icon.png</url>
+        <title>Life Engineering • Blog series by Yassen Shopov</title>
+        <link>https://yassenshopov.com/blog</link>
+        </image>
+        <lastBuildDate>Tue, 12 Jul 2022 11:00:54 GMT</lastBuildDate>
+        <atom:link href="https://rss.app/feeds/LoeKXi7U2yyqCCH6.xml" rel="self" type="application/rss+xml"/>
+        <language>
+            <![CDATA[ en ]]>
+        </language>
+
+        <item>
+            <title>
+                <![CDATA[ How I made my first 1$ online with Digital Art 🪙 ]]>
+            </title>
+            <description>
+                <![CDATA[ <div><img src="https://yassenshopov.com/resources/images/blog/my-first-dollar/Thumbnail.webp" style="width: 100%;" /><div>I made my first dollar selling digital art on the web in 2020. That was just the beginning of my journey as a digital content creator. Read how I did it.</div></div> ]]>
+            </description>
+            <link>https://yassenshopov.com/blog/my-first-dollar</link>
+            <dc:creator>
+            <![CDATA[ yassenshopov.com ]]>
+            </dc:creator>
+            <media:content medium="image" url="https://yassenshopov.com/resources/images/blog/my-first-dollar/Thumbnail.webp"/>
+        </item>
+
+        <item>
+            <title>
+                <![CDATA[ Notion - how to make it faster? Speed up your workspace 🐇 ]]>
+            </title>
+            <description>
+                <![CDATA[ <div><img src="https://yassenshopov.com/resources/images/blog/how-to-make-notion-fast/Thumbnail.webp" style="width: 100%;" /><div>Notion is the productivity tool of choice for a lot of people. In this article, we will go over ways to make it run faster and more efficiently.</div></div> ]]>
+            </description>
+            <link>https://yassenshopov.com/blog/how-to-make-notion-fast</link>
+            <dc:creator>
+            <![CDATA[ yassenshopov.com ]]>
+            </dc:creator>
+            <media:content medium="image" url="https://yassenshopov.com/resources/images/blog/how-to-make-notion-fast/Thumbnail.webp"/>
+        </item>
+
+    </channel>
+</rss>
