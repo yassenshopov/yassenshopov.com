@@ -19,7 +19,7 @@ main h2 {
 }
 
 main p, main a {
-    font-family: var(--font-1);
+    font-family: var(--font-2);
 }
 
 article {
@@ -35,9 +35,9 @@ article h2 {
 }
 
 article p {
-    font-family: var(--font-3);
+    font-family: var(--font-4);
     font-size: 19px;
-    line-height: 2.3;
+    line-height: 1.8;
 }
 
 article img {
@@ -59,7 +59,7 @@ article a:hover {
 }
 
 article ol, article ul {
-    font-family: var(--font-3);
+    font-family: var(--font-4);
 }
 
 article img:hover {
@@ -79,7 +79,7 @@ article blockquote {
 }
 
 article ol, article ul {
-    font-size: 18px;
+    font-size: 19px;
 }
 
 article ol li, article ul li {
