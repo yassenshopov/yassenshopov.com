@@ -87,6 +87,10 @@ article ol li, article ul li {
     line-height: 1.8;
 }
 
+article ul li::marker {
+    content: "👉️  ";
+}
+
 article #mc_embed_signup form {
     text-align: center;
     display: flex;
