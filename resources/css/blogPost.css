@@ -84,6 +84,7 @@ article ol, article ul {
 
 article ol li, article ul li {
     margin: 30px 0 30px 0;
+    line-height: 1.8;
 }
 
 article #mc_embed_signup form {
