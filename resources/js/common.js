@@ -18,3 +18,18 @@ function animate_menu(x) {
         // document.getElementById("overlay").style.display = "none";
     }
 }
+
+function select_templates() {
+    let select = document.getElementById('selection_templates').value;
+    let main_tag = document.getElementById("main").childNodes;
+    for (let i=0; i<main_tag.length; i++) {
+        let template = main_tag[i];
+        if (template.constructor.name != "Text") {
+            if (template.classList.contains(select) == false) {
+                template.style.display = "none";
+            } else {
+                template.style.display = "flex";
+            }
+        }
+    }
+}

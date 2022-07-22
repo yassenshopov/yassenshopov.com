@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="description" content="As a certified Notion creator, blogger, and developer, I help others create order out of chaos by applying strategies of structure, goal-setting, task management.">
     <meta name="author" content="Yassen Shopov">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,13 +62,23 @@
         <div id="hero-text">
         <h1>Notion Templates by Yassen Shopov 🫒</h1>
         <h2>Browse Notion templates for productivity, task management, and life engineering</h2>
-        <a  id="templates" href="#templates">Discover all templates</a>
+        <!-- <a  id="templates" href="#templates">Discover all templates</a> -->
+        <select id="selection_templates" onchange="select_templates()">
+            <option value="" disabled selected hidden>Choose category...</option>
+            <option value="all">All</option>
+            <option value="finances">Finances</option>
+            <option value="career">Career</option>
+            <option value="study">Study</option>
+            <option value="mindfulness">Mindfulness</option>
+            <option value="planners">Planners</option>
+            <option value="content-creation">Content Creation</option>
+        </select>
         </div>
         <img loading="lazy" alt="Notion_Templates_by_Yassen_Shopov" src="../resources/images/notion/10.Landscape.webp" />
     </header>
 
-    <main>
-        <article>
+    <main id="main">
+        <article class="all career">
             <a href="https://yassenshopov.gumroad.com/l/resume-builder"><img loading="lazy" alt="Resume_Builder_Thumbnail_Notion_Template" src="../resources/images/notion/Resume_Builder_Thumbnail.webp" /></a>
             <h2>Resume Builder</h2>
             <p>Build a professional resume by simply adding your details in this minimalistic Notion template.</p>
@@ -75,21 +86,21 @@
             <a class="gumroad-button" href="https://yassenshopov.gumroad.com/l/resume-builder">Get for 0$ -</a>
         </article>
 
-        <article>
+        <article class="all study">
             <a href="https://yassenshopov.gumroad.com/l/flash-card-builder"><img loading="lazy" alt="Flash_Card_Builder_Thumbnail_Notion_Template" src="../resources/images/notion/Flash_Card_Builder_Thumbnail.webp" /></a>
             <h2>Flash Card Builder</h2>
             <p>Create easy-to-use flashcards with the Anki method inside your Notion workspace.</p>
             <a class="gumroad-button" href="https://yassenshopov.gumroad.com/l/flash-card-builder">Get for 0$ -</a>
         </article>
 
-        <article>
+        <article class="all career planners">
             <a href="https://yassenshopov.gumroad.com/l/projects-database"><img loading="lazy" alt="Project_Management_Database_Notion_Template" src="../resources/images/notion/Project_Management_Database.webp" /></a>
             <h2>Project Management Database</h2>
             <p>Track all your projects in one centralised database - in Notion.</p>
             <a class="gumroad-button" href="https://yassenshopov.gumroad.com/l/projects-database">Get for 0$ -</a>
         </article>
 
-        <article>
+        <article class="all mindfulness planners">
             <a href="https://yassenshopov.gumroad.com/l/5-minute-daily-journal"><img loading="lazy" alt="5-Minute_Daily_Journaling_Notion_Template" src="../resources/images/notion/5-Minute_Daily_Journaling.webp" /></a>
             <h2>5-Minute Daily Journal</h2>
             <p>Receive a fully-populated database for each date in 2022, where you are able to log your daily data and journal entries.</p>
@@ -97,91 +108,91 @@
             <a class="gumroad-button" href="https://yassenshopov.gumroad.com/l/5-minute-daily-journal">Get for 0$ -</a>
         </article>
 
-        <article>
+        <article class="all planners">
             <a href="https://yassenshopov.gumroad.com/l/travel-planning"><img loading="lazy" alt="Travel_Planner_Notion_Template" src="../resources/images/notion/Travel_Planner.webp" /></a>
             <h2>Travel Planner</h2>
             <p>Track and plan your current and future travels with this easy-to-use minimalistic database.</p>
             <a class="gumroad-button" href="https://yassenshopov.gumroad.com/l/travel-planning">Get for 0$ -</a>
         </article>
 
-        <article>
+        <article class="all study">
             <a href="https://yassenshopov.gumroad.com/l/university-assignment-tracking"><img loading="lazy" alt="Assignment_Tracking_for_Uni_Notion_Template" src="../resources/images/notion/Assignment_Tracking_for_Uni.webp" /></a>
             <h2>University Assignment Tracking</h2>
             <p>Put a stop to the endless deadline-chasing with one customisable template. (specifically geared towards Uni students)</p>
             <a class="gumroad-button" href="https://yassenshopov.gumroad.com/l/university-assignment-tracking">Get for 0$ -</a>
         </article>
 
-        <article>
+        <article class="all content-creation">
             <a href="https://yassenshopov.gumroad.com/l/social-media-production"><img loading="lazy" alt="Social_Media_Production_Notion_Template" src="../resources/images/notion/Social_Media_Production.webp" /></a>
             <h2>Social Media Production</h2>
             <p>Schedule your social media production with this Notion dashboard and database!</p>
             <a class="gumroad-button" href="https://yassenshopov.gumroad.com/l/social-media-production">Get for 0$ -</a>
         </article>
 
-        <article>
+        <article class="all career planners">
             <a href="https://yassenshopov.gumroad.com/l/job-application-tracker"><img loading="lazy" alt="Job_Application_Tracker_Notion_Template" src="../resources/images/notion/Job_Application_Tracker.webp" /></a>
             <h2>Job Application Tracking</h2>
             <p>With the useful timeline and Kanban board views, you will be able to track the deadlines for applications and inspect the best strategies to optimise your career progression.</p>
             <a class="gumroad-button" href="https://yassenshopov.gumroad.com/l/job-application-tracker">Get for 0$ -</a>
         </article>
 
-        <article>
+        <article class="all">
             <a href="https://yassenshopov.gumroad.com/l/family-tree-database"><img loading="lazy" alt="Family_Tree_Database_Notion_Template" src="../resources/images/notion/Family_Tree_Database.webp" /></a>
             <h2>Family Tree Database</h2>
             <p>The unique set of Formulas and Rollups creates different generational layers for all your relatives, on both your parents' side and on the side of one's partner.</p>
             <a class="gumroad-button" href="https://yassenshopov.gumroad.com/l/family-tree-database">Get for 0$ -</a>
         </article>
 
-        <article>
+        <article class="all career study mindfulness">
             <a href="https://yassenshopov.gumroad.com/l/todo-list-database"><img loading="lazy" alt="To-Do_List_Database_Notion_Template" src="../resources/images/notion/To-Do_List_Database.webp" /></a>
             <h2>To-Do List Database</h2>
             <p>This template is a solution for the year-long problem - Can we use Notion as a To-Do app? The answer is YES, and the solution is this sleek NASA-inspired database.</p>
             <a class="gumroad-button" href="https://yassenshopov.gumroad.com/l/todo-list-database">Get for 0$ -</a>
         </article>
 
-        <article>
+        <article class="all content-creation planners">
             <a href="https://yassenshopov.gumroad.com/l/interactive-media-hub"><img loading="lazy" alt="Interactive_Media_Hub_Notion_Template" src="../resources/images/notion/Interactive_Media_Hub.webp" /></a>
             <h2>Interactive Media Hub</h2>
             <p>Manage all the content you consume - books, videos, articles, research papers, podcast episodes, all in Notion.</p>
             <a class="gumroad-button" href="https://yassenshopov.gumroad.com/l/interactive-media-hub">Get for 0$ -</a>
         </article>
 
-        <article>
+        <article class="all planners">
             <a href="https://yassenshopov.gumroad.com/l/social-circle-management"><img loading="lazy" alt="Social_Circle_Management_Notion_Template" src="../resources/images/notion/Social_Circle_Management.webp" /></a>
             <h2>Social Circle Management</h2>
             <p>This Notion template is for the nerdier of us that want to compartmentalize our whole lives - including our social life. It's now easier than ever to make a visually-pleasing database with all your friends, acquaintances, and family members.</p>
             <a class="gumroad-button" href="https://yassenshopov.gumroad.com/l/social-circle-management">Get for 0$ -</a>
         </article>
 
-        <article>
+        <article class="all finances planners">
             <a href="https://yassenshopov.gumroad.com/l/financial-goal-planning"><img loading="lazy" alt="Financial_Goals_Tracker_Notion_Template" src="../resources/images/notion/Financial_Goals_Tracker.webp" /></a>
             <h2>Financial Goal Planning</h2>
             <p>This Notion template is a customisable database that will help you record you past, current, and future financial goals. One thing we all know intuitively is that "what gets measured gets done", and this database is built with this in mind.</p>
             <a class="gumroad-button" href="https://yassenshopov.gumroad.com/l/financial-goal-planning">Get for 0$ -</a>
         </article>
 
-        <article>
+        <article class="all content-creation">
             <a href="https://yassenshopov.gumroad.com/l/blog-management-database"><img loading="lazy" alt="Blog_Writing_Management_Notion_Template" src="../resources/images/notion/Blog_Writing_Management.webp" /></a>
             <h2>Blog Writing Database</h2>
             <p>This Notion template is based on how I manage my blog series, <strong>Creative Virgo</strong>, and allows you to streamline your blog production process.</p>
             <a class="gumroad-button" href="https://yassenshopov.gumroad.com/l/blog-management-database">Get for 0$ -</a>
         </article>
 
-        <article>
+        <article class="all study">
             <a href="https://yassenshopov.gumroad.com/l/uk-university-hq"><img loading="lazy" alt="UK_University_HQ_Notion_Template" src="../resources/images/notion/UK_University_HQ.webp" /></a>
             <h2>UK University HQ Page</h2>
             <p>This Notion template is designed to provide the best experience for organising your academic life in Notion. It is specifically geared towards students in UK Universities.</p>
             <a class="gumroad-button" href="https://yassenshopov.gumroad.com/l/uk-university-hq">Get for 0$ -</a>
         </article>
 
-        <article>
+        <article class="all planners mindfulness">
             <a href="https://yassenshopov.gumroad.com/l/daily-tracking-2022"><img loading="lazy" alt="Daily_Tracking_2022_Notion_Template" src="../resources/images/notion/Daily_Tracking_2022.webp" /></a>
             <h2>Daily Tracking Database (2022)</h2>
             <p>This Notion template covers all your universal daily tracking needs. The day entries are already put in - you just need to check the tickboxes and enter your data!</p>
             <a class="gumroad-button" href="https://yassenshopov.gumroad.com/l/daily-tracking-2022">Get for 0$ -</a>
         </article>
 
-        <article>
+        <article class="all finances">
             <a href="https://yassenshopov.gumroad.com/l/investment-tracker-automated"><img loading="lazy" alt="Investments_Tracker_Database_Notion_Template" src="../resources/images/notion/Investments_Tracker_Database.webp" /></a>
             <h2>Notion Template for Investment Tracking (with added Python Automation)</h2>
             <p>This Notion template will help you keep track of all of your investments - personal or business.</p>
@@ -189,7 +200,7 @@
             <a class="gumroad-button" href="https://yassenshopov.gumroad.com/l/investment-tracker-automated">Get for 10$ -</a>
         </article>
 
-        <article>
+        <article class="all finances content-creation">
             <a href="https://yassenshopov.gumroad.com/l/digital-art-commissions"><img loading="lazy" alt="Digital_Art_Commissions_Notion_Template" src="../resources/images/notion/Digital_Art_Commissions.webp" /></a>
             <h2>Digital Art Commissions</h2>
             <p>This Notion template is geared specifically towards freelancers, digital artists, and content creators.</p>
