@@ -49,6 +49,7 @@ nav img {
 
 nav a {
     display: inline;
+    white-space: nowrap;
     text-decoration: none;
     color: var(--color-2);
     font-family: var(--font-1);
