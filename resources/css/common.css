@@ -194,6 +194,7 @@ footer a:hover {
         font-size: 36px;
         color: var(--color-4);
         padding: 0 10vw 0 10vw;
+        white-space: normal;
     }
 
     #overlay a:nth-child(1) {
