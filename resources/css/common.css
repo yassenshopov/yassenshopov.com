@@ -1,3 +1,8 @@
+@font-face {
+    font-family: AndronFont;
+    src: url(Andron-Freefont-LAT-Reg.ttf);
+}
+
 :root {
     --color-1: #1c103a;
     --color-2: #2e2d30;
@@ -7,6 +12,7 @@
     --font-2: 'Merriweather', serif;
     --font-3: 'Open Sans', sans-serif;
     --font-4: "Inter", sans-serif;
+    --font-5: AndronFont;
 }
 
 html {
