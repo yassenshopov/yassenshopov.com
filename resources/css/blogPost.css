@@ -18,10 +18,6 @@ main h2 {
     font-size: 28px;
 }
 
-main p, main a {
-    font-family: var(--font-2);
-}
-
 article {
     background-color: var(--color-4);
     width: 52vw;
@@ -36,7 +32,7 @@ article h2 {
 
 article p {
     font-family: var(--font-5);
-    font-size: 19px;
+    font-size: 20px;
     line-height: 1.8;
 }
 
@@ -50,8 +46,8 @@ article img, article iframe {
 }
 
 article a {
-    text-decoration: none;
-    color: #5c22e2;
+    text-decoration: underline;
+    color: #000000;
     transition: all 1s ease-in-out;
 }
 
@@ -60,7 +56,7 @@ article a:hover {
 }
 
 article ol, article ul {
-    font-family: var(--font-4);
+    font-family: var(--font-5);
 }
 
 article img:hover {
@@ -70,7 +66,7 @@ article img:hover {
 
 article #date, article #author, article #tags {
     color: #39393b;
-    font-size: 15px;
+    font-size: 18px;
     line-height: 0.8;
 }
 
@@ -80,7 +76,7 @@ article blockquote {
 }
 
 article ol, article ul {
-    font-size: 19px;
+    font-size: 20px;
 }
 
 article ol li, article ul li {
