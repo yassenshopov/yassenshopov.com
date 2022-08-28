@@ -1,42 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
-  <loc>https://yassenshopov.com/</loc>
-  <lastmod>2022-07-10T18:22:22+00:00</lastmod>
-  <priority>1.00</priority>
+<loc>https://yassenshopov.com/</loc>
+<lastmod>2022-08-28T16:26:57+00:00</lastmod>
+<priority>1.00</priority>
 </url>
 <url>
-  <loc>https://yassenshopov.com/blog/</loc>
-  <lastmod>2022-07-10T18:22:22+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://yassenshopov.com/blog/</loc>
+<lastmod>2022-08-28T16:26:57+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://yassenshopov.com/notion/</loc>
-  <lastmod>2022-07-10T18:22:22+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://yassenshopov.com/notion/</loc>
+<lastmod>2022-08-28T16:26:57+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://yassenshopov.com/contact-me/</loc>
-  <lastmod>2022-07-10T18:22:22+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://yassenshopov.com/contact-me/</loc>
+<lastmod>2022-08-28T16:26:57+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://yassenshopov.com/blog/my-first-dollar/</loc>
-  <lastmod>2022-07-10T18:22:22+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://yassenshopov.com/blog/academic-preparation/</loc>
+<lastmod>2022-08-28T16:26:57+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://yassenshopov.com/blog/how-to-make-notion-fast/</loc>
-  <lastmod>2022-07-10T18:22:22+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://yassenshopov.com/blog/optimizing-my-finances/</loc>
+<lastmod>2022-08-28T16:26:57+00:00</lastmod>
+<priority>0.64</priority>
 </url>
-
-
+<url>
+<loc>https://yassenshopov.com/blog/notion-templates/</loc>
+<lastmod>2022-08-28T16:26:57+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://yassenshopov.com/blog/life-design/</loc>
+<lastmod>2022-08-28T16:26:57+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://yassenshopov.com/blog/caffeine-addiction/</loc>
+<lastmod>2022-08-28T16:26:57+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://yassenshopov.com/blog/6-elements/</loc>
+<lastmod>2022-08-28T16:26:57+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://yassenshopov.com/blog/my-first-dollar/</loc>
+<lastmod>2022-08-28T16:26:57+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://yassenshopov.com/blog/how-to-make-notion-fast/</loc>
+<lastmod>2022-08-28T16:26:57+00:00</lastmod>
+<priority>0.64</priority>
+</url>
 </urlset>
