@@ -24,6 +24,7 @@ article {
     border-radius: 12.5px;
     box-shadow: 0px 5px 5px #94939340;
     padding: 50px;
+    overflow-x: hidden;
 }
 
 article h2 {
@@ -121,6 +122,11 @@ article input {
     text-align: center;
     box-shadow: 0px 2px 10px #0f0f0f50;
     font-family: var(--font-2);
+}
+
+article .google-auto-placed {
+    box-shadow: 0px 0px 0px #ffffff;
+    margin-bottom: 70px;
 }
 
 aside {
