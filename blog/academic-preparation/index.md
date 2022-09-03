@@ -18,4 +18,9 @@ For example, with my Engineering modules at Uni, I have found some patterns in t
 What is more, preparing ahead of time and planning your goals is essential because…
 
 > “*You do not rise to the level of your goals. You fall to the level of your systems.*” - ***James Clear**, author of “Atomic Habits”*
->
+
+And in this article, we will look into the **systems** you can purposefully build to increase your academic performance - ahead of time.
+
+## Your calendar
+
+Most students only start using a calendar, either a physical one or a digital one, when they go into university. Personally, I have been using one even in high school, courtesy to Thomas Frank’s inspiring videos that I was lucky to stumble into when I was 16:
