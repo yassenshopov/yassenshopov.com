@@ -120,8 +120,9 @@ main article h2, main article p {
 }
 
 main article p {
-    font-family: var(--font-1);
+    font-family: var(--font-5);
     color: var(--color-2);
+    font-size: 25px;
     line-height: 1.5;
     margin: 10px 0 25px 0;
 }
@@ -143,6 +144,10 @@ main article a {
         display: grid;
         grid-template-columns: 1fr;
         padding: 50px 2% 0 2%;
+    }
+
+    main article p {
+        font-size: 20px;
     }
 
     header {
