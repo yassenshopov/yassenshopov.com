@@ -1,155 +1,155 @@
 main {
-    padding: 0 7vw 0 7vw;
-    font-family: var(--font-1);
-    color: var(--color-2);
-    overflow: hidden;
+  padding: 0 7vw 0 7vw;
+  font-family: var(--font-1);
+  color: var(--color-2);
+  overflow: hidden;
 }
 
 header {
-    display: flex;
-    flex-direction: row;
-    padding: 50px 0 100px 0;
-    gap: 3vw;
+  display: flex;
+  flex-direction: row;
+  padding: 50px 50px 100px 50px;
+  gap: 3vw;
 }
 
 header h1 {
-    font-family: var(--font-2);
-    font-size: 3.5rem;
+  font-family: var(--font-2);
+  font-size: 3.2rem;
 }
 
-header a {
-    padding: 22px;
-    background-color: var(--color-2);
-    color: var(--color-4);
-    text-decoration: solid;
-    border-radius: 12.5px;
-    width: fit-content;
-    margin-top: 20px;
+header #hero-text a {
+  padding: 22px;
+  background-color: var(--color-2);
+  color: var(--color-4);
+  text-decoration: solid;
+  border-radius: 12.5px;
+  width: fit-content;
+  margin-top: 20px;
 }
 
 #hero-text {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 #hero-text h2 {
-    font-size: 1.5rem;
+  font-family: var(--font-5);
+  font-size: 1.6rem;
+  width: 80%;
 }
 
-header #hero-text, #hero-image {
-    width: 50%;
+header #hero-text,
+#hero-image {
+  width: 50%;
 }
 
 #hero-image {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column-reverse;
+  /* border: 1px solid black; */
+  /* padding: 10px; */
+  margin-top: 50px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 #hero-image img {
-    display: inline;
-    width: 50%;
-    border-radius: 25px;
-    border: 3px solid var(--color-2);
-    box-shadow: 10px 10px 15px var(--color-2);
-    transform: skewX(-5deg);
-    transition: 0.3s all ease-in-out;
+  border-radius: 15px;
+  width: 50%;
+  /* border: 3px solid var(--color-2); */
+  box-shadow: 5px 5px 25px #28282930;
+  /* transform: skewX(-5deg); */
+  transition: 1s all ease-in-out;
 }
 
-#hero-image img:nth-child(1) {
-    margin-left: 0vw;
-    margin-top: -160px;
-    z-index: 2;
-}
-/* #hero-image img:nth-child(1):hover {
-    margin-left: 5vw;
-} */
-
-#hero-image img:nth-child(2) {
-    margin-left: 8vw;
-    margin-top: -160px;
-    z-index: 1;
+#hero-image a:nth-child(1) img {
+  margin-left: 0vw;
+  margin-top: -200px;
+  z-index: 2;
 }
 
-/* #hero-image img:nth-child(2):hover {
-    margin-left: 15vw;
-} */
-
-#hero-image img:nth-child(3) {
-    margin-left: 15vw;
-    margin-top: 0px;
-    z-index: 0;
+#hero-image a:nth-child(2) img {
+  margin-left: 8vw;
+  margin-top: -200px;
+  z-index: 1;
 }
 
-/* #hero-image img:nth-child(3):hover {
-    margin-left: 27vw;
-} */
+#hero-image a:nth-child(3) img {
+  margin-left: 15vw;
+  margin-top: 0px;
+  z-index: 0;
+}
+
+#hero-image a img:hover {
+  filter: saturate(2);
+}
 
 #about {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 7vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 7vw;
+  padding: 0 50px 0 50px;
 }
 
-#about img, #about-text {
-    width: 50%;
+#about img {
+  width: 50%;
 }
 
 #about img:not(#notion-certified) {
-    border-radius: 20px;
-    border: 3px solid var(--color-2);
-    box-shadow: 0px 0px 15px var(--color-2);
-    height: fit-content;
+  border-radius: 20px;
+  /* border: 3px solid var(--color-2); */
+  box-shadow: 0px 0px 15px #28282930;
+  height: fit-content;
 }
 
 #about-text h1 {
-    font-family: var(--font-2);
-    font-size: 2rem; 
+  font-family: var(--font-2);
+  font-size: 2rem;
 }
 
 #about-text p {
-    font-size: 1rem;
+  font-family: var(--font-5);
+  font-size: 1.2rem;
 }
 
-@media screen and (max-width:800px) {
-
-    /* * {
+@media screen and (max-width: 800px) {
+  /* * {
         border: 1px solid black;
     } */
 
-    header {
-        flex-direction: column;
-    }
+  header {
+    flex-direction: column;
+  }
 
-    header #hero-text, #hero-image {
-        width: 100%;
-    }
-    
-    header h1 {
-        font-size: 10vw;
-        text-align: center;
-    }
+  header #hero-text,
+  #hero-image {
+    width: 100%;
+  }
 
-    header h2 {
-        font-size: 10px;
-        text-align: center;
-    }
+  header h1 {
+    font-size: 10vw;
+    text-align: center;
+  }
 
-    header a {
-        align-self: center;
-    }
+  header h2 {
+    font-size: 10px;
+    text-align: center;
+  }
 
-    #hero-image img {
-        width: 80%;
-    }
+  header a {
+    align-self: center;
+  }
 
-    #about {
-        flex-direction: column;
-    }
+  #hero-image img {
+    width: 80%;
+  }
 
-    #about img, #about-text  {
-        width: 100%;
-    }
+  #about {
+    flex-direction: column;
+  }
 
+  #about img,
+  #about-text {
+    width: 100%;
+  }
 }

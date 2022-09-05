@@ -1,191 +1,197 @@
 main {
-    display: flex;
-    flex-direction: row;
-    padding: 0 5vw 0 5vw;
-    margin: 50px 0 50px 0;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  padding: 0 5vw 0 5vw;
+  margin: 50px 0 50px 0;
+  justify-content: space-between;
 }
 
-main h1, main h2, main h3 {
-    font-family: var(--font-2);
+main h1,
+main h2,
+main h3 {
+  font-family: var(--font-2);
 }
 
 main h1 {
-    font-size: 35px;
+  font-size: 35px;
 }
 
 main h2 {
-    font-size: 28px;
+  font-size: 28px;
 }
 
 article {
-    background-color: var(--color-4);
-    width: 52vw;
-    border-radius: 12.5px;
-    box-shadow: 0px 5px 5px #94939340;
-    padding: 50px;
-    overflow-x: hidden;
+  background-color: var(--color-4);
+  width: 52vw;
+  border-radius: 12.5px;
+  box-shadow: 0px 5px 5px #94939340;
+  padding: 50px;
+  overflow-x: hidden;
 }
 
 article h2 {
-    margin: 35px 0 40px 0;
+  margin: 35px 0 40px 0;
 }
 
 article p {
-    font-family: var(--font-5);
-    font-size: 20px;
-    line-height: 1.8;
+  font-family: var(--font-5);
+  font-size: 20px;
+  line-height: 1.8;
 }
 
-article img, article iframe {
-    width: 100%;
-    border-radius: 12.5px;
-    box-shadow: 0px 5px 5px #94939340;
-    margin: 30px 0 30px 0;
-    transition: all 0.5s ease-in-out;
-    border: 0px solid #ffffff;
+article img,
+article iframe {
+  width: 100%;
+  border-radius: 12.5px;
+  box-shadow: 0px 5px 5px #94939340;
+  margin: 30px 0 30px 0;
+  transition: all 0.5s ease-in-out;
+  border: 0px solid #ffffff;
 }
 
 article a {
-    text-decoration: underline;
-    color: #000000;
-    transition: all 1s ease-in-out;
+  text-decoration: underline;
+  color: #000000;
+  transition: all 1s ease-in-out;
 }
 
 article a:hover {
-    color: #000a63;
+  color: #000a63;
 }
 
-article ol, article ul {
-    font-family: var(--font-5);
+article ol,
+article ul {
+  font-family: var(--font-5);
 }
 
 article img:hover {
-    box-shadow: 0px 5px 10px #27272799;
-    filter: brightness(1) saturate(2);
+  box-shadow: 0px 5px 10px #27272799;
+  filter: brightness(1) saturate(2);
 }
 
-article #date, article #author, article #tags {
-    color: #39393b;
-    font-size: 18px;
-    line-height: 0.8;
+article #date,
+article #author,
+article #tags {
+  color: #39393b;
+  font-size: 18px;
+  line-height: 0.8;
 }
 
 article blockquote {
-    text-align: center;
-    padding: 15px 0 15px 0;
+  text-align: center;
+  padding: 15px 0 15px 0;
 }
 
-article ol, article ul {
-    font-size: 20px;
+article ol,
+article ul {
+  font-size: 20px;
 }
 
-article ol li, article ul li {
-    margin: 30px 0 30px 0;
-    line-height: 1.8;
+article ol li,
+article ul li {
+  margin: 30px 0 30px 0;
+  line-height: 1.8;
 }
 
 article ul li::marker {
-    content: "👉️  ";
+  content: '👉️  ';
 }
 
 article #mc_embed_signup form {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 50px 0 50px 0;
-    background: linear-gradient(0.4turn,#f1f1f1,#ffffff, #f1f1f1);
-    border-radius: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0 50px 0;
+  background: linear-gradient(0.4turn, #f1f1f1, #ffffff, #f1f1f1);
+  border-radius: 12px;
 
-    /* box-shadow: 0px 2px 10px #0f0f0f50; */
-    /* padding: 0 0 25px 0; */
+  /* box-shadow: 0px 2px 10px #0f0f0f50; */
+  /* padding: 0 0 25px 0; */
 }
 
 article #mc_embed_signup #subscribe {
-    width: fit-content;
-    margin-top: 20px;
-    background-color: var(--color-2);
-    color: var(--color-4);
-    font-size: 20px;
-    padding: 15px 25px 15px 25px;
-    border-radius: 6px;
-    transition: all 400ms ease-in-out;
-    font-family: var(--font-2);
+  width: fit-content;
+  margin-top: 20px;
+  background-color: var(--color-2);
+  color: var(--color-4);
+  font-size: 20px;
+  padding: 15px 25px 15px 25px;
+  border-radius: 6px;
+  transition: all 400ms ease-in-out;
+  font-family: var(--font-2);
 }
 
 article input {
-    width: 90%;
-    padding: 12px;
-    font-size: 14px;
-    border-radius: 12px;
-    background-color: #94939340;
-    border: 0px solid black;
-    text-align: center;
-    box-shadow: 0px 2px 10px #0f0f0f50;
-    font-family: var(--font-2);
+  width: 90%;
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 12px;
+  background-color: #94939340;
+  border: 0px solid black;
+  text-align: center;
+  box-shadow: 0px 2px 10px #0f0f0f50;
+  font-family: var(--font-2);
 }
 
 article .google-auto-placed {
-    box-shadow: 0px 0px 0px #ffffff;
-    margin-bottom: 70px;
+  box-shadow: 0px 0px 0px #ffffff;
+  margin-bottom: 70px;
 }
 
 aside {
-    background-color: var(--color-4);
-    width: 25vw;
-    border-radius: 12.5px;
-    box-shadow: 0px 5px 5px #94939340;
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: fit-content;
+  background-color: var(--color-4);
+  width: 25vw;
+  border-radius: 12.5px;
+  box-shadow: 0px 5px 5px #94939340;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
 }
 
 aside a img {
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 0px 5px 5px #94939340;
-    transition: 300ms all ease-in-out;
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0px 5px 5px #94939340;
+  transition: 300ms all ease-in-out;
 }
 
 aside a img:hover {
-    filter: saturate(2);
-    box-shadow: 0px 5px 5px #94939390;
+  filter: saturate(2);
+  box-shadow: 0px 5px 5px #94939390;
 }
 
-@media screen and (max-width:800px) {
-
-    /* * {
+@media screen and (max-width: 800px) {
+  /* * {
         border: 1px solid black;
     } */
 
-    main {
-        flex-direction: column;
-        gap: 50px;
-        padding: 0;
-        margin: 20px 0 0 0;
-        width: 100%;
-    }
+  main {
+    flex-direction: column;
+    gap: 50px;
+    padding: 0;
+    margin: 20px 0 0 0;
+    width: 100%;
+  }
 
-    article {
-        max-width: fit-content;
-        width: 100%;
-        padding: 25px;
-        margin: 0;
-    }
+  article {
+    max-width: fit-content;
+    width: 100%;
+    padding: 25px;
+    margin: 0;
+  }
 
-    article p {
-        font-size: 20px;
-        line-height: 1.7;
-    }
+  article p {
+    font-size: 20px;
+    line-height: 1.7;
+  }
 
-    aside {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-
+  aside {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
 }
