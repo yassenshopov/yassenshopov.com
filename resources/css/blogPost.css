@@ -121,6 +121,7 @@ article #mc_embed_signup #subscribe {
   border-radius: 6px;
   transition: all 400ms ease-in-out;
   font-family: var(--font-2);
+  cursor: pointer;
 }
 
 article input {
@@ -131,13 +132,14 @@ article input {
   background-color: #94939340;
   border: 0px solid black;
   text-align: center;
-  box-shadow: 0px 2px 10px #0f0f0f50;
+  box-shadow: 0px 2px 10px #0f0f0f00;
   font-family: var(--font-2);
 }
 
 article .google-auto-placed {
   box-shadow: 0px 0px 0px #ffffff;
   margin-bottom: 70px;
+  border-radius: 0;
 }
 
 aside {

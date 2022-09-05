@@ -9,7 +9,7 @@ Since we’re never taught proper study techniques, we usually follow our intuit
 
 However, both school and university are institutions that have existed for quite a while now. Even with the recent transition to online learning in some places, most of the underlying principles behind doing well in academia are the same. The academic year follows a relatively predictable structure, and it’s usually a repeatable one as well.
 
-For example, with my Engineering modules at Uni, I have found some patterns in the optimal study techniques for each. 
+For example, with my Engineering modules at Uni, I have found some patterns in the optimal study techniques for each.
 
 1. Essays follow a similar structure that you can templatise
 2. Tutorials teach you the material through repeated problem-solving
@@ -25,7 +25,12 @@ And in this article, we will look into the **systems** you can purposefully buil
 
 Most students only start using a calendar, either a physical one or a digital one, when they go into university. Personally, I have been using one even in high school, courtesy to Thomas Frank’s inspiring videos that I was lucky to stumble into when I was 16:
 
-- - - video - - -
+<iframe width="560" height="315"
+    src="https://www.youtube.com/embed/KcWplarcZzY"
+    frameborder="0"
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+</iframe>
 
 Your calendar is a powerful tool for a few reasons:
 

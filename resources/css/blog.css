@@ -1,3 +1,13 @@
+body {
+  background: linear-gradient(
+      217deg,
+      rgba(255, 255, 255, 1),
+      rgba(255, 0, 0, 0) 70.71%
+    ),
+    linear-gradient(127deg, rgba(129, 129, 129, 0), rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(336deg, rgba(120, 120, 124, 0.2), rgba(0, 0, 255, 0) 70.71%);
+}
+
 header {
   display: flex;
   flex-direction: row-reverse;
@@ -47,6 +57,10 @@ header h3,
 header a {
   color: var(--color-2);
   font-family: var(--font-1);
+}
+
+header #subscribe {
+  cursor: pointer;
 }
 
 header input {
