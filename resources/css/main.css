@@ -35,7 +35,7 @@ header #hero-text a {
 #hero-text h2 {
   font-family: var(--font-5);
   font-size: 1.6rem;
-  width: 80%;
+  /* width: 80%; */
 }
 
 header #hero-text,
@@ -119,10 +119,15 @@ header #hero-text,
 
   header {
     flex-direction: column;
+    padding: 0 0 50px 0;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
   }
 
   header #hero-text,
   #hero-image {
+    padding: 0;
     width: 100%;
   }
 
@@ -132,7 +137,9 @@ header #hero-text,
   }
 
   header h2 {
+    display: block;
     font-size: 10px;
+    width: 100%;
     text-align: center;
   }
 
@@ -145,11 +152,14 @@ header #hero-text,
   }
 
   #about {
+    padding: 0;
     flex-direction: column;
   }
 
   #about img,
   #about-text {
     width: 100%;
+    font-size: 15px;
+    line-height: 1.5;
   }
 }
