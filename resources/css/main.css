@@ -147,8 +147,17 @@ header #hero-text,
     align-self: center;
   }
 
-  #hero-image img {
-    width: 80%;
+  #hero-image a:nth-child(1) img {
+    width: 90%;
+    margin: -100px 0 0 0;
+  }
+  #hero-image a:nth-child(2) img {
+    width: 90%;
+    margin: -100px 0 0 0;
+  }
+  #hero-image a:nth-child(3) img {
+    width: 90%;
+    margin: 0;
   }
 
   #about {
