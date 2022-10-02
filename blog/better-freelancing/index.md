@@ -45,3 +45,45 @@ However, when I first converted to freelance, I found it very helpful to still b
 What is more, by working 8 hours a day even as a freelancer, you can apply a specific strategy, which I call the 2-by-4 method.
 
 You will sometimes have yourself in the situation where you have not enough or entirely too many clients. In that case, I would recommend you spend 4h a day working on your already-assigned projects, and spend the remaining 4h a day working on marketing - seeking out new clients. This way, you will get yourself an exemplary portfolio of work while still managing to find new clients simultaneously.
+
+## 3. Control your personal brand
+
+When you think of a “personal brand”, your mind will likely wander off to brand accounts on social media, which honestly feel like poor attempts of an AI to sound human.
+
+However, a real personal brand has more to do with your personality. It includes your presence on social media channels, the design and feel of your personal website, the authenticity you show.
+
+Clients will find it much easier to relate to your message on a personal level if there is a person behind the brand. Also, credibility is more easily being provided - you are standing with your own face and name behind your services, so people will feel more secure that the work will be done responsibly.
+
+## 4. Grow a newsletter
+
+Ah, email newsletters.
+
+It would seem like email marketing is a dying trend likely to be unpopular in 2022, but surprisingly, there are plenty of 100k+ following newsletters that make insane profits to this day.
+
+Most of them aren’t even connected to particular businesses - they are the personal newsletters of public figures that attract a following through their message and regularly pitch their products and services.
+
+For example, this blog is connected to a newsletter. So if you are subscribed, you will receive an education email and summary of my article of the week each Wednesday. When you provide value, you will later find it easier to attract clients through the very same audience you have been sending newsletters to.
+
+## 5. Collect testimonials
+
+Do you know why people would want a large social media following, apart from the purely vain aspects of it?
+
+It’s due to the social proof.
+
+A Twitter account with 100k followers can spread the same message as a 1k Twitter, but their message will be largely amplified. And the same goes for freelancers.
+
+For me, it was much easier to get clients doing digital illustrations after my 100th client than before them. And much of it comes from the testimonials of said clients.
+
+So, whenever you finish a job, and you believe you did it well, don’t be shy to ask for a review - and then publish it on your website. It will help your reputation in the long term.
+
+## 6. Manage expectations
+
+And for our last point, we want to relate back to the initial one with the importance of communication.
+
+At the start of a project with a client, make sure you get these details straight with them and don’t deviate:
+
+- What the deadline is
+- How many corrections they get
+- What is within your expertise
+- What is outside of your abilities
+- What they can get as bonuses
