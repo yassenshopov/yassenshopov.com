@@ -206,6 +206,12 @@ footer a:hover {
     margin-top: 31vh;
   }
 
+  .gumroad .cart-button {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+  }
+
   footer {
     margin-top: 50px;
     width: 100%;
