@@ -207,9 +207,8 @@ footer a:hover {
   }
 
   .gumroad .cart-button {
-    position: fixed;
     bottom: 1rem;
-    right: 1rem;
+    top: 90vh !important;
   }
 
   footer {
