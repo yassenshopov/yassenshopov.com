@@ -88,13 +88,49 @@ Not sure what to write about? Here's a powerful thread on the topic:
 
 ## ⛅️ 8. Wear sunscreen, even on cloudy days
 
+When you're young, you typically don't pay too much attention to your skincare.
+
+However, sunscreen is shown to be one of the easiest ways to prevent damage to your skin, wrinkles, discoloration, and it should be applied daily as well.
+
+You may think to yourself that if you live in a relatively cold/cloudy country, you won't need to other, but guess what? Sunlight can be damaging to your skin even through the cloud barrier, albeit to a lesser extent.
+
+So do your future self a favour and put on your sunscreen regularly.
+
+(Bonus tip: take Vitamin D as well, especially if you live in the UK)
+
+<img src="../../resources/images/blog/22-tips-1.webp" />
+
 ## 🎓️ 9. Share notes and tactics with your classmates/coursemates
+
+Academia, be it high school or university, can be quite the hassle.
+
+When I first discovered [Notion](https://kofiscrib.com/blog/creative-virgo/notion/) and its amazing perks for students, I was in my 1st year of university, doing Biomedical Engineering.
+
+Back then, I created some pretty resourceful notes, which I only later found out were helpful to my other classmates as well. What is more, once you share your resources, they will most likely share their own notes with you as well, so it's a beneficial self-reinforcing cycle.
 
 ## ✔️ 10. Set up reminders to check up on people
 
+We all get very busy from time to time. Still, taking 5 minutes out of your time to send a text, arrange a meeting, or just remember to wish somebody a "Hppy birthday!" goes a long way.
+
+I have created reminders for myself in Google Calendar to send a message on my close people's birthdays, and it's a failsafe method to make sure nobody gets forgotten.
+
 ## 📭️ 11. Aim for Inbox 0
 
+*Inbox 0* is the practice of actually having zero items in your preferred inbox.
+
+Take for example your email inbox. Any time a new email comes in, it has to compete for your attention with:
+
+- Past mails
+- Irrelevant spam
+- Random emails that you keep just in case
+
+Luckily for you, [I have written an entire step by step article](https://kofiscrib.com/blog/creative-virgo/how-to-manage-email) on how you can effortlessly create a system to organise your existing emails, unsub from the useless ones and keep the inbox clean at all times.
+
 ## 🍀 12. Quarters aren’t just for finances bros
+
+We tend to associate the concept of "quarters of the year" to the financial or economic sphere a lot.
+
+But there's a reason why it's so important for much of project management. 3 months is a perfect time period for most projects. It's enough time to plan out a project, start it out, review it. At the end of every quarter, review your goals and work and see if everything aligns.
 
 ## 🔗 13. Keep your portfolio updated
 
