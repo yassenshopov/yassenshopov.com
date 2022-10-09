@@ -134,20 +134,92 @@ But there's a reason why it's so important for much of project management. 3 mon
 
 ## 🔗 13. Keep your portfolio updated
 
+Us students tend to sometimes underestimate the power of a good portfolio and a working LinkedIn profile.
+
+University will come to an end soon, and the job search will begin. You'll need to list your strengths, your abilities, your experience, and you'll be able to make the best description of your uni experience while still at uni.
+
 ## 💤 14. Make your bed first thing in the morning
+
+It's a small win! But a win nonetheless.
 
 ## 💻 15. Use data analysis on your own life
 
+Data analysis [*ˈdeɪtə əˈnæləsɪs*]: a process of inspecting, cleansing, transforming, and modelling data with the goal of discovering useful information, informing conclusions, and supporting decision-making.
+
+Your decision-making should laregely be affected by data. And the data in your life can be very quantifiable as well. Think about your gym stats, your weight, your sleep data, even your mood can have a number associated with it.
+
+Start tracking your numbers and you'll quickly notice patterns forming.
+
 ## 🧨 16. Your first (few) jobs may not be the most exciting
+
+Very few people work their dream jobs from the get-go. Learn to accept that the randomness at the beginning of your career is the price for job satisfaction later in life.
+
+So far I have been a barista, a translator, a digital illustrator, a technical writer. All of those jobs have taught me things, and all this accumulated knowledge has been compounding over time.
 
 ## 🤖 17. Automate one menial task every week
 
+If you know just a little bit of code, you can probably automate a lot of things in your day-to-day life. Such as:
+
+- Data entry
+- Your email system
+- Your folder and file system
+- Calendar management
+- Daily routines
+
 ## 🔖 18. Don’t simply *read* non-fiction
+
+Many people claim to read a ton of books every year.
+
+This is good for a variety of reasons, but we often overlook the *depth* of the reading.
+
+You will definitely get much more value from a book if you take notes from it. Then turn those notes into content or actionable tasks in your day-to-day life and you will see much more benefit.
 
 ## ☕ 19. Learn to appreciate caffeine
 
+Caffeine is a stimulant.
+
+And still, it is widely accepted in society despite its addictive nature. I even wrote an article going into [the ways I actively manage my daily caffeine](https://yassenshopov.com/blog/caffeine-addiction/). Nowadays, I stick to just 1-2 cups of coffee a day, in order to facilitate the most productivity with the least side effects.
+
 ## 😨 20. Your fears can be a compass
+
+Your fears, anxieties, and troubles can affect how you behave and what you run towards.
+
+But as much as they can hold you back, they could also help you.
+
+Whenever you feel scared or worried to do something, try to analyse the reasons why. Are you scared to do something out of a lack of experience, or is it because you need to change tje setting somehow?
+
+Your fears can easily be a compass of how to make your life better.
 
 ## 💰 21. Read finance books
 
+Personal finance may not be everybody's favourite genre, and that's normal.
+
+However, we don't really get a choice in the matter - every single one of us deals with finances, so it's better to be educated about it.
+
+Here's a list of some top-notch finance books to add to your To-Read-List:
+
+1. “Rich Dad, Poor Dad” by R. Kiyosaki
+2. “I Will Teach You To Be Rich” by R. Sethi
+3. “The Little Book That Still Beats the Market” by J. Greenblatt
+4. “The Total Money Makeover” by D. Ramsey
+5. “The Millionaire Fastlane” by MJ DeMarco
+6. “The Psychology of Money” by M. Housel
+
+[Here is an explanation of why every book is important over here](https://yassenshopov.com/blog/optimizing-my-finances/).
+
 ## 📣 22. Self-promotion ≠ Bragging
+
+Any content creator starts off insecure.
+
+What will people say if I start making content on the internet?
+
+Well, especially in the beginning, nobody will say anything. Your audience will be small enough that it will likely attract no real attention. One of the first hurdles you'll have to get over is the self-promotion concept.
+
+It may feel like bragging on the Internet at the beginning, but it will become natural over time.
+
+You can promote yourself and your brand without bragging by:
+→Building in public
+→Sharing your tips and tricks
+→Providing value to people, for free
+
+If you enjoyed this article, subsribe to my newsletter via the form below to stay in the loop ♻️.
