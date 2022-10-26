@@ -60,3 +60,39 @@ It’s difficult to pinpoint exactly at what point his channel took off - and th
 Unlike some other YouTubers, Thomas seems to rely very little on the algorithm to produce content. He has a schedule and style of work that helps him consistently produce high-quality work with consistently high view-rates.
 
 What is more, his content rarely relies on some current events to keep going - making it relatively timeless in nature. You can find some tips and tricks from his content both as a teen and as a working adult, which is a strong quality.
+
+Thomas has realised the potential of the Notion niche. It is full of dedicated and curious people, and since Notion is a relatively young software, it attracts an ever-growing audience. What is more, there is an urgent need for more tutorials being made, as Notion releases more and more features. This is where Thomas found a great market fit - his already-existing expertise on video-making and teaching combined with his genuine passion for Notion make him one of the best-suited people to enter this market.
+
+What is even more exciting, is that the Notion team apparently regularly talks with Thomas on what can be included or fixed with the software. Since Thomas has such a big audience that greatly overlaps with the Notion one, it only makes sense for both parties to be interested in working with each other.
+
+Thomas Frank and his overall experience with content creation of all kinds makes him a person to look up to, so I suggest you give him a follow on Twitter to stay in the loop.
+
+<blockquote
+        style="justify-self: center; align-self: center"
+        class="twitter-tweet twitter-tweet-rendered"
+      >
+        <p lang="en" dir="ltr">
+          I just made $100,000 in a single month selling
+          <a href="https://twitter.com/NotionHQ?ref_src=twsrc%5Etfw"
+            >@NotionHQ</a
+          >
+          templates through
+          <a href="https://twitter.com/gumroad?ref_src=twsrc%5Etfw"
+            >@Gumroad</a
+          >. Here&#39;s how:<br /><br />- Built an audience w/ tutorials and
+          free templates<br />- Spent a LOT of time on the sales page<br />-
+          Product bundles<br />- Upgraded the customer experience
+          everywhere<br /><br />Here are the details:
+          <a href="https://t.co/uTMAmXq70E">pic.twitter.com/uTMAmXq70E</a>
+        </p>
+        &mdash; Thomas Frank (@TomFrankly)
+        <a
+          href="https://twitter.com/TomFrankly/status/1523730922633191424?ref_src=twsrc%5Etfw"
+          >May 9, 2022</a
+        >
+</blockquote>
+<script
+  async
+  src="https://platform.twitter.com/widgets.js"
+  charset="utf-8"
+></script>
