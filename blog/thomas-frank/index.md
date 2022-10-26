@@ -61,6 +61,10 @@ Unlike some other YouTubers, Thomas seems to rely very little on the algorithm t
 
 What is more, his content rarely relies on some current events to keep going - making it relatively timeless in nature. You can find some tips and tricks from his content both as a teen and as a working adult, which is a strong quality.
 
+## *Thomas Frank Explains* and Notion
+
+Thomas Frank’s latest endeavours combine his passion for productivity and organisation and his experience as a content creator. He was one of the first YouTubers that I saw turn to Notion for their content creation (he has an amazing template entirely dedicated to video production).
+
 Thomas has realised the potential of the Notion niche. It is full of dedicated and curious people, and since Notion is a relatively young software, it attracts an ever-growing audience. What is more, there is an urgent need for more tutorials being made, as Notion releases more and more features. This is where Thomas found a great market fit - his already-existing expertise on video-making and teaching combined with his genuine passion for Notion make him one of the best-suited people to enter this market.
 
 What is even more exciting, is that the Notion team apparently regularly talks with Thomas on what can be included or fixed with the software. Since Thomas has such a big audience that greatly overlaps with the Notion one, it only makes sense for both parties to be interested in working with each other.
