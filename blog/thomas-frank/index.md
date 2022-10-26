@@ -5,7 +5,11 @@ If you’re using Notion professionally, and ever needed to Google how to do som
 Thomas is one of the most popular productivity YouTubers world-wide, among the ranks of Matt D’Avella and Ali Abdaal. His main YouTube channel now amasses 2.5+ million subscribers, while his secondary blooming channel about Notion specifically is currently at ~100K - an amazing number given how niche of a topic Notion still is.
 Thomas’ relatability, charisma, and fascination with building systems are what attracts fans to his work, and he has built a genuine and supporting following over the years.
 
-![Thomas Frank's Creative Journey](../../resources/images/blog/thomas-frank/thomas-frank-1.webp)
+<!-- ![Thomas Frank's Creative Journey](../../resources/images/blog/thomas-frank/thomas-frank-1.webp) -->
+
+<p align="center">
+  <img style="border-radius: 15px; height: 300px;" src="../../resources/images/blog/thomas-frank/thomas-frank-1.webp" alt="Sublime's custom image"/>
+</p>
 
 I personally started interacting with his content in my high school years, so around 2015-2016.
 
