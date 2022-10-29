@@ -121,6 +121,10 @@ main article img {
   width: 100%;
 }
 
+main article h2 {
+  text-align: center;
+}
+
 main article h2,
 main article p {
   width: 80%;
