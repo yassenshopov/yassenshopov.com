@@ -5,26 +5,25 @@ nav a {
 header {
   background-color: #080808;
   color: var(--color-4);
-  padding: 80px 18vw 20px 18vw;
+  padding: 100px 22vw 30px 22vw;
   margin-top: -80px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 7vw;
+  gap: 2vw;
 }
 
 #hero-text {
   display: flex;
   flex-direction: column;
-  /* width: 40%; */
   text-align: left;
   align-items: flex-start;
 }
 
 header img {
   padding: 0px;
-  width: 15%;
+  width: 18%;
   transition: 0.4s all ease-in-out;
 }
 
@@ -38,7 +37,7 @@ header h1 {
 }
 
 header h2 {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 header h3 {
@@ -245,6 +244,20 @@ aside a img:hover {
   /* * {
         border: 1px solid black;
     } */
+
+  header {
+    padding: 20px 12vw 30px 12vw;
+    margin-top: 0;
+  }
+
+  header input {
+    width: 60vw;
+    margin-bottom: 10px;
+  }
+
+  header #subscribe {
+    width: 60vw;
+  }
 
   main {
     flex-direction: column;
