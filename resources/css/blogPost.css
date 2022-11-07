@@ -1,8 +1,85 @@
+nav a {
+  color: var(--color-4);
+}
+
+header {
+  background-color: #080808;
+  color: var(--color-4);
+  padding: 80px 18vw 20px 18vw;
+  margin-top: -80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 7vw;
+}
+
+#hero-text {
+  display: flex;
+  flex-direction: column;
+  /* width: 40%; */
+  text-align: left;
+  align-items: flex-start;
+}
+
+header img {
+  padding: 0px;
+  width: 15%;
+  transition: 0.4s all ease-in-out;
+}
+
+header img:hover {
+  filter: drop-shadow(0px 0px 10px #ffffff40);
+}
+
+header h1 {
+  font-family: var(--font-2);
+  font-size: 32px;
+}
+
+header h2 {
+  font-size: 20px;
+}
+
+header h3 {
+  font-size: 14px;
+}
+
+header h2,
+header h3,
+header a {
+  font-family: var(--font-1);
+}
+
+header #subscribe {
+  cursor: pointer;
+}
+
+header input {
+  text-decoration: none;
+  padding: 10px 15px 10px 15px;
+  background-color: var(--color-2);
+  font-family: var(--font-2);
+  color: var(--color-4);
+  border-radius: 6px;
+  width: fit-content;
+  margin-top: 0px;
+  transition: all 600ms ease-in-out;
+  box-shadow: 0px 5px 5px #20202040;
+  border: 0;
+}
+
+header label {
+  font-family: var(--font-2);
+  color: var(--color-2);
+  font-size: 14px;
+}
+
 main {
   display: flex;
   flex-direction: row;
   padding: 0 5vw 0 5vw;
-  margin: 50px 0 50px 0;
+  margin: 30px 0 50px 0;
   justify-content: space-between;
 }
 
@@ -25,7 +102,7 @@ article {
   width: 52vw;
   border-radius: 12.5px;
   box-shadow: 0px 5px 5px #94939340;
-  padding: 50px;
+  padding: 10px 50px 50px 50px;
   overflow-x: hidden;
 }
 

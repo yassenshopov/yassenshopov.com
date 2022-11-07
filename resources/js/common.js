@@ -31,3 +31,20 @@ function select_templates() {
         }
     }
 }
+
+window.onscroll = function() {
+    if (document.querySelector("body").className === "blogPost") {
+        let a_list;
+        if (document.documentElement.scrollTop > 300) {
+            a_list = document.querySelectorAll("nav a");
+            for (let i = 0; i < a_list.length; i++) {
+                a_list[i].style.color = "#121212"
+            }
+        } else {
+            a_list = document.querySelectorAll("nav a");
+            for (let i = 0; i < a_list.length; i++) {
+                a_list[i].style.color = "#ffffff"
+            }
+        }
+    };
+};
