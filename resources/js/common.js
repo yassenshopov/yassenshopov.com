@@ -33,15 +33,23 @@ function select_templates() {
 }
 
 window.onscroll = function() {
-    if (document.querySelector("body").className === "blogPost") {
+    let body = document.querySelector("body");
+    if (body.className === "blogPost") {
         let a_list;
+        let header = document.querySelector("header");
         if (document.documentElement.scrollTop > 300) {
             a_list = document.querySelectorAll("nav a");
+            header.style.backgroundColor = "#ffffff"
+            body.style.backgroundColor = "#40415450"
+
             for (let i = 0; i < a_list.length; i++) {
                 a_list[i].style.color = "#121212"
             }
         } else {
             a_list = document.querySelectorAll("nav a");
+            header.style.backgroundColor = "#080808"
+            body.style.backgroundColor = "#ffffff"
+
             for (let i = 0; i < a_list.length; i++) {
                 a_list[i].style.color = "#ffffff"
             }

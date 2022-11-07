@@ -86,8 +86,7 @@ footer {
   width: 100%;
   color: var(--color-2);
   font-family: var(--font-1);
-  /* background-color: var(--color-2); */
-  backdrop-filter: blur(4px) brightness(1.2) contrast(1.2);
+  background-color: var(--color-3);
   display: flex;
   flex-direction: row;
   align-items: center;
