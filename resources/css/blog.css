@@ -105,17 +105,17 @@ main article {
   box-shadow: 0px 5px 5px #94939340;
   /* border: 1px solid var(--color-2); */
   border-radius: 12px;
-  transition: all 300ms ease-in-out;
+  transition: all 400ms ease-in-out;
   margin-bottom: 50px;
 }
 
 main article:hover {
-  box-shadow: 0px 5px 10px #94939381;
-  filter: saturate(3) brightness(0.99);
+  box-shadow: 0px 5px 30px #94939381;
+  filter: saturate(2) brightness(0.97);
 }
 
 main article img {
-  box-shadow: 0px 0px 6px #94939340;
+  box-shadow: 0px 0px 6px #94939360;
   /* border: 1px solid var(--color-2); */
   border-radius: 12px;
   width: 100%;
@@ -139,7 +139,7 @@ main article p {
   font-family: var(--font-5);
   color: var(--color-2);
   line-height: 1.5;
-  margin: 10px 0 25px 0;
+  margin: 10px 0 15px 0;
 }
 
 main article a:nth-child(4) {
@@ -156,6 +156,7 @@ main article a:nth-child(4) {
 
 main article a:nth-child(4):hover {
   background-color: #121212;
+  border-radius: 20px;
 }
 
 @media screen and (max-width: 800px) {

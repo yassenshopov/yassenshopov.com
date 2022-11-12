@@ -40,7 +40,6 @@ window.onscroll = function() {
         if (document.documentElement.scrollTop > 300) {
             a_list = document.querySelectorAll("nav a");
             header.style.backgroundColor = "#ffffff"
-            body.style.backgroundColor = "#40415450"
 
             for (let i = 0; i < a_list.length; i++) {
                 a_list[i].style.color = "#121212"
@@ -48,7 +47,6 @@ window.onscroll = function() {
         } else {
             a_list = document.querySelectorAll("nav a");
             header.style.backgroundColor = "#080808"
-            body.style.backgroundColor = "#ffffff"
 
             for (let i = 0; i < a_list.length; i++) {
                 a_list[i].style.color = "#ffffff"
