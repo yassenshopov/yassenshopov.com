@@ -63,6 +63,12 @@ header #subscribe {
   cursor: pointer;
 }
 
+header #subscribe:hover {
+  background-color: var(--color-4);
+  color: #121212;
+  box-shadow: 0px 0px 8px #94939380;
+}
+
 header input {
   text-decoration: none;
   padding: 10px 15px 10px 15px;
