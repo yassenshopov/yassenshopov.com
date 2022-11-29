@@ -130,12 +130,15 @@ article time {
 article img,
 article iframe {
   width: 100%;
-  aspect-ratio: 16/9;
   border-radius: 12.5px;
   box-shadow: 0px 5px 5px #94939340;
   margin: 30px 0 30px 0;
   transition: all 0.5s ease-in-out;
   border: 0px solid #ffffff;
+}
+
+article iframe {
+  aspect-ratio: 16/9;
 }
 
 article a {
