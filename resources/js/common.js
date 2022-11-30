@@ -36,6 +36,13 @@ window.onscroll = function() {
     let body = document.querySelector("body");
     if (body.className === "blogPost") {
         let a_list;
+        let docElem = document.documentElement;
+        let scrollTop = docElem['scrollTop'] || body['scrollTop'];
+        let scrollBottom = (docElem['scrollHeight'] || body['scrollHeight']) - window.innerHeight;
+        let scrollPercent = 8 + (scrollTop / scrollBottom * 100) + '%';
+
+        document.getElementById("progressBar").style.setProperty("--scrollAmount", scrollPercent); 
+
         let header = document.querySelector("header");
         if (document.documentElement.scrollTop > 300) {
             a_list = document.querySelectorAll("nav a");

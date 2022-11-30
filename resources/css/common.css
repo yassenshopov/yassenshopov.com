@@ -13,6 +13,7 @@
   --font-3: 'Open Sans', sans-serif;
   --font-4: 'Inter', sans-serif;
   --font-5: AndronFont;
+  --scrollAmount: 0%;
 }
 
 html {

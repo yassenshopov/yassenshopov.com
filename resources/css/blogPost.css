@@ -6,6 +6,17 @@ nav a {
   color: var(--color-4);
 }
 
+/* Progress bar */
+#progressBar {
+  background-image: linear-gradient(120deg, #030249 0%, #0e02ad 100%);
+  width: var(--scrollAmount);
+  height: 10px;
+  border-radius: 0 1px 100px 0;
+  position: fixed;
+  top: 73px;
+  z-index: 12;
+}
+
 header {
   background-color: #080808;
   color: var(--color-4);
@@ -259,6 +270,10 @@ aside a img:hover {
   /* * {
         border: 1px solid black;
     } */
+
+  #progressBar {
+    top: 100px;
+  }
 
   header {
     padding: 20px 12vw 30px 12vw;
