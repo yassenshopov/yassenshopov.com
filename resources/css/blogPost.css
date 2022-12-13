@@ -6,22 +6,21 @@ nav a {
   color: var(--color-4);
 }
 
-/* Progress bar */
 #progressBar {
   background-image: linear-gradient(120deg, #030249 0%, #0e02ad 100%);
   width: var(--scrollAmount);
-  height: 10px;
+  height: 6px;
   border-radius: 0 1px 100px 0;
   position: fixed;
-  top: 73px;
+  top: calc(5vw + 6px);
   z-index: 12;
 }
 
 header {
   background-color: #080808;
   color: var(--color-4);
-  padding: 100px 22vw 30px 22vw;
-  margin-top: -80px;
+  padding: 7vw 22vw 30px 22vw;
+  margin-top: calc(-5vw - 20px);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -44,7 +43,7 @@ header img {
 }
 
 header img:hover {
-  filter: drop-shadow(0px 0px 10px #ffffff40);
+  filter: drop-shadow(0px 0px 20px #ffffff60);
 }
 
 header h1 {
@@ -66,14 +65,14 @@ header a {
   font-family: var(--font-1);
 }
 
-header #subscribe {
+.subscribe {
   cursor: pointer;
 }
 
-header #subscribe:hover {
+.subscribe:hover {
   background-color: var(--color-4);
   color: #121212;
-  box-shadow: 0px 0px 8px #94939380;
+  box-shadow: 0px 0px 10px #ffffff;
 }
 
 header input {
@@ -119,6 +118,8 @@ main h2 {
 }
 
 article {
+  display: flex;
+  flex-direction: column;
   background-color: var(--color-4);
   width: 52vw;
   border-radius: 12.5px;
@@ -146,6 +147,8 @@ article iframe {
   margin: 30px 0 30px 0;
   transition: all 0.5s ease-in-out;
   border: 0px solid #ffffff;
+  justify-self: center;
+  align-self: center;
 }
 
 article iframe {
@@ -211,7 +214,7 @@ article #mc_embed_signup form {
   border-radius: 12px;
 }
 
-article #mc_embed_signup #subscribe {
+article #mc_embed_signup .subscribe, article #mc_embed_signup #subscribe {
   width: fit-content;
   margin-top: 20px;
   background-color: var(--color-2);
@@ -285,7 +288,7 @@ aside a img:hover {
     margin-bottom: 10px;
   }
 
-  header #subscribe {
+  header .subscribe {
     width: 60vw;
   }
 
