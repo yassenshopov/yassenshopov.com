@@ -7,12 +7,12 @@ nav a {
 }
 
 #progressBar {
-  background-image: linear-gradient(120deg, #030249 0%, #0e02ad 100%);
+  background-image: linear-gradient(120deg, #e7e7e7 0%, #aeaeaf 100%);
   width: var(--scrollAmount);
   height: 6px;
   border-radius: 0 1px 100px 0;
   position: fixed;
-  top: calc(5vw + 6px);
+  top: calc(5vw + 3px);
   z-index: 12;
 }
 
@@ -25,7 +25,7 @@ header {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 2vw;
+  gap: 5vw;
   transition: all 400ms ease-in-out;
 }
 
@@ -40,10 +40,47 @@ header img {
   padding: 0px;
   width: 18%;
   transition: 0.4s all ease-in-out;
+  animation: wave 4s infinite;
 }
 
 header img:hover {
-  filter: drop-shadow(0px 0px 20px #ffffff60);
+  /* filter: drop-shadow(0px 0px 20px #ffffff60); */
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(20deg);
+  }
+  20% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(20deg);
+  }
+  40% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  70% {
+    transform: rotate(20deg);
+  }
+  80% {
+    transform: rotate(0deg);
+  }
+  90% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 header h1 {
@@ -121,7 +158,7 @@ article {
   display: flex;
   flex-direction: column;
   background-color: var(--color-4);
-  width: 52vw;
+  width: 58vw;
   border-radius: 12.5px;
   box-shadow: 0px 5px 5px #94939340;
   padding: 10px 50px 50px 50px;
