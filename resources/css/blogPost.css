@@ -126,6 +126,7 @@ article {
   box-shadow: 0px 5px 5px #94939340;
   padding: 10px 50px 50px 50px;
   overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 article h2 {
@@ -214,7 +215,8 @@ article #mc_embed_signup form {
   border-radius: 12px;
 }
 
-article #mc_embed_signup .subscribe, article #mc_embed_signup #subscribe {
+article #mc_embed_signup .subscribe,
+article #mc_embed_signup #subscribe {
   width: fit-content;
   margin-top: 20px;
   background-color: var(--color-2);
@@ -243,6 +245,14 @@ article .google-auto-placed {
   box-shadow: 0px 0px 0px #ffffff00;
   margin-bottom: 70px;
   border-radius: 0;
+  width: 100%;
+}
+
+article .google-auto-placed * {
+  width: 100%;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
 }
 
 aside {
