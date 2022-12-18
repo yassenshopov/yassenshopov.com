@@ -33,7 +33,8 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-a {
+a,
+input[type='submit'] {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -43,7 +44,8 @@ a {
   user-select: none;
 }
 
-a:focus {
+a:focus,
+input[type='submit']:focus {
   outline: none !important;
 }
 
