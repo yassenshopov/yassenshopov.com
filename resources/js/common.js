@@ -45,14 +45,14 @@ window.onscroll = function() {
 
         let header = document.querySelector("header");
         if (document.documentElement.scrollTop > 300) {
-            a_list = document.querySelectorAll("nav a");
+            a_list = document.querySelectorAll("nav > a");
             header.style.backgroundColor = "#ffffff"
 
             for (let i = 0; i < a_list.length; i++) {
                 a_list[i].style.color = "#121212"
             }
         } else {
-            a_list = document.querySelectorAll("nav a");
+            a_list = document.querySelectorAll("nav > a");
             header.style.backgroundColor = "#080808"
 
             for (let i = 0; i < a_list.length; i++) {
