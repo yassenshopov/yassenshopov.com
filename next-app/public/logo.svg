@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="60" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg"
+      style="color: var(--foreground)">
+      <!-- Yassen in cursive -->
+      <text x="52" y="28" font-family="var(--font-great-vibes), cursive" font-size="32" text-anchor="middle"
+            fill="currentColor">
+            Yassen
+      </text>
+
+      <!-- Underline -->
+      <line x1="15" y1="35" x2="95" y2="35" stroke="currentColor" stroke-width="1.5" />
+
+      <!-- SHOPOV in serif -->
+      <text x="55" y="55" font-family="Georgia, serif" font-size="14" font-weight="500" text-anchor="middle"
+            fill="currentColor" letter-spacing="0.2em">
+            SHOPOV
+      </text>
+</svg>

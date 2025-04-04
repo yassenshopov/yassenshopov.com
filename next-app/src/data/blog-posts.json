@@ -1,0 +1,13 @@
+{
+  "posts": [
+    {
+      "slug": "sample-post",
+      "title": "Sample Blog Post",
+      "description": "This is a sample blog post to demonstrate the new blog system.",
+      "date": "2024-03-20",
+      "coverImage": "/resources/images/blog/default-cover.webp",
+      "tags": ["Sample", "Blog"],
+      "content": "# Sample Blog Post\n\nThis is a sample blog post content."
+    }
+  ]
+} 
