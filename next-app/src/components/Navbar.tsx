@@ -86,7 +86,7 @@ export function Navbar() {
                 </nav>
                 <div className="border-t p-6">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">© 2024 Yassen Shopov</span>
+                    <span className="text-sm text-muted-foreground">© {new Date().getFullYear()} Yassen Shopov</span>
                     <ThemeToggle />
                   </div>
                 </div>

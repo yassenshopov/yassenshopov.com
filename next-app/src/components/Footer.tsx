@@ -36,7 +36,7 @@ export function Footer() {
           </Link>
         </div>
         <p className="text-center text-foreground/60">
-          Copyright © 2025 - Designed and maintained by{" "}
+          Copyright © {new Date().getFullYear()} - Designed and maintained by{" "}
           <Link href="https://github.com/yassenshopov" target="_blank" className="hover:underline">
             Yassen Shopov
           </Link>{" "}
