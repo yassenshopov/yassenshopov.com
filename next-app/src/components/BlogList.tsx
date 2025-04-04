@@ -4,7 +4,7 @@ import { useState } from 'react';
 import BlogCard from "@/components/BlogCard";
 import { SearchPosts } from "@/components/SearchPosts";
 import { NewsletterSubscribe } from "@/components/NewsletterSubscribe";
-import { type Post } from 'contentlayer/generated';
+import { type Post } from '@/data/blog-posts';
 
 interface BlogListProps {
   initialPosts: Post[];
@@ -13,13 +13,13 @@ interface BlogListProps {
 const BlogList = ({ initialPosts }: BlogListProps) => {
   const [searchQuery, setSearchQuery] = useState('');
   
-  const filteredPosts = initialPosts.filter(post => {
+  const filteredPosts = initialPosts.filter((post: Post) => {
     const searchContent = `${post.title} ${post.description} ${post.tags.join(' ')}`.toLowerCase();
     return searchContent.includes(searchQuery.toLowerCase());
   });
 
-  const featuredPost = initialPosts.find(post => post.isFeatured);
-  const regularPosts = filteredPosts.filter(post => !post.isFeatured);
+  const featuredPost = initialPosts.find((post: Post) => post.isFeatured);
+  const regularPosts = filteredPosts.filter((post: Post) => !post.isFeatured);
 
   return (
     <div className="container mx-auto px-4 py-8">

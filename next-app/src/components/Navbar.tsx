@@ -3,15 +3,28 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { Menu } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import { useState } from 'react';
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 
 export function Navbar() {
   const { theme } = useTheme();
   const isLightTheme = theme === 'light' || !theme;
+  const [isOpen, setIsOpen] = useState(false);
+
+  const links = [
+    { href: '/blog', label: 'Blog' },
+    { href: '/notion', label: 'Notion Templates' },
+    { href: '/contact-me', label: 'Contact me' },
+  ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/99 backdrop-blur-xl border-b">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <div className="w-[80px] h-[60px] relative">
@@ -25,21 +38,61 @@ export function Navbar() {
           </div>
         </Link>
         <div className="hidden md:flex space-x-6">
-          <Link href="/blog" className="text-foreground/60 hover:text-foreground transition-colors">
-            Blog
-          </Link>
-          <Link href="/notion" className="text-foreground/60 hover:text-foreground transition-colors">
-            Notion Templates
-          </Link>
-          <Link href="/contact-me" className="text-foreground/60 hover:text-foreground transition-colors">
-            Contact me
-          </Link>
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-foreground/60 hover:text-foreground transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          <button className="md:hidden">
-            <Menu className="w-6 h-6" />
-          </button>
+          <Sheet>
+            <SheetTrigger asChild>
+              <button className="md:hidden hover:bg-accent rounded-md p-2 transition-colors">
+                <Menu className="w-5 h-5" />
+              </button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-full sm:w-[400px] p-0">
+              <div className="flex flex-col h-full bg-background">
+                <div className="border-b p-6">
+                  <Link href="/" className="flex items-center" onClick={() => setIsOpen(false)}>
+                    <div className="w-[80px] h-[60px] relative">
+                      <Image
+                        src={isLightTheme ? "/logo.svg" : "/logo-white.svg"}
+                        alt="Yassen Shopov Logo"
+                        fill
+                        className="hover:opacity-80 transition-opacity"
+                        priority
+                      />
+                    </div>
+                  </Link>
+                </div>
+                <nav className="flex-1 p-6">
+                  <div className="flex flex-col space-y-4">
+                    {links.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="text-foreground/60 hover:text-foreground transition-colors text-lg py-2 px-4 rounded-md hover:bg-accent/50"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                </nav>
+                <div className="border-t p-6">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground">© 2024 Yassen Shopov</span>
+                    <ThemeToggle />
+                  </div>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </nav>
