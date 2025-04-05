@@ -1,136 +1,173 @@
-import { Mail, MessageSquare, Send } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import Layout from '@/components/Layout';
-import { FaLinkedin, FaTwitter, FaYoutube, FaShoppingBag } from 'react-icons/fa';
-import Link from 'next/link';
+"use client";
+
+import Layout from "@/components/Layout";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, Send, Github, Linkedin, Twitter, Code, ArrowRight, MessageSquare } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function ContactPage() {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [isSending, setIsSending] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSending(true);
+    // Add your form submission logic here
+    setTimeout(() => setIsSending(false), 1000);
+  };
+
+  const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(e.target.value);
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const socialLinks = [
+    {
+      name: "GitHub",
+      icon: Github,
+      href: "https://github.com/yassenshopov",
+      color: "hover:text-[#333] dark:hover:text-[#fff]"
+    },
+    {
+      name: "LinkedIn",
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/yassen-shopov/",
+      color: "hover:text-[#0077b5]"
+    },
+    {
+      name: "Twitter",
+      icon: Twitter,
+      href: "https://twitter.com/yassenshopov",
+      color: "hover:text-[#1DA1F2]"
+    }
+  ];
+
   return (
     <Layout>
-      <section className="py-20">
+      {/* Hero Section */}
+      <section className="relative min-h-[40vh] flex items-center overflow-hidden bg-gradient-to-b from-background to-muted">
+        <div className="absolute inset-0 bg-grid-white/10 -z-10" />
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.95] text-foreground mb-6">
-              Let's Connect
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
+              <MessageSquare className="w-4 h-4" />
+              <span>Let's Connect</span>
+            </div>
+            <h1 className="text-4xl md:text-7xl font-bold tracking-tighter leading-[0.95] text-foreground mb-6">
+              Get in Touch
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Whether you have a question about my Notion templates, want to collaborate on a project, or just want to say hello, I'd love to hear from you.
+            <p className="text-xl text-muted-foreground max-w-2xl">
+              Have a project in mind? Want to collaborate? Or just want to say hi? I'd love to hear from you.
             </p>
           </div>
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Contact Form */}
-            <Card className="p-8">
-              <h2 className="text-2xl font-bold tracking-tight mb-6 text-foreground">Send me a message</h2>
-              <form className="space-y-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-foreground">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    className="w-full px-4 py-2 rounded-md border border-input bg-background text-foreground"
-                    placeholder="Your name"
-                  />
-                </div>
+            <Card className="p-8 backdrop-blur-xl bg-card/50">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium text-foreground">
-                    Email
+                    Your Email
                   </label>
-                  <input
-                    type="email"
+                  <Input
                     id="email"
-                    className="w-full px-4 py-2 rounded-md border border-input bg-background text-foreground"
-                    placeholder="your@email.com"
+                    type="email"
+                    placeholder="hello@example.com"
+                    value={email}
+                    onChange={handleEmailChange}
+                    required
+                    className="bg-background/50"
                   />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="message" className="text-sm font-medium text-foreground">
                     Message
                   </label>
-                  <textarea
+                  <Textarea
                     id="message"
-                    rows={6}
-                    className="w-full px-4 py-2 rounded-md border border-input bg-background text-foreground"
-                    placeholder="Your message..."
+                    placeholder="Tell me about your project..."
+                    value={message}
+                    onChange={handleMessageChange}
+                    required
+                    className="min-h-[150px] bg-background/50"
                   />
                 </div>
-                <Button className="w-full group">
-                  Send Message
-                  <Send className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <Button type="submit" size="lg" className="w-full group" disabled={isSending}>
+                  {isSending ? (
+                    "Sending..."
+                  ) : (
+                    <>
+                      Send Message
+                      <Send className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </>
+                  )}
                 </Button>
               </form>
             </Card>
 
-            {/* Contact Information */}
-            <div className="space-y-8">
-              <Card className="p-8">
-                <h2 className="text-2xl font-bold tracking-tight mb-6 text-foreground">Other ways to reach me</h2>
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4">
-                    <Mail className="w-6 h-6 text-primary" />
-                    <div>
-                      <h3 className="text-lg font-medium text-foreground">Email</h3>
-                      <p className="text-muted-foreground">yassen@yassenshopov.com</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <MessageSquare className="w-6 h-6 text-primary" />
-                    <div>
-                      <h3 className="text-lg font-medium text-foreground">Social Media</h3>
-                      <div className="flex gap-4 mt-2">
-                        <Link 
-                          href="https://linkedin.com/in/yassenshopov" 
-                          target="_blank"
-                          className="text-foreground/60 hover:text-foreground transition-colors"
-                        >
-                          <FaLinkedin size={24} />
-                        </Link>
-                        <Link 
-                          href="https://twitter.com/yassenshopov" 
-                          target="_blank"
-                          className="text-foreground/60 hover:text-foreground transition-colors"
-                        >
-                          <FaTwitter size={24} />
-                        </Link>
-                        <Link 
-                          href="https://youtube.com/@yassenshopov" 
-                          target="_blank"
-                          className="text-foreground/60 hover:text-foreground transition-colors"
-                        >
-                          <FaYoutube size={24} />
-                        </Link>
-                        <Link 
-                          href="https://yassenshopov.gumroad.com" 
-                          target="_blank"
-                          className="text-foreground/60 hover:text-foreground transition-colors"
-                        >
-                          <FaShoppingBag size={24} />
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Card>
+            {/* Contact Info */}
+            <div className="space-y-12">
+              {/* Quick Contact */}
+              <div className="space-y-4">
+                <h2 className="text-2xl font-bold tracking-tight">Quick Contact</h2>
+                <p className="text-muted-foreground">
+                  For quick inquiries, you can reach me directly at:
+                </p>
+                <Link 
+                  href="mailto:yassen@yassenshopov.com"
+                  className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+                >
+                  <Mail className="w-4 h-4" />
+                  yassen@yassenshopov.com
+                </Link>
+              </div>
 
-              <Card className="p-8">
-                <h2 className="text-2xl font-bold tracking-tight mb-6 text-foreground">What to expect</h2>
-                <ul className="space-y-4 text-muted-foreground">
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary">•</span>
-                    <span>I typically respond within 24-48 hours</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary">•</span>
-                    <span>For Notion template support, please include your purchase details</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary">•</span>
-                    <span>For collaboration inquiries, please include details about your project</span>
-                  </li>
-                </ul>
+              {/* Social Links */}
+              <div className="space-y-4">
+                <h2 className="text-2xl font-bold tracking-tight">Follow Me</h2>
+                <p className="text-muted-foreground">
+                  Connect with me on social media for updates on my latest projects and thoughts.
+                </p>
+                <div className="flex gap-4">
+                  {socialLinks.map((social) => (
+                    <Link
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`p-3 rounded-lg bg-card hover:bg-accent transition-colors ${social.color}`}
+                      aria-label={social.name}
+                    >
+                      <social.icon className="w-5 h-5" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Collaboration */}
+              <Card className="p-6 bg-primary/5 border-primary/10">
+                <h2 className="text-2xl font-bold tracking-tight mb-2">Let's Build Something</h2>
+                <p className="text-muted-foreground mb-4">
+                  Looking for a technical co-founder or want to collaborate on an exciting project? I'm always open to interesting opportunities.
+                </p>
+                <Button variant="outline" className="group" asChild>
+                  <Link href="/projects">
+                    View My Work
+                    <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Button>
               </Card>
             </div>
           </div>

@@ -8,6 +8,8 @@ import { Card } from "@/components/ui/card";
 import Layout from "@/components/Layout";
 import { useEffect, useState } from "react";
 import { templates } from "@/components/NotionTemplatesList";
+import { AnimatedNumber } from "@/components/AnimatedNumber";
+import { projects } from "@/components/ProjectsList";
 
 const positions = [
   { style: "top-[20%] left-[20%] rotate-3" },
@@ -150,20 +152,38 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl font-bold mb-2 text-foreground" id="templates-count">0</div>
-              <div className="text-muted-foreground">Notion Templates</div>
+              <Link href="/notion" className="block group hover:opacity-75 transition-opacity">
+                <div className="text-4xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
+                  <AnimatedNumber end={templates.length} />
+                </div>
+                <div className="text-muted-foreground group-hover:text-primary/80 transition-colors flex items-center justify-center gap-1">
+                  Notion Templates
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </div>
+              </Link>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold mb-2 text-foreground" id="projects-count">0</div>
-              <div className="text-muted-foreground">Live Projects</div>
+              <Link href="/projects" className="block group hover:opacity-75 transition-opacity">
+                <div className="text-4xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
+                  <AnimatedNumber end={projects.length} />
+                </div>
+                <div className="text-muted-foreground group-hover:text-primary/80 transition-colors flex items-center justify-center gap-1">
+                  Live Projects
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </div>
+              </Link>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold mb-2 text-foreground" id="experience-count">0</div>
+              <div className="text-4xl font-bold mb-2 text-foreground">
+                <AnimatedNumber end={5} suffix="+" />
+              </div>
               <div className="text-muted-foreground">Years in Tech & Design</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold mb-2 text-foreground" id="life-count">0</div>
-              <div className="text-muted-foreground">Years of Figuring It Out</div>
+              <div className="text-4xl font-bold mb-2 text-foreground">
+                <AnimatedNumber end={24} />
+              </div>
+              <div className="text-muted-foreground">Years of trying to figure life out 🎂</div>
             </div>
           </div>
         </div>

@@ -36,6 +36,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const links = [
     { href: '/blog', label: 'Blog' },
+    { href: '/projects', label: 'Projects' },
     { href: '/notion', label: 'Notion Templates' },
     { href: '/contact-me', label: 'Contact me' },
   ];
