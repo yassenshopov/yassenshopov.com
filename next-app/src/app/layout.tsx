@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Merriweather, Great_Vibes } from "next/font/google";
+import { Inter, Space_Grotesk, Great_Vibes } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const merriweather = Merriweather({
-  weight: "700",
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-merriweather",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-space",
+  display: "swap",
 });
 const greatVibes = Great_Vibes({
   weight: "400",
@@ -20,11 +22,12 @@ export const metadata: Metadata = {
   description: "Personal website of Yassen Shopov - Software Engineer and Content Creator",
   icons: {
     icon: [
-      { url: "/logo.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico", sizes: "any" }
-    ],
-    apple: [
+      { url: "/favicon.ico" },
       { url: "/logo.svg", type: "image/svg+xml" }
+    ],
+    shortcut: ["/favicon.ico"],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
     ]
   },
   openGraph: {
@@ -43,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body 
-        className={`${inter.variable} ${merriweather.variable} ${greatVibes.variable} font-sans`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${greatVibes.variable} font-sans`}
         suppressHydrationWarning
       >
         <ThemeProvider
@@ -53,6 +56,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

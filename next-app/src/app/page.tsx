@@ -24,8 +24,10 @@ export default function Home() {
                 <Sparkles className="w-4 h-4" />
                 <span>Digital Creator & Developer</span>
               </div>
-              <h1 className="text-5xl md:text-6xl font-serif font-bold leading-tight text-foreground">
-                Building Digital Tools for a Better Life
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.95] text-foreground">
+                Building Digital<br />
+                Tools for a<br />
+                Better Life
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl">
                 Creating Notion templates, web applications, and digital solutions that help people achieve their goals while maintaining work-life balance.
@@ -108,7 +110,9 @@ export default function Home() {
       {/* Expertise Section */}
       <section className="py-20" id="expertise">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-serif font-bold text-center mb-12 text-foreground">What I Do</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+            What I Do
+          </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="p-6 hover:shadow-lg transition-all duration-300">
               <Code className="w-8 h-8 mb-4 text-primary" />
@@ -155,7 +159,9 @@ export default function Home() {
               </div>
             </div>
             <div className="space-y-6">
-              <h2 className="text-3xl font-serif font-bold text-foreground">About Me</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                About Me
+              </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
                   I'm Yassen Shopov, a digital creator and developer passionate about building tools that enhance productivity and well-being. 

@@ -11,10 +11,10 @@ export default function ContactPage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-foreground">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.95] text-foreground mb-6">
               Let's Connect
             </h1>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Whether you have a question about my Notion templates, want to collaborate on a project, or just want to say hello, I'd love to hear from you.
             </p>
           </div>
@@ -22,7 +22,7 @@ export default function ContactPage() {
           <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Contact Form */}
             <Card className="p-8">
-              <h2 className="text-2xl font-serif font-bold mb-6 text-foreground">Send me a message</h2>
+              <h2 className="text-2xl font-bold tracking-tight mb-6 text-foreground">Send me a message</h2>
               <form className="space-y-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-foreground">
@@ -67,19 +67,19 @@ export default function ContactPage() {
             {/* Contact Information */}
             <div className="space-y-8">
               <Card className="p-8">
-                <h2 className="text-2xl font-serif font-bold mb-6 text-foreground">Other ways to reach me</h2>
+                <h2 className="text-2xl font-bold tracking-tight mb-6 text-foreground">Other ways to reach me</h2>
                 <div className="space-y-6">
                   <div className="flex items-center gap-4">
                     <Mail className="w-6 h-6 text-primary" />
                     <div>
-                      <h3 className="font-medium text-foreground">Email</h3>
+                      <h3 className="text-lg font-medium text-foreground">Email</h3>
                       <p className="text-muted-foreground">yassen@yassenshopov.com</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
                     <MessageSquare className="w-6 h-6 text-primary" />
                     <div>
-                      <h3 className="font-medium text-foreground">Social Media</h3>
+                      <h3 className="text-lg font-medium text-foreground">Social Media</h3>
                       <div className="flex gap-4 mt-2">
                         <Link 
                           href="https://linkedin.com/in/yassenshopov" 
@@ -116,7 +116,7 @@ export default function ContactPage() {
               </Card>
 
               <Card className="p-8">
-                <h2 className="text-2xl font-serif font-bold mb-6 text-foreground">What to expect</h2>
+                <h2 className="text-2xl font-bold tracking-tight mb-6 text-foreground">What to expect</h2>
                 <ul className="space-y-4 text-muted-foreground">
                   <li className="flex items-start gap-3">
                     <span className="text-primary">•</span>

@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import BlogCard from "@/components/BlogCard";
 import { SearchPosts } from "@/components/SearchPosts";
-import { NewsletterSubscribe } from "@/components/NewsletterSubscribe";
 import { type Post } from '@/data/blog-posts';
 
 interface BlogListProps {
@@ -71,9 +70,6 @@ const BlogList = ({ initialPosts }: BlogListProps) => {
           </div>
         )}
 
-        <div className="mt-16">
-          <NewsletterSubscribe />
-        </div>
       </div>
     </div>
   );

@@ -4,6 +4,8 @@ import { Card } from '@/components/ui/card';
 import Link from 'next/link';
 import Image from 'next/image';
 import Layout from '@/components/Layout';
+import { KitNewsletterForm } from '@/components/KitNewsletterForm';
+import { ScrollButton } from '@/components/ScrollButton';
 import blogData from '@/data/blog-posts.json';
 import type { BlogPost } from '@/types/blog';
 
@@ -15,16 +17,28 @@ export default function BlogPage() {
   const content = (
     <section className="py-20">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-foreground">
+        <div className="max-w-3xl mx-auto text-center">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.95] text-foreground">
             Blog
           </h1>
           <p className="text-xl text-muted-foreground">
             Thoughts, ideas, and insights on productivity, personal development, and life engineering.
           </p>
+          <ScrollButton />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="relative mt-24 mb-24">
+          <div className="absolute inset-0 flex items-center" aria-hidden="true">
+            <div className="w-full border-t border-muted"></div>
+          </div>
+          <div className="relative flex justify-center">
+            <span className="bg-background px-6 text-lg text-muted-foreground">
+              Latest Articles
+            </span>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
           {posts.map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`}>
               <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300">
@@ -47,7 +61,7 @@ export default function BlogPage() {
                       </span>
                     ))}
                   </div>
-                  <h2 className="text-xl font-serif font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
+                  <h2 className="text-2xl font-bold tracking-tight mb-2 text-foreground group-hover:text-primary transition-colors">
                     {post.title}
                   </h2>
                   <p className="text-muted-foreground mb-4">{post.description}</p>
@@ -65,6 +79,8 @@ export default function BlogPage() {
             </Link>
           ))}
         </div>
+
+        <KitNewsletterForm />
       </div>
     </section>
   );

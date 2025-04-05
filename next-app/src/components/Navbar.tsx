@@ -3,9 +3,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { Menu, X } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Sheet,
   SheetContent,
@@ -13,10 +13,27 @@ import {
 } from "@/components/ui/sheet"
 
 export function Navbar() {
-  const { theme } = useTheme();
-  const isLightTheme = theme === 'light' || !theme;
-  const [isOpen, setIsOpen] = useState(false);
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const getLogo = () => {
+    if (!mounted) return '/logo.svg';
+    
+    switch (resolvedTheme) {
+      case 'dark':
+        return '/logo-white.svg';
+      case 'olive':
+        return '/logo.svg';
+      default:
+        return '/logo.svg';
+    }
+  };
+
+  const [isOpen, setIsOpen] = useState(false);
   const links = [
     { href: '/blog', label: 'Blog' },
     { href: '/notion', label: 'Notion Templates' },
@@ -28,13 +45,18 @@ export function Navbar() {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <div className="w-[80px] h-[60px] relative">
-            <Image
-              src={isLightTheme ? "/logo.svg" : "/logo-white.svg"}
-              alt="Yassen Shopov Logo"
-              fill
-              className="hover:opacity-80 transition-opacity"
-              priority
-            />
+            {mounted ? (
+              <Image
+                src={getLogo()}
+                alt="Yassen Shopov Logo"
+                fill
+                className="hover:opacity-80 transition-opacity"
+                priority
+                suppressHydrationWarning
+              />
+            ) : (
+              <div className="w-full h-full bg-muted animate-pulse rounded" />
+            )}
           </div>
         </Link>
         <div className="hidden md:flex space-x-6">
@@ -61,13 +83,18 @@ export function Navbar() {
                 <div className="border-b p-6">
                   <Link href="/" className="flex items-center" onClick={() => setIsOpen(false)}>
                     <div className="w-[80px] h-[60px] relative">
-                      <Image
-                        src={isLightTheme ? "/logo.svg" : "/logo-white.svg"}
-                        alt="Yassen Shopov Logo"
-                        fill
-                        className="hover:opacity-80 transition-opacity"
-                        priority
-                      />
+                      {mounted ? (
+                        <Image
+                          src={getLogo()}
+                          alt="Yassen Shopov Logo"
+                          fill
+                          className="hover:opacity-80 transition-opacity"
+                          priority
+                          suppressHydrationWarning
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-muted animate-pulse rounded" />
+                      )}
                     </div>
                   </Link>
                 </div>
