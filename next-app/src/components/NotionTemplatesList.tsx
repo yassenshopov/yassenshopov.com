@@ -82,7 +82,7 @@ export const templates: Template[] = [
     categories: ['mindfulness', 'planners'],
     price: '0$',
     gumroadLink: 'https://yassenshopov.gumroad.com/l/5-minute-daily-journal',
-    productHuntLink: 'https://www.producthunt.com/posts/notion-template-quick-daily-journaling'
+    // productHuntLink: 'https://www.producthunt.com/posts/notion-template-quick-daily-journaling'
   },
   {
     id: 'travel-planner',
@@ -136,7 +136,8 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Investments_Tracker_Database.webp',
     categories: ['finances'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/investments-tracker-database'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/investments-tracker-database',
+    // productHuntLink: 'https://www.producthunt.com/posts/notion-template-for-investment-tracking'
   },
   {
     id: 'job-application-tracker',
@@ -373,25 +374,25 @@ export default function NotionTemplatesList() {
                             </span>
                           ))}
                         </div>
+                        {template.productHuntLink && (
+                          <div className="mt-4 flex justify-end">
+                            <img
+                              src={`https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=${template.id}&theme=dark`}
+                              alt={`${template.title} on Product Hunt`}
+                              height="32"
+                              width="190"
+                              style={{ height: '32px', width: 'auto'}}
+                              className="cursor-pointer"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                window.open(template.productHuntLink, '_blank');
+                              }}
+                            />
+                          </div>
+                        )}
                       </div>
                     </article>
                   </Link>
-                  {template.productHuntLink && (
-                    <a
-                      href={template.productHuntLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 block w-fit"
-                    >
-                      <img
-                        src={`https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=${template.id}&theme=dark`}
-                        alt={`${template.title} on Product Hunt`}
-                        height="32"
-                        width="190"
-                        style={{ height: '32px' }}
-                      />
-                    </a>
-                  )}
                 </div>
               ))
             )}
