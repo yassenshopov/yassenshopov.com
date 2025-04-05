@@ -342,39 +342,67 @@ export default function NotionTemplatesList() {
                       if (el) templateRefs.current[index] = el;
                     }}
                   >
-                    <article className={`bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-all duration-300 h-full flex ${viewMode === 'list' ? 'flex-row' : 'flex-col'}`}>
-                      <div className={`relative ${viewMode === 'list' ? 'w-[200px]' : 'aspect-video'} overflow-hidden`}>
+                    <article className={`bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-all duration-300 h-full ${
+                      viewMode === 'list'
+                        ? 'flex flex-row items-center md:items-stretch gap-3 p-3 md:p-0 md:gap-0'
+                        : 'flex flex-col'
+                    }`}>
+                      {/* Image container */}
+                      <div className={`relative ${
+                        viewMode === 'list'
+                          ? 'w-20 h-20 md:aspect-auto md:w-[200px] md:h-auto flex-shrink-0'
+                          : 'aspect-video w-full'
+                      } overflow-hidden rounded-md md:rounded-none`}>
                         <Image
                           src={template.image}
                           alt={template.title}
                           fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          className={`object-cover transition-transform duration-300 ${viewMode === 'list' ? 'group-hover:scale-102' : 'group-hover:scale-105'}`}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-4">
-                          <span className="text-sm font-medium text-foreground">View Template →</span>
-                        </div>
+                        {viewMode !== 'list' && (
+                          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-4">
+                            <span className="text-sm font-medium text-foreground">View Template →</span>
+                          </div>
+                        )}
                       </div>
-                      <div className="p-6 flex flex-col flex-1">
-                        <div className="flex items-start justify-between gap-4 mb-4">
-                          <h2 className="text-2xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors duration-300">
+                      {/* Content container */}
+                      <div className={`flex flex-col flex-1 ${
+                        viewMode === 'list' 
+                          ? 'py-0 md:p-6' 
+                          : 'p-6'
+                      }`}>
+                        <div className={`flex ${viewMode === 'list' ? 'flex-col md:flex-row' : 'flex-row'} items-start justify-between gap-2 md:gap-4 mb-2 md:mb-4`}>
+                          <h2 className={`font-bold tracking-tight text-foreground group-hover:text-primary transition-colors duration-300 ${
+                            viewMode === 'list' 
+                              ? 'text-base md:text-2xl line-clamp-1' 
+                              : 'text-xl md:text-2xl'
+                          }`}>
                             {template.title}
                           </h2>
-                          <span className={`px-2 py-1 rounded-full text-sm font-medium bg-secondary text-secondary-foreground`}>
+                          <span className={`px-2 py-1 rounded-full text-sm font-medium bg-secondary text-secondary-foreground flex-shrink-0`}>
                             {template.price === '0$' ? 'Free' : template.price}
                           </span>
                         </div>
-                        <p className="text-muted-foreground mb-4 line-clamp-2">{template.description}</p>
-                        <div className="flex flex-wrap gap-2 mt-auto">
+                        <p className={`text-muted-foreground ${
+                          viewMode === 'list' 
+                            ? 'hidden md:block md:mb-4 md:line-clamp-2' 
+                            : 'mb-4 line-clamp-2'
+                        }`}>
+                          {template.description}
+                        </p>
+                        <div className={`flex flex-wrap gap-2 ${viewMode === 'list' ? 'mt-0 md:mt-auto' : 'mt-auto'}`}>
                           {template.categories.map(category => (
                             <span
                               key={category}
-                              className="px-2 py-1 text-xs font-semibold bg-secondary text-secondary-foreground rounded-md"
+                              className={`px-2 py-1 text-xs font-semibold bg-secondary text-secondary-foreground rounded-md ${
+                                viewMode === 'list' ? 'hidden md:inline-block' : ''
+                              }`}
                             >
                               {categories.find(c => c.value === category)?.label || category}
                             </span>
                           ))}
                         </div>
-                        {template.productHuntLink && (
+                        {template.productHuntLink && viewMode !== 'list' && (
                           <div className="mt-4 flex justify-end">
                             <img
                               src={`https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=${template.id}&theme=dark`}
