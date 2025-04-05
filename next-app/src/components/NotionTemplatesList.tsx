@@ -35,7 +35,7 @@ const categories = [
   { value: "content-creation", label: "Content Creation" },
 ];
 
-const templates: Template[] = [
+export const templates: Template[] = [
   {
     id: 'ultimate-investing-dashboard',
     title: 'Ultimate Investing Dashboard',

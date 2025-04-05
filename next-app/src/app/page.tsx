@@ -1,9 +1,13 @@
+"use client";
+
 import { ArrowRight, Sparkles, Code, Paintbrush, BookOpen, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Layout from "@/components/Layout";
+import { useEffect, useState } from "react";
+import { templates } from "@/components/NotionTemplatesList";
 
 const positions = [
   { style: "top-[20%] left-[20%] rotate-3" },
@@ -12,6 +16,64 @@ const positions = [
 ];
 
 export default function Home() {
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          animateNumbers();
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) {
+      observer.observe(statsSection);
+    }
+
+    function animateNumbers() {
+      const stats = [
+        { id: 'templates-count', end: templates.length, suffix: '' },
+        { id: 'projects-count', end: 2, suffix: '' },
+        { id: 'experience-count', end: 5, suffix: '+' },
+        { id: 'life-count', end: 24, suffix: '' }
+      ];
+
+      stats.forEach(({ id, end, suffix }) => {
+        const element = document.getElementById(id);
+        if (!element) return;
+
+        let start = 0;
+        const duration = 2000; // 2 seconds
+        const startTime = performance.now();
+
+        function update() {
+          const currentTime = performance.now();
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+
+          // Easing function (ease-out)
+          const eased = 1 - Math.pow(1 - progress, 3);
+          
+          const current = Math.round(start + (end - start) * eased);
+          if (element) {
+            element.textContent = current.toString() + suffix;
+          }
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          }
+        }
+
+        requestAnimationFrame(update);
+      });
+    }
+
+    return () => observer.disconnect();
+  }, [hasAnimated]);
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -84,24 +146,24 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-muted">
+      <section className="py-20 bg-muted stats-section">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl font-bold mb-2 text-foreground">200+</div>
+              <div className="text-4xl font-bold mb-2 text-foreground" id="templates-count">0</div>
               <div className="text-muted-foreground">Notion Templates</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold mb-2 text-foreground">50K+</div>
-              <div className="text-muted-foreground">Users Worldwide</div>
+              <div className="text-4xl font-bold mb-2 text-foreground" id="projects-count">0</div>
+              <div className="text-muted-foreground">Live Projects</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold mb-2 text-foreground">5+</div>
-              <div className="text-muted-foreground">Years Experience</div>
+              <div className="text-4xl font-bold mb-2 text-foreground" id="experience-count">0</div>
+              <div className="text-muted-foreground">Years in Tech & Design</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold mb-2 text-foreground">10+</div>
-              <div className="text-muted-foreground">Featured Products</div>
+              <div className="text-4xl font-bold mb-2 text-foreground" id="life-count">0</div>
+              <div className="text-muted-foreground">Years of Figuring It Out</div>
             </div>
           </div>
         </div>
