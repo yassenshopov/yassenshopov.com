@@ -79,9 +79,9 @@ export default function Home() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-8 md:pt-0">
         <div className="absolute inset-0 bg-background/50 -z-10" />
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 py-2 md:py-2">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted text-muted-foreground">
@@ -233,10 +233,10 @@ export default function Home() {
                 height={500}
                 className="rounded-lg shadow-xl"
               />
-              <div className="absolute -bottom-6 -right-6 bg-card p-4 rounded-lg shadow-lg">
-                <div className="flex items-center gap-2">
-                  <Users className="w-5 h-5 text-primary" />
-                  <span className="font-medium text-card-foreground">25K+ Followers</span>
+              <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-card p-2 sm:p-4 rounded-lg shadow-lg">
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+                  <span className="text-sm sm:text-base font-medium text-card-foreground">Building in public since 2020</span>
                 </div>
               </div>
             </div>
