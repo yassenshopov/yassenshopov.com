@@ -3,7 +3,7 @@
     {
       "slug": "dopamine",
       "title": "What is Dopamine? A Comprehensive Guide 🔬",
-      "description": "Dopamine - a neurotransmitter that plays a key role in the brain’s **reward** and **pleasure** centers. It is involved in many important functions, including mo...",
+      "description": "Explore the fascinating world of dopamine - the brain's 'feel-good' neurotransmitter. Learn how it affects motivation, focus, and productivity, and discover practical tips for dopamine fasting to reset your brain's reward system.",
       "date": "2022-12-04",
       "coverImage": "/resources/images/blog/dopamine/Thumbnail.webp",
       "tags": [
@@ -16,7 +16,7 @@
     {
       "slug": "income-generation",
       "title": "Generating Income as a Content Creator in 2022 💰️",
-      "description": "With the coming of the pandemic, came the rise of the WFH (work from home) mode of work as well. This gave a mighty push to The Great Resignation movement - “_[...",
+      "description": "Discover proven strategies for building multiple income streams as a content creator. From Patreon and print-on-demand to ad revenue and commission work, learn how to achieve financial stability in the creator economy.",
       "date": "2022-11-27",
       "coverImage": "/resources/images/blog/income-generation/Thumbnail.webp",
       "tags": [
@@ -30,7 +30,7 @@
     {
       "slug": "first-100-clients",
       "title": "How I Landed my First 100 Clients as an Artist 🪂",
-      "description": "In March 2020, I was a newbie content creator with $0 made in sales....",
+      "description": "Follow my journey from a newbie artist to landing 100+ clients. Learn the strategies that worked for me, from building a portfolio to finding the right platforms and pricing your work effectively.",
       "date": "2022-11-20",
       "coverImage": "/resources/images/blog/first-100-clients/Thumbnail.webp",
       "tags": [
@@ -44,7 +44,7 @@
     {
       "slug": "ai-websites",
       "title": "10 AI Websites to Enhance your Content Creation 🧠",
-      "description": "It's no secret that content is king. We're writing, reading, and watching more than ever before. The internet has opened up a whole new world of possibilities f...",
+      "description": "Discover 10 powerful AI tools that can revolutionize your content creation process. From image generation to copywriting and video production, learn how to leverage AI to enhance your creative workflow.",
       "date": "2022-11-13",
       "coverImage": "/resources/images/blog/ai-websites/Thumbnail.webp",
       "tags": [
@@ -58,7 +58,7 @@
     {
       "slug": "success-paradox",
       "title": "Do you need Success to achieve Success? 🏆️",
-      "description": "Do we need success to achieve success?...",
+      "description": "Explore the paradox of success and how to break free from the cycle of needing success to achieve success. Learn how to leverage your current position and build momentum from scratch.",
       "date": "2022-11-06",
       "coverImage": "/resources/images/blog/success-paradox/Thumbnail.webp",
       "tags": [
@@ -72,7 +72,7 @@
     {
       "slug": "making-a-website",
       "title": "How to Make a Simple Website for your Portfolio 🏰",
-      "description": "Imagine you’re an online creator. ✨...",
+      "description": "A comprehensive guide to creating your portfolio website, comparing different approaches from website builders to custom development. Learn the pros and cons of each method and find what works best for you.",
       "date": "2022-10-30",
       "coverImage": "/resources/images/blog/making-a-website/Thumbnail.webp",
       "tags": [
@@ -85,8 +85,8 @@
     },
     {
       "slug": "thomas-frank",
-      "title": "Thomas Frank’s Creative Journey 🔭",
-      "description": "If you’re using Notion professionally, and ever needed to Google how to do something in Notion, chances are high that you have stumbled upon **Thomas Frank**....",
+      "title": "Thomas Frank's Creative Journey 🔭",
+      "description": "Thomas Frank is a productivity expert with over 2.5M subscribers on YouTube. Find out how he became a Notion expert on top of his other achievements.",
       "date": "2022-10-23",
       "coverImage": "/resources/images/blog/thomas-frank/Thumbnail.webp",
       "tags": [
@@ -100,7 +100,7 @@
     {
       "slug": "22-tips",
       "title": "22 Tips from a 22-Year-Old Content Creator 💡",
-      "description": "A few weeks ago I turned 22 and wrote a thread titled \"[_22 Life lessons on life design, academics, and wealth generation_](https://twitter.com/yassenshopov/sta...",
+      "description": "I recently turned 22. In this article, I’ll provide 22 tips on finances, content creation, health, habit-building, and more.",
       "date": "2022-10-09",
       "coverImage": "/resources/images/blog/22-tips/Thumbnail.webp",
       "tags": [
@@ -114,7 +114,7 @@
     {
       "slug": "better-freelancing",
       "title": "6 Easy Practices to outclass 90% of Freelancers 🦅",
-      "description": "September 11, 2022...",
+      "description": "The percentage of people going into freelance is ever-increasing - so is competition. Here are some tips on how you can outclass the rest like a breeze.",
       "date": "2022-09-11",
       "coverImage": "/resources/images/blog/better-freelancing/Thumbnail.webp",
       "tags": [
@@ -128,7 +128,7 @@
     {
       "slug": "academic-preparation",
       "title": "How to prepare for the new Academic Year in Advance 🎒",
-      "description": "August 28, 2022...",
+      "description": "Your academic success is the accumulation of your effort throughout the year. Want to give it a good start? Here are some tips for you",
       "date": "2022-08-28",
       "coverImage": "/resources/images/blog/academic-preparation/Thumbnail.webp",
       "tags": [
@@ -142,7 +142,7 @@
     {
       "slug": "optimizing-my-finances",
       "title": "How I Optimize my Finances at 22 - Investments and Savings 📈",
-      "description": "August 21, 2022...",
+      "description": "When you are in your 20’s, you may find yourself at multiple financial crossroads. In this article, I give out my tips on budgeting, investing, and more",
       "date": "2022-08-21",
       "coverImage": "/resources/images/blog/optimizing-my-finances/Thumbnail.webp",
       "tags": [
@@ -156,7 +156,7 @@
     {
       "slug": "notion-templates",
       "title": "Notion Templates that helped me get my life in Order 🧮",
-      "description": "August 17, 2022...",
+      "description": "I have been using Notion for 3 years now - these are the templates that helped me manage my professional life, my personal life, and my studies.",
       "date": "2022-08-17",
       "coverImage": "/resources/images/blog/notion-templates/Thumbnail.webp",
       "tags": [
@@ -170,7 +170,7 @@
     {
       "slug": "life-design",
       "title": "How Life is what we make of it(ft. “The Martian”) 🛸",
-      "description": "August 7, 2022...",
+      "description": "Life Design is a skill that can be learned. In this article-analysis of “The Martian” we will go through the methodics of Life Engineering.",
       "date": "2022-08-07",
       "coverImage": "/resources/images/blog/life-design/Thumbnail.webp",
       "tags": [
@@ -184,7 +184,7 @@
     {
       "slug": "caffeine-addiction",
       "title": "How I actively manage my Caffeine Addiction ☕️",
-      "description": "July 24, 2022...",
+      "description": "I’ve been a coffee-drinker since the age of 16. Now, at almost 22, I'm learning to use caffeine intentionally - so as to not fall victim to the bad habit.",
       "date": "2022-07-24",
       "coverImage": "/resources/images/blog/caffeine-addiction/Thumbnail.webp",
       "tags": [
@@ -197,7 +197,7 @@
     {
       "slug": "6-elements",
       "title": "The 6 Elements of a Well-engineered Life 🧬",
-      "description": "July 17, 2022...",
+      "description": "There are six pillars of well-structured life. Use this article to identify in which aspects you need to increase the effort.",
       "date": "2022-07-17",
       "coverImage": "/resources/images/blog/6-elements/Thumbnail.webp",
       "tags": [
@@ -210,7 +210,7 @@
     {
       "slug": "my-first-dollar",
       "title": "How I made my first 1$ online with Digital Art 🪙",
-      "description": "July 10, 2022...",
+      "description": "I made my first dollar selling digital art on the web in 2020. That was just the beginning of my journey as a digital content creator. Read how I did it.",
       "date": "2022-07-10",
       "coverImage": "/resources/images/blog/my-first-dollar/Thumbnail.webp",
       "tags": [

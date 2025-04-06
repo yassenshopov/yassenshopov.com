@@ -21,15 +21,15 @@ export function Navbar() {
   }, []);
 
   const getLogo = () => {
-    if (!mounted) return '/logo.svg';
+    if (!mounted) return '/logo.png';
     
     switch (resolvedTheme) {
       case 'dark':
-        return '/logo-white.svg';
+        return '/logo-white.png';
       case 'olive':
-        return '/logo.svg';
+        return '/logo.png';
       default:
-        return '/logo.svg';
+        return '/logo.png';
     }
   };
 
@@ -45,7 +45,7 @@ export function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/99 backdrop-blur-xl border-b">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center">
-          <div className="w-[80px] h-[60px] relative">
+          <div className="w-[60px] h-[60px] relative">
             {mounted ? (
               <Image
                 src={getLogo()}

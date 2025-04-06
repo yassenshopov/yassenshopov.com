@@ -2,7 +2,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { format } from 'date-fns';
-import { type Post } from 'contentlayer/generated';
 
 interface BlogCardProps {
   title: string;

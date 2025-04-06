@@ -7,6 +7,7 @@ export interface BlogPost {
   tags: string[];
   content: string;
   author: string;
+  readingTime?: string;
 }
 
 export interface BlogData {

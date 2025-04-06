@@ -263,19 +263,6 @@ export default function NotionTemplatesList() {
   return (
     <section className="py-20">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.95] text-foreground mb-6">
-            Notion Templates
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Streamline your life with my collection of carefully crafted Notion templates.
-          </p>
-          <p className="text-sm text-muted-foreground">
-            {filteredTemplates.length} template{filteredTemplates.length !== 1 ? 's' : ''} available
-            {selectedCategory !== 'all' ? ` in ${categories.find(c => c.value === selectedCategory)?.label.toLowerCase()}` : ''}
-          </p>
-        </div>
-
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-12">
             <div className="w-[280px]">
