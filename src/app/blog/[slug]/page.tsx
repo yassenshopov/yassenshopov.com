@@ -3,20 +3,19 @@ import Layout from '@/components/Layout';
 import blogData from '@/data/blog-posts.json';
 import { BlogContent } from '@/components/blog/BlogContent';
 
-interface BlogPostProps {
-  params: {
-    slug: string;
-  };
-}
-
 export function generateStaticParams() {
   return blogData.posts.map((post) => ({
     slug: post.slug,
   }));
 }
 
-export default function BlogPost({ params }: BlogPostProps) {
-  const currentIndex = blogData.posts.findIndex((post) => post.slug === params.slug);
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const resolvedParams = await params;
+  const currentIndex = blogData.posts.findIndex((post) => post.slug === resolvedParams.slug);
   const post = blogData.posts[currentIndex];
   const prevPost = currentIndex < blogData.posts.length - 1 ? blogData.posts[currentIndex + 1] : null;
   const nextPost = currentIndex > 0 ? blogData.posts[currentIndex - 1] : null;
