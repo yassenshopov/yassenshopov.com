@@ -9,7 +9,7 @@ import { Card } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import Layout from "@/components/Layout";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const timeline = [
   {
@@ -126,6 +126,19 @@ interface FullscreenImageProps {
 }
 
 const FullscreenImage = ({ src, alt, onClose }: FullscreenImageProps) => {
+  useEffect(() => {
+    const handleEscapeKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscapeKey);
+    return () => {
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [onClose]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -139,16 +152,17 @@ const FullscreenImage = ({ src, alt, onClose }: FullscreenImageProps) => {
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         transition={{ type: "spring", damping: 20 }}
-        className="relative max-w-[90vw] max-h-[90vh] rounded-lg overflow-hidden"
+        className="relative w-[90vw] h-[90vh] flex items-center justify-center backdrop-blur-sm"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full flex items-center justify-center">
           <Image
             src={src}
             alt={alt}
-            width={1920}
-            height={1080}
+            fill
             className="object-contain select-none"
+            sizes="90vw"
+            priority
           />
           <button
             onClick={onClose}
@@ -248,26 +262,18 @@ export default function AboutPage() {
                                 </h3>
                                 <p className="text-muted-foreground mb-4">{item.description}</p>
                                 {item.links && item.links.length > 0 && (
-                                  <div className="flex flex-wrap gap-2">
+                                  <div className="flex flex-wrap gap-2 mt-4">
                                     {item.links.map((link, linkIndex) => (
-                                      <TooltipProvider key={linkIndex}>
-                                        <Tooltip>
-                                          <TooltipTrigger asChild>
-                                            <Link
-                                              href={link.url}
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                              className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors"
-                                            >
-                                              {link.text}
-                                              <ExternalLink className="w-3 h-3" />
-                                            </Link>
-                                          </TooltipTrigger>
-                                          <TooltipContent>
-                                            <p>Visit {link.text}</p>
-                                          </TooltipContent>
-                                        </Tooltip>
-                                      </TooltipProvider>
+                                      <Link
+                                        key={linkIndex}
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group inline-flex items-center gap-1.5 px-2.5 py-1 text-sm bg-white/5 hover:bg-white/10 text-white/70 hover:text-white rounded-full transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 border border-white/10"
+                                      >
+                                        {link.text}
+                                        <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
+                                      </Link>
                                     ))}
                                   </div>
                                 )}
@@ -277,32 +283,35 @@ export default function AboutPage() {
                         </div>
                         {item.mainImg && (
                           <div className="hidden md:block md:w-1/2">
-                            <div className="relative aspect-video rounded-lg overflow-hidden transform transition-transform duration-300 group-hover:scale-105 bg-card cursor-pointer"
-                                 onClick={() => setFullscreenImage({ src: item.mainImg, alt: item.title })}>
-                              <Image
-                                src={item.mainImg}
-                                alt={item.title}
-                                fill
-                                className="object-cover"
-                              />
-                            </div>
-                            {item.sideImg && (
-                              <div 
-                                className="absolute -top-6 -right-6 w-24 h-24 rounded-lg transform rotate-3 transition-all duration-300 group-hover:rotate-6 group-hover:translate-x-1 group-hover:-translate-y-1 z-10 bg-card cursor-pointer"
-                                style={{ transformOrigin: 'center center' }}
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setFullscreenImage({ src: item.sideImg, alt: `${item.title} (detail)` });
-                                }}
+                            <div className="relative aspect-video group/images"
+                                 onClick={() => setFullscreenImage({ src: item.mainImg, alt: item.title })}
                               >
+                              <div className="relative aspect-video rounded-lg overflow-hidden transform transition-all duration-300 group-hover/images:scale-105 group-hover/images:-translate-y-2 group-hover/images:rotate-1 cursor-pointer">
                                 <Image
-                                  src={item.sideImg}
+                                  src={item.mainImg}
                                   alt={item.title}
                                   fill
-                                  className="object-cover"
+                                  className="object-contain"
                                 />
                               </div>
-                            )}
+                              {item.sideImg && (
+                                <div 
+                                  className="absolute -top-6 -right-6 w-24 h-24 transform rotate-3 transition-all duration-300 group-hover/images:rotate-12 group-hover/images:translate-x-2 group-hover/images:-translate-y-2 z-10 cursor-pointer backdrop-blur-sm"
+                                  style={{ transformOrigin: 'center center' }}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setFullscreenImage({ src: item.sideImg, alt: `${item.title} (detail)` });
+                                  }}
+                                >
+                                  <Image
+                                    src={item.sideImg}
+                                    alt={item.title}
+                                    fill
+                                    className="object-contain"
+                                  />
+                                </div>
+                              )}
+                            </div>
                           </div>
                         )}
                       </>
@@ -310,32 +319,35 @@ export default function AboutPage() {
                       <>
                         {item.mainImg && (
                           <div className="hidden md:block md:w-1/2">
-                            <div className="relative aspect-video rounded-lg overflow-hidden transform transition-transform duration-300 group-hover:scale-105 bg-card cursor-pointer"
-                                 onClick={() => setFullscreenImage({ src: item.mainImg, alt: item.title })}>
-                              <Image
-                                src={item.mainImg}
-                                alt={item.title}
-                                fill
-                                className="object-cover"
-                              />
-                            </div>
-                            {item.sideImg && (
-                              <div 
-                                className="absolute -top-6 -left-6 w-24 h-24 rounded-lg transform -rotate-3 transition-all duration-300 group-hover:-rotate-6 group-hover:-translate-x-1 group-hover:-translate-y-1 z-10 bg-card cursor-pointer"
-                                style={{ transformOrigin: 'center center' }}
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setFullscreenImage({ src: item.sideImg, alt: `${item.title} (detail)` });
-                                }}
+                            <div className="relative aspect-video group/images"
+                                 onClick={() => setFullscreenImage({ src: item.mainImg, alt: item.title })}
                               >
+                              <div className="relative aspect-video rounded-lg overflow-hidden transform transition-all duration-300 group-hover/images:scale-105 group-hover/images:-translate-y-2 group-hover/images:-rotate-1 cursor-pointer">
                                 <Image
-                                  src={item.sideImg}
+                                  src={item.mainImg}
                                   alt={item.title}
                                   fill
-                                  className="object-cover"
+                                  className="object-contain"
                                 />
                               </div>
-                            )}
+                              {item.sideImg && (
+                                <div 
+                                  className="absolute -top-6 -left-6 w-24 h-24 transform -rotate-3 transition-all duration-300 group-hover/images:-rotate-12 group-hover/images:-translate-x-2 group-hover/images:-translate-y-2 z-10 cursor-pointer backdrop-blur-sm"
+                                  style={{ transformOrigin: 'center center' }}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setFullscreenImage({ src: item.sideImg, alt: `${item.title} (detail)` });
+                                  }}
+                                >
+                                  <Image
+                                    src={item.sideImg}
+                                    alt={item.title}
+                                    fill
+                                    className="object-contain"
+                                  />
+                                </div>
+                              )}
+                            </div>
                           </div>
                         )}
                         <div className="md:w-1/2">
@@ -353,26 +365,18 @@ export default function AboutPage() {
                                 </h3>
                                 <p className="text-muted-foreground mb-4">{item.description}</p>
                                 {item.links && item.links.length > 0 && (
-                                  <div className="flex flex-wrap gap-2">
+                                  <div className="flex flex-wrap gap-2 mt-4">
                                     {item.links.map((link, linkIndex) => (
-                                      <TooltipProvider key={linkIndex}>
-                                        <Tooltip>
-                                          <TooltipTrigger asChild>
-                                            <Link
-                                              href={link.url}
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                              className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors"
-                                            >
-                                              {link.text}
-                                              <ExternalLink className="w-3 h-3" />
-                                            </Link>
-                                          </TooltipTrigger>
-                                          <TooltipContent>
-                                            <p>Visit {link.text}</p>
-                                          </TooltipContent>
-                                        </Tooltip>
-                                      </TooltipProvider>
+                                      <Link
+                                        key={linkIndex}
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group inline-flex items-center gap-1.5 px-2.5 py-1 text-sm bg-white/5 hover:bg-white/10 text-white/70 hover:text-white rounded-full transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 border border-white/10"
+                                      >
+                                        {link.text}
+                                        <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
+                                      </Link>
                                     ))}
                                   </div>
                                 )}
