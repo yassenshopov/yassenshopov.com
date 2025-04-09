@@ -10,6 +10,9 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import Layout from "@/components/Layout";
 import { useState, useEffect } from "react";
+import HeroSection from "@/components/about/HeroSection";
+import TimelineItem from "@/components/about/TimelineItem";
+import SkillCard from "@/components/about/SkillCard";
 
 const timeline = [
   {
@@ -200,47 +203,7 @@ export default function AboutPage() {
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-background/50 -z-10" />
-        <div className="container mx-auto px-4 py-16">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted text-muted-foreground">
-                <Sparkles className="w-4 h-4" />
-                <span>Digital Creator & Developer</span>
-              </div>
-              <h1 className="text-5xl md:text-6xl font-bold tracking-tighter leading-[0.95] text-foreground">
-                About Me
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl">
-                I'm Yassen Shopov, a digital creator and developer passionate about building tools that enhance productivity and well-being.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button asChild size="lg" className="group">
-                  <Link href="/projects">
-                    View My Projects
-                    <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link href="/blog">Read My Blog</Link>
-                </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="relative aspect-square max-w-md mx-auto">
-                <Image
-                  src="/resources/images/main_page/YassenShopov.jpg"
-                  alt="Yassen Shopov"
-                  fill
-                  className="object-cover rounded-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* Timeline Section */}
       <section className="py-24 bg-muted">
@@ -252,177 +215,7 @@ export default function AboutPage() {
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-border hidden md:block" />
             <div className="space-y-24">
               {timeline.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="relative"
-                >
-                  {/* Mobile Timeline Dot */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-primary md:hidden" />
-                  
-                  <div className="flex items-start gap-8">
-                    {index % 2 === 0 ? (
-                      <>
-                        <div className="md:w-1/2">
-                          <Card className="p-6 hover:shadow-lg transition-all duration-300 group overflow-visible relative">
-                            <div className="flex items-center gap-3 mb-3">
-                              <div className={`${item.color} group-hover:scale-110 transition-transform`}>
-                                {item.icon}
-                              </div>
-                              <div className="text-primary font-bold">{item.year}</div>
-                            </div>
-                            <div className="flex flex-col gap-4">
-                              <div className="flex-1">
-                                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                                  {item.title}
-                                </h3>
-                                <p className="text-muted-foreground mb-4">{item.description}</p>
-                                {item.links && item.links.length > 0 && (
-                                  <div className="flex flex-wrap gap-2 mt-4">
-                                    {item.links.map((link, linkIndex) => (
-                                      <Link
-                                        key={linkIndex}
-                                        href={link.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="group inline-flex items-center gap-1.5 px-2.5 py-1 text-sm bg-white/5 hover:bg-white/10 text-white/70 hover:text-white rounded-full transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 border border-white/10"
-                                      >
-                                        {link.text}
-                                        <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
-                                      </Link>
-                                    ))}
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          </Card>
-                        </div>
-                        {item.mainImg && (
-                          <div className="hidden md:block md:w-1/2">
-                            <div className="relative aspect-video group/images"
-                                 onClick={() => setFullscreenImage({ 
-                                   src: item.mainImg, 
-                                   alt: item.title,
-                                   caption: item.mainImgCaption 
-                                 })}
-                              >
-                              <div className="relative aspect-video rounded-lg overflow-hidden transform transition-all duration-300 group-hover/images:scale-105 group-hover/images:-translate-y-2 group-hover/images:rotate-1 cursor-pointer">
-                                <Image
-                                  src={item.mainImg}
-                                  alt={item.title}
-                                  fill
-                                  className="object-contain"
-                                />
-                              </div>
-                              {item.sideImg && (
-                                <div 
-                                  className="absolute -top-6 -right-6 w-24 h-24 transform rotate-3 transition-all duration-300 group-hover/images:rotate-12 group-hover/images:translate-x-2 group-hover/images:-translate-y-2 z-10 cursor-pointer backdrop-blur-sm"
-                                  style={{ transformOrigin: 'center center' }}
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setFullscreenImage({ 
-                                      src: item.sideImg, 
-                                      alt: `${item.title} (detail)`,
-                                      caption: item.sideImgCaption 
-                                    });
-                                  }}
-                                >
-                                  <Image
-                                    src={item.sideImg}
-                                    alt={item.title}
-                                    fill
-                                    className="object-contain"
-                                  />
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        {item.mainImg && (
-                          <div className="hidden md:block md:w-1/2">
-                            <div className="relative aspect-video group/images"
-                                 onClick={() => setFullscreenImage({ 
-                                   src: item.mainImg, 
-                                   alt: item.title,
-                                   caption: item.mainImgCaption 
-                                 })}
-                              >
-                              <div className="relative aspect-video rounded-lg overflow-hidden transform transition-all duration-300 group-hover/images:scale-105 group-hover/images:-translate-y-2 group-hover/images:-rotate-1 cursor-pointer">
-                                <Image
-                                  src={item.mainImg}
-                                  alt={item.title}
-                                  fill
-                                  className="object-contain"
-                                />
-                              </div>
-                              {item.sideImg && (
-                                <div 
-                                  className="absolute -top-6 -left-6 w-24 h-24 transform -rotate-3 transition-all duration-300 group-hover/images:-rotate-12 group-hover/images:-translate-x-2 group-hover/images:-translate-y-2 z-10 cursor-pointer backdrop-blur-sm"
-                                  style={{ transformOrigin: 'center center' }}
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setFullscreenImage({ 
-                                      src: item.sideImg, 
-                                      alt: `${item.title} (detail)`,
-                                      caption: item.sideImgCaption 
-                                    });
-                                  }}
-                                >
-                                  <Image
-                                    src={item.sideImg}
-                                    alt={item.title}
-                                    fill
-                                    className="object-contain"
-                                  />
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        )}
-                        <div className="md:w-1/2">
-                          <Card className="p-6 hover:shadow-lg transition-all duration-300 group overflow-visible relative">
-                            <div className="flex items-center gap-3 mb-3">
-                              <div className={`${item.color} group-hover:scale-110 transition-transform`}>
-                                {item.icon}
-                              </div>
-                              <div className="text-primary font-bold">{item.year}</div>
-                            </div>
-                            <div className="flex flex-col gap-4">
-                              <div className="flex-1">
-                                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                                  {item.title}
-                                </h3>
-                                <p className="text-muted-foreground mb-4">{item.description}</p>
-                                {item.links && item.links.length > 0 && (
-                                  <div className="flex flex-wrap gap-2 mt-4">
-                                    {item.links.map((link, linkIndex) => (
-                                      <Link
-                                        key={linkIndex}
-                                        href={link.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="group inline-flex items-center gap-1.5 px-2.5 py-1 text-sm bg-white/5 hover:bg-white/10 text-white/70 hover:text-white rounded-full transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 border border-white/10"
-                                      >
-                                        {link.text}
-                                        <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
-                                      </Link>
-                                    ))}
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          </Card>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </motion.div>
+                <TimelineItem key={index} {...item} index={index} />
               ))}
             </div>
           </div>
@@ -433,23 +226,11 @@ export default function AboutPage() {
       <section className="py-24">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-foreground">
-            What I Do
+            My Skills
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {skills.map((skill, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="p-6 hover:shadow-lg transition-all duration-300">
-                  <div className="text-primary mb-4">{skill.icon}</div>
-                  <h3 className="text-xl font-bold mb-2">{skill.title}</h3>
-                  <p className="text-muted-foreground">{skill.description}</p>
-                </Card>
-              </motion.div>
+              <SkillCard key={index} {...skill} />
             ))}
           </div>
         </div>
