@@ -150,53 +150,53 @@ html {
   }
 
   .olive {
-    /* Base colors - balanced olive-sage palette */
-    --background: oklch(0.98 0.015 135);
-    --foreground: oklch(0.25 0.035 135);
+    /* Base colors - sophisticated olive-sage palette */
+    --background: oklch(0.22 0.02 135);
+    --foreground: oklch(0.92 0.025 135);
     
-    /* Card and surface colors */
-    --card: oklch(0.95 0.02 135);
-    --card-foreground: oklch(0.25 0.035 135);
-    --popover: oklch(0.95 0.02 135);
-    --popover-foreground: oklch(0.25 0.035 135);
+    /* Card and surface colors - subtle elevation */
+    --card: oklch(0.27 0.025 135);
+    --card-foreground: oklch(0.92 0.025 135);
+    --popover: oklch(0.27 0.025 135);
+    --popover-foreground: oklch(0.92 0.025 135);
     
-    /* Primary action colors - rich olive-sage */
-    --primary: oklch(0.45 0.11 130);
-    --primary-foreground: oklch(0.98 0.015 135);
+    /* Primary action colors - vibrant olive-sage */
+    --primary: oklch(0.65 0.12 125);
+    --primary-foreground: oklch(0.22 0.02 135);
     
-    /* Secondary and muted colors - balanced tones */
-    --secondary: oklch(0.90 0.03 140);
-    --secondary-foreground: oklch(0.35 0.06 135);
-    --muted: oklch(0.92 0.02 140);
-    --muted-foreground: oklch(0.45 0.05 135);
+    /* Secondary and muted colors - refined tones */
+    --secondary: oklch(0.32 0.04 140);
+    --secondary-foreground: oklch(0.85 0.04 135);
+    --muted: oklch(0.30 0.03 140);
+    --muted-foreground: oklch(0.75 0.035 135);
     
-    /* Accent colors - slight variation */
-    --accent: oklch(0.85 0.04 145);
-    --accent-foreground: oklch(0.25 0.035 135);
+    /* Accent colors - golden undertones */
+    --accent: oklch(0.45 0.08 110);
+    --accent-foreground: oklch(0.92 0.025 135);
     
-    /* Utility colors */
-    --destructive: oklch(0.65 0.15 30);
-    --destructive-foreground: oklch(0.98 0.015 135);
-    --border: oklch(0.80 0.03 135 / 0.2);
-    --input: oklch(0.85 0.03 135 / 0.2);
-    --ring: oklch(0.45 0.11 130 / 0.3);
+    /* Utility colors - enhanced contrast */
+    --destructive: oklch(0.65 0.18 30);
+    --destructive-foreground: oklch(0.22 0.02 135);
+    --border: oklch(0.35 0.04 135 / 0.2);
+    --input: oklch(0.32 0.04 135 / 0.2);
+    --ring: oklch(0.65 0.12 125 / 0.3);
 
-    /* Chart colors - olive-sage nature tones */
-    --chart-1: oklch(0.55 0.12 130);
-    --chart-2: oklch(0.65 0.10 140);
-    --chart-3: oklch(0.70 0.08 150);
-    --chart-4: oklch(0.60 0.11 125);
-    --chart-5: oklch(0.50 0.13 135);
+    /* Chart colors - nature-inspired palette */
+    --chart-1: oklch(0.65 0.12 125);
+    --chart-2: oklch(0.60 0.10 110);
+    --chart-3: oklch(0.70 0.09 145);
+    --chart-4: oklch(0.55 0.11 95);
+    --chart-5: oklch(0.50 0.13 130);
 
-    /* Sidebar specific colors */
-    --sidebar: oklch(0.95 0.02 135);
-    --sidebar-foreground: oklch(0.25 0.035 135);
-    --sidebar-primary: oklch(0.45 0.11 130);
-    --sidebar-primary-foreground: oklch(0.98 0.015 135);
-    --sidebar-accent: oklch(0.85 0.04 145);
-    --sidebar-accent-foreground: oklch(0.25 0.035 135);
-    --sidebar-border: oklch(0.80 0.03 135 / 0.15);
-    --sidebar-ring: oklch(0.45 0.11 130 / 0.3);
+    /* Sidebar specific colors - cohesive design */
+    --sidebar: oklch(0.27 0.025 135);
+    --sidebar-foreground: oklch(0.92 0.025 135);
+    --sidebar-primary: oklch(0.65 0.12 125);
+    --sidebar-primary-foreground: oklch(0.22 0.02 135);
+    --sidebar-accent: oklch(0.45 0.08 110);
+    --sidebar-accent-foreground: oklch(0.92 0.025 135);
+    --sidebar-border: oklch(0.35 0.04 135 / 0.15);
+    --sidebar-ring: oklch(0.65 0.12 125 / 0.3);
   }
 
   /* Base typography styles */
