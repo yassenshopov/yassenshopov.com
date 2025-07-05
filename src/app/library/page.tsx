@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Grid, List } from 'lucide-react';
+import { Grid, List, RefreshCw } from 'lucide-react';
 import Layout from '@/components/Layout';
 import LibraryHero from '@/components/library/LibraryHero';
 import LibraryStats from '@/components/library/LibraryStats';
@@ -14,6 +14,36 @@ import LibraryItemSkeleton from '@/components/library/LibraryItemSkeleton';
 import FilterBadges from '@/components/library/FilterBadges';
 import { Button } from '@/components/ui/button';
 import { useLibrary } from '@/hooks/useLibrary';
+import { refreshLibraryCache } from '@/lib/library-utils';
+
+// Development helper component
+function DevCacheHelper() {
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  
+  if (process.env.NODE_ENV !== 'development') return null;
+  
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    await refreshLibraryCache();
+    // Reload the page to see the fresh data
+    window.location.reload();
+  };
+  
+  return (
+    <div className="fixed bottom-4 right-4 z-50">
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={handleRefresh}
+        disabled={isRefreshing}
+        className="bg-background/80 backdrop-blur-sm"
+      >
+        <RefreshCw className={`w-4 h-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
+        Refresh Cache
+      </Button>
+    </div>
+  );
+}
 
 export default function LibraryPage() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -178,13 +208,18 @@ export default function LibraryPage() {
   return (
     <Layout>
       {/* Hero Section */}
-      <LibraryHero stats={stats} onCategoryClick={handleCategoryClick} />
+      <LibraryHero 
+        stats={stats} 
+        onCategoryClick={handleCategoryClick} 
+        isLoading={isLoadingExternal}
+      />
 
       {/* Statistics Dashboard */}
       <LibraryStats 
         showStats={showStats} 
         libraryItems={sortedItems} 
         stats={stats} 
+        isLoading={isLoadingExternal}
       />
 
       {/* Floating Controls Menu */}
@@ -217,6 +252,7 @@ export default function LibraryPage() {
             <LibraryResults 
               sortedItemsLength={allSortedItems.length} 
               searchQuery={searchQuery} 
+              isLoading={isLoadingExternal}
             />
             
             {/* Filter Badges */}
@@ -349,6 +385,8 @@ export default function LibraryPage() {
         getRelationshipLabel={getRelationshipLabel}
         onSelectItem={setSelectedItem}
       />
+
+      <DevCacheHelper />
     </Layout>
   );
 } 

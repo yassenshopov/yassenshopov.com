@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo --port 24",
+    "prebuild": "node scripts/build-library-cache.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

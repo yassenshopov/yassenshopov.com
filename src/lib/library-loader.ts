@@ -3,16 +3,22 @@ import { LibraryItem } from '@/data/library';
 // Internal items from library.ts
 import { libraryItems as internalItems } from '@/data/library';
 
-// Dynamically load all JSON files in /public/data/library/ using the API route
-async function getAllExternalJsonFiles(): Promise<string[]> {
+// Load all external library items from the optimized API
+async function getExternalLibraryItems(): Promise<LibraryItem[]> {
   try {
     const apiRes = await fetch('/api/library-files');
     if (apiRes.ok) {
-      const files: string[] = await apiRes.json();
-      return files.map(f => `/data/library/${f}`);
+      const data = await apiRes.json();
+      
+      // Log debug info if available
+      if (data._debug) {
+        console.log(`Library loader: ${data._debug.source} load in ${data._debug.loadTime}ms`);
+      }
+      
+      return data.items || [];
     }
   } catch (e) {
-    // fallback below
+    console.warn('Failed to load external library items:', e);
   }
   return [];
 }
@@ -26,27 +32,23 @@ export interface LibraryData {
 }
 
 export async function loadAllLibraryItems(): Promise<LibraryItem[]> {
+  const startTime = Date.now();
+  
   try {
     // Start with internal items
     let allItems: LibraryItem[] = [...internalItems];
-    // Dynamically get all external JSONs
-    const externalJsonFiles = await getAllExternalJsonFiles();
-    for (const jsonFile of externalJsonFiles) {
-      try {
-        const response = await fetch(jsonFile);
-        if (response.ok) {
-          const data: LibraryData = await response.json();
-          if (data.items && Array.isArray(data.items)) {
-            // Merge items, avoiding duplicates by ID
-            const existingIds = new Set(allItems.map(item => item.id));
-            const newItems = data.items.filter(item => !existingIds.has(item.id));
-            allItems = [...allItems, ...newItems];
-          }
-        }
-      } catch (error) {
-        console.warn(`Failed to load external library file ${jsonFile}:`, error);
-      }
-    }
+    
+    // Get external items from optimized API
+    const externalItems = await getExternalLibraryItems();
+    
+    // Merge items, avoiding duplicates by ID
+    const existingIds = new Set(allItems.map(item => item.id));
+    const newItems = externalItems.filter(item => !existingIds.has(item.id));
+    allItems = [...allItems, ...newItems];
+    
+    const totalTime = Date.now() - startTime;
+    console.log(`Library loader: Total load time ${totalTime}ms (${allItems.length} items)`);
+    
     return allItems;
   } catch (error) {
     console.error('Error loading library items:', error);
@@ -61,16 +63,18 @@ export function getInternalLibraryItems(): LibraryItem[] {
 }
 
 // Check if external files are available (for development/debugging)
-export async function checkExternalFiles(): Promise<{ [key: string]: boolean }> {
-  const status: { [key: string]: boolean } = {};
-  const externalJsonFiles = await getAllExternalJsonFiles();
-  for (const jsonFile of externalJsonFiles) {
-    try {
-      const response = await fetch(jsonFile, { method: 'HEAD' });
-      status[jsonFile] = response.ok;
-    } catch (error) {
-      status[jsonFile] = false;
+export async function checkExternalFiles(): Promise<{ available: boolean; totalItems?: number }> {
+  try {
+    const response = await fetch('/api/library-files');
+    if (response.ok) {
+      const data = await response.json();
+      return { 
+        available: true, 
+        totalItems: data.totalItems 
+      };
     }
+  } catch (error) {
+    console.warn('External files check failed:', error);
   }
-  return status;
+  return { available: false };
 } 

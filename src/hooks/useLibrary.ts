@@ -41,7 +41,15 @@ export function useLibrary() {
     const loadExternalItems = async () => {
       setIsLoadingExternal(true);
       try {
-        const items = await loadAllLibraryItems();
+        // Add a small delay to show loading state for better UX
+        const loadPromise = loadAllLibraryItems();
+        
+        // Show loading for at least 500ms to prevent flash
+        const [items] = await Promise.all([
+          loadPromise,
+          new Promise(resolve => setTimeout(resolve, 500))
+        ]);
+        
         setAllLibraryItems(items);
       } catch (error) {
         console.warn('Failed to load external library items, using internal only:', error);

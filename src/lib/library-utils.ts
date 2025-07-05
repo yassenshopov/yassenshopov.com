@@ -273,4 +273,14 @@ export const exportToJSON = (items: LibraryItem[], filters: any, stats: any) => 
   link.download = `library-export-${new Date().toISOString().split('T')[0]}.json`;
   link.click();
   URL.revokeObjectURL(url);
-}; 
+};
+
+// Utility to refresh library cache (for development)
+export async function refreshLibraryCache(): Promise<void> {
+  try {
+    await fetch('/api/library-files?refresh=true');
+    console.log('Library cache refreshed');
+  } catch (error) {
+    console.error('Failed to refresh library cache:', error);
+  }
+} 
