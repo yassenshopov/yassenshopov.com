@@ -40,6 +40,7 @@ export function Navbar() {
     { href: '/about', label: 'About me' },
     { href: '/blog', label: 'Blog' },
     { href: '/projects', label: 'Projects' },
+    { href: '/library', label: 'Library' },
     { href: '/notion', label: 'Notion Templates' },
     { href: '/contact-me', label: 'Contact me' },
   ];
