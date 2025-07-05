@@ -113,8 +113,8 @@ export function useLibrary() {
     const genreMatch = selectedGenres.length === 0 || 
       selectedGenres.some(selectedGenre => item.genre.includes(selectedGenre));
     
-    // Rating filtering
-    const ratingMatch = item.rating >= ratingRange[0] && item.rating <= ratingRange[1];
+    // Rating filtering (FIX: include items with null/undefined rating)
+    const ratingMatch = item.rating == null || (item.rating >= ratingRange[0] && item.rating <= ratingRange[1]);
 
     // This year filtering
     let thisYearMatch = true;

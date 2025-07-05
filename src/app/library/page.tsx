@@ -21,37 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useLibrary } from '@/hooks/useLibrary';
-import { refreshLibraryCache } from '@/lib/library-utils';
 import { Input } from '@/components/ui/input';
-
-// Development helper component
-function DevCacheHelper() {
-  const [isRefreshing, setIsRefreshing] = useState(false);
-  
-  if (process.env.NODE_ENV !== 'development') return null;
-  
-  const handleRefresh = async () => {
-    setIsRefreshing(true);
-    await refreshLibraryCache();
-    // Reload the page to see the fresh data
-    window.location.reload();
-  };
-  
-  return (
-    <div className="fixed bottom-4 right-4 z-50">
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={handleRefresh}
-        disabled={isRefreshing}
-        className="bg-background/80 backdrop-blur-sm"
-      >
-        <RefreshCw className={`w-4 h-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
-        Refresh Cache
-      </Button>
-    </div>
-  );
-}
 
 export default function LibraryPage() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -242,7 +212,7 @@ export default function LibraryPage() {
         showStats={showStats}
         setShowStats={setShowStats}
         allGenres={allGenres}
-        sortedItemsLength={allSortedItems.length}
+        sortedItemsLength={sortedItems.length}
         onExportCSV={exportToCSV}
         onExportJSON={exportToJSON}
         onClearFilters={clearFilters}
@@ -427,8 +397,6 @@ export default function LibraryPage() {
         getRelationshipLabel={getRelationshipLabel}
         onSelectItem={setSelectedItem}
       />
-
-      <DevCacheHelper />
     </Layout>
   );
 } 
