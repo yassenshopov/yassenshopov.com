@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "law-abiding-citizen-2009",
+      "title": "Law Abiding Citizen",
+      "author": "F. Gary Gray",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2009,
+      "genre": ["Crime", "Drama", "Thriller"],
+      "description": "A man seeks justice for his family's murder, taking on the legal system in this thriller.",
+      "coverImage": "/resources/images/library/law-abiding-citizen-2009.webp",
+      "links": {}
+    }
+  ]
+} 

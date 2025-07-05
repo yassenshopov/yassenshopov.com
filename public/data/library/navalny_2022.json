@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "navalny-2022",
+      "title": "Navalny",
+      "author": "Daniel Roher",
+      "type": "documentary",
+      "rating": null,
+      "status": "completed",
+      "year": 2022,
+      "genre": ["Documentary", "Biography", "Crime"],
+      "description": "A documentary about Russian opposition leader Alexei Navalny and the attempt on his life.",
+      "coverImage": "/resources/images/library/navalny-2022.webp",
+      "links": {}
+    }
+  ]
+} 

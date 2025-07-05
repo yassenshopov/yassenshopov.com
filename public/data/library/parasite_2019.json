@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "parasite-2019",
+      "title": "Parasite",
+      "author": "Bong Joon-ho",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2019,
+      "genre": ["Drama", "Thriller"],
+      "description": "A darkly comedic thriller about class struggle in South Korea.",
+      "coverImage": "/resources/images/library/parasite-2019.webp",
+      "links": {}
+    }
+  ]
+} 

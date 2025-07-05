@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "jujutsu-kaisen-0-2021",
+      "title": "Jujutsu Kaisen 0",
+      "author": "Gege Akutami, Sunghoo Park",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2021,
+      "genre": ["Animation", "Action", "Fantasy"],
+      "description": "A prequel to the Jujutsu Kaisen anime series, following Yuta Okkotsu's story.",
+      "coverImage": "/resources/images/library/jujutsu-kaisen-0-2021.webp",
+      "links": {}
+    }
+  ]
+} 

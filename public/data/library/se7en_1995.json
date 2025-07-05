@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "se7en-1995",
+      "title": "Se7en",
+      "author": "David Fincher",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 1995,
+      "genre": ["Crime", "Drama", "Mystery"],
+      "description": "A dark thriller about two detectives tracking a serial killer who uses the seven deadly sins as motives.",
+      "coverImage": "/resources/images/library/se7en-1995.webp",
+      "links": {}
+    }
+  ]
+} 

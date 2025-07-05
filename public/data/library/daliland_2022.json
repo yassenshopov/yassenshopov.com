@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "daliland-2022",
+      "title": "Daliland",
+      "author": "Mary Harron",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2022,
+      "genre": ["Drama", "Biography"],
+      "description": "A biographical drama about the later years of artist Salvador Dalí.",
+      "coverImage": "/resources/images/library/daliland-2022.webp",
+      "links": {}
+    }
+  ]
+} 

@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "the-matrix",
+      "title": "The Matrix",
+      "author": "The Wachowskis",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 1999,
+      "genre": ["Action", "Sci-Fi"],
+      "description": "A groundbreaking sci-fi film about reality, freedom, and artificial intelligence.",
+      "coverImage": "/resources/images/library/the-matrix.webp",
+      "links": {}
+    }
+  ]
+} 

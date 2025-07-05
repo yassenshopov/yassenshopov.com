@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ex-machina-2014",
+      "title": "Ex Machina",
+      "author": "Alex Garland",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2014,
+      "genre": ["Drama", "Sci-Fi", "Thriller"],
+      "description": "A thought-provoking sci-fi thriller about artificial intelligence and ethics.",
+      "coverImage": "/resources/images/library/ex-machina-2014.webp",
+      "links": {}
+    }
+  ]
+} 

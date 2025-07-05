@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "joker-2019",
+      "title": "Joker",
+      "author": "Todd Phillips",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2019,
+      "genre": ["Crime", "Drama", "Thriller"],
+      "description": "A psychological thriller about the origin of Batman's iconic nemesis.",
+      "coverImage": "/resources/images/library/joker-2019.webp",
+      "links": {}
+    }
+  ]
+} 

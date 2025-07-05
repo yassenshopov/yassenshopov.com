@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "shoe-dog",
+      "title": "Shoe Dog: A Memoir by the Creator of Nike",
+      "author": "Phil Knight",
+      "type": "book",
+      "rating": null,
+      "status": "in-progress",
+      "year": 2016,
+      "genre": ["Memoir", "Business", "Non-fiction"],
+      "description": "The memoir of Phil Knight, founder of Nike, chronicling the company's early days and growth.",
+      "coverImage": "/resources/images/library/shoe-dog.webp",
+      "links": {}
+    }
+  ]
+} 

@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "heights-2017",
+      "title": "Heights",
+      "author": "Victor Bojinov",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2017,
+      "genre": ["Drama", "Adventure"],
+      "description": "A Bulgarian drama film directed by Victor Bojinov, based on the novel by Milen Ruskov.",
+      "coverImage": "/resources/images/library/heights-2017.webp",
+      "links": {}
+    }
+  ]
+} 

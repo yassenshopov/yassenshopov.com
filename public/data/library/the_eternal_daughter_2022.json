@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "the-eternal-daughter-2022",
+      "title": "The Eternal Daughter",
+      "author": "Joanna Hogg",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2022,
+      "genre": ["Drama", "Mystery"],
+      "description": "A haunting drama about a daughter and her elderly mother confronting long-buried secrets.",
+      "coverImage": "/resources/images/library/the-eternal-daughter-2022.webp",
+      "links": {}
+    }
+  ]
+} 

@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "the-batman-2022",
+      "title": "The Batman",
+      "author": "Matt Reeves",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2022,
+      "genre": ["Action", "Crime", "Drama"],
+      "description": "A noir-inspired reboot of the Batman franchise starring Robert Pattinson.",
+      "coverImage": "/resources/images/library/the-batman-2022.webp",
+      "links": {}
+    }
+  ]
+} 

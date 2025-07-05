@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "arrival",
+      "title": "Arrival",
+      "author": "Denis Villeneuve",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2016,
+      "genre": ["Drama", "Sci-Fi", "Mystery"],
+      "description": "A linguist is recruited to communicate with aliens in this cerebral sci-fi drama.",
+      "coverImage": "/resources/images/library/arrival-2016.webp",
+      "links": {}
+    }
+  ]
+} 

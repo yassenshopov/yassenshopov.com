@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "january-2021",
+      "title": "January",
+      "author": "Andrey Paounov",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2021,
+      "genre": ["Drama", "Mystery"],
+      "description": "A Bulgarian drama film directed by Andrey Paounov.",
+      "coverImage": "/resources/images/library/january-2021.webp",
+      "links": {}
+    }
+  ]
+} 

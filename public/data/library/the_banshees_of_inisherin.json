@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "the-banshees-of-inisherin",
+      "title": "The Banshees of Inisherin",
+      "author": "Martin McDonagh",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2022,
+      "genre": ["Drama", "Comedy"],
+      "description": "A tragicomedy about friendship and isolation on a remote Irish island.",
+      "coverImage": "/resources/images/library/the-banshees-of-inisherin.webp",
+      "links": {}
+    }
+  ]
+} 

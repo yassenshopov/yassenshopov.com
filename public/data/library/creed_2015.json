@@ -1,0 +1,21 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "creed-2015",
+      "title": "Creed",
+      "author": "Ryan Coogler",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2015,
+      "genre": ["Drama", "Sport"],
+      "description": "The first film in the Creed series, following Adonis Creed, the son of Apollo Creed.",
+      "coverImage": "/resources/images/library/creed-2015.webp",
+      "links": {},
+      "series": "Creed",
+      "seriesOrder": 1
+    }
+  ]
+} 

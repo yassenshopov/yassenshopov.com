@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "watchmen-2009",
+      "title": "Watchmen",
+      "author": "Zack Snyder",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2009,
+      "genre": ["Action", "Drama", "Sci-Fi"],
+      "description": "A dark and complex superhero film based on the graphic novel by Alan Moore and Dave Gibbons.",
+      "coverImage": "/resources/images/library/watchmen-2009.webp",
+      "links": {}
+    }
+  ]
+} 

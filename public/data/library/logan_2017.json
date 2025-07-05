@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "logan-2017",
+      "title": "Logan",
+      "author": "James Mangold",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2017,
+      "genre": ["Action", "Drama", "Sci-Fi"],
+      "description": "A gritty and emotional send-off for Hugh Jackman's Wolverine in the X-Men film series.",
+      "coverImage": "/resources/images/library/logan-2017.webp",
+      "links": {}
+    }
+  ]
+} 

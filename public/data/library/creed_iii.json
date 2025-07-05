@@ -1,0 +1,21 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "creed-iii",
+      "title": "Creed III",
+      "author": "Michael B. Jordan",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2023,
+      "genre": ["Drama", "Sport"],
+      "description": "The third installment in the Creed film series, directed by and starring Michael B. Jordan.",
+      "coverImage": "/resources/images/library/creed-iii.webp",
+      "links": {},
+      "series": "Creed",
+      "seriesOrder": 3
+    }
+  ]
+} 

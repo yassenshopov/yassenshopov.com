@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "the-social-network-2010",
+      "title": "The Social Network",
+      "author": "David Fincher",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2010,
+      "genre": ["Biography", "Drama"],
+      "description": "A drama about the founding of Facebook and the lawsuits that followed.",
+      "coverImage": "/resources/images/library/the-social-network-2010.webp",
+      "links": {}
+    }
+  ]
+} 

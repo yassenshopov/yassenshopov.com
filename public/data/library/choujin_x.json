@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "choujin-x",
+      "title": "Choujin X",
+      "author": "Sui Ishida",
+      "type": "book",
+      "rating": null,
+      "status": "in-progress",
+      "year": 2021,
+      "genre": ["Manga", "Fantasy", "Action"],
+      "description": "A dark fantasy manga series by the creator of Tokyo Ghoul.",
+      "coverImage": "/resources/images/library/choujin-x.webp",
+      "links": {}
+    }
+  ]
+} 

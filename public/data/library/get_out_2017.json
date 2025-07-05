@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "get-out-2017",
+      "title": "Get Out",
+      "author": "Jordan Peele",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2017,
+      "genre": ["Horror", "Thriller", "Mystery"],
+      "description": "A psychological horror film about a Black man who uncovers disturbing secrets when meeting his white girlfriend's family.",
+      "coverImage": "/resources/images/library/get-out-2017.webp",
+      "links": {}
+    }
+  ]
+} 

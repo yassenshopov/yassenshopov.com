@@ -1,0 +1,21 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "the-dark-knight",
+      "title": "The Dark Knight",
+      "author": "Christopher Nolan",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2008,
+      "genre": ["Action", "Crime", "Drama"],
+      "description": "The second film in Christopher Nolan's Batman trilogy, featuring Heath Ledger as the Joker.",
+      "coverImage": "/resources/images/library/the-dark-knight-2008.webp",
+      "links": {},
+      "series": "The Dark Knight Trilogy",
+      "seriesOrder": 2
+    }
+  ]
+} 

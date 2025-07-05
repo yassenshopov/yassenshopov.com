@@ -1,0 +1,21 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "the-dark-knight-rises",
+      "title": "The Dark Knight Rises",
+      "author": "Christopher Nolan",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2012,
+      "genre": ["Action", "Drama", "Thriller"],
+      "description": "The epic conclusion to Christopher Nolan's Batman trilogy.",
+      "coverImage": "/resources/images/library/the-dark-knight-rises-2012.webp",
+      "links": {},
+      "series": "The Dark Knight Trilogy",
+      "seriesOrder": 3
+    }
+  ]
+} 

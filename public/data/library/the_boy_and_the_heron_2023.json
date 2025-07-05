@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "the-boy-and-the-heron-2023",
+      "title": "The Boy and the Heron",
+      "author": "Hayao Miyazaki",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2023,
+      "genre": ["Animation", "Adventure", "Fantasy"],
+      "description": "A fantasy adventure film by Hayao Miyazaki, exploring themes of grief and imagination.",
+      "coverImage": "/resources/images/library/the-boy-and-the-heron-2023.webp",
+      "links": {}
+    }
+  ]
+} 

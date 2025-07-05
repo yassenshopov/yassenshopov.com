@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "green-book-2018",
+      "title": "Green Book",
+      "author": "Peter Farrelly",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2018,
+      "genre": ["Drama", "Biography", "Comedy"],
+      "description": "A road trip film about the friendship between a Black pianist and his Italian-American driver in the 1960s American South.",
+      "coverImage": "/resources/images/library/green-book-2018.webp",
+      "links": {}
+    }
+  ]
+} 

@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "m-1931",
+      "title": "M",
+      "author": "Fritz Lang",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 1931,
+      "genre": ["Crime", "Drama", "Thriller"],
+      "description": "A classic German thriller about the hunt for a child murderer in Berlin.",
+      "coverImage": "/resources/images/library/m-1931.webp",
+      "links": {}
+    }
+  ]
+} 

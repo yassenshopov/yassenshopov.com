@@ -1,0 +1,21 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "batman-begins-2005",
+      "title": "Batman Begins",
+      "author": "Christopher Nolan",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2005,
+      "genre": ["Action", "Crime", "Drama"],
+      "description": "The origin story of Batman in Christopher Nolan's acclaimed trilogy.",
+      "coverImage": "/resources/images/library/batman-begins-2005.webp",
+      "links": {},
+      "series": "The Dark Knight Trilogy",
+      "seriesOrder": 1
+    }
+  ]
+} 

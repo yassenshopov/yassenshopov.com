@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "in-the-heart-of-the-machine-2022",
+      "title": "In the Heart of the Machine",
+      "author": "Martin Makariev",
+      "type": "movie",
+      "rating": null,
+      "status": "completed",
+      "year": 2022,
+      "genre": ["Drama", "Crime"],
+      "description": "A Bulgarian prison drama about a group of inmates and a mysterious machine.",
+      "coverImage": "/resources/images/library/in-the-heart-of-the-machine-2022.webp",
+      "links": {}
+    }
+  ]
+} 

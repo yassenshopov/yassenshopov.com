@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "babel-necessity-of-violence",
+      "title": "Babel, or the Necessity of Violence",
+      "author": "R. F. Kuang",
+      "type": "book",
+      "rating": null,
+      "status": "on-pause",
+      "year": 2022,
+      "genre": ["Fantasy", "Historical", "Fiction"],
+      "description": "A dark academia fantasy novel exploring language, colonialism, and revolution.",
+      "coverImage": "/resources/images/library/babel.webp",
+      "links": {}
+    }
+  ]
+} 
