@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { libraryItems, LibraryItem } from '@/data/library';
+import { libraryItems, LibraryItem, loadAllLibraryItems } from '@/data/library';
 import { 
   getCreatorLabel as getCreatorLabelUtil, 
   getStatusColor as getStatusColorUtil,
@@ -31,7 +31,28 @@ export function useLibrary() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [animatingHearts, setAnimatingHearts] = useState<string[]>([]);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [showThisYearOnly, setShowThisYearOnly] = useState(false);
+  const [allLibraryItems, setAllLibraryItems] = useState<LibraryItem[]>(libraryItems);
+  const [isLoadingExternal, setIsLoadingExternal] = useState(false);
   const loadMoreRef = useRef<HTMLDivElement>(null);
+
+  // Load external library items
+  useEffect(() => {
+    const loadExternalItems = async () => {
+      setIsLoadingExternal(true);
+      try {
+        const items = await loadAllLibraryItems();
+        setAllLibraryItems(items);
+      } catch (error) {
+        console.warn('Failed to load external library items, using internal only:', error);
+        setAllLibraryItems(libraryItems);
+      } finally {
+        setIsLoadingExternal(false);
+      }
+    };
+
+    loadExternalItems();
+  }, []);
 
   // Load preferences from localStorage
   useEffect(() => {
@@ -64,10 +85,10 @@ export function useLibrary() {
   }, [showStats]);
 
   // Get all unique genres for filtering
-  const allGenres = [...new Set(libraryItems.flatMap(item => item.genre))].sort();
+  const allGenres = [...new Set(allLibraryItems.flatMap(item => item.genre))].sort();
 
   // Filtering logic
-  const filteredItems = libraryItems.filter(item => {
+  const filteredItems = allLibraryItems.filter(item => {
     const typeMatch = selectedType === 'all' || item.type === selectedType;
     const statusMatch = selectedStatus === 'all' || item.status === selectedStatus;
     
@@ -86,12 +107,21 @@ export function useLibrary() {
     
     // Rating filtering
     const ratingMatch = item.rating >= ratingRange[0] && item.rating <= ratingRange[1];
+
+    // This year filtering
+    let thisYearMatch = true;
+    if (showThisYearOnly) {
+      const year = new Date().getFullYear();
+      const completedYear = item.dateCompleted ? new Date(item.dateCompleted).getFullYear() : null;
+      const startedYear = item.dateStarted ? new Date(item.dateStarted).getFullYear() : null;
+      thisYearMatch = completedYear === year || startedYear === year;
+    }
     
-    return typeMatch && statusMatch && searchMatch && genreMatch && ratingMatch;
+    return typeMatch && statusMatch && searchMatch && genreMatch && ratingMatch && thisYearMatch;
   });
 
   // Sorting logic
-  const sortedItems = [...filteredItems].sort((a, b) => {
+  const allSortedItems = [...filteredItems].sort((a, b) => {
     switch (sortBy) {
       case 'rating':
         return b.rating - a.rating;
@@ -106,6 +136,8 @@ export function useLibrary() {
         return parseInt(b.id) - parseInt(a.id);
     }
   });
+  const sortedItems = allSortedItems.slice(0, itemsToShow);
+  const hasMoreItems = allSortedItems.length > itemsToShow;
 
   // Utility functions - use imported utilities
   const getCreatorLabel = getCreatorLabelUtil;
@@ -127,14 +159,14 @@ export function useLibrary() {
   };
 
   // Statistics calculations
-  const getStatistics = () => calculateStatistics(libraryItems);
+  const getStatistics = () => calculateStatistics(allLibraryItems);
 
   // Related items algorithm
   const getRelatedItems = (item: LibraryItem, limit: number = 4): LibraryItem[] => 
-    getRelatedItemsUtil(item, libraryItems, limit);
+    getRelatedItemsUtil(item, allLibraryItems, limit);
 
   // Get series information for an item
-  const getSeriesInfo = (item: LibraryItem) => getSeriesInfoUtil(item, libraryItems);
+  const getSeriesInfo = (item: LibraryItem) => getSeriesInfoUtil(item, allLibraryItems);
 
   // Get relationship type display text
   const getRelationshipLabel = (fromItem: LibraryItem, toItem: LibraryItem): string => 
@@ -188,18 +220,16 @@ export function useLibrary() {
     setRatingRange([1, 5]);
     setSelectedType('all');
     setSelectedStatus('all');
+    setShowThisYearOnly(false);
   };
 
-  // Reset items to show when filters change
-  useEffect(() => {
-    setItemsToShow(12);
-  }, [searchQuery, selectedType, selectedStatus, selectedGenres, ratingRange, sortBy]);
-
-  // Get visible items for performance
-  const visibleItems = sortedItems.slice(0, itemsToShow);
-
+  // Load more items
   const showMoreItems = () => {
-    setItemsToShow(prev => Math.min(prev + 12, sortedItems.length));
+    setIsLoadingMore(true);
+    setTimeout(() => {
+      setItemsToShow(prev => prev + 12);
+      setIsLoadingMore(false);
+    }, 500);
   };
 
   return {
@@ -228,14 +258,18 @@ export function useLibrary() {
     isTransitioning,
     animatingHearts,
     copiedId,
+    showThisYearOnly,
+    setShowThisYearOnly,
+    isLoadingExternal,
     loadMoreRef,
-    
+
     // Data
     allGenres,
     filteredItems,
     sortedItems,
-    visibleItems,
-    
+    allSortedItems,
+    hasMoreItems,
+
     // Functions
     getCreatorLabel,
     getStatusColor,

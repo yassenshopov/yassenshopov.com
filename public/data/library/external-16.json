@@ -1,0 +1,21 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-hp-deathly-hallows",
+      "title": "Harry Potter and the Deathly Hallows",
+      "author": "J.K. Rowling",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2023-01-01",
+      "genre": ["Fantasy", "Adventure"],
+      "description": "The final battle between Harry Potter and Lord Voldemort.",
+      "coverImage": "/resources/images/library/hp-deathly-hallows.webp",
+      "series": "Harry Potter",
+      "seriesOrder": 7,
+      "links": {}
+    }
+  ]
+} 

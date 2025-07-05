@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-hp-order-phoenix",
+      "title": "Harry Potter and the Order of the Phoenix",
+      "author": "J.K. Rowling",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2023-01-01",
+      "genre": ["Fantasy", "Adventure"],
+      "description": "Harry and his friends form Dumbledore's Army to fight against the Ministry of Magic's interference at Hogwarts.",
+      "coverImage": "/resources/images/library/hp-order-phoenix.webp",
+      "links": {}
+    }
+  ]
+} 

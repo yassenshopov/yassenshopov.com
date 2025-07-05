@@ -1,0 +1,21 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-hp-half-blood-prince",
+      "title": "Harry Potter and the Half-Blood Prince",
+      "author": "J.K. Rowling",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2023-01-01",
+      "genre": ["Fantasy", "Adventure"],
+      "description": "Harry discovers the identity of the Half-Blood Prince and learns more about Voldemort's past.",
+      "coverImage": "/resources/images/library/hp-half-blood-prince.webp",
+      "series": "Harry Potter",
+      "seriesOrder": 6,
+      "links": {}
+    }
+  ]
+} 

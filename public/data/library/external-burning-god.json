@@ -1,0 +1,21 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-burning-god",
+      "title": "The Burning God",
+      "author": "Rebecca Kuang",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2024-10-01",
+      "genre": ["Fantasy", "Political", "Young Adult (YA)"],
+      "description": "The epic conclusion to The Poppy War trilogy, as Rin faces her final battles.",
+      "coverImage": "/resources/images/library/the-burning-god.webp",
+      "series": "The Poppy War",
+      "seriesOrder": 3,
+      "links": {}
+    }
+  ]
+} 

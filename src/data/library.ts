@@ -351,6 +351,8 @@ export const libraryItems: LibraryItem[] = [
       genre: ['Fantasy', 'Political', 'Young Adult'],
       description: 'A grimdark military fantasy inspired by 20th-century Chinese history, following a war orphan who discovers her deadly powers.',
       coverImage: '/resources/images/library/the-poppy-war.webp',
+      series: 'The Poppy War',
+      seriesOrder: 1,
       links: {}
     },
     {
@@ -1096,10 +1098,20 @@ export const libraryItems: LibraryItem[] = [
   },
 ];
 
+// Forward compatibility: Export the loader function
+export { loadAllLibraryItems, getInternalLibraryItems } from '@/lib/library-loader';
+
+// For immediate use without async loading (backward compatibility)
+export const getAllLibraryItems = (): LibraryItem[] => {
+  // This will be the internal items only, for immediate use
+  // The async version will load external files as well
+  return libraryItems;
+};
+
 export const mediaTypes = [
   { value: 'all', label: 'All Media', icon: 'Filter' },
   { value: 'book', label: 'Books', icon: 'BookOpen' },
-  { value: 'movie', label: 'Movies', icon: 'Film' },
+  { value: 'movie', label: 'Movies', icon: 'Clapperboard' },
   { value: 'series', label: 'Series', icon: 'Monitor' },
 ];
 

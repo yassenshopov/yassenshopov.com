@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-hp-prisoner-azkaban",
+      "title": "Harry Potter and the Prisoner of Azkaban",
+      "author": "J.K. Rowling",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2023-01-01",
+      "genre": ["Fantasy", "Adventure"],
+      "description": "Harry learns the truth about Sirius Black and his parents' past.",
+      "coverImage": "/resources/images/library/hp-prisoner-azkaban.webp",
+      "links": {}
+    }
+  ]
+} 

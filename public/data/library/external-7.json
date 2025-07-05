@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-tokyo-ghoul-re",
+      "title": "Tokyo Ghoul:re",
+      "author": "Sui Ishida",
+      "type": "book",
+      "rating": 4,
+      "status": "completed",
+      "dateCompleted": "2023-01-01",
+      "genre": ["Manga", "Action", "Supernatural", "Horror"],
+      "description": "The sequel to Tokyo Ghoul, following the story of Haise Sasaki.",
+      "coverImage": "/resources/images/library/tokyo-ghoul-re.webp",
+      "links": {}
+    }
+  ]
+} 

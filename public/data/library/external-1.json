@@ -1,0 +1,21 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-dragon-republic",
+      "title": "The Dragon Republic",
+      "author": "Rebecca Kuang",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2024-09-01",
+      "genre": ["Fantasy", "Political", "Young Adult (YA)"],
+      "description": "The sequel to The Poppy War, following Rin as she navigates war and politics in a fractured empire.",
+      "coverImage": "/resources/images/library/the-dragon-republic.webp",
+      "series": "The Poppy War",
+      "seriesOrder": 2,
+      "links": {}
+    }
+  ]
+} 

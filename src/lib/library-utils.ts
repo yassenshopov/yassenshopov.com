@@ -214,8 +214,9 @@ export const calculateStatistics = (items: LibraryItem[]) => {
   
   const thisYear = new Date().getFullYear();
   const thisYearItems = completed.filter(item => {
-    const year = new Date(item.dateCompleted || '').getFullYear();
-    return year === thisYear;
+    const completedYear = item.dateCompleted ? new Date(item.dateCompleted).getFullYear() : null;
+    const startedYear = item.dateStarted ? new Date(item.dateStarted).getFullYear() : null;
+    return completedYear === thisYear || startedYear === thisYear;
   });
 
   return {

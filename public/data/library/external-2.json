@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-feel-good-productivity",
+      "title": "Feel Good Productivity",
+      "author": "Ali Abdaal",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2024-01-01",
+      "genre": ["Non-fiction", "Productivity", "Psychology", "Organisation"],
+      "description": "A guide to achieving more by feeling better, from the popular productivity YouTuber and doctor.",
+      "coverImage": "/resources/images/library/feel-good-productivity.webp",
+      "links": {}
+    }
+  ]
+} 

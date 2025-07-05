@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-battle-labyrinth",
+      "title": "The Battle of the Labyrinth",
+      "author": "Rick Riordan",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2023-01-01",
+      "genre": ["Fantasy", "Young Adult (YA)", "Supernatural", "Adventure"],
+      "description": "Percy Jackson and friends must navigate the Labyrinth to stop Kronos' army.",
+      "coverImage": "/resources/images/library/the-battle-of-the-labyrinth.webp",
+      "links": {}
+    }
+  ]
+} 

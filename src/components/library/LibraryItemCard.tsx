@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Star, Heart, BookOpen, Clapperboard, Monitor, Copy, Check } from 'lucide-react';
+import { Star, Heart, BookOpen, Clapperboard, Monitor, Copy, Check, Clock, Bookmark, Eye } from 'lucide-react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -17,7 +17,6 @@ interface LibraryItemCardProps {
   copiedId: string | null;
   onItemClick: (item: LibraryItem) => void;
   onToggleFavorite: (itemId: string) => void;
-  onCopyTitle: (id: string, text: string) => void;
   getCreatorLabel: (item: LibraryItem) => string;
   getStatusColor: (status: string) => string;
   getReadingTime: (item: LibraryItem) => string;
@@ -40,6 +39,23 @@ async function getCachedImage(url: string, cacheKey: string): Promise<string> {
   });
 }
 
+function isValidDataUrl(dataUrl: string | null): boolean {
+  return !!dataUrl && dataUrl.startsWith('data:image/');
+}
+
+const statusIconMap: Record<string, JSX.Element> = {
+  completed: <Check className="w-4 h-4" />,
+  'in-progress': <Clock className="w-4 h-4" />,
+  'want-to-read': <Bookmark className="w-4 h-4" />,
+  'want-to-watch': <Eye className="w-4 h-4" />,
+};
+const statusLabelMap: Record<string, string> = {
+  completed: 'Completed',
+  'in-progress': 'In Progress',
+  'want-to-read': 'Want to Read',
+  'want-to-watch': 'Want to Watch',
+};
+
 export default function LibraryItemCard({
   item,
   viewMode,
@@ -48,16 +64,26 @@ export default function LibraryItemCard({
   copiedId,
   onItemClick,
   onToggleFavorite,
-  onCopyTitle,
   getCreatorLabel,
   getStatusColor,
   getReadingTime,
 }: LibraryItemCardProps) {
   const [imgSrc, setImgSrc] = useState<string | undefined>(item.coverImage);
   useEffect(() => {
+    let isMounted = true;
     if (item.coverImage) {
-      getCachedImage(item.coverImage, `cover-${item.id}`).then(setImgSrc);
+      const cacheKey = `cover-${item.id}`;
+      const cached = localStorage.getItem(cacheKey);
+      if (isValidDataUrl(cached)) {
+        setImgSrc(cached!);
+      } else {
+        setImgSrc(item.coverImage); // Show direct URL immediately
+        getCachedImage(item.coverImage, cacheKey)
+          .then((dataUrl) => { if (isMounted && isValidDataUrl(dataUrl)) setImgSrc(dataUrl); })
+          .catch(() => { if (isMounted) setImgSrc(item.coverImage); });
+      }
     }
+    return () => { isMounted = false; };
   }, [item.coverImage, item.id]);
 
   const renderStars = (rating: number) => {
@@ -118,12 +144,9 @@ export default function LibraryItemCard({
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between">
             <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-lg mb-1 group-hover:text-primary transition-colors truncate flex items-center gap-2" onClick={e => { e.stopPropagation(); onCopyTitle(item.id, item.title); }} style={{ cursor: 'pointer', userSelect: 'text' }}>
+              <h3 className="font-semibold text-lg mb-1 group-hover:text-primary transition-colors truncate flex items-center gap-2">
                 {getTypeIcon(item.type)}
                 {item.title}
-                <span className="inline-block align-middle" style={{marginLeft: 0}}>
-                  {copiedId === item.id ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4 text-muted-foreground" />}
-                </span>
               </h3>
               {getCreatorLabel(item) && (
                 <p className="text-muted-foreground text-sm mb-2">
@@ -246,8 +269,17 @@ export default function LibraryItemCard({
           </div>
         )}
         <div className="absolute top-2 right-2">
-          <Badge className={getStatusColor(item.status)}>
-            {item.status.replace('-', ' ')}
+          <Badge
+            className={
+              getStatusColor(item.status) +
+              ' flex items-center gap-1 font-semibold px-2 py-1 text-sm transition-all duration-200 overflow-hidden max-w-[2rem] group hover:max-w-[10rem] cursor-pointer'
+            }
+            style={{ minWidth: '2rem' }}
+          >
+            {statusIconMap[item.status]}
+            <span className="ml-1 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              {statusLabelMap[item.status]}
+            </span>
           </Badge>
         </div>
         <div className="absolute top-2 left-2">
@@ -361,12 +393,9 @@ export default function LibraryItemCard({
       <CardHeader className="space-y-3">
         <div className="flex items-start justify-between">
           <div className="flex-1">
-            <h3 className="text-xl font-bold leading-tight group-hover:text-primary transition-colors flex items-center gap-2" onClick={e => { e.stopPropagation(); onCopyTitle(item.id, item.title); }} style={{ cursor: 'pointer', userSelect: 'text' }}>
+            <h3 className="text-xl font-bold leading-tight group-hover:text-primary transition-colors flex items-center gap-2">
               {getTypeIcon(item.type)}
               {item.title}
-              <span className="inline-block align-middle" style={{marginLeft: 0}}>
-                {copiedId === item.id ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4 text-muted-foreground" />}
-              </span>
             </h3>
             {getCreatorLabel(item) && (
               <p className="text-muted-foreground text-sm mt-1">

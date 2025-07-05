@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-1984",
+      "title": "1984",
+      "author": "George Orwell",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2023-01-01",
+      "genre": ["Dystopian", "Political"],
+      "description": "A dystopian novel set in a totalitarian society ruled by Big Brother.",
+      "coverImage": "/resources/images/library/1984.webp",
+      "links": {}
+    }
+  ]
+} 

@@ -1,0 +1,21 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-lost-hero",
+      "title": "The Lost Hero",
+      "author": "Rick Riordan",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2023-01-01",
+      "genre": ["Fantasy", "Young Adult (YA)", "Supernatural", "Adventure"],
+      "description": "Jason, Piper, and Leo must rescue Hera and stop a new threat to Olympus.",
+      "coverImage": "/resources/images/library/the-lost-hero.webp",
+      "series": "Heroes of Olympus",
+      "seriesOrder": 1,
+      "links": {}
+    }
+  ]
+} 

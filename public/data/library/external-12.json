@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-sea-monsters",
+      "title": "The Sea of Monsters",
+      "author": "Rick Riordan",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2023-01-01",
+      "genre": ["Fantasy", "Young Adult (YA)", "Supernatural", "Adventure"],
+      "description": "Percy Jackson must journey into the Sea of Monsters to save Camp Half-Blood.",
+      "coverImage": "/resources/images/library/the-sea-of-monsters.webp",
+      "links": {}
+    }
+  ]
+} 

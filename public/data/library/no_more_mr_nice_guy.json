@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "no-more-mr-nice-guy",
+      "title": "No More Mr. Nice Guy",
+      "author": "Robert A. Glover",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2024-12-01",
+      "genre": ["Non-fiction", "Masculinity", "Self-improvement", "Psychology"],
+      "description": "A guide to breaking free from the 'Nice Guy Syndrome' and living authentically.",
+      "coverImage": "/resources/images/library/no-more-mr-nice-guy.webp",
+      "links": {}
+    }
+  ]
+} 

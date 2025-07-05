@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "kralska-krav",
+      "title": "Кралска кръв",
+      "author": "Yulia Spiridonova",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2024-01-01",
+      "genre": ["Fantasy", "Adventure"],
+      "description": "A Bulgarian fantasy novel about royal intrigue and adventure.",
+      "coverImage": "/resources/images/library/kralska-krav.webp",
+      "links": {}
+    }
+  ]
+} 

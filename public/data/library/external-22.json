@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-hp-philosophers-stone",
+      "title": "Harry Potter and the Philosopher's Stone",
+      "author": "J.K. Rowling",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2023-01-01",
+      "genre": ["Fantasy", "Adventure"],
+      "description": "Harry discovers he is a wizard and attends Hogwarts for the first time.",
+      "coverImage": "/resources/images/library/hp-philosophers-stone.webp",
+      "links": {}
+    }
+  ]
+} 

@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-endgame-calling",
+      "title": "Endgame: The Calling",
+      "author": "James Frey",
+      "type": "book",
+      "rating": 4,
+      "status": "completed",
+      "dateCompleted": "2024-01-01",
+      "genre": ["Realism", "Young Adult (YA)", "Action", "Adventure"],
+      "description": "Twelve players. Young people from all over the world. They must fight to the death to save their bloodline—and the world.",
+      "coverImage": "/resources/images/library/endgame-the-calling.webp",
+      "links": {}
+    }
+  ]
+} 

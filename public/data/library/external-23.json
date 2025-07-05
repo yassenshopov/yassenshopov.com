@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-growth-levers",
+      "title": "Growth Levers and How to Find Them",
+      "author": "Matthew Lerner",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2024-06-01",
+      "genre": ["Non-fiction", "Business", "Marketing"],
+      "description": "A practical guide to identifying and using growth levers in business.",
+      "coverImage": "/resources/images/library/growth-levers.webp",
+      "links": {}
+    }
+  ]
+} 

@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "iglatana-labakan",
+      "title": "ИГЛАТА на Лабакан",
+      "author": "Yulia Spiridonova",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2024-01-01",
+      "genre": ["Fantasy", "Adventure"],
+      "description": "A magical adventure by Bulgarian author Yulia Spiridonova.",
+      "coverImage": "/resources/images/library/iglatana-labakan.webp",
+      "links": {}
+    }
+  ]
+} 

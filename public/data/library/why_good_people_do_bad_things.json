@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "why-good-people-do-bad-things",
+      "title": "Why Good People Do Bad Things: Understanding Our Darker Selves",
+      "author": "James Hollis",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2024-12-01",
+      "genre": ["Non-fiction", "Psychology", "Self-improvement"],
+      "description": "A deep dive into the unconscious forces that drive our self-sabotaging behaviors.",
+      "coverImage": "/resources/images/library/why-good-people-do-bad-things.webp",
+      "links": {}
+    }
+  ]
+} 

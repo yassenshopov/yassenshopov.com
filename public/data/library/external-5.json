@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-tobacco",
+      "title": "Tobacco",
+      "author": "Dimitar Dimov",
+      "type": "book",
+      "rating": 4,
+      "status": "completed",
+      "dateCompleted": "2023-01-01",
+      "genre": ["History", "Political"],
+      "description": "A Bulgarian classic exploring the rise and fall of a tobacco empire.",
+      "coverImage": "/resources/images/library/tobacco.webp",
+      "links": {}
+    }
+  ]
+} 

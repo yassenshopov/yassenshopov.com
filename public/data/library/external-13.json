@@ -1,0 +1,21 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-lightning-thief",
+      "title": "The Lightning Thief",
+      "author": "Rick Riordan",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2023-01-01",
+      "genre": ["Fantasy", "Young Adult (YA)", "Supernatural", "Adventure"],
+      "description": "Percy Jackson discovers he is a demigod and embarks on a quest to find Zeus' stolen lightning bolt.",
+      "coverImage": "/resources/images/library/the-lightning-thief.webp",
+      "series": "Percy Jackson and the Olympians",
+      "seriesOrder": 1,
+      "links": {}
+    }
+  ]
+} 

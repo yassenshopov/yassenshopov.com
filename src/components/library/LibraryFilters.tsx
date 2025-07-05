@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Filter, X, Search, Grid, List, BarChart3, Download, 
+  Filter, X, Search, BarChart3, Download, 
   Star, BookOpen, Clapperboard, Monitor 
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -29,8 +29,6 @@ interface LibraryFiltersProps {
   setSelectedGenres: React.Dispatch<React.SetStateAction<string[]>>;
   ratingRange: [number, number];
   setRatingRange: (range: [number, number]) => void;
-  viewMode: 'grid' | 'list';
-  setViewMode: (mode: 'grid' | 'list') => void;
   sortBy: 'recent' | 'rating' | 'title' | 'date';
   setSortBy: (sort: 'recent' | 'rating' | 'title' | 'date') => void;
   showStats: boolean;
@@ -60,8 +58,6 @@ export default function LibraryFilters({
   setSelectedGenres,
   ratingRange,
   setRatingRange,
-  viewMode,
-  setViewMode,
   sortBy,
   setSortBy,
   showStats,
@@ -160,7 +156,7 @@ export default function LibraryFilters({
                         onClick={() => setSelectedType(type.value)}
                         className="flex items-center gap-2 h-9 justify-start"
                       >
-                        <Icon className="w-4 h-4" />
+                        {Icon ? <Icon className="w-4 h-4" /> : null}
                         {type.label}
                       </Button>
                     );
@@ -237,43 +233,20 @@ export default function LibraryFilters({
                 </div>
               </div>
 
-              {/* View & Sort */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">View</label>
-                  <div className="flex bg-muted rounded-lg p-1">
-                    <Button
-                      variant={viewMode === 'grid' ? "default" : "ghost"}
-                      size="sm"
-                      onClick={() => setViewMode('grid')}
-                      className="h-8 px-3 flex-1"
-                    >
-                      <Grid className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      variant={viewMode === 'list' ? "default" : "ghost"}
-                      size="sm"
-                      onClick={() => setViewMode('list')}
-                      className="h-8 px-3 flex-1"
-                    >
-                      <List className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Sort</label>
-                  <Select value={sortBy} onValueChange={(value: any) => setSortBy(value)}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="recent">Recent</SelectItem>
-                      <SelectItem value="rating">Rating</SelectItem>
-                      <SelectItem value="title">Title</SelectItem>
-                      <SelectItem value="date">Date</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+              {/* Sort */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Sort</label>
+                <Select value={sortBy} onValueChange={(value: any) => setSortBy(value)}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="recent">Recent</SelectItem>
+                    <SelectItem value="rating">Rating</SelectItem>
+                    <SelectItem value="title">Title</SelectItem>
+                    <SelectItem value="date">Date</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               {/* Actions */}

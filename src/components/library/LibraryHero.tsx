@@ -13,9 +13,10 @@ interface LibraryStats {
 
 interface LibraryHeroProps {
   stats: LibraryStats;
+  onCategoryClick?: (type: string) => void;
 }
 
-export default function LibraryHero({ stats }: LibraryHeroProps) {
+export default function LibraryHero({ stats, onCategoryClick }: LibraryHeroProps) {
   return (
     <section className="relative py-24 bg-gradient-to-br from-background to-muted">
       <div className="container mx-auto px-4">
@@ -33,15 +34,33 @@ export default function LibraryHero({ stats }: LibraryHeroProps) {
             Complete with my notes, ratings, and recommendations.
           </p>
           <div className="flex items-center justify-center gap-8 text-muted-foreground">
-            <div className="flex items-center gap-2">
+            <div
+              className={`flex items-center gap-2 transition cursor-pointer ${onCategoryClick ? 'hover:text-primary' : ''}`}
+              onClick={onCategoryClick ? () => onCategoryClick('book') : undefined}
+              tabIndex={onCategoryClick ? 0 : undefined}
+              role={onCategoryClick ? 'button' : undefined}
+              aria-label="Filter by books"
+            >
               <BookOpen className="w-5 h-5" />
               <span>{stats.books} Books</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div
+              className={`flex items-center gap-2 transition cursor-pointer ${onCategoryClick ? 'hover:text-primary' : ''}`}
+              onClick={onCategoryClick ? () => onCategoryClick('movie') : undefined}
+              tabIndex={onCategoryClick ? 0 : undefined}
+              role={onCategoryClick ? 'button' : undefined}
+              aria-label="Filter by movies"
+            >
               <Clapperboard className="w-5 h-5" />
               <span>{stats.movies} Movies</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div
+              className={`flex items-center gap-2 transition cursor-pointer ${onCategoryClick ? 'hover:text-primary' : ''}`}
+              onClick={onCategoryClick ? () => onCategoryClick('series') : undefined}
+              tabIndex={onCategoryClick ? 0 : undefined}
+              role={onCategoryClick ? 'button' : undefined}
+              aria-label="Filter by series"
+            >
               <Monitor className="w-5 h-5" />
               <span>{stats.series} Series</span>
             </div>
@@ -49,7 +68,13 @@ export default function LibraryHero({ stats }: LibraryHeroProps) {
               <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
               <span>{stats.avgRating.toFixed(1)} Avg Rating</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div
+              className={`flex items-center gap-2 transition cursor-pointer ${onCategoryClick ? 'hover:text-primary' : ''}`}
+              onClick={onCategoryClick ? () => onCategoryClick('thisYear') : undefined}
+              tabIndex={onCategoryClick ? 0 : undefined}
+              role={onCategoryClick ? 'button' : undefined}
+              aria-label="Filter by this year"
+            >
               <TrendingUp className="w-5 h-5" />
               <span>{stats.thisYear} This Year</span>
             </div>

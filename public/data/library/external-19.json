@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-hp-goblet-fire",
+      "title": "Harry Potter and the Goblet of Fire",
+      "author": "J.K. Rowling",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2023-01-01",
+      "genre": ["Fantasy", "Adventure"],
+      "description": "Harry competes in the dangerous Triwizard Tournament.",
+      "coverImage": "/resources/images/library/hp-goblet-fire.webp",
+      "links": {}
+    }
+  ]
+} 

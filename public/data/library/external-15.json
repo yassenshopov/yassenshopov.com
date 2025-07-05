@@ -1,0 +1,21 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-son-neptune",
+      "title": "The Son of Neptune",
+      "author": "Rick Riordan",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2023-01-01",
+      "genre": ["Fantasy", "Young Adult (YA)", "Supernatural", "Adventure"],
+      "description": "Percy Jackson finds himself at a Roman demigod camp with no memory of his past.",
+      "coverImage": "/resources/images/library/the-son-of-neptune.webp",
+      "series": "Heroes of Olympus",
+      "seriesOrder": 2,
+      "links": {}
+    }
+  ]
+} 

@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ext-tokyo-ghoul",
+      "title": "Tokyo Ghoul",
+      "author": "Sui Ishida",
+      "type": "book",
+      "rating": 4,
+      "status": "completed",
+      "dateCompleted": "2023-01-01",
+      "genre": ["Manga", "Action", "Supernatural", "Horror"],
+      "description": "A dark fantasy manga series about a college student who becomes a half-ghoul.",
+      "coverImage": "/resources/images/library/tokyo-ghoul.webp",
+      "links": {}
+    }
+  ]
+} 
