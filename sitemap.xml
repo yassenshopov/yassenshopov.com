@@ -6,87 +6,198 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-
+<!-- Main Pages -->
 <url>
   <loc>https://yassenshopov.com/</loc>
-  <lastmod>2022-11-02T09:40:58+00:00</lastmod>
+  <lastmod>2024-12-19T00:00:00+00:00</lastmod>
   <priority>1.00</priority>
 </url>
+
+<url>
+  <loc>https://yassenshopov.com/about/</loc>
+  <lastmod>2024-12-19T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/projects/</loc>
+  <lastmod>2024-12-19T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
 <url>
   <loc>https://yassenshopov.com/blog/</loc>
-  <lastmod>2022-11-02T09:40:58+00:00</lastmod>
+  <lastmod>2024-12-19T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
+<url>
+  <loc>https://yassenshopov.com/library/</loc>
+  <lastmod>2024-12-19T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
 <url>
   <loc>https://yassenshopov.com/notion/</loc>
-  <lastmod>2022-11-02T09:40:58+00:00</lastmod>
+  <lastmod>2024-12-19T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
   <loc>https://yassenshopov.com/contact-me/</loc>
-  <lastmod>2022-11-02T09:40:58+00:00</lastmod>
+  <lastmod>2024-12-19T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
+<!-- Blog Posts -->
 <url>
-  <loc>https://yassenshopov.com/blog/making-a-website/</loc>
-  <lastmod>2022-11-02T09:40:58+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://yassenshopov.com/blog/thomas-frank/</loc>
-  <lastmod>2022-11-02T09:40:58+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://yassenshopov.com/blog/22-tips/</loc>
-  <lastmod>2022-11-02T09:40:58+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://yassenshopov.com/blog/better-freelancing/</loc>
-  <lastmod>2022-11-02T09:40:58+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://yassenshopov.com/blog/academic-preparation/</loc>
-  <lastmod>2022-11-02T09:40:58+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://yassenshopov.com/blog/optimizing-my-finances/</loc>
-  <lastmod>2022-11-02T09:40:58+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://yassenshopov.com/blog/notion-templates/</loc>
-  <lastmod>2022-11-02T09:40:58+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://yassenshopov.com/blog/life-design/</loc>
-  <lastmod>2022-11-02T09:40:58+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://yassenshopov.com/blog/caffeine-addiction/</loc>
-  <lastmod>2022-11-02T09:40:58+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://yassenshopov.com/blog/6-elements/</loc>
-  <lastmod>2022-11-02T09:40:58+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://yassenshopov.com/blog/my-first-dollar/</loc>
-  <lastmod>2022-11-02T09:40:58+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://yassenshopov.com/blog/how-to-make-notion-fast/</loc>
-  <lastmod>2022-11-02T09:40:58+00:00</lastmod>
+  <loc>https://yassenshopov.com/blog/dopamine/</loc>
+  <lastmod>2022-12-04T00:00:00+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 
+<url>
+  <loc>https://yassenshopov.com/blog/income-generation/</loc>
+  <lastmod>2022-11-27T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/first-100-clients/</loc>
+  <lastmod>2022-11-20T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/ai-websites/</loc>
+  <lastmod>2022-11-13T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/success-paradox/</loc>
+  <lastmod>2022-11-06T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/making-a-website/</loc>
+  <lastmod>2022-10-30T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/thomas-frank/</loc>
+  <lastmod>2022-10-23T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/22-tips/</loc>
+  <lastmod>2022-10-09T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/better-freelancing/</loc>
+  <lastmod>2022-09-11T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/academic-preparation/</loc>
+  <lastmod>2022-08-28T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/optimizing-my-finances/</loc>
+  <lastmod>2022-08-21T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/notion-templates/</loc>
+  <lastmod>2022-08-17T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/life-design/</loc>
+  <lastmod>2022-08-07T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/caffeine-addiction/</loc>
+  <lastmod>2022-07-24T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/6-elements/</loc>
+  <lastmod>2022-07-17T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/my-first-dollar/</loc>
+  <lastmod>2022-07-10T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/how-to-make-notion-fast/</loc>
+  <lastmod>2022-07-03T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/is-notion-right-for-you/</loc>
+  <lastmod>2022-06-26T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/selling-notion-templates/</loc>
+  <lastmod>2022-06-19T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/notion-new-year/</loc>
+  <lastmod>2022-06-12T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/healthy-living/</loc>
+  <lastmod>2022-06-05T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/gap-year/</loc>
+  <lastmod>2022-05-29T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/pokemon-as-a-brand/</loc>
+  <lastmod>2022-05-22T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/money-misconceptions/</loc>
+  <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+<url>
+  <loc>https://yassenshopov.com/blog/writing-100-articles/</loc>
+  <lastmod>2022-05-08T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
 
 </urlset>

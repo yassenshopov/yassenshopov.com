@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Grid, List, RefreshCw } from 'lucide-react';
+import { Grid, List, RefreshCw, Search, X } from 'lucide-react';
 import Layout from '@/components/Layout';
 import LibraryHero from '@/components/library/LibraryHero';
 import LibraryStats from '@/components/library/LibraryStats';
@@ -13,8 +13,16 @@ import LibraryResults from '@/components/library/LibraryResults';
 import LibraryItemSkeleton from '@/components/library/LibraryItemSkeleton';
 import FilterBadges from '@/components/library/FilterBadges';
 import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useLibrary } from '@/hooks/useLibrary';
 import { refreshLibraryCache } from '@/lib/library-utils';
+import { Input } from '@/components/ui/input';
 
 // Development helper component
 function DevCacheHelper() {
@@ -83,7 +91,6 @@ export default function LibraryPage() {
     // Functions
     getCreatorLabel,
     getStatusColor,
-    getReadingTime,
     toggleFavorite,
     getStatistics,
     getRelatedItems,
@@ -224,8 +231,6 @@ export default function LibraryPage() {
 
       {/* Floating Controls Menu */}
       <LibraryFilters
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
         selectedType={selectedType}
         setSelectedType={setSelectedType}
         selectedStatus={selectedStatus}
@@ -234,8 +239,6 @@ export default function LibraryPage() {
         setSelectedGenres={setSelectedGenres}
         ratingRange={ratingRange}
         setRatingRange={setRatingRange}
-        sortBy={sortBy}
-        setSortBy={setSortBy}
         showStats={showStats}
         setShowStats={setShowStats}
         allGenres={allGenres}
@@ -245,7 +248,7 @@ export default function LibraryPage() {
         onClearFilters={clearFilters}
       />
 
-      {/* Results Summary, Filter Badges, and View Toggle */}
+      {/* Results Summary, Filter Badges, Search, and View Toggle */}
       <div className="container mx-auto px-4 py-6">
         <div className="flex items-center justify-between">
           <div className="flex-1">
@@ -274,26 +277,66 @@ export default function LibraryPage() {
             </div>
           </div>
           
-          {/* View Toggle */}
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-medium text-muted-foreground">View:</span>
-            <div className="flex bg-muted rounded-lg p-1">
-              <Button
-                variant={viewMode === 'grid' ? "default" : "ghost"}
-                size="sm"
-                onClick={() => setViewMode('grid')}
-                className="h-8 px-3"
-              >
-                <Grid className="w-4 h-4" />
-              </Button>
-              <Button
-                variant={viewMode === 'list' ? "default" : "ghost"}
-                size="sm"
-                onClick={() => setViewMode('list')}
-                className="h-8 px-3"
-              >
-                <List className="w-4 h-4" />
-              </Button>
+          {/* Search, Sort, and View Toggle */}
+          <div className="flex items-center gap-4">
+            {/* Search */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+              <Input
+                placeholder="Search library..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 w-64"
+              />
+              {searchQuery && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0"
+                >
+                  <X className="w-3 h-3" />
+                </Button>
+              )}
+            </div>
+            
+            {/* Sort */}
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-medium text-muted-foreground">Sort:</span>
+              <Select value={sortBy} onValueChange={(value: any) => setSortBy(value)}>
+                <SelectTrigger className="w-32">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="recent">Recent</SelectItem>
+                  <SelectItem value="rating">Rating</SelectItem>
+                  <SelectItem value="title">Title</SelectItem>
+                  <SelectItem value="date">Date</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            
+            {/* View Toggle */}
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-medium text-muted-foreground">View:</span>
+              <div className="flex bg-muted rounded-lg p-1">
+                <Button
+                  variant={viewMode === 'grid' ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setViewMode('grid')}
+                  className="h-8 px-3"
+                >
+                  <Grid className="w-4 h-4" />
+                </Button>
+                <Button
+                  variant={viewMode === 'list' ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setViewMode('list')}
+                  className="h-8 px-3"
+                >
+                  <List className="w-4 h-4" />
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -333,7 +376,6 @@ export default function LibraryPage() {
                   onToggleFavorite={toggleFavorite}
                   getCreatorLabel={getCreatorLabel}
                   getStatusColor={getStatusColor}
-                  getReadingTime={getReadingTime}
                 />
               </motion.div>
             ))}

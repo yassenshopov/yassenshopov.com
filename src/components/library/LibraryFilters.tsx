@@ -3,12 +3,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Filter, X, Search, BarChart3, Download, 
-  Star, BookOpen, Clapperboard, Monitor 
+  Filter, X, BarChart3, Download, 
+  BookOpen, Clapperboard, Monitor 
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
 import {
   Select,
   SelectContent,
@@ -19,8 +17,6 @@ import {
 import { mediaTypes, statusTypes } from '@/data/library';
 
 interface LibraryFiltersProps {
-  searchQuery: string;
-  setSearchQuery: (query: string) => void;
   selectedType: string;
   setSelectedType: (type: string) => void;
   selectedStatus: string;
@@ -29,8 +25,6 @@ interface LibraryFiltersProps {
   setSelectedGenres: React.Dispatch<React.SetStateAction<string[]>>;
   ratingRange: [number, number];
   setRatingRange: (range: [number, number]) => void;
-  sortBy: 'recent' | 'rating' | 'title' | 'date';
-  setSortBy: (sort: 'recent' | 'rating' | 'title' | 'date') => void;
   showStats: boolean;
   setShowStats: (show: boolean) => void;
   allGenres: string[];
@@ -48,8 +42,6 @@ const iconMap = {
 };
 
 export default function LibraryFilters({
-  searchQuery,
-  setSearchQuery,
   selectedType,
   setSelectedType,
   selectedStatus,
@@ -58,8 +50,6 @@ export default function LibraryFilters({
   setSelectedGenres,
   ratingRange,
   setRatingRange,
-  sortBy,
-  setSortBy,
   showStats,
   setShowStats,
   allGenres,
@@ -100,46 +90,11 @@ export default function LibraryFilters({
                 <Button
                   variant="outline"
                   onClick={() => setShowStats(!showStats)}
-                  className="flex items-center gap-2 flex-1"
+                  className="flex items-center gap-2 w-full"
                 >
                   <BarChart3 className="w-4 h-4" />
                   {showStats ? 'Hide' : 'Show'} Analytics
                 </Button>
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setRatingRange([5, 5]);
-                    setSelectedStatus('completed');
-                  }}
-                  className="flex items-center gap-2 flex-1"
-                >
-                  <Star className="w-4 h-4" />
-                  5-Star Favorites
-                </Button>
-              </div>
-
-              {/* Search */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Search</label>
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-                  <Input
-                    placeholder="Search your library..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10"
-                  />
-                  {searchQuery && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setSearchQuery('')}
-                      className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0"
-                    >
-                      <X className="w-3 h-3" />
-                    </Button>
-                  )}
-                </div>
               </div>
 
               {/* Media Type */}
@@ -233,22 +188,6 @@ export default function LibraryFilters({
                 </div>
               </div>
 
-              {/* Sort */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Sort</label>
-                <Select value={sortBy} onValueChange={(value: any) => setSortBy(value)}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="recent">Recent</SelectItem>
-                    <SelectItem value="rating">Rating</SelectItem>
-                    <SelectItem value="title">Title</SelectItem>
-                    <SelectItem value="date">Date</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
               {/* Actions */}
               <div className="space-y-2">
                 <label className="text-sm font-medium">Actions</label>
@@ -286,7 +225,6 @@ export default function LibraryFilters({
               <div className="text-center pt-4 border-t">
                 <div className="text-sm font-medium text-foreground">
                   {sortedItemsLength} {sortedItemsLength === 1 ? 'item' : 'items'}
-                  {searchQuery && <span className="text-primary"> matching "{searchQuery}"</span>}
                 </div>
               </div>
             </div>

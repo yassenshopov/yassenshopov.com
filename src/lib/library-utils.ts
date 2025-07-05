@@ -27,36 +27,7 @@ export const getStatusColor = (status: string): string => {
   }
 };
 
-export const getReadingTime = (item: LibraryItem): string => {
-  if (item.type === 'book') {
-    const avgWordsPerPage = 250;
-    const avgPagesPerBook = 300;
-    const avgReadingSpeed = 200;
-    
-    let pageMultiplier = 1;
-    if (item.genre.includes('Fantasy') || item.genre.includes('Sci-Fi')) pageMultiplier = 1.3;
-    if (item.genre.includes('Non-fiction') || item.genre.includes('Science')) pageMultiplier = 0.8;
-    
-    const estimatedPages = avgPagesPerBook * pageMultiplier;
-    const totalWords = estimatedPages * avgWordsPerPage;
-    const readingTimeMinutes = totalWords / avgReadingSpeed;
-    const readingTimeHours = Math.round(readingTimeMinutes / 60);
-    
-    return `~${readingTimeHours}h read`;
-  } else if (item.type === 'movie') {
-    return '~2h watch';
-  } else if (item.type === 'series') {
-    const avgEpisodesPerSeason = 10;
-    const avgSeasonsPerSeries = 3;
-    const avgEpisodeLength = 45;
-    
-    const totalMinutes = avgEpisodesPerSeason * avgSeasonsPerSeries * avgEpisodeLength;
-    const totalHours = Math.round(totalMinutes / 60);
-    
-    return `~${totalHours}h series`;
-  }
-  return '';
-};
+
 
 export const getSeriesInfo = (item: LibraryItem, allItems: LibraryItem[]) => {
   if (!item.series) return null;
@@ -232,7 +203,7 @@ export const calculateStatistics = (items: LibraryItem[]) => {
 };
 
 export const exportToCSV = (items: LibraryItem[]) => {
-  const headers = ['Title', 'Type', 'Creator', 'Rating', 'Status', 'Genres', 'Date Completed', 'Reading Time'];
+  const headers = ['Title', 'Type', 'Creator', 'Rating', 'Status', 'Genres', 'Date Completed'];
   const csvData = items.map(item => [
     item.title,
     item.type,
@@ -240,8 +211,7 @@ export const exportToCSV = (items: LibraryItem[]) => {
     item.rating,
     item.status,
     item.genre.join('; '),
-    item.dateCompleted || '',
-    getReadingTime(item)
+    item.dateCompleted || ''
   ]);
   
   const csvContent = [headers, ...csvData]

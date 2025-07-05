@@ -5,7 +5,6 @@ import { libraryItems, LibraryItem, loadAllLibraryItems } from '@/data/library';
 import { 
   getCreatorLabel as getCreatorLabelUtil, 
   getStatusColor as getStatusColorUtil,
-  getReadingTime as getReadingTimeUtil,
   getRelatedItems as getRelatedItemsUtil,
   getSeriesInfo as getSeriesInfoUtil,
   getRelationshipLabel as getRelationshipLabelUtil,
@@ -106,6 +105,7 @@ export function useLibrary() {
       (item.author && item.author.toLowerCase().includes(searchQuery.toLowerCase())) ||
       (item.director && item.director.toLowerCase().includes(searchQuery.toLowerCase())) ||
       (item.creator && item.creator.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (item.series && item.series.toLowerCase().includes(searchQuery.toLowerCase())) ||
       item.genre.some(g => g.toLowerCase().includes(searchQuery.toLowerCase())) ||
       item.description.toLowerCase().includes(searchQuery.toLowerCase());
     
@@ -150,7 +150,6 @@ export function useLibrary() {
   // Utility functions - use imported utilities
   const getCreatorLabel = getCreatorLabelUtil;
   const getStatusColor = getStatusColorUtil;
-  const getReadingTime = getReadingTimeUtil;
 
   // Favorites functionality
   const toggleFavorite = (itemId: string) => {
@@ -281,7 +280,6 @@ export function useLibrary() {
     // Functions
     getCreatorLabel,
     getStatusColor,
-    getReadingTime,
     toggleFavorite,
     getStatistics,
     getRelatedItems,

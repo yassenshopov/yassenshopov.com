@@ -19,7 +19,6 @@ interface LibraryItemCardProps {
   onToggleFavorite: (itemId: string) => void;
   getCreatorLabel: (item: LibraryItem) => string;
   getStatusColor: (status: string) => string;
-  getReadingTime: (item: LibraryItem) => string;
 }
 
 // Utility to cache images in localStorage
@@ -66,7 +65,6 @@ export default function LibraryItemCard({
   onToggleFavorite,
   getCreatorLabel,
   getStatusColor,
-  getReadingTime,
 }: LibraryItemCardProps) {
   const [imgSrc, setImgSrc] = useState<string | undefined>(item.coverImage);
   useEffect(() => {
@@ -166,9 +164,6 @@ export default function LibraryItemCard({
                     {genre}
                   </Badge>
                 ))}
-                <Badge variant="outline" className="text-xs">
-                  {getReadingTime(item)}
-                </Badge>
               </div>
               <p className="text-muted-foreground text-sm line-clamp-2">
                 {item.description}
@@ -420,9 +415,6 @@ export default function LibraryItemCard({
               {g}
             </Badge>
           ))}
-          <Badge variant="outline" className="text-xs">
-            {getReadingTime(item)}
-          </Badge>
         </div>
       </CardHeader>
       <CardContent className="space-y-2 pb-6">

@@ -297,7 +297,7 @@ export const libraryItems: LibraryItem[] = [
       series: 'The Hunger Games',
       seriesOrder: 0, // Prequel
       relationships: {
-        related: ['40', '41', '42'], // The main trilogy
+        related: ['40', '41', '42', '52'], // The main trilogy and Sunrise on the Reaping
         adaptations: ['43'] // Movie adaptation
       },
       links: {}
@@ -602,7 +602,7 @@ export const libraryItems: LibraryItem[] = [
     seriesOrder: 1,
     relationships: {
       sequel: '41',
-      related: ['18', '41', '42'], // Prequel and other books
+      related: ['18', '41', '42', '52'], // Prequel, other books, and Sunrise on the Reaping
       adaptations: ['44', '45'] // Movie adaptations
     },
     links: {}
@@ -623,7 +623,7 @@ export const libraryItems: LibraryItem[] = [
     relationships: {
       prequel: '40',
       sequel: '42',
-      related: ['18', '40', '42'],
+      related: ['18', '40', '42', '52'],
       adaptations: ['46']
     },
     links: {}
@@ -643,7 +643,8 @@ export const libraryItems: LibraryItem[] = [
     seriesOrder: 3,
     relationships: {
       prequel: '41',
-      related: ['18', '40', '41'],
+      sequel: '52', // Sunrise on the Reaping is the sequel
+      related: ['18', '40', '41', '52'],
       adaptations: ['47', '48']
     },
     links: {}
@@ -664,7 +665,7 @@ export const libraryItems: LibraryItem[] = [
     seriesOrder: 0,
     relationships: {
       basedOn: ['18'],
-      sameUniverse: ['44', '45', '46', '47', '48']
+      sameUniverse: ['44', '45', '46', '47', '48', '52'] // All movies and Sunrise on the Reaping
     },
     links: {}
   },
@@ -684,7 +685,7 @@ export const libraryItems: LibraryItem[] = [
     relationships: {
       basedOn: ['40'],
       sequel: '45',
-      sameUniverse: ['43', '45', '46', '47', '48']
+      sameUniverse: ['43', '45', '46', '47', '48', '52']
     },
     links: {}
   },
@@ -705,7 +706,7 @@ export const libraryItems: LibraryItem[] = [
       basedOn: ['41'],
       prequel: '44',
       sequel: '46',
-      sameUniverse: ['43', '44', '46', '47', '48']
+      sameUniverse: ['43', '44', '46', '47', '48', '52']
     },
     links: {}
   },
@@ -726,7 +727,7 @@ export const libraryItems: LibraryItem[] = [
       basedOn: ['42'],
       prequel: '45',
       sequel: '47',
-      sameUniverse: ['43', '44', '45', '47', '48']
+      sameUniverse: ['43', '44', '45', '47', '48', '52']
     },
     links: {}
   },
@@ -746,7 +747,7 @@ export const libraryItems: LibraryItem[] = [
     relationships: {
       basedOn: ['42'],
       prequel: '46',
-      sameUniverse: ['43', '44', '45', '46', '48']
+      sameUniverse: ['43', '44', '45', '46', '48', '52']
     },
     links: {}
   },
@@ -822,7 +823,7 @@ export const libraryItems: LibraryItem[] = [
   },
   {
     id: '52',
-    title: 'Sunrise on the Reaping (2025)',
+    title: 'Sunrise on the Reaping',
     author: 'Suzanne Collins',
     type: 'book',
     rating: 5,
@@ -830,6 +831,13 @@ export const libraryItems: LibraryItem[] = [
     genre: ['Dystopian', 'Survival', 'Political', 'Young Adult'],
     description: 'The upcoming fifth book in The Hunger Games series, set in Panem.',
     coverImage: '/resources/images/library/sunrise-on-the-reaping.webp',
+    series: 'The Hunger Games',
+    seriesOrder: 4, // After the main trilogy (1,2,3) but separate from the prequel (0)
+    relationships: {
+      related: ['18', '40', '41', '42'], // All other Hunger Games books
+      sameUniverse: ['43', '44', '45', '46', '47'], // All Hunger Games movies
+      prequel: '42' // Mockingjay is the prequel in the main trilogy
+    },
     links: {}
   },
   {
