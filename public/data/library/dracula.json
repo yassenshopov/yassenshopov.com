@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "dracula",
+      "title": "Dracula",
+      "author": "Bram Stoker",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2024-11-01",
+      "genre": ["Fantasy", "Supernatural", "Horror", "Thriller & Mystery"],
+      "description": "The classic Gothic horror novel introducing Count Dracula and vampire lore.",
+      "coverImage": "/resources/images/library/dracula.webp",
+      "links": {}
+    }
+  ]
+} 

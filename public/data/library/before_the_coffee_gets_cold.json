@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "before-the-coffee-gets-cold",
+      "title": "Before the Coffee Gets Cold",
+      "author": "Toshikazu Kawaguchi",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2024-11-01",
+      "genre": ["Fantasy", "Realism"],
+      "description": "A novel about a Tokyo café where customers can travel back in time, but only for as long as their coffee stays warm.",
+      "coverImage": "/resources/images/library/before-the-coffee-gets-cold.webp",
+      "links": {}
+    }
+  ]
+} 

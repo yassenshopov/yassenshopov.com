@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "the-headless-horseman",
+      "title": "The Headless Horseman",
+      "author": "Mayne Reid",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2024-08-01",
+      "genre": ["Adventure"],
+      "description": "A classic adventure novel set in Texas, featuring mystery and romance.",
+      "coverImage": "/resources/images/library/the-headless-horseman.webp",
+      "links": {}
+    }
+  ]
+} 

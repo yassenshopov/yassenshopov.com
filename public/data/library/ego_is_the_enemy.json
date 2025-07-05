@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "ego-is-the-enemy",
+      "title": "Ego is the Enemy",
+      "author": "Ryan Holiday",
+      "type": "book",
+      "rating": 4,
+      "status": "dnf",
+      "dateCompleted": "2024-10-01",
+      "genre": ["Non-fiction", "Self-improvement", "Philosophy"],
+      "description": "Ryan Holiday examines how ego can sabotage success and how to overcome it.",
+      "coverImage": "/resources/images/library/ego-is-the-enemy.webp",
+      "links": {}
+    }
+  ]
+} 

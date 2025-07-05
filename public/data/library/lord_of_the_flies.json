@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "lord-of-the-flies",
+      "title": "Lord of the Flies",
+      "author": "William Golding",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2024-10-01",
+      "genre": ["Realism", "Action"],
+      "description": "A group of boys stranded on an uninhabited island descend into savagery in this classic novel.",
+      "coverImage": "/resources/images/library/lord-of-the-flies.webp",
+      "links": {}
+    }
+  ]
+} 

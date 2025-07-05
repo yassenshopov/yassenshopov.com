@@ -1,0 +1,18 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "the-product-book",
+      "title": "The Product Book",
+      "author": "Russel Newton",
+      "type": "book",
+      "rating": 4,
+      "status": "dnf",
+      "genre": ["Non-fiction", "Business", "Product Management"],
+      "description": "A practical guide to product management and building successful products.",
+      "coverImage": "/resources/images/library/the-product-book.webp",
+      "links": {}
+    }
+  ]
+} 

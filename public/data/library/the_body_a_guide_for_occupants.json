@@ -1,0 +1,18 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "the-body-a-guide-for-occupants",
+      "title": "The Body: A Guide for Occupants",
+      "author": "Bill Bryson",
+      "type": "book",
+      "rating": 4,
+      "status": "dnf",
+      "genre": ["Non-fiction", "Science", "Health"],
+      "description": "A fascinating tour of the human body, inside and out, by Bill Bryson.",
+      "coverImage": "/resources/images/library/the-body-a-guide-for-occupants.webp",
+      "links": {}
+    }
+  ]
+} 

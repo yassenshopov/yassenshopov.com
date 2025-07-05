@@ -13,6 +13,8 @@
       "genre": ["Fantasy", "Adventure"],
       "description": "Harry competes in the dangerous Triwizard Tournament.",
       "coverImage": "/resources/images/library/hp-goblet-fire.webp",
+      "series": "Harry Potter",
+      "seriesOrder": 4,
       "links": {}
     }
   ]

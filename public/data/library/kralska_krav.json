@@ -11,6 +11,8 @@
       "status": "completed",
       "dateCompleted": "2024-01-01",
       "genre": ["Fantasy", "Adventure"],
+      "series": "Labakan",
+      "seriesOrder": 2,
       "description": "A Bulgarian fantasy novel about royal intrigue and adventure.",
       "coverImage": "/resources/images/library/kralska-krav.webp",
       "links": {}

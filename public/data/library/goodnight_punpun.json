@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "goodnight-punpun",
+      "title": "Goodnight, Punpun",
+      "author": "Inio Asano",
+      "type": "book",
+      "rating": 5,
+      "status": "completed",
+      "dateCompleted": "2024-10-01",
+      "genre": ["Manga", "Realism", "Psychology"],
+      "description": "A coming-of-age manga exploring the dark and surreal journey of Punpun Punyama.",
+      "coverImage": "/resources/images/library/goodnight-punpun.webp",
+      "links": {}
+    }
+  ]
+} 

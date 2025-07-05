@@ -1,0 +1,18 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "the-let-them-theory",
+      "title": "The Let Them Theory",
+      "author": "Mel Robbins",
+      "type": "book",
+      "rating": 4,
+      "status": "dnf",
+      "genre": ["Non-fiction", "Self-improvement"],
+      "description": "Mel Robbins shares a simple but powerful mindset shift for letting go of control and finding peace.",
+      "coverImage": "/resources/images/library/the-let-them-theory.webp",
+      "links": {}
+    }
+  ]
+} 

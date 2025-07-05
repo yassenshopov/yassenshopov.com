@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "east-of-eden",
+      "title": "East of Eden",
+      "author": "John Steinbeck",
+      "type": "book",
+      "rating": 5,
+      "status": "dnf",
+      "dateCompleted": "2023-07-01",
+      "genre": ["Realism"],
+      "description": "A sprawling family saga set in California's Salinas Valley, exploring themes of good and evil.",
+      "coverImage": "/resources/images/library/east-of-eden.webp",
+      "links": {}
+    }
+  ]
+} 

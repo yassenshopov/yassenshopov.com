@@ -1,0 +1,18 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "algorithms-to-live-by",
+      "title": "Algorithms to Live By",
+      "author": "Brian Christian, Tom Griffiths",
+      "type": "book",
+      "rating": 4,
+      "status": "dnf",
+      "genre": ["Non-fiction", "Science", "Productivity"],
+      "description": "How computer algorithms can be applied to everyday human decision-making.",
+      "coverImage": "/resources/images/library/algorithms-to-live-by.webp",
+      "links": {}
+    }
+  ]
+} 

@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "a-life-of-meaning",
+      "title": "A Life of Meaning: Relocating Your Center of Spiritual Gravity",
+      "author": "James Hollis",
+      "type": "book",
+      "rating": 4,
+      "status": "dnf",
+      "dateCompleted": "2025-01-01",
+      "genre": ["Non-fiction", "Psychology", "Spirituality"],
+      "description": "James Hollis explores how to find deeper meaning and purpose in life.",
+      "coverImage": "/resources/images/library/a-life-of-meaning.webp",
+      "links": {}
+    }
+  ]
+} 

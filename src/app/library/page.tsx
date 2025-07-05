@@ -265,7 +265,7 @@ export default function LibraryPage() {
 
       {/* Library Items */}
       <section className="pt-2 pb-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-2 sm:px-4">
           {isLoadingExternal && (
             <div className="flex justify-center py-8">
               <div className="flex items-center gap-2 text-muted-foreground">
@@ -278,7 +278,7 @@ export default function LibraryPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className={viewMode === 'grid' ? "grid md:grid-cols-2 lg:grid-cols-3 gap-8" : "space-y-4"}
+            className={viewMode === 'grid' ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8" : "space-y-4"}
           >
             {sortedItems.map((item, index) => (
               <motion.div

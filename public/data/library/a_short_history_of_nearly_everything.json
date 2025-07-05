@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "a-short-history-of-nearly-everything",
+      "title": "A Short History of Nearly Everything",
+      "author": "Bill Bryson",
+      "type": "book",
+      "rating": 4,
+      "status": "dnf",
+      "dateCompleted": "2024-07-01",
+      "genre": ["Non-fiction", "Science", "History"],
+      "description": "Bill Bryson's accessible and entertaining history of science and discovery.",
+      "coverImage": "/resources/images/library/a-short-history-of-nearly-everything.webp",
+      "links": {}
+    }
+  ]
+} 

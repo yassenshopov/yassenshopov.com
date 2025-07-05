@@ -13,6 +13,8 @@
       "genre": ["Fantasy", "Adventure"],
       "description": "Harry learns the truth about Sirius Black and his parents' past.",
       "coverImage": "/resources/images/library/hp-prisoner-azkaban.webp",
+      "series": "Harry Potter",
+      "seriesOrder": 3,
       "links": {}
     }
   ]

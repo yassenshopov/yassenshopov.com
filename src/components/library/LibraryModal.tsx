@@ -220,15 +220,15 @@ export default function LibraryModal({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-4"
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-2 sm:p-4"
         onClick={onClose}
       >
         <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}
-          transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-6xl max-h-[95vh] overflow-hidden bg-background rounded-2xl border"
+          transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+          className="relative w-full max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-6xl max-h-[95vh] overflow-hidden bg-background rounded-2xl border"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Close button */}
@@ -236,9 +236,9 @@ export default function LibraryModal({
             variant="ghost"
             size="sm"
             onClick={onClose}
-            className="absolute top-6 right-6 z-20 rounded-full w-10 h-10 p-0 bg-background/80 backdrop-blur-sm hover:bg-background/90"
+            className="absolute top-2 right-2 sm:top-6 sm:right-6 z-20 rounded-full w-10 h-10 p-0 bg-background/80 backdrop-blur-sm hover:bg-background/90"
           >
-            <X className="w-5 h-5" />
+            <X className="w-6 h-6 sm:w-5 sm:h-5" />
           </Button>
 
           {/* Navigation buttons */}
@@ -270,7 +270,7 @@ export default function LibraryModal({
             <canvas ref={canvasRef} style={{ display: 'none' }} />
             
             {/* Hero Section */}
-            <div className="relative p-12 pb-8 overflow-hidden">
+            <div className="relative p-4 sm:p-8 md:p-12 pb-6 sm:pb-8 overflow-hidden">
               {/* Animated gradient background */}
               <div className="absolute inset-0 opacity-25 dark:opacity-28">
                 {dominantColors.length > 0 ? (
@@ -320,11 +320,11 @@ export default function LibraryModal({
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: isTransitioning ? 0.4 : 1, y: isTransitioning ? 5 : 0 }}
                   transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
-                  className="flex items-start gap-8"
+                  className="flex flex-col md:flex-row items-start gap-4 md:gap-8"
                 >
                   {/* Cover Image */}
                   <div className="flex-shrink-0">
-                    <div className="w-40 h-60 relative bg-muted dark:bg-black rounded-xl overflow-hidden border">
+                    <div className="w-32 h-48 sm:w-40 sm:h-60 relative bg-muted dark:bg-black rounded-xl overflow-hidden border mx-auto md:mx-0">
                       {imgSrc ? (
                         <Image
                           src={imgSrc}
@@ -341,7 +341,7 @@ export default function LibraryModal({
                   </div>
 
                   {/* Title and Meta */}
-                  <div className="flex-1 space-y-3">
+                  <div className="flex-1 space-y-3 mt-4 md:mt-0">
                     <div>
                       <div className="flex items-start gap-3 mb-1">
                         <h1 className="text-2xl font-bold flex-1">{selectedItem.title}</h1>

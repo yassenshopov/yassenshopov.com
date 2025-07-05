@@ -13,6 +13,8 @@
       "genre": ["Fantasy", "Adventure"],
       "description": "Harry and his friends form Dumbledore's Army to fight against the Ministry of Magic's interference at Hogwarts.",
       "coverImage": "/resources/images/library/hp-order-phoenix.webp",
+      "series": "Harry Potter",
+      "seriesOrder": 5,
       "links": {}
     }
   ]

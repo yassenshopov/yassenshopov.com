@@ -3,16 +3,18 @@
   "totalItems": 1,
   "items": [
     {
-      "id": "lyubimi-poptyecho",
-      "title": "Любими Пътпѐчо",
+      "id": "lyubimi-poputecho",
+      "title": "Любими Попътечо",
       "author": "Yulia Spiridonova",
       "type": "book",
       "rating": 5,
       "status": "completed",
       "dateCompleted": "2024-01-01",
       "genre": ["Fantasy", "Adventure"],
+      "series": "Labakan",
+      "seriesOrder": 1,
       "description": "A Bulgarian fantasy adventure for young readers.",
-      "coverImage": "/resources/images/library/lyubimi-poptyecho.webp",
+      "coverImage": "/resources/images/library/lyubimi-poputecho.webp",
       "links": {}
     }
   ]

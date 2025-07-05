@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "principles-for-dealing-with-the-changing-world-order",
+      "title": "Principles for Dealing with the Changing World Order",
+      "author": "Ray Dalio",
+      "type": "book",
+      "rating": 4,
+      "status": "dnf",
+      "dateCompleted": "2022-11-01",
+      "genre": ["Non-fiction", "Economics", "History"],
+      "description": "Ray Dalio explores the patterns and cycles that shape the rise and fall of nations and economies.",
+      "coverImage": "/resources/images/library/principles-for-dealing-with-the-changing-world-order.webp",
+      "links": {}
+    }
+  ]
+} 

@@ -1,0 +1,19 @@
+{
+  "exportDate": "2025-07-05T10:00:00.000Z",
+  "totalItems": 1,
+  "items": [
+    {
+      "id": "the-personal-mba",
+      "title": "The Personal MBA",
+      "author": "Josh Kaufman",
+      "type": "book",
+      "rating": 4,
+      "status": "dnf",
+      "dateCompleted": "2024-07-01",
+      "genre": ["Non-fiction", "Business", "Self-improvement"],
+      "description": "A comprehensive guide to business concepts and entrepreneurship without a formal MBA.",
+      "coverImage": "/resources/images/library/the-personal-mba.webp",
+      "links": {}
+    }
+  ]
+} 

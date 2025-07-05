@@ -13,6 +13,8 @@
       "genre": ["Fantasy", "Adventure"],
       "description": "Harry returns to Hogwarts and faces the mystery of the Chamber of Secrets.",
       "coverImage": "/resources/images/library/hp-chamber-secrets.webp",
+      "series": "Harry Potter",
+      "seriesOrder": 2,
       "links": {}
     }
   ]
