@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, ChevronLeft, ChevronRight, Star, Calendar, Clock, 
-  ExternalLink, BookOpen, Clapperboard, Monitor 
+  ExternalLink, BookOpen, Clapperboard, Monitor, MessageSquare 
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -425,9 +425,12 @@ export default function LibraryModal({
               {/* Personal Notes */}
               {selectedItem.notes && (
                 <div>
-                  <h2 className="text-lg font-semibold mb-3">My Thoughts</h2>
-                  <div className="bg-muted/50 p-4 rounded-lg border-l-4 border-primary">
-                    <p className="leading-relaxed italic">"{selectedItem.notes}"</p>
+                  <h2 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                    <MessageSquare className="w-5 h-5 text-primary" />
+                    My Thoughts
+                  </h2>
+                  <div className="bg-blue-50 dark:bg-blue-950/20 p-4 rounded-lg border-l-4 border-blue-200 dark:border-blue-800/30">
+                    <p className="leading-relaxed text-gray-800 dark:text-gray-200">{selectedItem.notes}</p>
                   </div>
                 </div>
               )}

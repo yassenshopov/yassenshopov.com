@@ -343,7 +343,7 @@ export default function LibraryPage() {
                   animatingHearts={animatingHearts}
                   copiedId={copiedId}
                   onItemClick={setSelectedItem}
-                  onToggleFavorite={toggleFavorite}
+                  onToggleFavorite={(id, title) => toggleFavorite(id, title)}
                   getCreatorLabel={getCreatorLabel}
                   getStatusColor={getStatusColor}
                 />

@@ -16,7 +16,7 @@ interface LibraryItemCardProps {
   animatingHearts: string[];
   copiedId: string | null;
   onItemClick: (item: LibraryItem) => void;
-  onToggleFavorite: (itemId: string) => void;
+  onToggleFavorite: (itemId: string, itemTitle: string) => void;
   getCreatorLabel: (item: LibraryItem) => string;
   getStatusColor: (status: string) => string;
 }
@@ -123,7 +123,7 @@ export default function LibraryItemCard({
 
   if (viewMode === 'list') {
     return (
-      <Card className="overflow-hidden h-full hover:bg-muted/50 transition-all group cursor-pointer flex flex-row p-4" onClick={() => onItemClick(item)}>
+      <Card className="overflow-hidden h-full hover:bg-muted/50 transition-all group cursor-pointer flex flex-row p-4 shadow-none" onClick={() => onItemClick(item)}>
         <div className="flex-shrink-0 w-16 h-20 bg-muted dark:bg-black rounded-lg mr-4 overflow-hidden">
           {imgSrc ? (
             <Image
@@ -178,7 +178,7 @@ export default function LibraryItemCard({
                 size="sm"
                 onClick={(e) => {
                   e.stopPropagation();
-                  onToggleFavorite(item.id);
+                  onToggleFavorite(item.id, item.title);
                 }}
                 className="p-1 h-8 w-8 relative overflow-hidden"
               >
@@ -208,7 +208,7 @@ export default function LibraryItemCard({
                     />
                   )}
                   
-                  {animatingHearts.includes(item.id) && !favorites.includes(item.id) && (
+                  {animatingHearts.includes(item.id) && favorites.includes(item.id) && (
                     <>
                       {[...Array(6)].map((_, i) => (
                         <motion.div
@@ -249,7 +249,7 @@ export default function LibraryItemCard({
 
   // Grid View
   return (
-    <Card className="overflow-hidden h-full hover:bg-muted/50 transition-all group cursor-pointer" onClick={() => onItemClick(item)}>
+    <Card className="overflow-hidden h-full hover:bg-muted/50 transition-all group cursor-pointer shadow-none" onClick={() => onItemClick(item)}>
       <div className="aspect-video relative bg-black dark:bg-black bg-muted flex items-center justify-center">
         {imgSrc ? (
           <Image
@@ -283,7 +283,7 @@ export default function LibraryItemCard({
             size="sm"
             onClick={(e) => {
               e.stopPropagation();
-              onToggleFavorite(item.id);
+              onToggleFavorite(item.id, item.title);
             }}
             className="p-1 h-8 w-8 bg-background/80 backdrop-blur-sm hover:bg-background/90 relative overflow-hidden"
           >
@@ -321,7 +321,7 @@ export default function LibraryItemCard({
                 </>
               )}
               
-              {animatingHearts.includes(item.id) && !favorites.includes(item.id) && (
+              {animatingHearts.includes(item.id) && favorites.includes(item.id) && (
                 <>
                   {[...Array(8)].map((_, i) => (
                     <motion.div

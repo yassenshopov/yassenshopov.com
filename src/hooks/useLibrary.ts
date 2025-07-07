@@ -12,6 +12,7 @@ import {
   exportToCSV as exportToCSVUtil,
   exportToJSON as exportToJSONUtil
 } from '@/lib/library-utils';
+import { toast } from 'sonner';
 
 export function useLibrary() {
   // State
@@ -34,6 +35,7 @@ export function useLibrary() {
   const [allLibraryItems, setAllLibraryItems] = useState<LibraryItem[]>(libraryItems);
   const [isLoadingExternal, setIsLoadingExternal] = useState(false);
   const loadMoreRef = useRef<HTMLDivElement>(null);
+  const lastToastRef = useRef<{id: string, action: 'like' | 'unlike', time: number} | null>(null);
 
   // Load external library items
   useEffect(() => {
@@ -76,7 +78,11 @@ export function useLibrary() {
 
   // Save preferences to localStorage
   useEffect(() => {
-    localStorage.setItem('library-favorites', JSON.stringify(favorites));
+    try {
+      localStorage.setItem('library-favorites', JSON.stringify(favorites));
+    } catch (e) {
+      // Silently ignore QuotaExceededError
+    }
   }, [favorites]);
 
   useEffect(() => {
@@ -152,17 +158,30 @@ export function useLibrary() {
   const getStatusColor = getStatusColorUtil;
 
   // Favorites functionality
-  const toggleFavorite = (itemId: string) => {
-    setAnimatingHearts(prev => [...prev, itemId]);
-    setTimeout(() => {
-      setAnimatingHearts(prev => prev.filter(id => id !== itemId));
-    }, 600);
-    
-    setFavorites(prev => 
-      prev.includes(itemId) 
-        ? prev.filter(id => id !== itemId)
-        : [...prev, itemId]
-    );
+  const toggleFavorite = (itemId: string, itemTitle?: string) => {
+    setFavorites(prev => {
+      const isLiking = !prev.includes(itemId);
+      const now = Date.now();
+      const last = lastToastRef.current;
+      const action = isLiking ? 'like' : 'unlike';
+      if (!last || last.id !== itemId || last.action !== action || now - last.time > 1000) {
+        if (isLiking) {
+          toast.success(`Added to favorites: "${itemTitle || 'Item'}" (saved on this device only)`);
+        } else {
+          toast(`Removed from favorites: "${itemTitle || 'Item'}" (saved on this device only)`);
+        }
+        lastToastRef.current = {id: itemId, action, time: now};
+      }
+      if (isLiking) {
+        setAnimatingHearts(ah => [...ah, itemId]);
+        setTimeout(() => {
+          setAnimatingHearts(ah => ah.filter(id => id !== itemId));
+        }, 600);
+      }
+      return isLiking
+        ? [...prev, itemId]
+        : prev.filter(id => id !== itemId);
+    });
   };
 
   // Statistics calculations
