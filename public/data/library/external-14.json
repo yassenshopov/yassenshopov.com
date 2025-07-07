@@ -15,6 +15,12 @@
       "coverImage": "/resources/images/library/the-lost-hero.webp",
       "series": "Heroes of Olympus",
       "seriesOrder": 1,
+      "relationships": {
+        "prequel": "ext-last-olympian",
+        "sequel": "ext-son-neptune",
+        "related": ["ext-lightning-thief", "ext-sea-monsters", "ext-titans-curse", "ext-battle-labyrinth", "ext-last-olympian", "ext-son-neptune"],
+        "sameUniverse": ["ext-lightning-thief", "ext-sea-monsters", "ext-titans-curse", "ext-battle-labyrinth", "ext-last-olympian", "ext-son-neptune"]
+      },
       "links": {}
     }
   ]

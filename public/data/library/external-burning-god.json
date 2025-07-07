@@ -15,6 +15,11 @@
       "coverImage": "/resources/images/library/the-burning-god.webp",
       "series": "The Poppy War",
       "seriesOrder": 3,
+      "relationships": {
+        "prequel": "ext-dragon-republic",
+        "related": ["22", "ext-dragon-republic"],
+        "sameUniverse": ["22", "ext-dragon-republic"]
+      },
       "links": {}
     }
   ]

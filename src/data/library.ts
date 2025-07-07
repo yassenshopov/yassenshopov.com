@@ -251,7 +251,14 @@ export const libraryItems: LibraryItem[] = [
     dateCompleted: '2024-06-01',
     genre: ['Drama', 'Sport'],
     description: 'Adonis Creed faces his most formidable opponent yet in this third installment of the Creed series.',
-      coverImage: '/resources/images/library/creed-iii.webp',
+    coverImage: '/resources/images/library/creed-iii.webp',
+    series: 'Creed',
+    seriesOrder: 3,
+    relationships: {
+      prequel: '16',
+      related: ['creed-2015', '16'],
+      sameUniverse: ['creed-2015', '16']
+    },
     links: {
       imdb: 'https://www.imdb.com/title/tt11145118/'
     }
@@ -267,6 +274,14 @@ export const libraryItems: LibraryItem[] = [
       genre: ['Drama', 'Sport'],
       description: 'Adonis Creed faces the son of Ivan Drago, the man who killed his father Apollo Creed in the ring.',
       coverImage: '/resources/images/library/creed-ii.webp',
+      series: 'Creed',
+      seriesOrder: 2,
+      relationships: {
+        prequel: 'creed-2015',
+        sequel: '15',
+        related: ['creed-2015', '15'],
+        sameUniverse: ['creed-2015', '15']
+      },
       links: {
         imdb: 'https://www.imdb.com/title/tt6343314/'
       }
@@ -325,6 +340,13 @@ export const libraryItems: LibraryItem[] = [
       genre: ['Advice', 'Non-fiction', 'Psychology', 'Self-improvement'],
       description: 'A set of principles for living a meaningful life, combining psychology, philosophy, and personal anecdotes.',
       coverImage: '/resources/images/library/12-rules-for-life-an-antidote-to-chaos.webp',
+      series: 'Jordan B. Peterson Rules',
+      seriesOrder: 1,
+      relationships: {
+        sequel: '21',
+        related: ['21'],
+        sameUniverse: ['21']
+      },
       links: {}
     },
     {
@@ -338,6 +360,13 @@ export const libraryItems: LibraryItem[] = [
       genre: ['Advice', 'Non-fiction', 'Psychology', 'Self-improvement'],
       description: 'The sequel to 12 Rules for Life, offering additional principles for navigating life\'s complexities.',
       coverImage: '/resources/images/library/beyond-order-12-more-rules-for-life.webp',
+      series: 'Jordan B. Peterson Rules',
+      seriesOrder: 2,
+      relationships: {
+        prequel: '20',
+        related: ['20'],
+        sameUniverse: ['20']
+      },
       links: {}
     },
     {
@@ -351,8 +380,13 @@ export const libraryItems: LibraryItem[] = [
       genre: ['Fantasy', 'Political', 'Young Adult'],
       description: 'A grimdark military fantasy inspired by 20th-century Chinese history, following a war orphan who discovers her deadly powers.',
       coverImage: '/resources/images/library/the-poppy-war.webp',
-      series: 'The Poppy War',
-      seriesOrder: 1,
+          series: 'The Poppy War',
+    seriesOrder: 1,
+    relationships: {
+      sequel: 'ext-dragon-republic',
+      related: ['ext-dragon-republic', 'ext-burning-god'],
+      sameUniverse: ['ext-dragon-republic', 'ext-burning-god']
+    },
       links: {}
     },
     {
@@ -366,6 +400,12 @@ export const libraryItems: LibraryItem[] = [
       genre: ['Non-fiction', 'Psychology', 'Self-improvement'],
       description: 'A book about hope, exploring why we struggle to find meaning in modern life and how to build resilience.',
       coverImage: '/resources/images/library/everything-is-fcked.webp',
+      series: 'Mark Manson Philosophy',
+      seriesOrder: 2,
+      relationships: {
+        related: ['24'],
+        sameUniverse: ['24']
+      },
       links: {}
     },
     {
@@ -378,6 +418,12 @@ export const libraryItems: LibraryItem[] = [
       genre: ['Non-fiction', 'Psychology', 'Self-improvement'],
       description: 'A counterintuitive approach to living a good life by focusing on what truly matters and letting go of what doesn\'t.',
       coverImage: '/resources/images/library/the-subtle-art-of-not-giving-a-fck.webp',
+      series: 'Mark Manson Philosophy',
+      seriesOrder: 1,
+      relationships: {
+        related: ['23'],
+        sameUniverse: ['23']
+      },
       links: {}
     },
     {
@@ -1020,7 +1066,10 @@ export const libraryItems: LibraryItem[] = [
     coverImage: '/resources/images/library/making-money.webp',
     series: 'Discworld',
     seriesOrder: 36,
-    relationships: { sameUniverse: ['70', '71', '72'] },
+    relationships: { 
+      related: ['70', '71', '72'],
+      sameUniverse: ['70', '71', '72'] 
+    },
     links: {}
   },
   {
@@ -1059,7 +1108,10 @@ export const libraryItems: LibraryItem[] = [
     coverImage: '/resources/images/library/reaper-man.webp',
     series: 'Discworld',
     seriesOrder: 11,
-    relationships: { sameUniverse: ['67', '71', '72'] },
+    relationships: { 
+      related: ['67', '71', '72'],
+      sameUniverse: ['67', '71', '72'] 
+    },
     links: {}
   },
   {
@@ -1074,7 +1126,10 @@ export const libraryItems: LibraryItem[] = [
     coverImage: '/resources/images/library/mort.webp',
     series: 'Discworld',
     seriesOrder: 4,
-    relationships: { sameUniverse: ['67', '70', '72'] },
+    relationships: { 
+      related: ['67', '70', '72'],
+      sameUniverse: ['67', '70', '72'] 
+    },
     links: {}
   },
   {
@@ -1089,7 +1144,10 @@ export const libraryItems: LibraryItem[] = [
     coverImage: '/resources/images/library/moving-pictures.webp',
     series: 'Discworld',
     seriesOrder: 10,
-    relationships: { sameUniverse: ['67', '70', '71'] },
+    relationships: { 
+      related: ['67', '70', '71'],
+      sameUniverse: ['67', '70', '71'] 
+    },
     links: {}
   },
   {

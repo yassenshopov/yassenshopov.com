@@ -13,6 +13,10 @@
       "genre": ["Fantasy", "Adventure"],
       "series": "Labakan",
       "seriesOrder": 3,
+      "relationships": {
+        "related": ["lyubimi-poputecho", "kralska-krav"],
+        "sameUniverse": ["lyubimi-poputecho", "kralska-krav"]
+      },
       "description": "A magical adventure by Bulgarian author Yulia Spiridonova.",
       "coverImage": "/resources/images/library/iglatana-labakan.webp",
       "links": {}

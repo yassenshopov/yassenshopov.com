@@ -15,7 +15,12 @@
       "coverImage": "/resources/images/library/creed-2015.webp",
       "links": {},
       "series": "Creed",
-      "seriesOrder": 1
+      "seriesOrder": 1,
+      "relationships": {
+        "sequel": "16",
+        "related": ["16", "15"],
+        "sameUniverse": ["16", "15"]
+      }
     }
   ]
 } 

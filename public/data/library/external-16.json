@@ -15,6 +15,11 @@
       "coverImage": "/resources/images/library/hp-deathly-hallows.webp",
       "series": "Harry Potter",
       "seriesOrder": 7,
+      "relationships": {
+        "prequel": "ext-hp-half-blood-prince",
+        "related": ["ext-hp-philosophers-stone", "ext-hp-chamber-secrets", "ext-hp-prisoner-azkaban", "ext-hp-goblet-fire", "ext-hp-order-phoenix", "ext-hp-half-blood-prince"],
+        "sameUniverse": ["ext-hp-philosophers-stone", "ext-hp-chamber-secrets", "ext-hp-prisoner-azkaban", "ext-hp-goblet-fire", "ext-hp-order-phoenix", "ext-hp-half-blood-prince"]
+      },
       "links": {}
     }
   ]

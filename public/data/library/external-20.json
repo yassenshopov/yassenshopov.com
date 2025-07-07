@@ -15,6 +15,12 @@
       "coverImage": "/resources/images/library/hp-prisoner-azkaban.webp",
       "series": "Harry Potter",
       "seriesOrder": 3,
+      "relationships": {
+        "prequel": "ext-hp-chamber-secrets",
+        "sequel": "ext-hp-goblet-fire",
+        "related": ["ext-hp-philosophers-stone", "ext-hp-chamber-secrets", "ext-hp-goblet-fire", "ext-hp-order-phoenix", "ext-hp-half-blood-prince", "ext-hp-deathly-hallows"],
+        "sameUniverse": ["ext-hp-philosophers-stone", "ext-hp-chamber-secrets", "ext-hp-goblet-fire", "ext-hp-order-phoenix", "ext-hp-half-blood-prince", "ext-hp-deathly-hallows"]
+      },
       "links": {}
     }
   ]

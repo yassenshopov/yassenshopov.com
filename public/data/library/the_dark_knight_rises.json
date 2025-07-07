@@ -15,7 +15,12 @@
       "coverImage": "/resources/images/library/the-dark-knight-rises-2012.webp",
       "links": {},
       "series": "The Dark Knight Trilogy",
-      "seriesOrder": 3
+      "seriesOrder": 3,
+      "relationships": {
+        "prequel": "the-dark-knight",
+        "related": ["batman-begins-2005", "the-dark-knight"],
+        "sameUniverse": ["batman-begins-2005", "the-dark-knight"]
+      }
     }
   ]
 } 

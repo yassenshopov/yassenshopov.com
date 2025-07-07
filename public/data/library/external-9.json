@@ -13,6 +13,14 @@
       "genre": ["Fantasy", "Young Adult (YA)", "Supernatural", "Adventure"],
       "description": "The final battle for Olympus begins as Percy Jackson and his friends face Kronos.",
       "coverImage": "/resources/images/library/the-last-olympian.webp",
+      "series": "Percy Jackson and the Olympians",
+      "seriesOrder": 5,
+      "relationships": {
+        "prequel": "ext-battle-labyrinth",
+        "sequel": "ext-lost-hero",
+        "related": ["ext-lightning-thief", "ext-sea-monsters", "ext-titans-curse", "ext-battle-labyrinth", "ext-lost-hero", "ext-son-neptune"],
+        "sameUniverse": ["ext-lightning-thief", "ext-sea-monsters", "ext-titans-curse", "ext-battle-labyrinth", "ext-lost-hero", "ext-son-neptune"]
+      },
       "links": {}
     }
   ]

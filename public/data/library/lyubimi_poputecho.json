@@ -11,8 +11,12 @@
       "status": "completed",
       "dateCompleted": "2024-01-01",
       "genre": ["Fantasy", "Adventure"],
-      "series": "Labakan",
+      "series": "Land of Dreams",
       "seriesOrder": 1,
+      "relationships": {
+        "related": ["iglatana-labakan", "kralska-krav"],
+        "sameUniverse": ["iglatana-labakan", "kralska-krav"]
+      },
       "description": "A Bulgarian fantasy adventure for young readers.",
       "coverImage": "/resources/images/library/lyubimi-poputecho.webp",
       "links": {}

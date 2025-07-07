@@ -4,7 +4,7 @@
   "items": [
     {
       "id": "ext-titans-curse",
-      "title": "The Titan’s Curse",
+      "title": "The Titan's Curse",
       "author": "Rick Riordan",
       "type": "book",
       "rating": 5,
@@ -13,6 +13,14 @@
       "genre": ["Fantasy", "Young Adult (YA)", "Supernatural", "Adventure"],
       "description": "Percy and his friends go on a quest to rescue Artemis and Annabeth.",
       "coverImage": "/resources/images/library/the-titans-curse.webp",
+      "series": "Percy Jackson and the Olympians",
+      "seriesOrder": 3,
+      "relationships": {
+        "prequel": "ext-sea-monsters",
+        "sequel": "ext-battle-labyrinth",
+        "related": ["ext-lightning-thief", "ext-sea-monsters", "ext-battle-labyrinth", "ext-last-olympian", "ext-lost-hero", "ext-son-neptune"],
+        "sameUniverse": ["ext-lightning-thief", "ext-sea-monsters", "ext-battle-labyrinth", "ext-last-olympian", "ext-lost-hero", "ext-son-neptune"]
+      },
       "links": {}
     }
   ]

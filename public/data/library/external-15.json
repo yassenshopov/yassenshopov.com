@@ -15,6 +15,11 @@
       "coverImage": "/resources/images/library/the-son-of-neptune.webp",
       "series": "Heroes of Olympus",
       "seriesOrder": 2,
+      "relationships": {
+        "prequel": "ext-lost-hero",
+        "related": ["ext-lightning-thief", "ext-sea-monsters", "ext-titans-curse", "ext-battle-labyrinth", "ext-last-olympian", "ext-lost-hero"],
+        "sameUniverse": ["ext-lightning-thief", "ext-sea-monsters", "ext-titans-curse", "ext-battle-labyrinth", "ext-last-olympian", "ext-lost-hero"]
+      },
       "links": {}
     }
   ]

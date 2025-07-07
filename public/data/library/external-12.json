@@ -13,6 +13,14 @@
       "genre": ["Fantasy", "Young Adult (YA)", "Supernatural", "Adventure"],
       "description": "Percy Jackson must journey into the Sea of Monsters to save Camp Half-Blood.",
       "coverImage": "/resources/images/library/the-sea-of-monsters.webp",
+      "series": "Percy Jackson and the Olympians",
+      "seriesOrder": 2,
+      "relationships": {
+        "prequel": "ext-lightning-thief",
+        "sequel": "ext-titans-curse",
+        "related": ["ext-lightning-thief", "ext-titans-curse", "ext-battle-labyrinth", "ext-last-olympian", "ext-lost-hero", "ext-son-neptune"],
+        "sameUniverse": ["ext-lightning-thief", "ext-titans-curse", "ext-battle-labyrinth", "ext-last-olympian", "ext-lost-hero", "ext-son-neptune"]
+      },
       "links": {}
     }
   ]

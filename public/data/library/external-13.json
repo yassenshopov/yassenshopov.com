@@ -15,6 +15,11 @@
       "coverImage": "/resources/images/library/the-lightning-thief.webp",
       "series": "Percy Jackson and the Olympians",
       "seriesOrder": 1,
+      "relationships": {
+        "sequel": "ext-sea-monsters",
+        "related": ["ext-sea-monsters", "ext-titans-curse", "ext-battle-labyrinth", "ext-last-olympian", "ext-lost-hero", "ext-son-neptune"],
+        "sameUniverse": ["ext-sea-monsters", "ext-titans-curse", "ext-battle-labyrinth", "ext-last-olympian", "ext-lost-hero", "ext-son-neptune"]
+      },
       "links": {}
     }
   ]

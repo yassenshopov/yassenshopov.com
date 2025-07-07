@@ -13,6 +13,13 @@
       "genre": ["Manga", "Action", "Supernatural", "Horror"],
       "description": "The sequel to Tokyo Ghoul, following the story of Haise Sasaki.",
       "coverImage": "/resources/images/library/tokyo-ghoul-re.webp",
+      "series": "Tokyo Ghoul",
+      "seriesOrder": 2,
+      "relationships": {
+        "prequel": "ext-tokyo-ghoul",
+        "related": ["ext-tokyo-ghoul"],
+        "sameUniverse": ["ext-tokyo-ghoul"]
+      },
       "links": {}
     }
   ]

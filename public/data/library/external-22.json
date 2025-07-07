@@ -15,6 +15,11 @@
       "coverImage": "/resources/images/library/hp-philosophers-stone.webp",
       "series": "Harry Potter",
       "seriesOrder": 1,
+      "relationships": {
+        "sequel": "ext-hp-chamber-secrets",
+        "related": ["ext-hp-chamber-secrets", "ext-hp-prisoner-azkaban", "ext-hp-goblet-fire", "ext-hp-order-phoenix", "ext-hp-half-blood-prince", "ext-hp-deathly-hallows"],
+        "sameUniverse": ["ext-hp-chamber-secrets", "ext-hp-prisoner-azkaban", "ext-hp-goblet-fire", "ext-hp-order-phoenix", "ext-hp-half-blood-prince", "ext-hp-deathly-hallows"]
+      },
       "links": {}
     }
   ]

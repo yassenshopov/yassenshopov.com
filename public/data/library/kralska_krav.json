@@ -13,6 +13,10 @@
       "genre": ["Fantasy", "Adventure"],
       "series": "Labakan",
       "seriesOrder": 2,
+      "relationships": {
+        "related": ["lyubimi-poputecho", "iglatana-labakan"],
+        "sameUniverse": ["lyubimi-poputecho", "iglatana-labakan"]
+      },
       "description": "A Bulgarian fantasy novel about royal intrigue and adventure.",
       "coverImage": "/resources/images/library/kralska-krav.webp",
       "links": {}

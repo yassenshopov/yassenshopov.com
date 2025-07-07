@@ -15,7 +15,12 @@
       "coverImage": "/resources/images/library/batman-begins-2005.webp",
       "links": {},
       "series": "The Dark Knight Trilogy",
-      "seriesOrder": 1
+      "seriesOrder": 1,
+      "relationships": {
+        "sequel": "the-dark-knight",
+        "related": ["the-dark-knight", "the-dark-knight-rises"],
+        "sameUniverse": ["the-dark-knight", "the-dark-knight-rises"]
+      }
     }
   ]
 } 

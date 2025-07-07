@@ -13,6 +13,14 @@
       "genre": ["Fantasy", "Young Adult (YA)", "Supernatural", "Adventure"],
       "description": "Percy Jackson and friends must navigate the Labyrinth to stop Kronos' army.",
       "coverImage": "/resources/images/library/the-battle-of-the-labyrinth.webp",
+      "series": "Percy Jackson and the Olympians",
+      "seriesOrder": 4,
+      "relationships": {
+        "prequel": "ext-titans-curse",
+        "sequel": "ext-last-olympian",
+        "related": ["ext-lightning-thief", "ext-sea-monsters", "ext-titans-curse", "ext-last-olympian", "ext-lost-hero", "ext-son-neptune"],
+        "sameUniverse": ["ext-lightning-thief", "ext-sea-monsters", "ext-titans-curse", "ext-last-olympian", "ext-lost-hero", "ext-son-neptune"]
+      },
       "links": {}
     }
   ]
