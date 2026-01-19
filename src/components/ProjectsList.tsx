@@ -26,6 +26,22 @@ const defaultTechBadgeStyle: TechBadgeStyle = {
 };
 
 export const techStack: Record<string, TechBadgeMeta> = {
+  "Nuxt3": {
+    label: "Nuxt3",
+    iconSrc: "/resources/images/tech/nuxt.svg",
+    style: { bg: "bg-[#00dc82]/10", text: "text-[#00dc82]", border: "border-[#00dc82]/30", hover: "hover:bg-[#00dc82]/20" },
+    description: "Vue framework for building full-stack web apps.",
+    linkHref: "https://nuxt.com/",
+    linkLabel: "Learn more"
+  },
+  "Vue": {
+    label: "Vue",
+    iconSrc: "/resources/images/tech/vue.svg",
+    style: { bg: "bg-[#42b883]/10", text: "text-[#42b883]", border: "border-[#42b883]/30", hover: "hover:bg-[#42b883]/20" },
+    description: "Progressive JavaScript framework for building UIs.",
+    linkHref: "https://vuejs.org/",
+    linkLabel: "Learn more"
+  },
   "Next.js": {
     label: "Next.js",
     iconSrc: "/resources/images/tech/nextjs.svg",
@@ -87,7 +103,11 @@ export const projects = [
     title: "PokemonPalette",
     tagline: "Color inspiration from your favorite Pokemon",
     description: "Transform the world of Pokemon into beautiful color palettes for your next design project. A unique tool that bridges nostalgia with modern design needs.",
-    images: ["/resources/images/projects/pokemonpalette.webp"],
+    images: [
+      "/resources/images/projects/pokemonpalette1.png",
+      "/resources/images/projects/pokemonpalette2.png",
+      "/resources/images/projects/pokemonpalette3.png"
+    ],
     liveUrl: "https://pokemonpalette.com",
     stats: [
       { icon: Palette, value: 2200, suffix: "+", label: "Color Palettes" },
@@ -99,10 +119,44 @@ export const projects = [
     impact: "Helping designers and developers find unique color inspiration while celebrating the beloved Pokemon franchise."
   },
   {
+    title: "TalentReports",
+    tagline: "Outreach analytics for recruiting teams",
+    description: "Reporting and analytics dashboards for outreach performance, giving teams visibility into response rates, funnels, and follow-up effectiveness.",
+    images: [
+      "/resources/images/projects/talentreports1.png",
+      "/resources/images/projects/talentreports2.png",
+      "/resources/images/projects/talentreports3.png"
+    ],
+    liveUrl: "https://reports.talsight.com",
+    stats: [],
+    tags: ["Nuxt3", "Vue", "Supabase", "TailwindCSS"],
+    featured: false,
+    impact: "Helping recruiting teams understand what works in outreach and improve conversion."
+  },
+  {
+    title: "ecuLink",
+    tagline: "Remote diagnostics for heavy-duty trucks",
+    description: "Secure remote access to truck ECUs with full J1939 support, enabling real-time diagnostics over a low-latency VPN connection.",
+    images: [
+      "/resources/images/projects/eculink1.png",
+      "/resources/images/projects/eculink2.png",
+      "/resources/images/projects/eculink3.png"
+    ],
+    liveUrl: "https://eculink.io",
+    stats: [],
+    tags: ["Next.js", "React", "TailwindCSS", "Supabase"],
+    featured: false,
+    impact: "Reducing fleet downtime by bringing OEM diagnostics online without moving the vehicle."
+  },
+  {
     title: "Frameworked.io",
     tagline: "Supercharge your Notion workspace",
     description: "A powerful platform that enhances Notion with beautiful dashboards, real-time data sync, and an optimized mobile experience. Keep Notion as your source of truth while unlocking its full potential.",
-    images: ["/resources/images/projects/frameworked.webp"],
+    images: [
+      "/resources/images/projects/frameworked1.png",
+      "/resources/images/projects/frameworked2.png",
+      "/resources/images/projects/frameworked3.png"
+    ],
     liveUrl: "https://frameworked.io",
     stats: [
       { icon: FileText, value: 500, suffix: "+", label: "Daily logs processed" },
@@ -113,4 +167,4 @@ export const projects = [
     featured: true,
     impact: "Empowering professionals to create their perfect productivity system without leaving the Notion ecosystem."
   }
-]; 
+];  

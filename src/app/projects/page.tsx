@@ -111,7 +111,7 @@ function TableOfContents() {
   };
 
   return (
-    <div className="fixed top-24 right-8 z-40 hidden xl:block group">
+    <div className="fixed top-24 right-8 z-40 hidden md:block group">
       {/* Minimal lines version (shown by default) */}
       <div className="absolute right-0 top-0 group-hover:opacity-0 group-hover:invisible transition-all duration-300 bg-card/80 backdrop-blur-lg rounded-lg p-2 shadow-lg border border-border">
         <nav className="space-y-3">
@@ -235,7 +235,7 @@ export default function ProjectsPage() {
       {/* Hero Section */}
       <section className="relative min-h-[45vh] flex items-center overflow-hidden">
         <div
-          className="absolute inset-0 bg-[url('/resources/images/projects/pokemonpalette.webp')] bg-cover bg-center -z-30 will-change-transform"
+          className="absolute inset-0 bg-[url('/resources/images/projects/hero-image.png')] bg-cover bg-center -z-30 will-change-transform"
           style={{ transform: `translateY(${parallaxOffset}px)` }}
         />
         <div className="absolute inset-0 bg-white/70 dark:bg-black/65 olive:bg-black/70 -z-20" />
@@ -304,12 +304,12 @@ export default function ProjectsPage() {
                   className={`relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[200px] transition hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
                     index % 2 === 0 ? "lg:order-2" : "lg:order-1"
                   }`}
-                  onClick={() => project.images[0] && handleOpenImage(index, 0)}
-                  disabled={!project.images[0]}
+                  onClick={() => project.images[1] && handleOpenImage(index, 1)}
+                  disabled={!project.images[1]}
                 >
-                  {project.images[0] ? (
+                  {project.images[1] ? (
                     <Image
-                      src={project.images[0]}
+                      src={project.images[1]}
                       alt={`${project.title} product display detail`}
                       fill
                       className="object-cover object-top"
@@ -324,12 +324,12 @@ export default function ProjectsPage() {
                   className={`relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[200px] transition hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
                     index % 2 === 0 ? "lg:order-3" : "lg:order-2"
                   }`}
-                  onClick={() => project.images[0] && handleOpenImage(index, 0)}
-                  disabled={!project.images[0]}
+                  onClick={() => project.images[2] && handleOpenImage(index, 2)}
+                  disabled={!project.images[2]}
                 >
-                  {project.images[0] ? (
+                  {project.images[2] ? (
                     <Image
-                      src={project.images[0]}
+                      src={project.images[2]}
                       alt={`${project.title} product display closeup`}
                       fill
                       className="object-cover object-top"
@@ -406,21 +406,16 @@ export default function ProjectsPage() {
         open={Boolean(selectedPreview)}
         onOpenChange={(open) => !open && setSelectedPreview(null)}
       >
-        <DialogContent className="max-w-5xl border-border/60 p-3 sm:p-4">
+        <DialogContent className="flex h-screen w-screen max-w-none items-center justify-center border-none bg-transparent p-4 shadow-none">
           <DialogTitle className="sr-only">Project image preview</DialogTitle>
-          <div className="relative w-full h-[70vh] sm:h-[75vh] rounded-lg overflow-hidden bg-muted">
+          <div className="relative flex h-full w-full items-center justify-center">
             {selectedPreview && projects[selectedPreview.projectIndex]?.images?.length > 0 && (
-              <Image
-                src={
-                  projects[selectedPreview.projectIndex].images[selectedPreview.imageIndex]
-                }
+              <img
+                src={projects[selectedPreview.projectIndex].images[selectedPreview.imageIndex]}
                 alt={`${projects[selectedPreview.projectIndex].title} image ${
                   selectedPreview.imageIndex + 1
                 }`}
-                fill
-                className="object-contain"
-                sizes="100vw"
-                priority
+                className="max-h-[88vh] w-auto max-w-[96vw] rounded-xl object-contain shadow-2xl"
               />
             )}
             {selectedPreview && projects[selectedPreview.projectIndex]?.images?.length > 1 && (
@@ -428,7 +423,7 @@ export default function ProjectsPage() {
                 <button
                   type="button"
                   onClick={() => handleNextImage(-1)}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/50 text-white p-2 transition hover:bg-black/70"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/60 text-white p-3 transition hover:bg-black/80"
                   aria-label="Previous image"
                 >
                   <span className="sr-only">Previous</span>
@@ -437,7 +432,7 @@ export default function ProjectsPage() {
                 <button
                   type="button"
                   onClick={() => handleNextImage(1)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/50 text-white p-2 transition hover:bg-black/70"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/60 text-white p-3 transition hover:bg-black/80"
                   aria-label="Next image"
                 >
                   <span className="sr-only">Next</span>
