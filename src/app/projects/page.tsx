@@ -3,6 +3,7 @@
 import Layout from "@/components/Layout";
 import TiltCard from "@/components/TiltCard";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ExternalLink, Palette, Sparkles, Users, Code, ArrowRight, ChevronRight, LandPlot } from "lucide-react";
 import Image from "next/image";
@@ -166,11 +167,22 @@ function TableOfContents() {
 
 export default function ProjectsPage() {
   const [parallaxOffset, setParallaxOffset] = useState(0);
+  const [selectedPreview, setSelectedPreview] = useState<{ projectIndex: number; imageIndex: number } | null>(null);
   const handleScrollToContact = () => {
     const element = document.getElementById("contact");
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
+  };
+  const handleOpenImage = (projectIndex: number, imageIndex: number) => {
+    setSelectedPreview({ projectIndex, imageIndex });
+  };
+  const handleNextImage = (direction: 1 | -1) => {
+    if (!selectedPreview) return;
+    const images = projects[selectedPreview.projectIndex]?.images ?? [];
+    if (images.length === 0) return;
+    const nextIndex = (selectedPreview.imageIndex + direction + images.length) % images.length;
+    setSelectedPreview({ projectIndex: selectedPreview.projectIndex, imageIndex: nextIndex });
   };
 
   useEffect(() => {
@@ -226,10 +238,10 @@ export default function ProjectsPage() {
           className="absolute inset-0 bg-[url('/resources/images/projects/pokemonpalette.webp')] bg-cover bg-center -z-30 will-change-transform"
           style={{ transform: `translateY(${parallaxOffset}px)` }}
         />
-        <div className="absolute inset-0 bg-white/70 dark:bg-black/65 olive:bg-black/65 -z-20" />
-        <div className="absolute inset-0 bg-background/60 dark:bg-background/50 olive:bg-background/50 -z-10" />
+        <div className="absolute inset-0 bg-white/70 dark:bg-black/65 olive:bg-black/70 -z-20" />
+        <div className="absolute inset-0 bg-background/60 dark:bg-background/50 olive:bg-background/55 -z-10" />
         <div className="container mx-auto px-4">
-          <TiltCard className="max-w-3xl rounded-2xl bg-card/80 dark:bg-card/70 olive:bg-card/70 backdrop-blur-lg border border-border/40 dark:border-white/10 olive:border-white/10 p-6 md:p-10">
+          <TiltCard className="max-w-3xl rounded-2xl bg-card/80 dark:bg-card/70 olive:bg-card/85 backdrop-blur-lg border border-border/40 dark:border-white/10 olive:border-white/10 p-6 md:p-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
               <LandPlot  className="w-4 h-4" />
               <span>Yassen's Projects</span>
@@ -258,35 +270,77 @@ export default function ProjectsPage() {
           className={`py-32 ${index % 2 === 0 ? 'bg-background' : 'bg-muted'} scroll-mt-16`}
         >
           <div className="container mx-auto px-6 md:px-8">
-            <div className={`grid lg:grid-cols-2 gap-16 items-center ${index % 2 === 0 ? '' : 'lg:grid-flow-dense'}`}>
-              <div className={`space-y-8 ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
-                <div className="space-y-6">
-                  <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground">
-                    {project.title}
-                  </h2>
-                  <p className="text-xl font-medium text-primary">
-                    {project.tagline}
-                  </p>
-                  <p className="text-muted-foreground text-lg">
-                    {project.description}
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-3 gap-4">
-                  {project.stats.map((stat, statIndex) => (
-                    <div key={statIndex} className="space-y-2 text-center p-4 rounded-lg bg-card">
-                      <stat.icon className="w-5 h-5 mx-auto text-primary" />
-                      <div className="text-2xl font-bold text-foreground">
-                        <AnimatedNumber 
-                          end={stat.value} 
-                          suffix={stat.suffix}
-                        />
-                      </div>
-                      <div className="text-sm text-muted-foreground">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
-
+            <div>
+              <h3 className="text-4xl md:text-5xl font-semibold text-center text-foreground mb-12">
+                {project.title}
+              </h3>
+              <div
+                className={`mt-6 grid gap-6 lg:grid-rows-2 ${
+                  index % 2 === 0 ? "lg:grid-cols-[2fr_1fr]" : "lg:grid-cols-[1fr_2fr]"
+                }`}
+              >
+                <button
+                  type="button"
+                  className={`relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:row-span-2 lg:min-h-[420px] transition hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                    index % 2 === 0 ? "lg:order-1" : "lg:order-2"
+                  }`}
+                  onClick={() => project.images[0] && handleOpenImage(index, 0)}
+                  disabled={!project.images[0]}
+                >
+                  {project.images[0] ? (
+                    <Image
+                      src={project.images[0]}
+                      alt={`${project.title} product display`}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 1024px) 100vw, 66vw"
+                    />
+                  ) : (
+                    <div className="aspect-[16/9] bg-muted" />
+                  )}
+                </button>
+                <button
+                  type="button"
+                  className={`relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[200px] transition hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                    index % 2 === 0 ? "lg:order-2" : "lg:order-1"
+                  }`}
+                  onClick={() => project.images[0] && handleOpenImage(index, 0)}
+                  disabled={!project.images[0]}
+                >
+                  {project.images[0] ? (
+                    <Image
+                      src={project.images[0]}
+                      alt={`${project.title} product display detail`}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                    />
+                  ) : (
+                    <div className="aspect-[16/9] bg-muted" />
+                  )}
+                </button>
+                <button
+                  type="button"
+                  className={`relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[200px] transition hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                    index % 2 === 0 ? "lg:order-3" : "lg:order-2"
+                  }`}
+                  onClick={() => project.images[0] && handleOpenImage(index, 0)}
+                  disabled={!project.images[0]}
+                >
+                  {project.images[0] ? (
+                    <Image
+                      src={project.images[0]}
+                      alt={`${project.title} product display closeup`}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                    />
+                  ) : (
+                    <div className="aspect-[16/9] bg-muted" />
+                  )}
+                </button>
+              </div>
+              <div className="mt-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag, tagIndex) => {
                     const techMeta = getTechBadgeMeta(tag);
@@ -328,30 +382,72 @@ export default function ProjectsPage() {
                     );
                   })}
                 </div>
-
-                <p className="text-muted-foreground border-l-2 border-primary pl-4 italic">
-                  {project.impact}
-                </p>
-
-                <div className="flex gap-4">
-                  <Button asChild size="lg" className="group">
-                    <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                      Visit {project.title}
-                      <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                    </Link>
-                  </Button>
-                </div>
+                <Button asChild variant="outline" size="lg">
+                  <Link
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="uppercase tracking-[0.2em] inline-flex items-center gap-2"
+                  >
+                    Visit Project
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
               </div>
-
-              <div className={`relative ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
-                <ProjectImageCarousel images={project.images} title={project.title} />
-                <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-primary/10 rounded-full blur-3xl" />
-                <div className="absolute -top-6 -left-6 w-24 h-24 bg-primary/10 rounded-full blur-3xl" />
-              </div>
+              <p className="mt-4 text-muted-foreground text-lg max-w-3xl">
+                {project.description}
+              </p>
             </div>
           </div>
         </section>
       ))}
+
+      <Dialog
+        open={Boolean(selectedPreview)}
+        onOpenChange={(open) => !open && setSelectedPreview(null)}
+      >
+        <DialogContent className="max-w-5xl border-border/60 p-3 sm:p-4">
+          <DialogTitle className="sr-only">Project image preview</DialogTitle>
+          <div className="relative w-full h-[70vh] sm:h-[75vh] rounded-lg overflow-hidden bg-muted">
+            {selectedPreview && projects[selectedPreview.projectIndex]?.images?.length > 0 && (
+              <Image
+                src={
+                  projects[selectedPreview.projectIndex].images[selectedPreview.imageIndex]
+                }
+                alt={`${projects[selectedPreview.projectIndex].title} image ${
+                  selectedPreview.imageIndex + 1
+                }`}
+                fill
+                className="object-contain"
+                sizes="100vw"
+                priority
+              />
+            )}
+            {selectedPreview && projects[selectedPreview.projectIndex]?.images?.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={() => handleNextImage(-1)}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/50 text-white p-2 transition hover:bg-black/70"
+                  aria-label="Previous image"
+                >
+                  <span className="sr-only">Previous</span>
+                  <ChevronRight className="h-5 w-5 rotate-180" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleNextImage(1)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/50 text-white p-2 transition hover:bg-black/70"
+                  aria-label="Next image"
+                >
+                  <span className="sr-only">Next</span>
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+              </>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <section id="contact" className="py-24 bg-background scroll-mt-16">
         <div className="container mx-auto px-4">
@@ -377,8 +473,8 @@ export default function ProjectsPage() {
             />
             <div className="space-y-3 text-center">
               <Button size="lg" variant="outline" asChild>
-                <Link href="mailto:yassen@yassenshopov.com">
-                  Email yassen@yassenshopov.com
+                <Link href="mailto:yassenshopov00@gmail.com">
+                  Email yassenshopov00@gmail.com
                 </Link>
               </Button>
               <p className="text-sm text-muted-foreground">

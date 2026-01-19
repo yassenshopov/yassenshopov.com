@@ -126,11 +126,11 @@ export default function ContactPage() {
                   For quick inquiries, you can reach me directly at:
                 </p>
                 <Link 
-                  href="mailto:yassen@yassenshopov.com"
+                  href="mailto:yassenshopov00@gmail.com"
                   className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
                 >
                   <Mail className="w-4 h-4" />
-                  yassen@yassenshopov.com
+                  yassenshopov00@gmail.com
                 </Link>
               </div>
 
