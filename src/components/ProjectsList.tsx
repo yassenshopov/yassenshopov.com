@@ -111,8 +111,8 @@ export const projects = [
     liveUrl: "https://pokemonpalette.com",
     stats: [
       { icon: Palette, value: 2200, suffix: "+", label: "Color Palettes" },
-      { icon: Users, value: 3000, suffix: "+", label: "Monthly Users" },
-      { icon: Code, value: 1025, suffix: "", label: "Pokemon Available" }
+      { icon: Users, value: 10000, suffix: "+", label: "Monthly Visits" },
+      { icon: Code, value: 3000, suffix: "+", label: "Monthly Users" }
     ],
     tags: ["Next.js", "React", "TailwindCSS", "Supabase", "Pokemon API"],
     featured: true,

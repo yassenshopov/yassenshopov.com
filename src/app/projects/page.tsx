@@ -238,10 +238,9 @@ export default function ProjectsPage() {
           className="absolute inset-0 bg-[url('/resources/images/projects/hero-image.png')] bg-cover bg-center -z-30 will-change-transform"
           style={{ transform: `translateY(${parallaxOffset}px)` }}
         />
-        <div className="absolute inset-0 bg-white/70 dark:bg-black/65 olive:bg-black/70 -z-20" />
-        <div className="absolute inset-0 bg-background/60 dark:bg-background/50 olive:bg-background/55 -z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/60 to-transparent dark:from-black/75 dark:via-black/55 dark:to-transparent olive:from-black/80 olive:via-black/60 olive:to-transparent -z-20" />
         <div className="container mx-auto px-4">
-          <TiltCard className="max-w-3xl rounded-2xl bg-card/80 dark:bg-card/70 olive:bg-card/85 backdrop-blur-lg border border-border/40 dark:border-white/10 olive:border-white/10 p-6 md:p-10">
+          <TiltCard className="max-w-3xl rounded-2xl bg-card/80 dark:bg-card/70 olive:bg-card/85 backdrop-blur-lg p-6 md:p-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
               <LandPlot  className="w-4 h-4" />
               <span>Yassen's Projects</span>
@@ -249,7 +248,7 @@ export default function ProjectsPage() {
             <h1 className="text-4xl md:text-7xl font-bold tracking-tighter leading-[0.95] text-foreground mb-6">
               Portfolio
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl">
+            <p className="text-xl text-foreground max-w-2xl">
               Dashboards, MVPs, UX cleanups, and data-driven interfaces built with React, Next.js, and Tailwind.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
