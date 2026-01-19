@@ -51,7 +51,7 @@ export function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background ">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background font-heading">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center" onClick={handleLinkClick}>
           <div className="w-[60px] h-[60px] relative">

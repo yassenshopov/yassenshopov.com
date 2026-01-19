@@ -1,9 +1,10 @@
 import Link from 'next/link';
-import { FaLinkedin, FaTwitter, FaYoutube, FaShoppingBag } from 'react-icons/fa';
+import { FaLinkedin, FaShoppingBag } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 
 export function Footer() {
   return (
-    <footer className="py-8 px-4 border-t">
+    <footer className="py-8 px-4 border-t font-heading">
       <div className="container mx-auto">
         <div className="flex justify-center space-x-6 mb-6">
           <Link 
@@ -14,18 +15,11 @@ export function Footer() {
             <FaLinkedin size={24} />
           </Link>
           <Link 
-            href="https://twitter.com/yassenshopov" 
+            href="https://x.com/yassenshopov" 
             target="_blank"
             className="text-foreground/60 hover:text-foreground transition-colors"
           >
-            <FaTwitter size={24} />
-          </Link>
-          <Link 
-            href="https://youtube.com/@yassenshopov" 
-            target="_blank"
-            className="text-foreground/60 hover:text-foreground transition-colors"
-          >
-            <FaYoutube size={24} />
+            <FaXTwitter size={24} />
           </Link>
           <Link 
             href="https://yassenshopov.gumroad.com" 

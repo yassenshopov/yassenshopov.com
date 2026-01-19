@@ -77,7 +77,7 @@ export default function LibraryPage() {
     isTransitioning,
   } = useLibrary();
 
-  const stats = getStatistics();
+  const stats = getStatistics(sortedItems);
 
   // Handle category click from LibraryHero
   const handleCategoryClick = (type: string) => {

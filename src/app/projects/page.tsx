@@ -1,29 +1,81 @@
 "use client";
 
 import Layout from "@/components/Layout";
-import { Card } from "@/components/ui/card";
+import TiltCard from "@/components/TiltCard";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Palette, Sparkles, Users, Code, ArrowRight, ChevronRight } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { ExternalLink, Palette, Sparkles, Users, Code, ArrowRight, ChevronRight, LandPlot } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { useEffect, useState } from "react";
-import { projects } from "@/components/ProjectsList";
+import { getTechBadgeMeta, projects } from "@/components/ProjectsList";
 
-interface TechColor {
-  bg: string;
-  text: string;
-  border: string;
-  hover: string;
+function ProjectImageCarousel({ images, title }: { images: string[]; title: string }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const totalImages = images.length;
+  const hasMultipleImages = totalImages > 1;
+
+  const goToImage = (nextIndex: number) => {
+    if (totalImages === 0) return;
+    const wrappedIndex = (nextIndex + totalImages) % totalImages;
+    setActiveIndex(wrappedIndex);
+  };
+
+  if (totalImages === 0) {
+    return (
+      <div className="relative aspect-video rounded-lg overflow-hidden bg-muted" />
+    );
+  }
+
+  return (
+    <div className="relative aspect-video rounded-lg overflow-hidden">
+      <Image
+        src={images[activeIndex]}
+        alt={`${title} preview ${activeIndex + 1}`}
+        fill
+        className="object-cover object-top"
+        priority
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+      />
+      {hasMultipleImages && (
+        <>
+          <button
+            type="button"
+            onClick={() => goToImage(activeIndex - 1)}
+            className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/50 text-white p-2 transition hover:bg-black/70"
+            aria-label={`Previous ${title} image`}
+          >
+            <span className="sr-only">Previous</span>
+            <ChevronRight className="h-5 w-5 rotate-180" />
+          </button>
+          <button
+            type="button"
+            onClick={() => goToImage(activeIndex + 1)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/50 text-white p-2 transition hover:bg-black/70"
+            aria-label={`Next ${title} image`}
+          >
+            <span className="sr-only">Next</span>
+            <ChevronRight className="h-5 w-5" />
+          </button>
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 rounded-full bg-black/40 px-3 py-1">
+            {images.map((_, index) => (
+              <button
+                key={`${title}-image-${index}`}
+                type="button"
+                onClick={() => goToImage(index)}
+                className={`h-2 w-2 rounded-full transition ${
+                  index === activeIndex ? "bg-white" : "bg-white/50 hover:bg-white/80"
+                }`}
+                aria-label={`Show ${title} image ${index + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
 }
-
-const techColors: Record<string, TechColor> = {
-  "Next.js": { bg: "bg-black", text: "text-white", border: "border-neutral-800", hover: "hover:bg-neutral-800" },
-  "React": { bg: "bg-[#61dafb]/10", text: "text-[#61dafb]", border: "border-[#61dafb]/30", hover: "hover:bg-[#61dafb]/20" },
-  "TailwindCSS": { bg: "bg-[#38bdf8]/10", text: "text-[#38bdf8]", border: "border-[#38bdf8]/30", hover: "hover:bg-[#38bdf8]/20" },
-  "Pokemon API": { bg: "bg-[#ff1f1f]/10", text: "text-[#ff1f1f]", border: "border-[#ff1f1f]/30", hover: "hover:bg-[#ff1f1f]/20" },
-  "Notion API": { bg: "bg-[#000000]/10", text: "text-[#000000] dark:text-white", border: "border-[#000000]/30 dark:border-white/30", hover: "hover:bg-[#000000]/20 dark:hover:bg-white/20" }
-};
 
 function TableOfContents() {
   const [activeSection, setActiveSection] = useState<string>("");
@@ -113,27 +165,76 @@ function TableOfContents() {
 }
 
 export default function ProjectsPage() {
+  const [parallaxOffset, setParallaxOffset] = useState(0);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const root = document.documentElement;
+    const body = document.body;
+    const prevRootBehavior = root.style.scrollBehavior;
+    const prevBodyBehavior = body.style.scrollBehavior;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const behavior = prefersReducedMotion ? "auto" : "smooth";
+
+    root.style.scrollBehavior = behavior;
+    body.style.scrollBehavior = behavior;
+
+    return () => {
+      root.style.scrollBehavior = prevRootBehavior;
+      body.style.scrollBehavior = prevBodyBehavior;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      setParallaxOffset(0);
+      return;
+    }
+
+    let rafId = 0;
+    const onScroll = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(() => {
+        rafId = 0;
+        setParallaxOffset(window.scrollY * 0.25);
+      });
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafId) window.cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   return (
     <Layout>
       <TableOfContents />
       
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-gradient-to-b from-background to-muted">
-        <div className="absolute inset-0 bg-grid-white/10 -z-10" />
+      <section className="relative min-h-[45vh] flex items-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-[url('/resources/images/projects/pokemonpalette.webp')] bg-cover bg-center -z-30 will-change-transform"
+          style={{ transform: `translateY(${parallaxOffset}px)` }}
+        />
+        <div className="absolute inset-0 bg-white/70 dark:bg-black/65 -z-20" />
+        <div className="absolute inset-0 bg-background/60 dark:bg-background/50 -z-10" />
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl">
+          <TiltCard className="max-w-3xl rounded-2xl bg-card/80 dark:bg-card/70 backdrop-blur-lg border border-border/40 dark:border-white/10 p-6 md:p-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
-              <Code className="w-4 h-4" />
-              <span>Featured Projects</span>
+              <LandPlot  className="w-4 h-4" />
+              <span>Yassen's Projects</span>
             </div>
             <h1 className="text-4xl md:text-7xl font-bold tracking-tighter leading-[0.95] text-foreground mb-6">
-              Crafting Digital<br />
-              Experiences
+              Portfolio
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl">
-              From color inspiration tools to productivity enhancers, each project is built to solve real problems and delight users.
+              Dashboards, MVPs, UX cleanups, and data-driven interfaces built with React, Next.js, and Tailwind.
             </p>
-          </div>
+          </TiltCard>
         </div>
       </section>
 
@@ -176,19 +277,42 @@ export default function ProjectsPage() {
 
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag, tagIndex) => {
-                    const colors = techColors[tag] || { 
-                      bg: "bg-primary/10", 
-                      text: "text-primary", 
-                      border: "border-primary/30",
-                      hover: "hover:bg-primary/20"
-                    };
+                    const techMeta = getTechBadgeMeta(tag);
+                    const showTooltip = Boolean(techMeta.description && techMeta.linkHref);
                     return (
-                      <span
-                        key={tagIndex}
-                        className={`px-4 py-2 font-medium rounded-lg text-sm border transition-colors ${colors.bg} ${colors.text} ${colors.border} ${colors.hover}`}
-                      >
-                        {tag}
-                      </span>
+                      <Tooltip key={tagIndex}>
+                        <TooltipTrigger asChild>
+                          <span
+                            className={`inline-flex items-center gap-2 px-4 py-2 font-medium rounded-full text-sm border transition-colors ${techMeta.style.bg} ${techMeta.style.text} ${techMeta.style.border} ${techMeta.style.hover}`}
+                          >
+                            {techMeta.iconSrc && (
+                              <Image
+                                src={techMeta.iconSrc}
+                                alt={`${techMeta.label} icon`}
+                                width={16}
+                                height={16}
+                                className="h-4 w-4"
+                              />
+                            )}
+                            <span>{techMeta.label}</span>
+                          </span>
+                        </TooltipTrigger>
+                        {showTooltip && (
+                          <TooltipContent side="top" className="w-max text-center text-xs leading-relaxed">
+                            <span className="inline-block">
+                              {techMeta.description}{" "}
+                              <Link
+                                href={techMeta.linkHref!}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline underline-offset-2 hover:text-primary-foreground/80"
+                              >
+                                {techMeta.linkLabel ?? "Learn more"}
+                              </Link>
+                            </span>
+                          </TooltipContent>
+                        )}
+                      </Tooltip>
                     );
                   })}
                 </div>
@@ -208,16 +332,7 @@ export default function ProjectsPage() {
               </div>
 
               <div className={`relative ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
-                <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover object-top"
-                    priority
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-                  />
-                </div>
+                <ProjectImageCarousel images={project.images} title={project.title} />
                 <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-primary/10 rounded-full blur-3xl" />
                 <div className="absolute -top-6 -left-6 w-24 h-24 bg-primary/10 rounded-full blur-3xl" />
               </div>

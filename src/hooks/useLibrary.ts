@@ -185,7 +185,7 @@ export function useLibrary() {
   };
 
   // Statistics calculations
-  const getStatistics = () => calculateStatistics(allLibraryItems);
+  const getStatistics = (items?: LibraryItem[]) => calculateStatistics(items || allLibraryItems);
 
   // Related items algorithm
   const getRelatedItems = (item: LibraryItem, limit: number = 4): LibraryItem[] => 

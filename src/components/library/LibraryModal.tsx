@@ -60,27 +60,6 @@ function boostColor(rgb: string, satBoost = 1.3, lightBoost = 1.15) {
   return `${r},${g},${b}`;
 }
 
-// Utility to cache images in localStorage
-async function getCachedImage(url: string, cacheKey: string): Promise<string> {
-  const cached = localStorage.getItem(cacheKey);
-  if (cached) return cached;
-  const response = await fetch(url);
-  const blob = await response.blob();
-  return new Promise<string>((resolve) => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const dataUrl = reader.result as string;
-      try { localStorage.setItem(cacheKey, dataUrl); } catch {}
-      resolve(dataUrl);
-    };
-    reader.readAsDataURL(blob);
-  });
-}
-
-function isValidDataUrl(dataUrl: string | null): boolean {
-  return !!dataUrl && dataUrl.startsWith('data:image/');
-}
-
 export default function LibraryModal({
   selectedItem,
   onClose,
@@ -97,8 +76,6 @@ export default function LibraryModal({
   const [dominantColors, setDominantColors] = useState<string[]>([]);
   const [colorCache, setColorCache] = useState<{ [key: string]: string[] }>({});
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  // Robust image loading for modal cover
-  const [imgSrc, setImgSrc] = useState<string | undefined>(selectedItem?.coverImage);
 
   // Extract dominant colors from image
   const extractColorsFromImage = (imageSrc: string) => {
@@ -166,24 +143,6 @@ export default function LibraryModal({
       setDominantColors([]);
     }
   }, [selectedItem, colorCache]);
-
-  // Robust image loading for modal cover
-  useEffect(() => {
-    let isMounted = true;
-    if (selectedItem?.coverImage) {
-      const cacheKey = `cover-${selectedItem.id}`;
-      const cached = localStorage.getItem(cacheKey);
-      if (isValidDataUrl(cached)) {
-        setImgSrc(cached!);
-      } else {
-        setImgSrc(selectedItem.coverImage); // Show direct URL immediately
-        getCachedImage(selectedItem.coverImage, cacheKey)
-          .then((dataUrl) => { if (isMounted && isValidDataUrl(dataUrl)) setImgSrc(dataUrl); })
-          .catch(() => { if (isMounted) setImgSrc(selectedItem.coverImage); });
-      }
-    }
-    return () => { isMounted = false; };
-  }, [selectedItem?.coverImage, selectedItem?.id]);
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
@@ -325,9 +284,9 @@ export default function LibraryModal({
                   {/* Cover Image */}
                   <div className="flex-shrink-0">
                     <div className="w-32 h-48 sm:w-40 sm:h-60 relative bg-muted dark:bg-black rounded-xl overflow-hidden border mx-auto md:mx-0">
-                      {imgSrc ? (
+                      {selectedItem.coverImage ? (
                         <Image
-                          src={imgSrc}
+                          src={selectedItem.coverImage}
                           alt={selectedItem.title}
                           fill
                           className="object-contain"

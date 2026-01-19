@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, Great_Vibes } from "next/font/google";
+import { Inter, Space_Grotesk, Great_Vibes, Outfit } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Toaster } from 'sonner';
@@ -17,6 +17,12 @@ const greatVibes = Great_Vibes({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-great-vibes",
+});
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-outfit",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -48,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body 
-        className={`${inter.variable} ${spaceGrotesk.variable} ${greatVibes.variable} font-sans`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${greatVibes.variable} ${outfit.variable} font-sans`}
         suppressHydrationWarning
       >
         <ThemeProvider

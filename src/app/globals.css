@@ -73,7 +73,7 @@ html {
 @layer base {
   :root {
     /* Font family variables */
-    --font-heading: var(--font-space);
+    --font-heading: var(--font-outfit);
     --font-body: var(--font-inter);
     
     --background: oklch(1 0 0);
@@ -273,7 +273,3 @@ html {
   }
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}

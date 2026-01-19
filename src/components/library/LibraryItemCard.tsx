@@ -21,27 +21,6 @@ interface LibraryItemCardProps {
   getStatusColor: (status: string) => string;
 }
 
-// Utility to cache images in localStorage
-async function getCachedImage(url: string, cacheKey: string): Promise<string> {
-  const cached = localStorage.getItem(cacheKey);
-  if (cached) return cached;
-  const response = await fetch(url);
-  const blob = await response.blob();
-  return new Promise<string>((resolve) => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const dataUrl = reader.result as string;
-      try { localStorage.setItem(cacheKey, dataUrl); } catch {}
-      resolve(dataUrl);
-    };
-    reader.readAsDataURL(blob);
-  });
-}
-
-function isValidDataUrl(dataUrl: string | null): boolean {
-  return !!dataUrl && dataUrl.startsWith('data:image/');
-}
-
 const statusIconMap: Record<string, JSX.Element> = {
   completed: <Check className="w-4 h-4" />,
   'in-progress': <Clock className="w-4 h-4" />,
@@ -66,24 +45,6 @@ export default function LibraryItemCard({
   getCreatorLabel,
   getStatusColor,
 }: LibraryItemCardProps) {
-  const [imgSrc, setImgSrc] = useState<string | undefined>(item.coverImage);
-  useEffect(() => {
-    let isMounted = true;
-    if (item.coverImage) {
-      const cacheKey = `cover-${item.id}`;
-      const cached = localStorage.getItem(cacheKey);
-      if (isValidDataUrl(cached)) {
-        setImgSrc(cached!);
-      } else {
-        setImgSrc(item.coverImage); // Show direct URL immediately
-        getCachedImage(item.coverImage, cacheKey)
-          .then((dataUrl) => { if (isMounted && isValidDataUrl(dataUrl)) setImgSrc(dataUrl); })
-          .catch(() => { if (isMounted) setImgSrc(item.coverImage); });
-      }
-    }
-    return () => { isMounted = false; };
-  }, [item.coverImage, item.id]);
-
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
@@ -125,9 +86,9 @@ export default function LibraryItemCard({
     return (
       <Card className="overflow-hidden h-full hover:bg-muted/50 transition-all group cursor-pointer flex flex-row p-4 shadow-none" onClick={() => onItemClick(item)}>
         <div className="flex-shrink-0 w-16 h-20 bg-muted dark:bg-black rounded-lg mr-4 overflow-hidden">
-          {imgSrc ? (
+          {item.coverImage ? (
             <Image
-              src={imgSrc}
+              src={item.coverImage}
               alt={item.title}
               width={64}
               height={80}
@@ -251,9 +212,9 @@ export default function LibraryItemCard({
   return (
     <Card className="overflow-hidden h-full hover:bg-muted/50 transition-all group cursor-pointer shadow-none" onClick={() => onItemClick(item)}>
       <div className="aspect-video relative bg-black dark:bg-black bg-muted flex items-center justify-center">
-        {imgSrc ? (
+        {item.coverImage ? (
           <Image
-            src={imgSrc}
+            src={item.coverImage}
             alt={item.title}
             fill
             className="object-contain"
