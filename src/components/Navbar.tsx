@@ -10,8 +10,11 @@ import { useLoading } from './LoadingProvider';
 import {
   Sheet,
   SheetContent,
+  SheetHeader,
+  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 export function Navbar() {
   const { theme, resolvedTheme } = useTheme();
@@ -90,6 +93,11 @@ export function Navbar() {
               </button>
             </SheetTrigger>
             <SheetContent side="right" className="w-full sm:w-[400px] p-0">
+              <SheetHeader>
+                <VisuallyHidden>
+                  <SheetTitle>Site navigation</SheetTitle>
+                </VisuallyHidden>
+              </SheetHeader>
               <div className="flex flex-col h-full bg-background">
                 <div className="border-b p-6">
                   <Link href="/" className="flex items-center" onClick={handleLinkClick}>

@@ -9,7 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { useEffect, useState } from "react";
-import { getTechBadgeMeta, projects } from "@/components/ProjectsList";
+import { getTechBadgeMeta, projectTagPaddingXClass, projects } from "@/components/ProjectsList";
 
 function ProjectImageCarousel({ images, title }: { images: string[]; title: string }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -166,6 +166,12 @@ function TableOfContents() {
 
 export default function ProjectsPage() {
   const [parallaxOffset, setParallaxOffset] = useState(0);
+  const handleScrollToContact = () => {
+    const element = document.getElementById("contact");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -220,10 +226,10 @@ export default function ProjectsPage() {
           className="absolute inset-0 bg-[url('/resources/images/projects/pokemonpalette.webp')] bg-cover bg-center -z-30 will-change-transform"
           style={{ transform: `translateY(${parallaxOffset}px)` }}
         />
-        <div className="absolute inset-0 bg-white/70 dark:bg-black/65 -z-20" />
-        <div className="absolute inset-0 bg-background/60 dark:bg-background/50 -z-10" />
+        <div className="absolute inset-0 bg-white/70 dark:bg-black/65 olive:bg-black/65 -z-20" />
+        <div className="absolute inset-0 bg-background/60 dark:bg-background/50 olive:bg-background/50 -z-10" />
         <div className="container mx-auto px-4">
-          <TiltCard className="max-w-3xl rounded-2xl bg-card/80 dark:bg-card/70 backdrop-blur-lg border border-border/40 dark:border-white/10 p-6 md:p-10">
+          <TiltCard className="max-w-3xl rounded-2xl bg-card/80 dark:bg-card/70 olive:bg-card/70 backdrop-blur-lg border border-border/40 dark:border-white/10 olive:border-white/10 p-6 md:p-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
               <LandPlot  className="w-4 h-4" />
               <span>Yassen's Projects</span>
@@ -234,6 +240,12 @@ export default function ProjectsPage() {
             <p className="text-xl text-muted-foreground max-w-2xl">
               Dashboards, MVPs, UX cleanups, and data-driven interfaces built with React, Next.js, and Tailwind.
             </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Button size="lg" className="group" onClick={handleScrollToContact}>
+                Work with me
+                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </div>
           </TiltCard>
         </div>
       </section>
@@ -245,7 +257,7 @@ export default function ProjectsPage() {
           id={project.title.toLowerCase()}
           className={`py-32 ${index % 2 === 0 ? 'bg-background' : 'bg-muted'} scroll-mt-16`}
         >
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 md:px-8">
             <div className={`grid lg:grid-cols-2 gap-16 items-center ${index % 2 === 0 ? '' : 'lg:grid-flow-dense'}`}>
               <div className={`space-y-8 ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
                 <div className="space-y-6">
@@ -283,7 +295,7 @@ export default function ProjectsPage() {
                       <Tooltip key={tagIndex}>
                         <TooltipTrigger asChild>
                           <span
-                            className={`inline-flex items-center gap-2 px-4 py-2 font-medium rounded-full text-sm border transition-colors ${techMeta.style.bg} ${techMeta.style.text} ${techMeta.style.border} ${techMeta.style.hover}`}
+                            className={`inline-flex items-center gap-2 ${projectTagPaddingXClass} py-2 font-medium rounded-full text-sm border transition-colors ${techMeta.style.bg} ${techMeta.style.text} ${techMeta.style.border} ${techMeta.style.hover}`}
                           >
                             {techMeta.iconSrc && (
                               <Image
@@ -340,6 +352,42 @@ export default function ProjectsPage() {
           </div>
         </section>
       ))}
+
+      <section id="contact" className="py-24 bg-background scroll-mt-16">
+        <div className="container mx-auto px-4">
+          <div className="space-y-10">
+            <div className="space-y-5 text-center">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mx-auto">
+                <Sparkles className="w-4 h-4" />
+                <span>Let&apos;s build something</span>
+              </div>
+              <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
+                Want to work with me?
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground mx-auto max-w-2xl">
+                If you&apos;re building a product, refreshing a UI, or want a fast-moving partner, I&apos;m in. 
+                Tell me what you&apos;re aiming for and I&apos;ll send ideas, timelines, and a clear next step.
+              </p>
+            </div>
+            <iframe
+              title="Schedule time with Yassen"
+              src="https://cal.com/yassen-shopov-spd1ms?embed=1"
+              className="h-[720px] w-full rounded-2xl border border-border/60 bg-background"
+              loading="lazy"
+            />
+            <div className="space-y-3 text-center">
+              <Button size="lg" variant="outline" asChild>
+                <Link href="mailto:yassen@yassenshopov.com">
+                  Email yassen@yassenshopov.com
+                </Link>
+              </Button>
+              <p className="text-sm text-muted-foreground">
+                Prefer async? Send a quick overview and I&apos;ll reply within 1-2 days.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 } 

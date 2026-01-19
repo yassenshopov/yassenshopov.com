@@ -6,6 +6,7 @@ import {
   BookOpen, Clapperboard, Monitor, Star,
   SlidersHorizontal
 } from 'lucide-react';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -98,6 +99,11 @@ export default function LibraryFilters({
           </Button>
         </SheetTrigger>
         <SheetContent side="right" className="w-[360px] sm:w-[400px] overflow-y-auto px-0">
+          <SheetHeader>
+            <VisuallyHidden>
+              <SheetTitle>Library filters</SheetTitle>
+            </VisuallyHidden>
+          </SheetHeader>
           <div className="flex flex-col h-full">
             {/* Results Summary */}
             <div className="px-6 pt-6 pb-2 border-b border-muted">

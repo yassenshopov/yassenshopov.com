@@ -80,6 +80,8 @@ export const getTechBadgeMeta = (tag: string): TechBadgeMeta => {
   return techStack[tag] ?? { label: tag, style: defaultTechBadgeStyle };
 };
 
+export const projectTagPaddingXClass = "px-6";
+
 export const projects = [
   {
     title: "PokemonPalette",

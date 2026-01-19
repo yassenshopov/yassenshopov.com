@@ -52,9 +52,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body 
-        className={`${inter.variable} ${spaceGrotesk.variable} ${greatVibes.variable} ${outfit.variable} font-sans`}
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${inter.variable} ${spaceGrotesk.variable} ${greatVibes.variable} ${outfit.variable}`}
+    >
+      <body
+        className="font-sans"
         suppressHydrationWarning
       >
         <ThemeProvider
