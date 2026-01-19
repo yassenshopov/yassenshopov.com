@@ -19,17 +19,22 @@ export type TechBadgeMeta = {
 };
 
 const defaultTechBadgeStyle: TechBadgeStyle = {
-  bg: "bg-primary/10",
+  bg: "bg-primary/15 dark:bg-primary/10",
   text: "text-primary",
-  border: "border-primary/30",
-  hover: "hover:bg-primary/20"
+  border: "border-primary/40 dark:border-primary/30",
+  hover: "hover:bg-primary/25 dark:hover:bg-primary/20"
 };
 
 export const techStack: Record<string, TechBadgeMeta> = {
   "Nuxt3": {
     label: "Nuxt3",
     iconSrc: "/resources/images/tech/nuxt.svg",
-    style: { bg: "bg-[#00dc82]/10", text: "text-[#00dc82]", border: "border-[#00dc82]/30", hover: "hover:bg-[#00dc82]/20" },
+    style: {
+      bg: "bg-[#00dc82]/15 dark:bg-[#00dc82]/10",
+      text: "text-[#0a7a53] dark:text-[#00dc82]",
+      border: "border-[#00dc82]/40 dark:border-[#00dc82]/30",
+      hover: "hover:bg-[#00dc82]/25 dark:hover:bg-[#00dc82]/20"
+    },
     description: "Vue framework for building full-stack web apps.",
     linkHref: "https://nuxt.com/",
     linkLabel: "Learn more"
@@ -37,7 +42,12 @@ export const techStack: Record<string, TechBadgeMeta> = {
   "Vue": {
     label: "Vue",
     iconSrc: "/resources/images/tech/vue.svg",
-    style: { bg: "bg-[#42b883]/10", text: "text-[#42b883]", border: "border-[#42b883]/30", hover: "hover:bg-[#42b883]/20" },
+    style: {
+      bg: "bg-[#42b883]/15 dark:bg-[#42b883]/10",
+      text: "text-[#2f8f66] dark:text-[#42b883]",
+      border: "border-[#42b883]/40 dark:border-[#42b883]/30",
+      hover: "hover:bg-[#42b883]/25 dark:hover:bg-[#42b883]/20"
+    },
     description: "Progressive JavaScript framework for building UIs.",
     linkHref: "https://vuejs.org/",
     linkLabel: "Learn more"
@@ -53,7 +63,12 @@ export const techStack: Record<string, TechBadgeMeta> = {
   "React": {
     label: "React",
     iconSrc: "/resources/images/tech/react.svg",
-    style: { bg: "bg-[#61dafb]/10", text: "text-[#61dafb]", border: "border-[#61dafb]/30", hover: "hover:bg-[#61dafb]/20" },
+    style: {
+      bg: "bg-[#61dafb]/15 dark:bg-[#61dafb]/10",
+      text: "text-[#0f7ba8] dark:text-[#61dafb]",
+      border: "border-[#61dafb]/40 dark:border-[#61dafb]/30",
+      hover: "hover:bg-[#61dafb]/25 dark:hover:bg-[#61dafb]/20"
+    },
     description: "UI library for building component-driven interfaces.",
     linkHref: "https://react.dev/",
     linkLabel: "Learn more"
@@ -61,7 +76,12 @@ export const techStack: Record<string, TechBadgeMeta> = {
   "TailwindCSS": {
     label: "TailwindCSS",
     iconSrc: "/resources/images/tech/tailwind.svg",
-    style: { bg: "bg-[#38bdf8]/10", text: "text-[#38bdf8]", border: "border-[#38bdf8]/30", hover: "hover:bg-[#38bdf8]/20" },
+    style: {
+      bg: "bg-[#38bdf8]/15 dark:bg-[#38bdf8]/10",
+      text: "text-[#0284c7] dark:text-[#38bdf8]",
+      border: "border-[#38bdf8]/40 dark:border-[#38bdf8]/30",
+      hover: "hover:bg-[#38bdf8]/25 dark:hover:bg-[#38bdf8]/20"
+    },
     description: "Utility-first CSS framework for rapid UI styling.",
     linkHref: "https://tailwindcss.com/",
     linkLabel: "Learn more"
@@ -69,7 +89,12 @@ export const techStack: Record<string, TechBadgeMeta> = {
   "Supabase": {
     label: "Supabase",
     iconSrc: "/resources/images/tech/supabase.svg",
-    style: { bg: "bg-[#3ecf8e]/10", text: "text-[#3ecf8e]", border: "border-[#3ecf8e]/30", hover: "hover:bg-[#3ecf8e]/20" },
+    style: {
+      bg: "bg-[#3ecf8e]/15 dark:bg-[#3ecf8e]/10",
+      text: "text-[#198f63] dark:text-[#3ecf8e]",
+      border: "border-[#3ecf8e]/40 dark:border-[#3ecf8e]/30",
+      hover: "hover:bg-[#3ecf8e]/25 dark:hover:bg-[#3ecf8e]/20"
+    },
     description: "Open-source backend with auth, database, and storage.",
     linkHref: "https://supabase.com/",
     linkLabel: "Learn more"
@@ -77,7 +102,12 @@ export const techStack: Record<string, TechBadgeMeta> = {
   "Pokemon API": {
     label: "PokeAPI",
     iconSrc: "/resources/images/tech/pokeapi.png",
-    style: { bg: "bg-[#facc15]/15", text: "text-[#facc15]", border: "border-[#facc15]/40", hover: "hover:bg-[#facc15]/25" },
+    style: {
+      bg: "bg-[#facc15]/20 dark:bg-[#facc15]/15",
+      text: "text-[#a16207] dark:text-[#facc15]",
+      border: "border-[#facc15]/40",
+      hover: "hover:bg-[#facc15]/30 dark:hover:bg-[#facc15]/25"
+    },
     description: "Community Pokemon REST API for data and sprites.",
     linkHref: "https://pokeapi.co/",
     linkLabel: "Learn more"
@@ -88,6 +118,19 @@ export const techStack: Record<string, TechBadgeMeta> = {
     style: { bg: "bg-[#000000]/10", text: "text-[#000000] dark:text-white", border: "border-[#000000]/30 dark:border-white/30", hover: "hover:bg-[#000000]/20 dark:hover:bg-white/20" },
     description: "Official API for reading and writing Notion data.",
     linkHref: "https://developers.notion.com/",
+    linkLabel: "Learn more"
+  },
+  "Clerk": {
+    label: "Clerk",
+    iconSrc: "/resources/images/tech/clerk.svg",
+    style: {
+      bg: "bg-[#6c47ff]/15 dark:bg-[#6c47ff]/10",
+      text: "text-[#4b2ed1] dark:text-[#6c47ff]",
+      border: "border-[#6c47ff]/40 dark:border-[#6c47ff]/30",
+      hover: "hover:bg-[#6c47ff]/25 dark:hover:bg-[#6c47ff]/20"
+    },
+    description: "Authentication and user management platform.",
+    linkHref: "https://clerk.com/",
     linkLabel: "Learn more"
   }
 };
@@ -114,7 +157,7 @@ export const projects = [
       { icon: Users, value: 10000, suffix: "+", label: "Monthly Visits" },
       { icon: Code, value: 3000, suffix: "+", label: "Monthly Users" }
     ],
-    tags: ["Next.js", "React", "TailwindCSS", "Supabase", "Pokemon API"],
+    tags: ["Next.js", "React", "TailwindCSS", "Supabase", "Pokemon API", "Clerk"],
     featured: true,
     impact: "Helping designers and developers find unique color inspiration while celebrating the beloved Pokemon franchise."
   },
@@ -133,7 +176,7 @@ export const projects = [
       { icon: FileText, value: 14000, suffix: "+", label: "Reports generated" },
       { icon: Mail, value: 500, suffix: "+", label: "Report emails sent" }
     ],
-    tags: ["Nuxt3", "Vue", "Supabase", "TailwindCSS"],
+    tags: ["Nuxt3", "Vue", "Supabase", "TailwindCSS", "Clerk"],
     featured: false,
     impact: "Helping recruiting teams understand what works in outreach and improve conversion."
   },
@@ -152,7 +195,7 @@ export const projects = [
       { icon: Wrench, value: 10, suffix: "+", label: "Diagnostic tools supported" },
       { icon: Globe2, value: 50, suffix: " states", label: "Advanced fleet monitoring" }
     ],
-    tags: ["Next.js", "React", "TailwindCSS", "Supabase"],
+    tags: ["Next.js", "React", "TailwindCSS", "Supabase", "Clerk"],
     featured: false,
     impact: "Reducing fleet downtime by bringing OEM diagnostics online without moving the vehicle."
   },
@@ -171,7 +214,7 @@ export const projects = [
       { icon: Sparkles, value: 15, suffix: "+", label: "Custom modules" },
       { icon: Code, value: 99.9, suffix: "%", label: "Uptime" }
     ],
-    tags: ["Next.js", "React", "TailwindCSS", "Supabase", "Notion API"],
+    tags: ["Next.js", "React", "TailwindCSS", "Supabase", "Notion API", "Clerk"],
     featured: true,
     impact: "Empowering professionals to create their perfect productivity system without leaving the Notion ecosystem."
   }

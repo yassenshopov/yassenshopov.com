@@ -238,9 +238,9 @@ export default function ProjectsPage() {
           className="absolute inset-0 bg-[url('/resources/images/projects/hero-image.png')] bg-cover bg-center -z-30 will-change-transform"
           style={{ transform: `translateY(${parallaxOffset}px)` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/60 to-transparent dark:from-black/75 dark:via-black/55 dark:to-transparent olive:from-black/80 olive:via-black/60 olive:to-transparent -z-20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/45 to-transparent dark:from-black/60 dark:via-black/40 dark:to-transparent olive:from-black/70 olive:via-black/45 olive:to-transparent -z-20" />
         <div className="container mx-auto px-4">
-          <TiltCard className="max-w-3xl rounded-2xl bg-card/80 dark:bg-card/70 olive:bg-card/85 backdrop-blur-lg p-6 md:p-10">
+          <TiltCard className="max-w-2xl rounded-2xl bg-card dark:bg-card olive:bg-card backdrop-blur-lg p-6 md:p-10 md:ml-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
               <LandPlot  className="w-4 h-4" />
               <span>Yassen's Projects</span>
