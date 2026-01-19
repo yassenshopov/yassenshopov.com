@@ -40,7 +40,7 @@ export default function Home() {
         { id: 'templates-count', end: templates.length, suffix: '' },
         { id: 'projects-count', end: 2, suffix: '' },
         { id: 'experience-count', end: 5, suffix: '+' },
-        { id: 'life-count', end: 24, suffix: '' }
+        { id: 'life-count', end: 25, suffix: '' }
       ];
 
       stats.forEach(({ id, end, suffix }) => {
@@ -104,7 +104,7 @@ export default function Home() {
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">
-                  <Link href="#projects">View Projects</Link>
+                  <Link href="/projects">View Projects</Link>
                 </Button>
               </div>
             </div>
@@ -181,7 +181,7 @@ export default function Home() {
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold mb-2 text-foreground">
-                <AnimatedNumber end={24} />
+                <AnimatedNumber end={25} />
               </div>
               <div className="text-muted-foreground">Years of trying to figure life out 🎂</div>
             </div>
