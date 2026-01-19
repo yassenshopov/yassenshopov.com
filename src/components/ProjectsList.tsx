@@ -1,6 +1,6 @@
 'use client';
 
-import { Palette, Sparkles, Users, Code, FileText } from "lucide-react";
+import { Palette, Sparkles, Users, Code, FileText, Mail, MapPin, Wrench, Globe2 } from "lucide-react";
 
 type TechBadgeStyle = {
   bg: string;
@@ -75,9 +75,9 @@ export const techStack: Record<string, TechBadgeMeta> = {
     linkLabel: "Learn more"
   },
   "Pokemon API": {
-    label: "Pokemon API",
+    label: "PokeAPI",
     iconSrc: "/resources/images/tech/pokeapi.png",
-    style: { bg: "bg-[#ff1f1f]/10", text: "text-[#ff1f1f]", border: "border-[#ff1f1f]/30", hover: "hover:bg-[#ff1f1f]/20" },
+    style: { bg: "bg-[#facc15]/15", text: "text-[#facc15]", border: "border-[#facc15]/40", hover: "hover:bg-[#facc15]/25" },
     description: "Community Pokemon REST API for data and sprites.",
     linkHref: "https://pokeapi.co/",
     linkLabel: "Learn more"
@@ -128,7 +128,11 @@ export const projects = [
       "/resources/images/projects/talentreports3.png"
     ],
     liveUrl: "https://reports.talsight.com",
-    stats: [],
+    stats: [
+      { icon: Users, value: 150, suffix: "+", label: "Registered recruiters" },
+      { icon: FileText, value: 14000, suffix: "+", label: "Reports generated" },
+      { icon: Mail, value: 500, suffix: "+", label: "Report emails sent" }
+    ],
     tags: ["Nuxt3", "Vue", "Supabase", "TailwindCSS"],
     featured: false,
     impact: "Helping recruiting teams understand what works in outreach and improve conversion."
@@ -143,7 +147,11 @@ export const projects = [
       "/resources/images/projects/eculink3.png"
     ],
     liveUrl: "https://eculink.io",
-    stats: [],
+    stats: [
+      { icon: MapPin, value: 24, suffix: "/7", label: "Real-time GPS tracking" },
+      { icon: Wrench, value: 10, suffix: "+", label: "Diagnostic tools supported" },
+      { icon: Globe2, value: 50, suffix: " states", label: "Advanced fleet monitoring" }
+    ],
     tags: ["Next.js", "React", "TailwindCSS", "Supabase"],
     featured: false,
     impact: "Reducing fleet downtime by bringing OEM diagnostics online without moving the vehicle."

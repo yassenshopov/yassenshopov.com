@@ -5,7 +5,7 @@ import TiltCard from "@/components/TiltCard";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { ExternalLink, Palette, Sparkles, Users, Code, ArrowRight, ChevronRight, LandPlot } from "lucide-react";
+import { Sparkles, ArrowRight, ChevronRight, LandPlot } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
@@ -281,7 +281,7 @@ export default function ProjectsPage() {
               >
                 <button
                   type="button"
-                  className={`relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:row-span-2 lg:min-h-[420px] transition hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                  className={`relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:row-span-2 lg:min-h-[420px] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
                     index % 2 === 0 ? "lg:order-1" : "lg:order-2"
                   }`}
                   onClick={() => project.images[0] && handleOpenImage(index, 0)}
@@ -301,7 +301,7 @@ export default function ProjectsPage() {
                 </button>
                 <button
                   type="button"
-                  className={`relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[200px] transition hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                  className={`relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[200px] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
                     index % 2 === 0 ? "lg:order-2" : "lg:order-1"
                   }`}
                   onClick={() => project.images[1] && handleOpenImage(index, 1)}
@@ -321,7 +321,7 @@ export default function ProjectsPage() {
                 </button>
                 <button
                   type="button"
-                  className={`relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[200px] transition hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                  className={`relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[200px] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
                     index % 2 === 0 ? "lg:order-3" : "lg:order-2"
                   }`}
                   onClick={() => project.images[2] && handleOpenImage(index, 2)}
@@ -397,6 +397,39 @@ export default function ProjectsPage() {
               <p className="mt-4 text-muted-foreground text-lg max-w-3xl">
                 {project.description}
               </p>
+              <div className="mt-6 max-w-3xl rounded-xl border border-border/60 bg-card/60 p-4">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+                    Project Stats
+                  </h4>
+                </div>
+                {project.stats.length > 0 ? (
+                  <div className="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {project.stats.map((stat, statIndex) => {
+                      const Icon = stat.icon;
+                      const decimals = Number.isInteger(stat.value) ? 0 : 1;
+                      return (
+                        <div
+                          key={`${project.title}-stat-${statIndex}`}
+                          className="flex items-center gap-3 rounded-lg bg-background/60 p-3"
+                        >
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                            <Icon className="h-4 w-4" />
+                          </div>
+                          <div>
+                            <div className="text-xl font-semibold text-foreground">
+                              <AnimatedNumber end={stat.value} suffix={stat.suffix} decimals={decimals} />
+                            </div>
+                            <p className="text-xs text-muted-foreground">{stat.label}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <p className="mt-3 text-xs text-muted-foreground">Stats coming soon.</p>
+                )}
+              </div>
             </div>
           </div>
         </section>

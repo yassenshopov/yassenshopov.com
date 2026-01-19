@@ -7,11 +7,19 @@ interface AnimatedNumberProps {
   suffix?: string;
   className?: string;
   duration?: number;
+  decimals?: number;
 }
 
-export function AnimatedNumber({ end, suffix = '', className = '', duration = 2000 }: AnimatedNumberProps) {
-  const [displayed, setDisplayed] = useState(0);
+export function AnimatedNumber({
+  end,
+  suffix = '',
+  className = '',
+  duration = 2000,
+  decimals
+}: AnimatedNumberProps) {
+  const [displayed, setDisplayed] = useState('0');
   const [hasAnimated, setHasAnimated] = useState(false);
+  const resolvedDecimals = typeof decimals === 'number' ? decimals : Number.isInteger(end) ? 0 : 1;
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -42,8 +50,11 @@ export function AnimatedNumber({ end, suffix = '', className = '', duration = 20
         // Easing function (ease-out)
         const eased = 1 - Math.pow(1 - progress, 3);
         
-        const current = Math.round(start + (end - start) * eased);
-        setDisplayed(current);
+        const current = start + (end - start) * eased;
+        const formatted = resolvedDecimals > 0
+          ? current.toFixed(resolvedDecimals)
+          : Math.round(current).toString();
+        setDisplayed(formatted);
 
         if (progress < 1) {
           requestAnimationFrame(update);
@@ -52,7 +63,7 @@ export function AnimatedNumber({ end, suffix = '', className = '', duration = 20
 
       requestAnimationFrame(update);
     }
-  }, [end, hasAnimated, duration]);
+  }, [end, hasAnimated, duration, resolvedDecimals]);
 
   return (
     <span id={`animated-number-${end}`} className={className}>

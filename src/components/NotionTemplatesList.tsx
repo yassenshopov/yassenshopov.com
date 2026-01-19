@@ -19,6 +19,7 @@ interface Template {
   title: string;
   description: string;
   image: string;
+  unoptimized?: boolean;
   categories: string[];
   price: string;
   gumroadLink: string;
@@ -41,6 +42,7 @@ export const templates: Template[] = [
     title: 'Ultimate Investing Dashboard',
     description: 'Automate your investment portfolio tracking and market research with this beautiful Notion template. Automatically synced with Yahoo! Finances',
     image: '/resources/images/notion/Ultimate_Investing_Dashboard.webp',
+    unoptimized: true,
     categories: ['finances', 'planners'],
     price: '22$',
     gumroadLink: 'https://yassenshopov.gumroad.com/l/ultimate-investing-dashboard/',
@@ -344,6 +346,7 @@ export default function NotionTemplatesList() {
                           src={template.image}
                           alt={template.title}
                           fill
+                          unoptimized={template.unoptimized}
                           className={`object-cover transition-transform duration-300 ${viewMode === 'list' ? 'group-hover:scale-102' : 'group-hover:scale-105'}`}
                         />
                         {viewMode !== 'list' && (
