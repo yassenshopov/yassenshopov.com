@@ -273,3 +273,118 @@ html {
   }
 }
 
+/* -------------------------------------------------------------------------
+ * Theme switch animation (View Transitions API)
+ *
+ * When ThemeToggle calls document.startViewTransition(), the browser snapshots
+ * the page before and after the class change on <html>. We keep the OLD
+ * snapshot static and animate the NEW one in with a circular clip-path that
+ * grows from the click coordinates set via --theme-transition-x/y/r.
+ *
+ * Browsers without View Transitions support (or users with reduced motion
+ * preferences) fall through to an instant swap — handled in ThemeToggle.tsx.
+ * ------------------------------------------------------------------------- */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+  animation: theme-circle-reveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes theme-circle-reveal {
+  from {
+    clip-path: circle(
+      0 at var(--theme-transition-x, 50%) var(--theme-transition-y, 50%)
+    );
+  }
+  to {
+    clip-path: circle(
+      var(--theme-transition-r, 150vmax) at
+      var(--theme-transition-x, 50%) var(--theme-transition-y, 50%)
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-new(root),
+  ::view-transition-old(root) {
+    animation: none;
+  }
+}
+
+/* -------------------------------------------------------------------------
+ * Art-page gallery parallax (scroll-driven, GPU-accelerated)
+ *
+ * Uses the View Timeline API (`animation-timeline: view()`) so each tile is
+ * driven by its own position in the viewport — no JS per frame.
+ *
+ * Each tile is assigned one of three "lanes" (a/b/c) with different drift
+ * ranges so adjacent tiles in the masonry feel less mechanical. The animation
+ * runs from when the tile enters the viewport (entry 0%) to when it leaves
+ * (exit 100%), translating Y from a positive offset to a negative offset.
+ * That gives the visual illusion of the tile lagging slightly behind the
+ * scroll, i.e. parallax.
+ *
+ * Graceful fallbacks:
+ *   - Browsers without view-timeline (Firefox today) skip the animation block
+ *     entirely via @supports and just render the tiles flat.
+ *   - Users with prefers-reduced-motion: reduce never get the animation.
+ * ------------------------------------------------------------------------- */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .art-parallax-tile {
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+      animation-duration: auto;
+      will-change: transform;
+    }
+
+    .art-parallax-tile--a {
+      animation-name: art-parallax-lane-a;
+    }
+    .art-parallax-tile--b {
+      animation-name: art-parallax-lane-b;
+    }
+    .art-parallax-tile--c {
+      animation-name: art-parallax-lane-c;
+    }
+  }
+}
+
+@keyframes art-parallax-lane-a {
+  from {
+    transform: translate3d(0, 40px, 0);
+  }
+  to {
+    transform: translate3d(0, -40px, 0);
+  }
+}
+
+@keyframes art-parallax-lane-b {
+  from {
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    transform: translate3d(0, -64px, 0);
+  }
+}
+
+@keyframes art-parallax-lane-c {
+  from {
+    transform: translate3d(0, 64px, 0);
+  }
+  to {
+    transform: translate3d(0, -16px, 0);
+  }
+}
+

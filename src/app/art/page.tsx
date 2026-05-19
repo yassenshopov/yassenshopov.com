@@ -31,9 +31,6 @@ const artworks = Array.from({ length: TOTAL_IMAGES }, (_, i) => {
 });
 
 const INSTAGRAM_URL = "https://www.instagram.com/kofiscrib/";
-const PATREON_URL = "https://www.patreon.com/kofiscrib/";
-const REDBUBBLE_URL =
-  "https://www.redbubble.com/people/kofiscrib/explore?asc=u&page=1&sortOrder=recent";
 const COMMISSION_EMAIL = "yassenshopov00@gmail.com";
 
 type CommissionPieceType = "character" | "illustration" | "cover" | "other";
@@ -45,8 +42,24 @@ const PIECE_OPTIONS: { value: CommissionPieceType; label: string }[] = [
   { value: "other", label: "Other" },
 ];
 
+// Hero tile parallax: each of the four floating thumbnails drifts at a
+// different rate (and direction) as the page scrolls. Indices map to the
+// `artworks` array; speeds are multiplied by scrollY to get translateY (px).
+const HERO_TILES: { idx: number; speed: number; baseY: number }[] = [
+  { idx: 0, speed: -0.16, baseY: 24 },
+  { idx: 6, speed: 0.10, baseY: -8 },
+  { idx: 12, speed: -0.22, baseY: 24 },
+  { idx: 18, speed: 0.14, baseY: -8 },
+];
+
+// Three gallery-tile "lanes" keyed by `:nth-child`-ish offset. Each lane gets
+// a different scroll-timeline @keyframes pair in globals.css so adjacent tiles
+// drift at different rates and feel less mechanical.
+const PARALLAX_LANES = ["a", "b", "c"] as const;
+
 export default function ArtPage() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [heroScrollY, setHeroScrollY] = useState(0);
 
   // Commission form state
   const [name, setName] = useState("");
@@ -80,6 +93,57 @@ export default function ArtPage() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [lightboxIndex]);
+
+  // Hero parallax: drive the floating-thumbnail offsets from window.scrollY,
+  // rAF-throttled so we never do more work than the browser is painting.
+  // No-ops under prefers-reduced-motion and once the hero is well off-screen.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReducedMotion) return;
+
+    let rafId = 0;
+    const onScroll = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(() => {
+        rafId = 0;
+        // Cap the value — beyond the hero we don't need to keep updating.
+        setHeroScrollY(Math.min(window.scrollY, 1200));
+      });
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafId) window.cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  // Enable smooth scrolling while on this page (e.g. for the in-page "Commission a piece"
+  // anchor jump), but honour `prefers-reduced-motion` and restore the prior behaviour
+  // on unmount so we don't leak the setting to other routes.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const root = document.documentElement;
+    const body = document.body;
+    const prevRootBehavior = root.style.scrollBehavior;
+    const prevBodyBehavior = body.style.scrollBehavior;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const behavior = prefersReducedMotion ? "auto" : "smooth";
+
+    root.style.scrollBehavior = behavior;
+    body.style.scrollBehavior = behavior;
+
+    return () => {
+      root.style.scrollBehavior = prevRootBehavior;
+      body.style.scrollBehavior = prevBodyBehavior;
+    };
+  }, []);
 
   const mailtoHref = useMemo(() => {
     const subject = `Commission inquiry — ${
@@ -148,24 +212,28 @@ export default function ArtPage() {
             </div>
             <div className="relative hidden lg:block">
               <div className="grid grid-cols-2 gap-4">
-                {[0, 6, 12, 18].map((idx, i) => (
-                  <div
-                    key={idx}
-                    className={`relative overflow-hidden rounded-2xl border border-border/60 ${
-                      i % 2 === 0 ? "translate-y-6" : "-translate-y-2"
-                    }`}
-                    style={{ aspectRatio: "3 / 4" }}
-                  >
-                    <Image
-                      src={artworks[idx].src}
-                      alt={artworks[idx].alt}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 0vw, 25vw"
-                      priority={i === 0}
-                    />
-                  </div>
-                ))}
+                {HERO_TILES.map(({ idx, speed, baseY }, i) => {
+                  const offsetY = baseY + heroScrollY * speed;
+                  return (
+                    <div
+                      key={idx}
+                      className="relative overflow-hidden rounded-2xl border border-border/60 will-change-transform"
+                      style={{
+                        aspectRatio: "3 / 4",
+                        transform: `translate3d(0, ${offsetY.toFixed(2)}px, 0)`,
+                      }}
+                    >
+                      <Image
+                        src={artworks[idx].src}
+                        alt={artworks[idx].alt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 0vw, 25vw"
+                        priority={i === 0}
+                      />
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -199,94 +267,68 @@ export default function ArtPage() {
             </Link>
           </div>
 
-          {/* CSS columns masonry — natural fit for mixed aspect ratios */}
+          {/* CSS columns masonry — natural fit for mixed aspect ratios. */}
+          {/* Per-tile parallax is driven by `animation-timeline: view()` in globals.css; */}
+          {/* the `art-parallax-tile--{a,b,c}` lane class controls drift speed and direction. */}
           <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 [column-fill:_balance]">
-            {artworks.map((art, i) => (
-              <button
-                key={art.src}
-                type="button"
-                onClick={() => setLightboxIndex(i)}
-                className="mb-4 block w-full overflow-hidden rounded-xl border border-border/60 bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 group"
-                aria-label={`Open ${art.alt}`}
-              >
-                <Image
-                  src={art.src}
-                  alt={art.alt}
-                  width={800}
-                  height={1000}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                  className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.03]"
-                  loading={i < 4 ? "eager" : "lazy"}
-                  priority={i < 4}
-                />
-              </button>
-            ))}
+            {artworks.map((art, i) => {
+              const lane = PARALLAX_LANES[i % PARALLAX_LANES.length];
+              return (
+                <button
+                  key={art.src}
+                  type="button"
+                  onClick={() => setLightboxIndex(i)}
+                  className={`art-parallax-tile art-parallax-tile--${lane} mb-4 block w-full overflow-hidden rounded-xl border border-border/60 bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 group`}
+                  aria-label={`Open ${art.alt}`}
+                >
+                  <Image
+                    src={art.src}
+                    alt={art.alt}
+                    width={800}
+                    height={1000}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                    className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.03]"
+                    loading={i < 4 ? "eager" : "lazy"}
+                    priority={i < 4}
+                  />
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Instagram + elsewhere band */}
-      <section className="py-16 md:py-20 bg-muted">
+      {/* Follow band */}
+      <section className="py-14 md:py-20 bg-muted">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="p-6 flex flex-col gap-3 hover:shadow-lg transition-shadow">
-              <Instagram className="w-7 h-7 text-primary" />
-              <h3 className="text-xl font-semibold text-card-foreground">
-                Instagram
-              </h3>
-              <p className="text-muted-foreground text-sm">
-                The most up-to-date feed of finished pieces, work-in-progress,
-                and process timelapses.
-              </p>
-              <Button asChild variant="outline" className="mt-auto w-fit">
-                <Link
-                  href={INSTAGRAM_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  @kofiscrib
-                </Link>
-              </Button>
-            </Card>
-            <Card className="p-6 flex flex-col gap-3 hover:shadow-lg transition-shadow">
-              <Sparkles className="w-7 h-7 text-primary" />
-              <h3 className="text-xl font-semibold text-card-foreground">
-                Patreon
-              </h3>
-              <p className="text-muted-foreground text-sm">
-                Behind-the-scenes layered files, brush packs, and early access
-                to new pieces.
-              </p>
-              <Button asChild variant="outline" className="mt-auto w-fit">
-                <Link
-                  href={PATREON_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Visit Patreon
-                </Link>
-              </Button>
-            </Card>
-            <Card className="p-6 flex flex-col gap-3 hover:shadow-lg transition-shadow">
-              <Palette className="w-7 h-7 text-primary" />
-              <h3 className="text-xl font-semibold text-card-foreground">
-                Prints & Merch
-              </h3>
-              <p className="text-muted-foreground text-sm">
-                Select pieces available as prints, shirts, stickers, and more
-                via Redbubble.
-              </p>
-              <Button asChild variant="outline" className="mt-auto w-fit">
-                <Link
-                  href={REDBUBBLE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Shop on Redbubble
-                </Link>
-              </Button>
-            </Card>
-          </div>
+          <Card className="p-6 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary shrink-0">
+                <Instagram className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-xl md:text-2xl font-semibold text-card-foreground">
+                  Follow along on Instagram
+                </h3>
+                <p className="text-muted-foreground text-sm md:text-base mt-1">
+                  Finished pieces, works-in-progress, and process timelapses —
+                  always the freshest feed.
+                </p>
+              </div>
+            </div>
+            <Button asChild size="lg" className="group w-fit md:shrink-0">
+              <Link
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2"
+              >
+                <Instagram className="w-4 h-4" />
+                @kofiscrib
+                <ArrowRight className="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+          </Card>
         </div>
       </section>
 
