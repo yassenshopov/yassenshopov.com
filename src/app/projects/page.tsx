@@ -251,9 +251,12 @@ export default function ProjectsPage() {
             <p className="text-xl text-foreground max-w-2xl">
               Dashboards, MVPs, UX cleanups, and data-driven interfaces built with React, Next.js, and Tailwind.
             </p>
+            <p className="mt-2 text-sm font-medium text-muted-foreground">
+              Available for freelance &amp; contract work
+            </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Button size="lg" className="group" onClick={handleScrollToContact}>
-                Work with me
+                Book a call
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </div>
