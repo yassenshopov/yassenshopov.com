@@ -39,24 +39,27 @@ export function Navbar() {
   };
 
   const [isOpen, setIsOpen] = useState(false);
+  // Art lives on the `art.yassenshopov.com` subdomain via middleware rewrite,
+  // so we treat the link as external (skip the LoadingProvider, no prefetch).
   const links = [
     { href: '/about', label: 'About me' },
     { href: '/blog', label: 'Blog' },
     { href: '/projects', label: 'Projects' },
+    { href: 'https://art.yassenshopov.com', label: 'Art', external: true },
     { href: '/library', label: 'Library' },
     { href: '/notion', label: 'Notion Templates' },
     { href: '/contact-me', label: 'Contact me' },
-  ];
+  ] as const;
 
-  const handleLinkClick = () => {
-    startLoading();
+  const handleLinkClick = (external?: boolean) => {
+    if (!external) startLoading();
     setIsOpen(false);
   };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background font-heading">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center" onClick={handleLinkClick}>
+        <Link href="/" className="flex items-center" onClick={() => handleLinkClick(false)}>
           <div className="w-[60px] h-[60px] relative">
             {mounted ? (
               <Image
@@ -73,16 +76,20 @@ export function Navbar() {
           </div>
         </Link>
         <div className="hidden md:flex space-x-6">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-foreground/60 hover:text-foreground transition-colors"
-              onClick={handleLinkClick}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {links.map((link) => {
+            const isExternal = "external" in link && link.external;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-foreground/60 hover:text-foreground transition-colors"
+                onClick={() => handleLinkClick(isExternal)}
+                {...(isExternal ? { rel: "noopener" } : {})}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
         <div className="flex items-center gap-4">
           <ThemeToggle />
@@ -100,7 +107,7 @@ export function Navbar() {
               </SheetHeader>
               <div className="flex flex-col h-full bg-background">
                 <div className="border-b p-6">
-                  <Link href="/" className="flex items-center" onClick={handleLinkClick}>
+                  <Link href="/" className="flex items-center" onClick={() => handleLinkClick(false)}>
                     <div className="w-[80px] h-[60px] relative">
                       {mounted ? (
                         <Image
@@ -119,16 +126,20 @@ export function Navbar() {
                 </div>
                 <nav className="flex-1 p-6">
                   <div className="flex flex-col space-y-4">
-                    {links.map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        className="text-foreground/60 hover:text-foreground transition-colors text-lg py-2 px-4 rounded-md hover:bg-accent/50"
-                        onClick={handleLinkClick}
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
+                    {links.map((link) => {
+                      const isExternal = "external" in link && link.external;
+                      return (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          className="text-foreground/60 hover:text-foreground transition-colors text-lg py-2 px-4 rounded-md hover:bg-accent/50"
+                          onClick={() => handleLinkClick(isExternal)}
+                          {...(isExternal ? { rel: "noopener" } : {})}
+                        >
+                          {link.label}
+                        </Link>
+                      );
+                    })}
                   </div>
                 </nav>
                 <div className="border-t p-6">
