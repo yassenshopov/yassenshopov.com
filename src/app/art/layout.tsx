@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   description:
     "Digital art portfolio by Yassen Shopov — illustrations, character work, and commissioned pieces. Open for commissions.",
   alternates: {
-    canonical: "https://art.yassenshopov.com",
+    canonical: "https://yassenshopov.com/art",
   },
   openGraph: {
     title: "Art • Yassen Shopov",
     description:
       "Digital art portfolio by Yassen Shopov — illustrations, character work, and commissioned pieces. Open for commissions.",
-    url: "https://art.yassenshopov.com",
+    url: "https://yassenshopov.com/art",
     type: "website",
     images: [
       "https://yassenshopov.com/resources/images/art/img1.webp",
