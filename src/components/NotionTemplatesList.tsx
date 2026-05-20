@@ -45,7 +45,7 @@ export const templates: Template[] = [
     unoptimized: true,
     categories: ['finances', 'planners'],
     price: '22$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/ultimate-investing-dashboard/',
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/ultimate-investing-dashboard',
     productHuntLink: 'https://www.producthunt.com/posts/ultimate-investing-dashboard-in-notion'
   },
   {
@@ -111,7 +111,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/To-Do_List_Database.webp',
     categories: ['planners'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/to-do-list-database'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/todo-list-database'
   },
   {
     id: 'social-media-production',
@@ -138,7 +138,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Investments_Tracker_Database.webp',
     categories: ['finances'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/investments-tracker-database',
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/investment-tracker-automated',
     // productHuntLink: 'https://www.producthunt.com/posts/notion-template-for-investment-tracking'
   },
   {
@@ -166,7 +166,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Financial_Goals_Tracker.webp',
     categories: ['finances'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/financial-goals-tracker'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/financial-goal-planning'
   },
   {
     id: 'family-tree-database',
@@ -202,7 +202,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Blog_Writing_Management.webp',
     categories: ['content-creation'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/blog-writing-management'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/blog-management-database'
   },
   {
     id: 'assignment-tracking-for-uni',
@@ -211,7 +211,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Assignment_Tracking_for_Uni.webp',
     categories: ['study'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/assignment-tracking-for-uni'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/university-assignment-tracking'
   }
 ];
 
