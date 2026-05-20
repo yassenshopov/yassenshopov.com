@@ -2,9 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ensure scrollbar is always present */
+/* Reserve scrollbar space natively so opening Radix overlays (DropdownMenu,
+ * Dialog, Popover…) doesn't trigger horizontal layout shifts when their
+ * scroll-lock library adds padding-right to compensate for a "missing"
+ * scrollbar. `scrollbar-gutter: stable` keeps the gutter even when no
+ * scrollbar is needed, so clientWidth and innerWidth stay in sync. */
 html {
-  overflow-y: scroll;
+  scrollbar-gutter: stable;
 }
 
 /* Optional: Style the scrollbar to be less intrusive */

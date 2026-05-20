@@ -84,7 +84,7 @@ export function ThemeToggle() {
   };
 
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon">
           {getIcon()}
