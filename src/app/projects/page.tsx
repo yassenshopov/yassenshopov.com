@@ -113,7 +113,7 @@ function TableOfContents() {
   return (
     <div className="fixed top-24 right-8 z-40 hidden md:block group">
       {/* Minimal lines version (shown by default) */}
-      <div className="absolute right-0 top-0 group-hover:opacity-0 group-hover:invisible transition-all duration-300 bg-card/95 backdrop-blur-lg rounded-lg p-2 shadow-lg">
+      <div className="absolute right-0 top-0 group-hover:opacity-0 group-hover:invisible transition-all duration-300 bg-card rounded-lg p-2 shadow-xl">
         <nav className="space-y-3">
           {projects.map((project) => {
             const projectId = project.title.toLowerCase();
@@ -137,7 +137,7 @@ function TableOfContents() {
       </div>
 
       {/* Expanded version (shown on hover) */}
-      <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 bg-card/95 backdrop-blur-lg rounded-lg p-4 shadow-lg min-w-[200px]">
+      <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 bg-card rounded-lg p-4 shadow-xl min-w-[200px]">
         <h3 className="text-sm font-medium text-muted-foreground mb-3">ON THIS PAGE</h3>
         <nav className="space-y-1">
           {projects.map((project) => {
