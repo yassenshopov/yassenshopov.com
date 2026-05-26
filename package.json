@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo --port 24",
+    "dev": "next dev --turbo --port 26",
     "prebuild": "node scripts/build-library-cache.js",
     "build": "next build",
     "start": "next start",
@@ -35,6 +35,7 @@
     "react-hook-form": "^7.51.0",
     "react-icons": "^5.0.1",
     "react-markdown": "^10.1.0",
+    "rehype-slug": "^6.0.0",
     "sonner": "^2.0.3",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
