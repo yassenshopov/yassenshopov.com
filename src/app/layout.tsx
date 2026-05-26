@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk, Great_Vibes, Outfit } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Toaster } from 'sonner';
 import { Navbar } from '@/components/Navbar';
 import { LoadingProvider } from '@/components/LoadingProvider';
+import { personJsonLd, webSiteJsonLd } from "@/lib/structured-data";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceGrotesk = Space_Grotesk({
@@ -25,24 +26,94 @@ const outfit = Outfit({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+};
+
 export const metadata: Metadata = {
-  title: "Yassen Shopov",
-  description: "Personal website of Yassen Shopov - Software Engineer and Content Creator",
+  metadataBase: new URL("https://yassenshopov.com"),
+  title: {
+    default: "Yassen Shopov",
+    template: "%s \u2022 Yassen Shopov",
+  },
+  description:
+    "Personal website of Yassen Shopov \u2014 Software Engineer, Content Creator, and Notion Template Designer. Explore blog posts, projects, digital art, and productivity tools.",
+  keywords: [
+    "Yassen Shopov",
+    "software engineer",
+    "content creator",
+    "Notion templates",
+    "web development",
+    "digital design",
+    "productivity",
+    "life engineering",
+  ],
+  authors: [{ name: "Yassen Shopov", url: "https://yassenshopov.com" }],
+  creator: "Yassen Shopov",
+  publisher: "Yassen Shopov",
+  category: "technology",
+  applicationName: "Yassen Shopov",
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": "/feed.xml",
+    },
+  },
   icons: {
     icon: [
       { url: "/favicon.ico" },
-      { url: "/logo.svg", type: "image/svg+xml" }
+      { url: "/logo.svg", type: "image/svg+xml" },
     ],
     shortcut: ["/favicon.ico"],
     apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
-    ]
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
+  manifest: "/manifest.webmanifest",
   openGraph: {
-    title: "Yassen Shopov • Life Engineering",
-    description: "Hi there, I'm Yassen Shopov, and this is my website. I'm a Notion-certified blogger and content creator with a focus on self-improvement and life design.",
-    images: ["https://yassenshopov.com/resources/images/main_page/Main_Thumbnail.webp"],
+    title: "Yassen Shopov \u2022 Life Engineering",
+    description:
+      "Digital creator and developer building Notion templates, web applications, and digital solutions that help people achieve their goals.",
+    siteName: "Yassen Shopov",
+    locale: "en_US",
     type: "website",
+    url: "/",
+    images: [
+      {
+        url: "/resources/images/main_page/Main_Thumbnail.webp",
+        width: 1200,
+        height: 630,
+        alt: "Yassen Shopov \u2014 Life Engineering",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yassen Shopov \u2022 Life Engineering",
+    description:
+      "Digital creator and developer building Notion templates, web applications, and digital solutions.",
+    creator: "@yassenshopov",
+    images: ["/resources/images/main_page/Main_Thumbnail.webp"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  formatDetection: {
+    email: false,
+    telephone: false,
   },
 };
 
@@ -57,10 +128,24 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${inter.variable} ${spaceGrotesk.variable} ${greatVibes.variable} ${outfit.variable}`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([personJsonLd(), webSiteJsonLd()]),
+          }}
+        />
+      </head>
       <body
         className="font-sans"
         suppressHydrationWarning
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:text-sm focus:font-medium focus:shadow-lg"
+        >
+          Skip to content
+        </a>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

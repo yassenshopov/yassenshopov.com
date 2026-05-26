@@ -1,9 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false,
   images: {
-    domains: ['yassenshopov.com'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "yassenshopov.com",
+      },
+    ],
   },
 };
 
-module.exports = nextConfig; 
+module.exports = nextConfig;
