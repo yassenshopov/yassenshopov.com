@@ -4,7 +4,6 @@ import { Card } from '@/components/ui/card';
 import Link from 'next/link';
 import Image from 'next/image';
 import Layout from '@/components/Layout';
-import { KitNewsletterForm } from '@/components/KitNewsletterForm';
 import blogData from '@/data/blog-posts.json';
 import type { BlogPost } from '@/types/blog';
 import { BlogHero } from '@/components/blog/BlogHero';
@@ -19,12 +18,12 @@ export default function BlogPage() {
       <BlogHero />
 
       {/* Blog Posts Grid */}
-      <section className="py-24 bg-background">
+      <section id="blog-posts" className="py-24 bg-background scroll-mt-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
             {posts.map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`}>
-                <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                <Card className="overflow-hidden group shadow-none hover:border-primary/40 transition-colors duration-300 h-full flex flex-col">
                   <div className="relative aspect-video">
                     <Image
                       src={post.coverImage || '/resources/images/blog/default-cover.webp'}
@@ -62,13 +61,6 @@ export default function BlogPage() {
               </Link>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Newsletter Section */}
-      <section id="newsletter" className="py-24 bg-muted scroll-mt-16">
-        <div className="container mx-auto px-4">
-          <KitNewsletterForm />
         </div>
       </section>
     </>
