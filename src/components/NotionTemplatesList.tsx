@@ -331,7 +331,7 @@ export default function NotionTemplatesList() {
                       if (el) templateRefs.current[index] = el;
                     }}
                   >
-                    <article className={`bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-all duration-300 h-full ${
+                    <article className={`bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-[border-color,box-shadow] duration-300 h-full ${
                       viewMode === 'list'
                         ? 'flex flex-row items-center md:items-stretch gap-3 p-3 md:p-0 md:gap-0'
                         : 'flex flex-col'

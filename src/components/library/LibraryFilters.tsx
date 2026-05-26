@@ -90,7 +90,7 @@ export default function LibraryFilters({
         <SheetTrigger asChild>
           <Button
             size="lg"
-            className="rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 relative"
+            className="rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-[transform,box-shadow] duration-200 hover:scale-105 relative"
           >
             <Settings className="w-6 h-6" />
             {hasActiveFilters && (

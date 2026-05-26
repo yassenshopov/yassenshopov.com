@@ -84,7 +84,7 @@ export default function LibraryItemCard({
 
   if (viewMode === 'list') {
     return (
-      <Card className="overflow-hidden h-full hover:bg-muted/50 transition-all group cursor-pointer flex flex-row p-4 shadow-none" onClick={() => onItemClick(item)}>
+      <Card className="overflow-hidden h-full hover:bg-muted/50 transition-colors group cursor-pointer flex flex-row p-4 shadow-none" onClick={() => onItemClick(item)}>
         <div className="flex-shrink-0 w-16 h-20 bg-muted dark:bg-black rounded-lg mr-4 overflow-hidden">
           {item.coverImage ? (
             <Image
@@ -210,7 +210,7 @@ export default function LibraryItemCard({
 
   // Grid View
   return (
-    <Card className="overflow-hidden h-full hover:bg-muted/50 transition-all group cursor-pointer shadow-none" onClick={() => onItemClick(item)}>
+    <Card className="overflow-hidden h-full hover:bg-muted/50 transition-colors group cursor-pointer shadow-none" onClick={() => onItemClick(item)}>
       <div className="aspect-video relative bg-black dark:bg-black bg-muted flex items-center justify-center">
         {item.coverImage ? (
           <Image

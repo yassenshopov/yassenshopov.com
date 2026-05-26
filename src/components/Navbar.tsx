@@ -17,7 +17,7 @@ import {
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 export function Navbar() {
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const { startLoading } = useLoading();
 
@@ -27,7 +27,7 @@ export function Navbar() {
 
   const getLogo = () => {
     if (!mounted) return '/logo.png';
-    
+
     switch (resolvedTheme) {
       case 'dark':
         return '/logo-white.png';
@@ -49,7 +49,8 @@ export function Navbar() {
     { href: '/contact-me', label: 'Contact me' },
   ] as const;
 
-  const handleLinkClick = () => {
+  const handleLinkClick = (e: React.MouseEvent) => {
+    if (e.metaKey || e.ctrlKey || e.button === 1) return;
     startLoading();
     setIsOpen(false);
   };
@@ -62,8 +63,9 @@ export function Navbar() {
             {mounted ? (
               <Image
                 src={getLogo()}
-                alt="Yassen Shopov Logo"
+                alt="Yassen Shopov"
                 fill
+                sizes="60px"
                 className="hover:opacity-80 transition-opacity"
                 priority
                 suppressHydrationWarning
@@ -89,8 +91,13 @@ export function Navbar() {
           <ThemeToggle />
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <button className="md:hidden hover:bg-accent rounded-md p-2 transition-colors">
-                <Menu className="w-5 h-5" />
+              <button
+                className="md:hidden hover:bg-accent rounded-md p-2 transition-colors"
+                aria-label="Open menu"
+                aria-expanded={isOpen}
+                aria-controls="mobile-nav"
+              >
+                <Menu className="w-5 h-5" aria-hidden="true" />
               </button>
             </SheetTrigger>
             <SheetContent side="right" className="w-full sm:w-[400px] p-0">
@@ -99,15 +106,16 @@ export function Navbar() {
                   <SheetTitle>Site navigation</SheetTitle>
                 </VisuallyHidden>
               </SheetHeader>
-              <div className="flex flex-col h-full bg-background">
+              <div id="mobile-nav" className="flex flex-col h-full bg-background">
                 <div className="border-b p-6">
                   <Link href="/" className="flex items-center" onClick={handleLinkClick}>
                     <div className="w-[80px] h-[60px] relative">
                       {mounted ? (
                         <Image
                           src={getLogo()}
-                          alt="Yassen Shopov Logo"
+                          alt="Yassen Shopov"
                           fill
+                          sizes="80px"
                           className="hover:opacity-80 transition-opacity"
                           priority
                           suppressHydrationWarning
@@ -118,7 +126,7 @@ export function Navbar() {
                     </div>
                   </Link>
                 </div>
-                <nav className="flex-1 p-6">
+                <nav className="flex-1 p-6" aria-label="Mobile navigation">
                   <div className="flex flex-col space-y-4">
                     {links.map((link) => (
                       <Link
@@ -134,7 +142,7 @@ export function Navbar() {
                 </nav>
                 <div className="border-t p-6">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">© {new Date().getFullYear()} Yassen Shopov</span>
+                    <span className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} Yassen Shopov</span>
                     <ThemeToggle />
                   </div>
                 </div>
@@ -145,4 +153,4 @@ export function Navbar() {
       </div>
     </nav>
   );
-} 
+}

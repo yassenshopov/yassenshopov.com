@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Send, Github, Linkedin, Twitter, Code, ArrowRight, MessageSquare } from "lucide-react";
+import { Mail, Send, Github, Linkedin, Twitter, ArrowRight, MessageSquare, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -17,7 +17,6 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSending(true);
-    // Add your form submission logic here
     setTimeout(() => setIsSending(false), 1000);
   };
 
@@ -58,14 +57,14 @@ export default function ContactPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
-              <MessageSquare className="w-4 h-4" />
-              <span>Let's Connect</span>
+              <MessageSquare className="w-4 h-4" aria-hidden="true" />
+              <span>Let{"\u2019"}s Connect</span>
             </div>
             <h1 className="text-4xl md:text-7xl font-bold tracking-tighter leading-[0.95] text-foreground mb-6">
               Get in Touch
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl">
-              Have a project in mind? Want to collaborate? Or just want to say hi? I'd love to hear from you.
+              Have a project in mind? Want to collaborate? Or just want to say hi? I{"\u2019"}d love to hear from you.
             </p>
           </div>
         </div>
@@ -83,7 +82,11 @@ export default function ContactPage() {
                   </label>
                   <Input
                     id="email"
+                    name="email"
                     type="email"
+                    inputMode="email"
+                    autoComplete="email"
+                    spellCheck={false}
                     placeholder="hello@example.com"
                     value={email}
                     onChange={handleEmailChange}
@@ -97,7 +100,9 @@ export default function ContactPage() {
                   </label>
                   <Textarea
                     id="message"
-                    placeholder="Tell me about your project..."
+                    name="message"
+                    autoComplete="off"
+                    placeholder="Tell me about your project\u2026"
                     value={message}
                     onChange={handleMessageChange}
                     required
@@ -106,11 +111,14 @@ export default function ContactPage() {
                 </div>
                 <Button type="submit" size="lg" className="w-full group" disabled={isSending}>
                   {isSending ? (
-                    "Sending..."
+                    <>
+                      <Loader2 className="mr-2 w-4 h-4 animate-spin" aria-hidden="true" />
+                      Sending{"\u2026"}
+                    </>
                   ) : (
                     <>
                       Send Message
-                      <Send className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      <Send className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                     </>
                   )}
                 </Button>
@@ -125,11 +133,11 @@ export default function ContactPage() {
                 <p className="text-muted-foreground">
                   For quick inquiries, you can reach me directly at:
                 </p>
-                <Link 
+                <Link
                   href="mailto:yassenshopov00@gmail.com"
                   className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
                 >
-                  <Mail className="w-4 h-4" />
+                  <Mail className="w-4 h-4" aria-hidden="true" />
                   yassenshopov00@gmail.com
                 </Link>
               </div>
@@ -150,7 +158,7 @@ export default function ContactPage() {
                       className={`p-3 rounded-lg bg-card hover:bg-accent transition-colors ${social.color}`}
                       aria-label={social.name}
                     >
-                      <social.icon className="w-5 h-5" />
+                      <social.icon className="w-5 h-5" aria-hidden="true" />
                     </Link>
                   ))}
                 </div>
@@ -158,14 +166,14 @@ export default function ContactPage() {
 
               {/* Collaboration */}
               <Card className="p-6 bg-primary/5 border-primary/10">
-                <h2 className="text-2xl font-bold tracking-tight mb-2">Let's Build Something</h2>
+                <h2 className="text-2xl font-bold tracking-tight mb-2">Let{"\u2019"}s Build Something</h2>
                 <p className="text-muted-foreground mb-4">
-                  Looking for a technical co-founder or want to collaborate on an exciting project? I'm always open to interesting opportunities.
+                  Looking for a technical co-founder or want to collaborate on an exciting project? I{"\u2019"}m always open to interesting opportunities.
                 </p>
                 <Button variant="outline" className="group" asChild>
                   <Link href="/projects">
                     View My Work
-                    <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                   </Link>
                 </Button>
               </Card>
@@ -175,4 +183,4 @@ export default function ContactPage() {
       </section>
     </Layout>
   );
-} 
+}

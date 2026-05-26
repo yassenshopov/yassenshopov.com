@@ -51,7 +51,7 @@ export default function TimelineItem({
         {index % 2 === 0 ? (
           <>
             <div className="md:w-1/2">
-              <Card className="p-6 hover:shadow-lg transition-all duration-300 group overflow-visible relative">
+              <Card className="p-6 hover:shadow-lg transition-shadow duration-300 group overflow-visible relative">
                 <div className="flex items-center gap-3 mb-3">
                   <div className={`${color} group-hover:scale-110 transition-transform`}>
                     {icon}
@@ -72,7 +72,7 @@ export default function TimelineItem({
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group inline-flex items-center gap-1.5 px-2.5 py-1 text-sm bg-white/5 hover:bg-white/10 text-white/70 hover:text-white rounded-full transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 border border-white/10"
+                            className="group inline-flex items-center gap-1.5 px-2.5 py-1 text-sm bg-white/5 hover:bg-white/10 text-white/70 hover:text-white rounded-full transition-[transform,color,background-color] duration-300 hover:scale-105 hover:-translate-y-0.5 border border-white/10"
                           >
                             {link.text}
                             <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
@@ -170,7 +170,7 @@ export default function TimelineItem({
               </div>
             )}
             <div className="md:w-1/2">
-              <Card className="p-6 hover:shadow-lg transition-all duration-300 group overflow-visible relative">
+              <Card className="p-6 hover:shadow-lg transition-shadow duration-300 group overflow-visible relative">
                 <div className="flex items-center gap-3 mb-3">
                   <div className={`${color} group-hover:scale-110 transition-transform`}>
                     {icon}
@@ -191,7 +191,7 @@ export default function TimelineItem({
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group inline-flex items-center gap-1.5 px-2.5 py-1 text-sm bg-white/5 hover:bg-white/10 text-white/70 hover:text-white rounded-full transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 border border-white/10"
+                            className="group inline-flex items-center gap-1.5 px-2.5 py-1 text-sm bg-white/5 hover:bg-white/10 text-white/70 hover:text-white rounded-full transition-[transform,color,background-color] duration-300 hover:scale-105 hover:-translate-y-0.5 border border-white/10"
                           >
                             {link.text}
                             <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />

@@ -253,7 +253,7 @@ export default function LibraryPage() {
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
               <Input
-                placeholder="Search library..."
+                placeholder="Search library\u2026"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 w-64"
@@ -319,7 +319,7 @@ export default function LibraryPage() {
             <div className="flex justify-center py-8">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                Loading library items...
+                Loading library items\u2026
               </div>
             </div>
           )}
@@ -360,7 +360,7 @@ export default function LibraryPage() {
               {isLoadingMore ? (
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                  Loading more items...
+                  Loading more items\u2026
                 </div>
               ) : (
                 <div className="text-muted-foreground text-sm">

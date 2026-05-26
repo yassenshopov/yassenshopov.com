@@ -104,14 +104,16 @@ function InlineSubscribeForm() {
           name="email_address"
           required
           autoComplete="email"
+          inputMode="email"
+          spellCheck={false}
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           placeholder="you@example.com"
           disabled={status === 'loading'}
           className={cn(
             'min-w-0 flex-1 rounded-full border border-border bg-background px-5 py-3 text-sm text-foreground placeholder:text-muted-foreground',
-            'focus:outline-none focus:ring-2 focus:ring-primary/40',
-            'sm:border-none sm:bg-transparent sm:py-2 sm:focus:ring-0'
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40',
+            'sm:border-none sm:bg-transparent sm:py-2 sm:focus-visible:ring-0'
           )}
         />
         <button

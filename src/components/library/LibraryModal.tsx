@@ -406,7 +406,7 @@ export default function LibraryModal({
                           href={url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 px-4 py-2 bg-primary/5 hover:bg-primary/10 border border-primary/20 hover:border-primary/30 rounded-lg text-sm transition-all"
+                          className="flex items-center gap-2 px-4 py-2 bg-primary/5 hover:bg-primary/10 border border-primary/20 hover:border-primary/30 rounded-lg text-sm transition-colors"
                         >
                           <ExternalLink className="w-4 h-4 text-primary" />
                           <span className="text-primary font-medium">{platform.charAt(0).toUpperCase() + platform.slice(1)}</span>
@@ -424,7 +424,7 @@ export default function LibraryModal({
                   {getRelatedItems(selectedItem, 6).map((relatedItem) => (
                     <div
                       key={relatedItem.id}
-                      className="cursor-pointer group flex gap-3 p-3 rounded-lg border hover:bg-muted/50 transition-all"
+                      className="cursor-pointer group flex gap-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors"
                       onClick={() => onSelectItem(relatedItem)}
                     >
                       <div className="w-16 h-20 relative bg-muted dark:bg-black rounded-md overflow-hidden flex-shrink-0">

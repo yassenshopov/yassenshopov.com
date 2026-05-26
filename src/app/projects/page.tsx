@@ -113,7 +113,7 @@ function TableOfContents() {
   return (
     <div className="fixed top-24 right-8 z-40 hidden md:block group">
       {/* Minimal lines version (shown by default) */}
-      <div className="absolute right-0 top-0 group-hover:opacity-0 group-hover:invisible transition-all duration-300 bg-card rounded-lg p-2 shadow-xl">
+      <div className="absolute right-0 top-0 group-hover:opacity-0 group-hover:invisible transition-[opacity,visibility] duration-300 bg-card rounded-lg p-2 shadow-xl">
         <nav className="space-y-3">
           {projects.map((project) => {
             const projectId = project.title.toLowerCase();
@@ -137,7 +137,7 @@ function TableOfContents() {
       </div>
 
       {/* Expanded version (shown on hover) */}
-      <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 bg-card rounded-lg p-4 shadow-xl min-w-[200px]">
+      <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-[opacity,visibility] duration-300 bg-card rounded-lg p-4 shadow-xl min-w-[200px]">
         <h3 className="text-sm font-medium text-muted-foreground mb-3">ON THIS PAGE</h3>
         <nav className="space-y-1">
           {projects.map((project) => {
@@ -277,13 +277,13 @@ export default function ProjectsPage() {
                 {project.title}
               </h3>
               <div
-                className={`mt-6 grid gap-6 lg:grid-rows-2 ${
+                className={`mt-6 grid gap-0 lg:grid-rows-2 ${
                   index % 2 === 0 ? "lg:grid-cols-[2fr_1fr]" : "lg:grid-cols-[1fr_2fr]"
                 }`}
               >
                 <button
                   type="button"
-                  className={`relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:row-span-2 lg:min-h-[420px] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                  className={`relative h-full overflow-hidden bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:row-span-2 lg:min-h-[420px] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
                     index % 2 === 0 ? "lg:order-1" : "lg:order-2"
                   }`}
                   onClick={() => project.images[0] && handleOpenImage(index, 0)}
@@ -303,7 +303,7 @@ export default function ProjectsPage() {
                 </button>
                 <button
                   type="button"
-                  className={`relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[200px] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                  className={`relative h-full overflow-hidden bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[200px] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
                     index % 2 === 0 ? "lg:order-2" : "lg:order-1"
                   }`}
                   onClick={() => project.images[1] && handleOpenImage(index, 1)}
@@ -323,7 +323,7 @@ export default function ProjectsPage() {
                 </button>
                 <button
                   type="button"
-                  className={`relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[200px] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                  className={`relative h-full overflow-hidden bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[200px] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
                     index % 2 === 0 ? "lg:order-3" : "lg:order-2"
                   }`}
                   onClick={() => project.images[2] && handleOpenImage(index, 2)}
