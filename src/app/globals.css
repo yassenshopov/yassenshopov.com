@@ -9,6 +9,23 @@
  * scrollbar is needed, so clientWidth and innerWidth stay in sync. */
 html {
   scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+  color-scheme: light dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Optional: Style the scrollbar to be less intrusive */
@@ -154,58 +171,58 @@ html {
   }
 
   .olive {
-    /* Palette anchors:
-     *   Rustic Noir  #292624  →  oklch(0.234 0.006 53)
-     *   Mustard Seed #D8D262  →  oklch(0.847 0.131 102)
+    /* Palette anchors — leaning green over brown:
+     *   Forest Floor  ~#1E251C  →  oklch(0.234 0.018 130)
+     *   Olive Drab    ~#B7C967  →  oklch(0.82 0.135 125)
      * Everything below is derived from these two. */
 
-    /* Base — Rustic Noir ground, mustard-tinted cream type */
-    --background: oklch(0.234 0.006 53);
-    --foreground: oklch(0.93 0.07 100);
+    /* Base — deep green-olive ground, soft sage-cream type */
+    --background: oklch(0.234 0.018 130);
+    --foreground: oklch(0.93 0.075 122);
 
-    /* Surfaces — one notch above noir so cards read as elevated */
-    --card: oklch(0.28 0.008 55);
-    --card-foreground: oklch(0.93 0.07 100);
-    --popover: oklch(0.28 0.008 55);
-    --popover-foreground: oklch(0.93 0.07 100);
+    /* Surfaces — one notch above the ground so cards read as elevated */
+    --card: oklch(0.28 0.022 128);
+    --card-foreground: oklch(0.93 0.075 122);
+    --popover: oklch(0.28 0.022 128);
+    --popover-foreground: oklch(0.93 0.075 122);
 
-    /* Primary — Mustard Seed on Noir */
-    --primary: oklch(0.847 0.131 102);
-    --primary-foreground: oklch(0.22 0.006 53);
+    /* Primary — Olive Drab on Forest Floor */
+    --primary: oklch(0.82 0.135 125);
+    --primary-foreground: oklch(0.22 0.018 130);
 
-    /* Secondary / muted — warm dark neutrals between the two anchors */
-    --secondary: oklch(0.34 0.015 60);
-    --secondary-foreground: oklch(0.88 0.06 100);
-    --muted: oklch(0.32 0.012 58);
-    --muted-foreground: oklch(0.74 0.045 95);
+    /* Secondary / muted — mossy dark neutrals between the two anchors */
+    --secondary: oklch(0.34 0.03 128);
+    --secondary-foreground: oklch(0.88 0.07 122);
+    --muted: oklch(0.32 0.025 128);
+    --muted-foreground: oklch(0.74 0.06 122);
 
-    /* Accent — dimmed mustard for hovers / secondary highlights */
-    --accent: oklch(0.55 0.10 100);
-    --accent-foreground: oklch(0.22 0.006 53);
+    /* Accent — dimmed olive-green for hovers / secondary highlights */
+    --accent: oklch(0.55 0.11 125);
+    --accent-foreground: oklch(0.22 0.018 130);
 
     /* Utility */
     --destructive: oklch(0.65 0.18 30);
-    --destructive-foreground: oklch(0.234 0.006 53);
-    --border: oklch(0.847 0.131 102 / 0.18);
-    --input: oklch(0.847 0.131 102 / 0.18);
-    --ring: oklch(0.847 0.131 102 / 0.45);
+    --destructive-foreground: oklch(0.234 0.018 130);
+    --border: oklch(0.82 0.135 125 / 0.18);
+    --input: oklch(0.82 0.135 125 / 0.18);
+    --ring: oklch(0.82 0.135 125 / 0.45);
 
-    /* Charts — mustard-led with warm/amber falloff */
-    --chart-1: oklch(0.847 0.131 102);
-    --chart-2: oklch(0.75 0.11 90);
-    --chart-3: oklch(0.65 0.09 110);
-    --chart-4: oklch(0.55 0.08 70);
-    --chart-5: oklch(0.45 0.05 60);
+    /* Charts — olive-led with green/sage falloff */
+    --chart-1: oklch(0.82 0.135 125);
+    --chart-2: oklch(0.72 0.115 135);
+    --chart-3: oklch(0.62 0.10 115);
+    --chart-4: oklch(0.55 0.09 140);
+    --chart-5: oklch(0.45 0.06 125);
 
     /* Sidebar */
-    --sidebar: oklch(0.28 0.008 55);
-    --sidebar-foreground: oklch(0.93 0.07 100);
-    --sidebar-primary: oklch(0.847 0.131 102);
-    --sidebar-primary-foreground: oklch(0.22 0.006 53);
-    --sidebar-accent: oklch(0.55 0.10 100);
-    --sidebar-accent-foreground: oklch(0.93 0.07 100);
-    --sidebar-border: oklch(0.847 0.131 102 / 0.15);
-    --sidebar-ring: oklch(0.847 0.131 102 / 0.4);
+    --sidebar: oklch(0.28 0.022 128);
+    --sidebar-foreground: oklch(0.93 0.075 122);
+    --sidebar-primary: oklch(0.82 0.135 125);
+    --sidebar-primary-foreground: oklch(0.22 0.018 130);
+    --sidebar-accent: oklch(0.55 0.11 125);
+    --sidebar-accent-foreground: oklch(0.93 0.075 122);
+    --sidebar-border: oklch(0.82 0.135 125 / 0.15);
+    --sidebar-ring: oklch(0.82 0.135 125 / 0.4);
   }
 
   /* Base typography styles */
