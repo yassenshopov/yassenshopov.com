@@ -93,6 +93,7 @@ export default async function BlogPost({
         post={postWithReadingTime}
         prevPost={prevPostWithReadingTime}
         nextPost={nextPostWithReadingTime}
+        wordCount={wordCount}
       />
     </Layout>
   );

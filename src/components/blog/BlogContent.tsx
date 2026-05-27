@@ -1,6 +1,6 @@
 'use client';
 
-import { format } from 'date-fns';
+import { format, formatDistanceToNow } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { BlogPost } from '@/types/blog';
@@ -9,20 +9,40 @@ import rehypeSlug from 'rehype-slug';
 import { KitNewsletterForm } from '@/components/KitNewsletterForm';
 import { Button } from '@/components/ui/button';
 import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
+import {
   ArrowLeft,
   ArrowRight,
-  Calendar,
-  ChevronRight,
+  ArrowUp,
+  BookOpen,
+  ChevronLeft,
+  ChevronsRight,
+  ListOrdered,
   Mail,
   Sparkles,
   CalendarDays,
+  Type,
 } from 'lucide-react';
-import { Children, isValidElement, useEffect, useRef, useState } from 'react';
+import {
+  Children,
+  isValidElement,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import {
   InlineShareButtons,
   ShareRail,
   SharePopover,
 } from '@/components/blog/BlogShare';
+import { ReadingProgress } from '@/components/blog/ReadingProgress';
 
 interface TocHeading {
   level: number;
@@ -30,11 +50,13 @@ interface TocHeading {
   id: string;
 }
 
-function TableOfContents({
-  articleRef,
-}: {
-  articleRef: React.RefObject<HTMLElement | null>;
-}) {
+/**
+ * Builds and tracks a table of contents from the rendered article DOM. The
+ * data layer is shared between the desktop sidebar and the mobile drawer, so
+ * we keep it in a hook that does the DOM observation and IntersectionObserver
+ * dance once.
+ */
+function useArticleHeadings(articleRef: React.RefObject<HTMLElement | null>) {
   const [headings, setHeadings] = useState<TocHeading[]>([]);
   const [activeId, setActiveId] = useState<string>('');
 
@@ -123,50 +145,160 @@ function TableOfContents({
     return () => observer.disconnect();
   }, [headings]);
 
-  const scrollToHeading = (id: string) => {
+  return { headings, activeId };
+}
+
+interface TocListProps {
+  headings: TocHeading[];
+  activeId: string;
+  onNavigate?: (id: string) => void;
+}
+
+/**
+ * Renders a vertically stacked TOC with a left accent rail that highlights
+ * the currently visible heading. Used by both the sticky desktop sidebar
+ * and the mobile Sheet drawer.
+ */
+function TocList({ headings, activeId, onNavigate }: TocListProps) {
+  if (headings.length === 0) {
+    return (
+      <p className="text-sm text-muted-foreground">
+        Sections will appear here as you scroll.
+      </p>
+    );
+  }
+
+  const minLevel = Math.min(...headings.map((h) => h.level));
+
+  const handleClick = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+    onNavigate?.(id);
   };
 
-  const minLevel = headings.length
-    ? Math.min(...headings.map((h) => h.level))
-    : 1;
+  return (
+    <nav aria-label="Table of contents" className="relative">
+      {/* Vertical rail behind the list items */}
+      <span
+        aria-hidden
+        className="absolute left-0 top-0 bottom-0 w-px bg-border"
+      />
+      <ul className="space-y-0.5">
+        {headings.map((heading) => {
+          const isActive = activeId === heading.id;
+          const indent = (heading.level - minLevel) * 12;
+          return (
+            <li key={heading.id} className="relative">
+              {/* Active-state accent bar that sits on top of the rail */}
+              <span
+                aria-hidden
+                className={`absolute left-0 top-1.5 bottom-1.5 w-px transition-colors ${
+                  isActive ? 'bg-primary' : 'bg-transparent'
+                }`}
+              />
+              <button
+                type="button"
+                onClick={() => handleClick(heading.id)}
+                aria-current={isActive ? 'location' : undefined}
+                title={heading.text}
+                className={`block w-full text-left text-sm leading-snug py-1.5 pr-1 transition-colors ${
+                  isActive
+                    ? 'text-foreground font-medium'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+                style={{ paddingLeft: `${12 + indent}px` }}
+              >
+                <span className="line-clamp-2">{heading.text}</span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+}
+
+/**
+ * Floating button (mobile + tablet) that opens a Sheet containing the TOC.
+ * Hidden on lg+ since the sticky sidebar takes over.
+ */
+function MobileTocSheet({
+  headings,
+  activeId,
+}: {
+  headings: TocHeading[];
+  activeId: string;
+}) {
+  const [open, setOpen] = useState(false);
+
+  if (headings.length === 0) return null;
 
   return (
-    <nav className="space-y-1">
-      <div className="mb-4 pb-4 border-b">
-        <h3 className="font-medium text-base">Table of Contents</h3>
-        <p className="text-sm text-muted-foreground mt-1">Jump to section</p>
-      </div>
-      {headings.length === 0 ? (
-        <p className="text-sm text-muted-foreground">No sections yet.</p>
-      ) : (
-        headings.map((heading) => (
-          <button
-            key={heading.id}
-            onClick={() => scrollToHeading(heading.id)}
-            aria-current={activeId === heading.id ? 'location' : undefined}
-            className={`group flex items-center w-full text-sm py-1 ${
-              activeId === heading.id
-                ? 'text-primary font-medium'
-                : 'text-muted-foreground hover:text-foreground'
-            }`}
-            style={{ paddingLeft: `${(heading.level - minLevel) * 16}px` }}
-          >
-            <span
-              className={`mr-2 opacity-0 transition-opacity group-hover:opacity-100 ${
-                activeId === heading.id ? 'opacity-100' : ''
-              }`}
-            >
-              <ChevronRight className="w-3 h-3" />
-            </span>
-            <span className="text-left">{heading.text}</span>
-          </button>
-        ))
-      )}
-    </nav>
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild>
+        <button
+          type="button"
+          aria-label="Open table of contents"
+          className="lg:hidden fixed bottom-6 left-4 z-40 inline-flex items-center gap-2 rounded-full border bg-background/90 px-4 py-2.5 text-xs font-medium shadow-lg backdrop-blur-md transition-colors hover:border-primary/40 hover:text-primary"
+        >
+          <ListOrdered className="h-4 w-4" />
+          <span>Contents</span>
+        </button>
+      </SheetTrigger>
+      <SheetContent side="left" className="w-[85vw] sm:max-w-sm">
+        <SheetHeader>
+          <SheetTitle>Table of Contents</SheetTitle>
+          <SheetDescription>Jump to any section in this article.</SheetDescription>
+        </SheetHeader>
+        <div className="overflow-y-auto px-4 pb-6">
+          <TocList
+            headings={headings}
+            activeId={activeId}
+            onNavigate={() => setOpen(false)}
+          />
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+}
+
+/**
+ * Floating "back to top" button that fades in once the reader has scrolled
+ * past the hero. Lives bottom-right and shares vertical space with the
+ * mobile TOC button (which is bottom-left), so they never collide.
+ */
+function BackToTopButton() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setVisible(window.scrollY > window.innerHeight * 0.6);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const handleClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={handleClick}
+      aria-label="Back to top"
+      tabIndex={visible ? 0 : -1}
+      className={`fixed bottom-6 right-4 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full border bg-background/90 text-foreground shadow-lg backdrop-blur-md transition-all duration-300 hover:border-primary/40 hover:text-primary ${
+        visible
+          ? 'opacity-100 translate-y-0 pointer-events-auto'
+          : 'opacity-0 translate-y-2 pointer-events-none'
+      }`}
+    >
+      <ArrowUp className="h-4 w-4" />
+    </button>
   );
 }
 
@@ -314,19 +446,26 @@ function YouTubeEmbed({
   const params = new URLSearchParams({ rel: '0' });
   if (start) params.set('start', String(start));
   return (
-    <div className="not-prose my-8 overflow-hidden rounded-lg border bg-black shadow-sm">
-      <div className="relative w-full" style={{ aspectRatio: '16 / 9' }}>
-        <iframe
-          src={`https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`}
-          title={title}
-          loading="lazy"
-          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          referrerPolicy="strict-origin-when-cross-origin"
-          className="absolute inset-0 h-full w-full border-0"
-        />
+    <figure className="not-prose my-10">
+      <div className="overflow-hidden rounded-xl border bg-black shadow-sm">
+        <div className="relative w-full" style={{ aspectRatio: '16 / 9' }}>
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`}
+            title={title}
+            loading="lazy"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            referrerPolicy="strict-origin-when-cross-origin"
+            className="absolute inset-0 h-full w-full border-0"
+          />
+        </div>
       </div>
-    </div>
+      {title && title !== 'YouTube video' && (
+        <figcaption className="mt-3 text-center text-xs text-muted-foreground italic">
+          {title}
+        </figcaption>
+      )}
+    </figure>
   );
 }
 
@@ -359,15 +498,67 @@ function isYouTubeEmbedNode(node: unknown): boolean {
 }
 
 /**
+ * Returns true when a hast node is a standalone `<img>` (the typical
+ * `![alt](src)` markdown shape). The `p` override uses this to upgrade the
+ * paragraph into a real `<figure>` with a caption.
+ */
+function isStandaloneImage(node: unknown): boolean {
+  if (!node || typeof node !== 'object') return false;
+  const n = node as { type?: string; tagName?: string };
+  return n.type === 'element' && n.tagName === 'img';
+}
+
+interface ImgHastProperties {
+  src?: unknown;
+  alt?: unknown;
+}
+
+/**
+ * Renders a block-level <figure> for a standalone markdown image, with the
+ * markdown alt text doubling as a visible <figcaption>.
+ */
+function MarkdownImageFigure({
+  src,
+  alt,
+}: {
+  src: string;
+  alt: string;
+}) {
+  const caption = alt.trim();
+  return (
+    <figure className="not-prose my-8">
+      <div className="overflow-hidden rounded-xl border bg-muted">
+        {/* Plain <img> here keeps us out of next/image's static-import
+            requirements — markdown image paths can be arbitrary URLs that
+            we don't know dimensions for ahead of time. The lazy/decoding
+            hints capture most of the perf benefit anyway. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={src}
+          alt={caption}
+          loading="lazy"
+          decoding="async"
+          className="block w-full h-auto object-cover"
+        />
+      </div>
+      {caption && (
+        <figcaption className="mt-3 text-center text-xs text-muted-foreground italic">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
+/**
  * Detects `[![alt](thumb)](youtube-url)` markdown and upgrades it to a real
  * embedded YouTube player. Plain YouTube text links are left untouched so they
- * keep working as ordinary links.
+ * keep working as ordinary links. Also wraps standalone images in a <figure>
+ * with a caption pulled from the markdown alt text.
  */
 const markdownComponents: Components = {
   p({ node, children, ...rest }) {
-    // When a paragraph wraps only the YouTube-embed marker, the `a` override
-    // below replaces it with a <div>-based <YouTubeEmbed>. Rendering that
-    // inside a <p> is invalid HTML, so unwrap the paragraph in that case.
+    // Filter out whitespace-only text nodes so wrapping detection is robust.
     const kids = (node?.children ?? []).filter(
       (c) =>
         !(
@@ -376,9 +567,32 @@ const markdownComponents: Components = {
           /^\s*$/.test((c as { value: string }).value)
         )
     );
+
+    // YouTube embed marker wrapped in <a><img/></a>: unwrap the <p> entirely
+    // and let the <a> override render the embed (a <figure>).
     if (kids.length === 1 && isYouTubeEmbedNode(kids[0])) {
       return <>{children}</>;
     }
+
+    // Standalone `![alt](src)` image: replace the <p> with a real <figure>.
+    // We do this at the <p> layer (rather than in the <img> override) so
+    // that inline-image cases inside prose still render as a plain inline
+    // <img> without producing invalid <figure>-inside-<p> HTML.
+    if (kids.length === 1 && isStandaloneImage(kids[0])) {
+      const imgNode = kids[0] as { properties?: ImgHastProperties };
+      const src =
+        typeof imgNode.properties?.src === 'string'
+          ? imgNode.properties.src
+          : '';
+      const alt =
+        typeof imgNode.properties?.alt === 'string'
+          ? imgNode.properties.alt
+          : '';
+      if (src) {
+        return <MarkdownImageFigure src={src} alt={alt} />;
+      }
+    }
+
     return <p {...rest}>{children}</p>;
   },
   a({ href, children, ...rest }) {
@@ -401,10 +615,36 @@ const markdownComponents: Components = {
         );
       }
     }
+    // External links open in a new tab; internal links stay in-place.
+    const isExternal =
+      typeof href === 'string' && /^https?:\/\//i.test(href);
     return (
-      <a href={href} {...rest}>
+      <a
+        href={href}
+        {...(isExternal
+          ? { target: '_blank', rel: 'noopener noreferrer' }
+          : {})}
+        {...rest}
+      >
         {children}
       </a>
+    );
+  },
+  img({ src, alt }) {
+    // Standalone images are intercepted at the <p> layer above and rendered
+    // as a <figure>; this override only fires for the rare inline-image case
+    // (an `![alt](src)` mixed with other phrasing inside a paragraph), where
+    // a plain inline <img> is the only valid HTML.
+    const safeSrc = typeof src === 'string' ? src : '';
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={safeSrc}
+        alt={alt ?? ''}
+        loading="lazy"
+        decoding="async"
+        className="inline-block align-middle rounded-md"
+      />
     );
   },
 };
@@ -413,67 +653,179 @@ interface BlogContentProps {
   post: BlogPost;
   prevPost: BlogPost | null;
   nextPost: BlogPost | null;
+  wordCount: number;
 }
 
-export function BlogContent({ post, prevPost, nextPost }: BlogContentProps) {
+export function BlogContent({
+  post,
+  prevPost,
+  nextPost,
+  wordCount,
+}: BlogContentProps) {
   const articleRef = useRef<HTMLElement>(null);
+  const { headings, activeId } = useArticleHeadings(articleRef);
+
+  const formattedWordCount = useMemo(
+    () => new Intl.NumberFormat('en-US').format(wordCount),
+    [wordCount]
+  );
 
   return (
     <>
+      <ReadingProgress />
+
       {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-end bg-gradient-to-b from-background to-muted">
+      <section
+        aria-labelledby="article-title"
+        className="relative isolate overflow-hidden bg-gradient-to-b from-background to-muted/40 pt-8 md:pt-12"
+      >
         {post.coverImage && (
-          <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 -z-10">
             <Image
               src={post.coverImage}
-              alt={post.title}
+              alt=""
               fill
-              className="object-cover opacity-20"
               priority
+              sizes="100vw"
+              className="object-cover opacity-15 dark:opacity-25 [.olive_&]:opacity-20"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
+            {/* Top-down fade so the navbar area stays clean, plus a strong
+                bottom fade so the article body emerges from the hero. */}
+            <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/70 to-background" />
+            {/* Soft brand glow to tie the hero to the blog index aesthetic */}
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                backgroundImage:
+                  'radial-gradient(circle at 80% 0%, color-mix(in oklch, var(--primary) 14%, transparent) 0%, transparent 55%)',
+              }}
+            />
           </div>
         )}
-        <div className="container relative z-10 mx-auto px-4 pb-20">
+
+        <div className="container relative mx-auto px-4 pb-12 md:pb-16">
+          {/* Breadcrumb / back link */}
+          <div className="mb-8 md:mb-10">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <ChevronLeft className="h-3.5 w-3.5" />
+              <span>All posts</span>
+            </Link>
+          </div>
+
           <div className="max-w-3xl">
-            <div className="flex flex-wrap items-center gap-2 mb-6">
-              {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1.5 text-sm bg-primary/10 backdrop-blur-sm border border-primary/20 text-primary rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter leading-[0.95] text-foreground mb-6">
+            {/* Tags */}
+            {post.tags.length > 0 && (
+              <ul className="mb-5 flex flex-wrap items-center gap-1.5">
+                {post.tags.map((tag) => (
+                  <li key={tag}>
+                    <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-2.5 py-0.5 text-[0.7rem] font-medium text-primary">
+                      {tag}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <h1
+              id="article-title"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1] text-foreground mb-5"
+            >
               {post.title}
             </h1>
-            <div className="flex flex-wrap items-center gap-6 text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4" />
-                <time dateTime={post.date}>
-                  {format(new Date(post.date), 'MMMM d, yyyy')}
-                </time>
+
+            <p className="max-w-2xl text-base md:text-lg text-muted-foreground leading-relaxed mb-7">
+              {post.description}
+            </p>
+
+            {/* Meta row: author + date + reading time + word count + share */}
+            <div className="flex flex-col gap-4 border-t pt-5 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+              <div className="flex items-center gap-3">
+                <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-background">
+                  <Image
+                    src="/resources/images/main_page/YassenShopov.jpg"
+                    alt={post.author}
+                    fill
+                    sizes="36px"
+                    className="object-cover"
+                  />
+                </span>
+                <div className="leading-tight">
+                  <p className="text-sm font-medium text-foreground">
+                    {post.author}
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    <time dateTime={post.date}>
+                      {format(new Date(post.date), 'MMMM d, yyyy')}
+                    </time>
+                    <span aria-hidden> · </span>
+                    <span>
+                      {formatDistanceToNow(new Date(post.date), {
+                        addSuffix: true,
+                      })}
+                    </span>
+                  </p>
+                </div>
               </div>
-              <SharePopover title={post.title} description={post.description} />
+
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
+                {post.readingTime && (
+                  <span className="inline-flex items-center gap-1.5">
+                    <BookOpen className="h-3.5 w-3.5" />
+                    {post.readingTime}
+                  </span>
+                )}
+                <span className="inline-flex items-center gap-1.5">
+                  <Type className="h-3.5 w-3.5" />
+                  {formattedWordCount} words
+                </span>
+                <SharePopover
+                  title={post.title}
+                  description={post.description}
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <div className="container mx-auto px-4">
-        <div className="flex gap-8 xl:gap-12 py-16">
+        <div className="flex gap-8 xl:gap-12 py-12 md:py-16">
           {/* Floating share rail (desktop) */}
-          <aside className="hidden xl:block w-12 shrink-0" aria-label="Share this article">
+          <aside
+            className="hidden xl:block w-12 shrink-0"
+            aria-label="Share this article"
+          >
             <div className="sticky top-32">
-              <ShareRail title={post.title} description={post.description} />
+              <ShareRail
+                title={post.title}
+                description={post.description}
+              />
             </div>
           </aside>
 
           {/* Main Content */}
-          <article ref={articleRef} className="flex-1 max-w-3xl xl:mx-auto">
-            <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:scroll-mt-24">
+          <article
+            ref={articleRef}
+            className="flex-1 max-w-3xl xl:mx-auto"
+          >
+            <div
+              className="
+                prose prose-lg dark:prose-invert max-w-none
+                prose-headings:scroll-mt-24 prose-headings:font-bold prose-headings:tracking-tight
+                prose-h2:mt-12 prose-h2:mb-5 prose-h2:pb-2 prose-h2:border-b prose-h2:border-border
+                prose-h3:mt-10 prose-h3:mb-4
+                prose-p:leading-[1.75]
+                prose-a:font-medium prose-a:underline-offset-4 hover:prose-a:opacity-90
+                prose-blockquote:not-italic prose-blockquote:border-l-4 prose-blockquote:border-primary/50 prose-blockquote:bg-muted/40 prose-blockquote:rounded-r-md prose-blockquote:px-5 prose-blockquote:py-3
+                prose-strong:text-foreground prose-strong:font-semibold
+                prose-li:marker:text-primary/60
+                prose-hr:my-12
+              "
+            >
               <ReactMarkdown
                 rehypePlugins={[rehypeSlug]}
                 components={markdownComponents}
@@ -482,35 +834,84 @@ export function BlogContent({ post, prevPost, nextPost }: BlogContentProps) {
               </ReactMarkdown>
             </div>
 
+            {/* End-of-article footer rule */}
+            <div
+              aria-hidden
+              className="mx-auto mt-12 flex items-center gap-3 text-muted-foreground/60"
+            >
+              <span className="h-px flex-1 bg-border" />
+              <span className="text-xs uppercase tracking-[0.22em]">
+                End of article
+              </span>
+              <span className="h-px flex-1 bg-border" />
+            </div>
+
             {/* Author Section */}
-            <div id="author-section" className="mt-16 p-8 rounded-lg bg-card border">
-              <div className="flex items-start gap-6">
+            <section
+              id="author-section"
+              aria-labelledby="author-heading"
+              className="mt-12 scroll-mt-24 rounded-2xl border bg-card p-6 md:p-7"
+            >
+              <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-6">
                 <Image
                   src="/resources/images/main_page/YassenShopov.jpg"
                   alt="Yassen Shopov"
-                  width={80}
-                  height={80}
-                  className="rounded-full object-cover w-20 h-20"
+                  width={72}
+                  height={72}
+                  className="h-16 w-16 sm:h-[72px] sm:w-[72px] rounded-full object-cover ring-2 ring-background"
                 />
-                <div>
-                  <h3 className="text-xl font-bold mb-2">Written by Yassen Shopov</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Exploring the intersection of productivity, technology, and personal development.
-                    Building tools and sharing insights to help others live more intentionally.
+                <div className="flex-1">
+                  <p className="text-[0.65rem] font-medium uppercase tracking-[0.18em] text-muted-foreground mb-1">
+                    Written by
                   </p>
-                  <Button variant="outline" asChild>
-                    <Link href="/about">More about me</Link>
-                  </Button>
+                  <h3
+                    id="author-heading"
+                    className="text-lg md:text-xl font-bold mb-2"
+                  >
+                    Yassen Shopov
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                    Exploring the intersection of productivity, technology, and personal
+                    development. Building tools and sharing insights to help others live more
+                    intentionally.
+                  </p>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Button variant="outline" size="sm" asChild>
+                      <Link href="/about">More about me</Link>
+                    </Button>
+                    <Button variant="ghost" size="sm" asChild>
+                      <Link href="/blog" className="group">
+                        Browse all posts
+                        <ChevronsRight className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </section>
           </article>
 
-          {/* Sticky Sidebar: TOC + mini newsletter */}
-          <aside className="hidden lg:block w-64 shrink-0">
+          {/* Sticky Sidebar: TOC + mini newsletter (desktop only) */}
+          <aside
+            className="hidden lg:block w-64 shrink-0"
+            aria-label="Article navigation"
+          >
             <div className="sticky top-24 space-y-6">
-              <div className="rounded-lg border bg-card p-6">
-                <TableOfContents articleRef={articleRef} />
+              <div className="rounded-xl border bg-card p-5">
+                <div className="mb-3 flex items-baseline justify-between">
+                  <h3 className="text-[0.65rem] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                    On this page
+                  </h3>
+                  {headings.length > 0 && (
+                    <span className="text-[0.65rem] text-muted-foreground tabular-nums">
+                      {headings.length}{' '}
+                      {headings.length === 1 ? 'section' : 'sections'}
+                    </span>
+                  )}
+                </div>
+                <div className="max-h-[60vh] overflow-y-auto pr-1">
+                  <TocList headings={headings} activeId={activeId} />
+                </div>
               </div>
               <SidebarNewsletterCard />
             </div>
@@ -545,29 +946,49 @@ export function BlogContent({ post, prevPost, nextPost }: BlogContentProps) {
         <NewsletterCTA />
 
         {/* Previous/Next Navigation */}
-        <nav className="max-w-3xl mx-auto border-t pt-8 pb-16" aria-label="Article navigation">
+        <nav
+          className="max-w-3xl mx-auto border-t pt-8 pb-16"
+          aria-label="Adjacent articles"
+        >
+          <p className="mb-5 text-[0.65rem] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+            Keep reading
+          </p>
           <div className="grid sm:grid-cols-2 gap-4">
             {prevPost ? (
               <Link
                 href={`/blog/${prevPost.slug}`}
-                className="group relative flex items-stretch overflow-hidden rounded-lg border bg-card transition-colors hover:border-primary/40"
+                className="group relative flex items-stretch overflow-hidden rounded-xl border bg-card transition-all duration-300 hover:border-primary/40 hover:shadow-sm"
               >
                 <div className="relative w-24 sm:w-28 shrink-0 overflow-hidden bg-muted">
                   <Image
-                    src={prevPost.coverImage || '/resources/images/blog/default-cover.webp'}
+                    src={
+                      prevPost.coverImage ||
+                      '/resources/images/blog/default-cover.webp'
+                    }
                     alt=""
                     fill
                     sizes="(max-width: 640px) 96px, 112px"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="flex-1 min-w-0 p-4">
-                  <div className="flex items-center gap-2 text-[0.65rem] text-muted-foreground mb-1.5 uppercase tracking-[0.16em]">
+                  <div className="mb-1.5 flex items-center gap-2 text-[0.65rem] font-medium text-muted-foreground uppercase tracking-[0.16em]">
                     <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
                     <span>Previous</span>
                   </div>
                   <p className="font-medium text-sm leading-snug line-clamp-2 text-foreground group-hover:text-primary transition-colors">
                     {prevPost.title}
+                  </p>
+                  <p className="mt-1.5 text-[0.7rem] text-muted-foreground">
+                    <time dateTime={prevPost.date}>
+                      {format(new Date(prevPost.date), 'MMM d, yyyy')}
+                    </time>
+                    {prevPost.readingTime && (
+                      <>
+                        <span aria-hidden> · </span>
+                        <span>{prevPost.readingTime}</span>
+                      </>
+                    )}
                   </p>
                 </div>
               </Link>
@@ -577,24 +998,38 @@ export function BlogContent({ post, prevPost, nextPost }: BlogContentProps) {
             {nextPost ? (
               <Link
                 href={`/blog/${nextPost.slug}`}
-                className="group relative flex items-stretch overflow-hidden rounded-lg border bg-card transition-colors hover:border-primary/40 sm:col-start-2"
+                className="group relative flex items-stretch overflow-hidden rounded-xl border bg-card transition-all duration-300 hover:border-primary/40 hover:shadow-sm sm:col-start-2"
               >
                 <div className="flex-1 min-w-0 p-4 text-right">
-                  <div className="flex items-center justify-end gap-2 text-[0.65rem] text-muted-foreground mb-1.5 uppercase tracking-[0.16em]">
+                  <div className="mb-1.5 flex items-center justify-end gap-2 text-[0.65rem] font-medium text-muted-foreground uppercase tracking-[0.16em]">
                     <span>Next</span>
                     <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                   </div>
                   <p className="font-medium text-sm leading-snug line-clamp-2 text-foreground group-hover:text-primary transition-colors">
                     {nextPost.title}
                   </p>
+                  <p className="mt-1.5 text-[0.7rem] text-muted-foreground">
+                    <time dateTime={nextPost.date}>
+                      {format(new Date(nextPost.date), 'MMM d, yyyy')}
+                    </time>
+                    {nextPost.readingTime && (
+                      <>
+                        <span aria-hidden> · </span>
+                        <span>{nextPost.readingTime}</span>
+                      </>
+                    )}
+                  </p>
                 </div>
                 <div className="relative w-24 sm:w-28 shrink-0 overflow-hidden bg-muted">
                   <Image
-                    src={nextPost.coverImage || '/resources/images/blog/default-cover.webp'}
+                    src={
+                      nextPost.coverImage ||
+                      '/resources/images/blog/default-cover.webp'
+                    }
                     alt=""
                     fill
                     sizes="(max-width: 640px) 96px, 112px"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
               </Link>
@@ -604,6 +1039,10 @@ export function BlogContent({ post, prevPost, nextPost }: BlogContentProps) {
           </div>
         </nav>
       </div>
+
+      {/* Floating helpers */}
+      <MobileTocSheet headings={headings} activeId={activeId} />
+      <BackToTopButton />
     </>
   );
-} 
+}
