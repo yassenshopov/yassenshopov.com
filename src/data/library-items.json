@@ -4,9 +4,6 @@
     "title": "Money Heist",
     "creator": "Álex Pina",
     "type": "series",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2025-06-01",
     "genre": [
       "Crime",
       "Drama",
@@ -18,16 +15,20 @@
       "imdb": "https://www.imdb.com/title/tt6468322/"
     },
     "year": 2017,
-    "externalUrl": "https://www.imdb.com/title/tt6468322/episodes/?season=2"
+    "externalUrl": "https://www.imdb.com/title/tt6468322/episodes/?season=2",
+    "entries": [
+      {
+        "dateCompleted": "2025-06-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "2",
     "title": "Lilo & Stitch (2025)",
     "director": "Dean DeBlois",
     "type": "movie",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2025-06-01",
     "genre": [
       "Animation",
       "Family",
@@ -39,16 +40,20 @@
       "imdb": "https://www.imdb.com/title/tt0275847/"
     },
     "year": 2025,
-    "externalUrl": "https://www.imdb.com/title/tt11655566/"
+    "externalUrl": "https://www.imdb.com/title/tt11655566/",
+    "entries": [
+      {
+        "dateCompleted": "2025-06-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "3",
     "title": "The Last of Us",
     "creator": "Craig Mazin, Neil Druckmann",
     "type": "series",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2025-05-01",
     "genre": [
       "Post-apocalyptic",
       "Drama",
@@ -67,16 +72,20 @@
       "Post-apocalyptic",
       "Survival"
     ],
-    "externalUrl": "https://www.imdb.com/title/tt3581920/"
+    "externalUrl": "https://www.imdb.com/title/tt3581920/",
+    "entries": [
+      {
+        "dateCompleted": "2025-05-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "4",
     "title": "Thunderbolts",
     "director": "Jake Schreier",
     "type": "movie",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2025-05-01",
     "genre": [
       "Action",
       "Superhero",
@@ -88,30 +97,38 @@
       "imdb": "https://www.imdb.com/title/tt13651794/"
     },
     "year": 2025,
-    "externalUrl": "https://m.imdb.com/title/tt20969586/"
+    "externalUrl": "https://m.imdb.com/title/tt20969586/",
+    "entries": [
+      {
+        "dateCompleted": "2025-05-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "5",
     "title": "Gundi",
     "type": "movie",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2025-03-01",
     "genre": [
       "Drama"
     ],
     "description": "A compelling drama exploring personal and social themes.",
     "coverImage": "/resources/images/library/gundi.webp",
-    "links": {}
+    "links": {},
+    "entries": [
+      {
+        "dateCompleted": "2025-03-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "6",
     "title": "Peaky Blinders",
     "creator": "Steven Knight",
     "type": "series",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2025-02-01",
     "genre": [
       "Crime",
       "Drama",
@@ -123,16 +140,20 @@
       "imdb": "https://www.imdb.com/title/tt2442560/"
     },
     "year": 2013,
-    "externalUrl": "https://www.imdb.com/title/tt2442560/episodes/?season=6"
+    "externalUrl": "https://www.imdb.com/title/tt2442560/episodes/?season=6",
+    "entries": [
+      {
+        "dateCompleted": "2025-02-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "7",
     "title": "Gladiator II",
     "director": "Ridley Scott",
     "type": "movie",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2025-01-01",
     "genre": [
       "Action",
       "Drama",
@@ -144,16 +165,20 @@
       "imdb": "https://www.imdb.com/title/tt9218128/"
     },
     "year": 2024,
-    "externalUrl": "https://www.imdb.com/title/tt9218128/"
+    "externalUrl": "https://www.imdb.com/title/tt9218128/",
+    "entries": [
+      {
+        "dateCompleted": "2025-01-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "8",
     "title": "Paddington in Peru",
     "director": "Dougal Wilson",
     "type": "movie",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2025-01-01",
     "genre": [
       "Family",
       "Adventure",
@@ -165,16 +190,20 @@
       "imdb": "https://www.imdb.com/title/tt8076346/"
     },
     "year": 2024,
-    "externalUrl": "https://www.imdb.com/title/tt5822536/"
+    "externalUrl": "https://www.imdb.com/title/tt5822536/",
+    "entries": [
+      {
+        "dateCompleted": "2025-01-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "9",
     "title": "Undercover",
     "creator": "Nico Moolenaar",
     "type": "series",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2024-12-01",
     "genre": [
       "Crime",
       "Drama",
@@ -186,16 +215,20 @@
       "imdb": "https://www.imdb.com/title/tt9016974/"
     },
     "year": 2011,
-    "externalUrl": "https://www.imdb.com/title/tt1909015/"
+    "externalUrl": "https://www.imdb.com/title/tt1909015/",
+    "entries": [
+      {
+        "dateCompleted": "2024-12-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "10",
     "title": "Joker: Folie à Deux",
     "director": "Todd Phillips",
     "type": "movie",
-    "rating": 3,
-    "status": "completed",
-    "dateCompleted": "2024-10-01",
     "genre": [
       "Drama",
       "Crime",
@@ -207,16 +240,20 @@
       "imdb": "https://www.imdb.com/title/tt11315808/"
     },
     "year": 2024,
-    "externalUrl": "https://www.imdb.com/title/tt11315808/"
+    "externalUrl": "https://www.imdb.com/title/tt11315808/",
+    "entries": [
+      {
+        "dateCompleted": "2024-10-01",
+        "status": "completed",
+        "rating": 3
+      }
+    ]
   },
   {
     "id": "11",
     "title": "Fight Club",
     "director": "David Fincher",
     "type": "movie",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2024-09-01",
     "genre": [
       "Drama",
       "Thriller"
@@ -233,16 +270,20 @@
       "Masculinity",
       "Mental Health"
     ],
-    "externalUrl": "https://www.imdb.com/title/tt0137523/"
+    "externalUrl": "https://www.imdb.com/title/tt0137523/",
+    "entries": [
+      {
+        "dateCompleted": "2024-09-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "12",
     "title": "The Boys",
     "creator": "Eric Kripke",
     "type": "series",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2024-08-01",
     "genre": [
       "Action",
       "Comedy",
@@ -255,16 +296,20 @@
       "imdb": "https://www.imdb.com/title/tt1190634/"
     },
     "year": 2019,
-    "externalUrl": "https://www.imdb.com/title/tt1190634/"
+    "externalUrl": "https://www.imdb.com/title/tt1190634/",
+    "entries": [
+      {
+        "dateCompleted": "2024-08-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "13",
     "title": "Inside Out 2",
     "director": "Kelsey Mann",
     "type": "movie",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2024-07-01",
     "genre": [
       "Animation",
       "Family",
@@ -276,16 +321,20 @@
       "imdb": "https://www.imdb.com/title/tt22022452/"
     },
     "year": 2024,
-    "externalUrl": "https://www.imdb.com/title/tt22022452/"
+    "externalUrl": "https://www.imdb.com/title/tt22022452/",
+    "entries": [
+      {
+        "dateCompleted": "2024-07-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "14",
     "title": "Despicable Me 4",
     "director": "Chris Renaud",
     "type": "movie",
-    "rating": 3,
-    "status": "completed",
-    "dateCompleted": "2024-07-01",
     "genre": [
       "Animation",
       "Family",
@@ -294,16 +343,20 @@
     "description": "Gru and his family face new adventures and challenges in the fourth installment of the beloved franchise.",
     "coverImage": "/resources/images/library/despicable-me-4.webp",
     "links": {},
-    "year": 2024
+    "year": 2024,
+    "entries": [
+      {
+        "dateCompleted": "2024-07-01",
+        "status": "completed",
+        "rating": 3
+      }
+    ]
   },
   {
     "id": "15",
     "title": "Creed III",
     "director": "Michael B. Jordan",
     "type": "movie",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2024-06-01",
     "genre": [
       "Drama",
       "Sport"
@@ -327,16 +380,20 @@
       "imdb": "https://www.imdb.com/title/tt11145118/"
     },
     "year": 2023,
-    "externalUrl": "https://www.imdb.com/title/tt11145118/"
+    "externalUrl": "https://www.imdb.com/title/tt11145118/",
+    "entries": [
+      {
+        "dateCompleted": "2024-06-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "16",
     "title": "Creed II",
     "director": "Steven Caple Jr.",
     "type": "movie",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2024-06-01",
     "genre": [
       "Drama",
       "Sport"
@@ -361,15 +418,20 @@
       "imdb": "https://www.imdb.com/title/tt6343314/"
     },
     "year": 2018,
-    "externalUrl": "https://www.imdb.com/title/tt6343314/"
+    "externalUrl": "https://www.imdb.com/title/tt6343314/",
+    "entries": [
+      {
+        "dateCompleted": "2024-06-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "17",
     "title": "Project Hail Mary",
     "author": "Andy Weir",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Sci-Fi",
       "Science",
@@ -384,16 +446,19 @@
       "Sci-Fi",
       "Science"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/54493401-project-hail-mary"
+    "externalUrl": "https://www.goodreads.com/book/show/54493401-project-hail-mary",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "18",
     "title": "The Ballad of Songbirds and Snakes",
     "author": "Suzanne Collins",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-11-01",
     "genre": [
       "Dystopian",
       "Survival",
@@ -423,15 +488,20 @@
       "Survival",
       "Young Adult (YA)"
     ],
-    "externalUrl": "https://www.audible.co.uk/pd/The-Ballad-Of-Songbirds-And-Snakes-A-Hunger-Games-Novel-Audiobook/1338635204"
+    "externalUrl": "https://www.audible.co.uk/pd/The-Ballad-Of-Songbirds-And-Snakes-A-Hunger-Games-Novel-Audiobook/1338635204",
+    "entries": [
+      {
+        "dateCompleted": "2023-11-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "19",
     "title": "The Martian",
     "author": "Andy Weir",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Sci-Fi",
       "Science",
@@ -446,16 +516,19 @@
       "Sci-Fi",
       "Science"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/18007564-the-martian"
+    "externalUrl": "https://www.goodreads.com/book/show/18007564-the-martian",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "20",
     "title": "12 Rules for Life: An Antidote to Chaos",
     "author": "Jordan B. Peterson",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-04-01",
     "genre": [
       "Advice",
       "Non-fiction",
@@ -484,16 +557,20 @@
       "Psychology",
       "Self-improvement"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/30257963-12-rules-for-life"
+    "externalUrl": "https://www.goodreads.com/book/show/30257963-12-rules-for-life",
+    "entries": [
+      {
+        "dateCompleted": "2023-04-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "21",
     "title": "Beyond Order: 12 More Rules for Life",
     "author": "Jordan B. Peterson",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-07-01",
     "genre": [
       "Advice",
       "Non-fiction",
@@ -520,16 +597,20 @@
       "Psychology",
       "Self-improvement"
     ],
-    "externalUrl": "https://www.amazon.com/Beyond-Order-More-Rules-Life/dp/0593084640"
+    "externalUrl": "https://www.amazon.com/Beyond-Order-More-Rules-Life/dp/0593084640",
+    "entries": [
+      {
+        "dateCompleted": "2023-07-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "22",
     "title": "The Poppy War",
     "author": "Rebecca Kuang",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2024-01-01",
     "genre": [
       "Fantasy",
       "Political",
@@ -556,6 +637,13 @@
       "Fantasy",
       "Political",
       "Young Adult (YA)"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2024-01-01",
+        "status": "completed",
+        "rating": 4
+      }
     ]
   },
   {
@@ -563,9 +651,6 @@
     "title": "Everything is F*cked",
     "author": "Mark Manson",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2021-11-01",
     "genre": [
       "Non-fiction",
       "Psychology",
@@ -590,15 +675,20 @@
       "Psychology",
       "Self-improvement"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/43808723-everything-is-f-cked"
+    "externalUrl": "https://www.goodreads.com/book/show/43808723-everything-is-f-cked",
+    "entries": [
+      {
+        "dateCompleted": "2021-11-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "24",
     "title": "The Subtle Art of Not Giving a F*ck",
     "author": "Mark Manson",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
     "genre": [
       "Non-fiction",
       "Psychology",
@@ -623,15 +713,19 @@
       "Psychology",
       "Self-improvement"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/28257707-the-subtle-art-of-not-giving-a-f-ck"
+    "externalUrl": "https://www.goodreads.com/book/show/28257707-the-subtle-art-of-not-giving-a-f-ck",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "25",
     "title": "Lifespan: Why We Age - and Why We Don't Have To",
     "author": "David Sinclair",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
     "genre": [
       "Non-fiction",
       "Science"
@@ -644,16 +738,19 @@
       "Non-fiction",
       "Science"
     ],
-    "externalUrl": "https://www.amazon.com/Lifespan-Why-Age_and-Dont-Have/dp/1501191977"
+    "externalUrl": "https://www.amazon.com/Lifespan-Why-Age_and-Dont-Have/dp/1501191977",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "26",
     "title": "Dotcom Secrets",
     "author": "Russell Brunson",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-08-01",
     "genre": [
       "Non-fiction",
       "Business",
@@ -668,16 +765,20 @@
       "Marketing",
       "Non-fiction"
     ],
-    "externalUrl": "https://www.audible.co.uk/pd/Dotcom-Secrets-Audiobook/1401960812?ref_pageloadid=X13RcKg3ZbDY3cys&ref=a_library_t_c5_libItem_1401960812_11&pf_rd_p=7e7340a8-8768-4798-a0ce-83f879c09110&pf_rd_r=1YT05VHNDH57TPR2DS11&pageLoadId=aFwNOwBaVft5ffRy&creativeId=14d6a1c2-a3f8-499b-900a-1ae788c317b1"
+    "externalUrl": "https://www.audible.co.uk/pd/Dotcom-Secrets-Audiobook/1401960812?ref_pageloadid=X13RcKg3ZbDY3cys&ref=a_library_t_c5_libItem_1401960812_11&pf_rd_p=7e7340a8-8768-4798-a0ce-83f879c09110&pf_rd_r=1YT05VHNDH57TPR2DS11&pageLoadId=aFwNOwBaVft5ffRy&creativeId=14d6a1c2-a3f8-499b-900a-1ae788c317b1",
+    "entries": [
+      {
+        "dateCompleted": "2023-08-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "27",
     "title": "Immune: A Journey into the Mysterious System That Keeps You Alive",
     "author": "Philipp Dettmer",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-12-01",
     "genre": [
       "Non-fiction",
       "Science"
@@ -689,6 +790,13 @@
     "topics": [
       "Non-fiction",
       "Science"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-12-01",
+        "status": "completed",
+        "rating": 4
+      }
     ]
   },
   {
@@ -696,9 +804,6 @@
     "title": "Outlive: The Science and Art of Longevity",
     "author": "Peter Attia",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-09-01",
     "genre": [
       "Non-fiction",
       "Science"
@@ -711,16 +816,20 @@
       "Non-fiction",
       "Science"
     ],
-    "externalUrl": "https://www.audible.co.uk/pd/Outlive-Audiobook/B0BTHWHPPP?ref_pageloadid=f8kYsYNEDN3CDVFs&ref=a_library_t_c5_libItem_B0BTHWHPPP&pf_rd_p=7e7340a8-8768-4798-a0ce-83f879c09110&pf_rd_r=G93FMG1XG2G3ZCJ3HCP2&pageLoadId=dvw2pJOoutrxe15s&ref_plink=not_applicable&creativeId=14d6a1c2-a3f8-499b-900a-1ae788c317b1"
+    "externalUrl": "https://www.audible.co.uk/pd/Outlive-Audiobook/B0BTHWHPPP?ref_pageloadid=f8kYsYNEDN3CDVFs&ref=a_library_t_c5_libItem_B0BTHWHPPP&pf_rd_p=7e7340a8-8768-4798-a0ce-83f879c09110&pf_rd_r=G93FMG1XG2G3ZCJ3HCP2&pageLoadId=dvw2pJOoutrxe15s&ref_plink=not_applicable&creativeId=14d6a1c2-a3f8-499b-900a-1ae788c317b1",
+    "entries": [
+      {
+        "dateCompleted": "2023-09-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "29",
     "title": "Всички и никой",
     "author": "Yordan Radichkov",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-06-01",
     "genre": [
       "Realism",
       "Thriller & Mystery"
@@ -733,16 +842,20 @@
       "Realism",
       "Thriller & Mystery"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/6625013"
+    "externalUrl": "https://www.goodreads.com/book/show/6625013",
+    "entries": [
+      {
+        "dateCompleted": "2023-06-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "30",
     "title": "Transcend: 9 Steps to Living Well Forever",
     "author": "Ray Kurzweil",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-05-01",
     "genre": [
       "Non-fiction",
       "Science"
@@ -755,16 +868,20 @@
       "Non-fiction",
       "Science"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/6394415-transcend"
+    "externalUrl": "https://www.goodreads.com/book/show/6394415-transcend",
+    "entries": [
+      {
+        "dateCompleted": "2023-05-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "31",
     "title": "Killing Commendatore",
     "author": "Haruki Murakami",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-05-01",
     "genre": [
       "Fantasy",
       "Thriller & Mystery"
@@ -777,16 +894,20 @@
       "Fantasy",
       "Thriller & Mystery"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/38820047-killing-commendatore"
+    "externalUrl": "https://www.goodreads.com/book/show/38820047-killing-commendatore",
+    "entries": [
+      {
+        "dateCompleted": "2023-05-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "32",
     "title": "The Chrysalids",
     "author": "John Wyndham",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-03-01",
     "genre": [
       "Fantasy",
       "Dystopian",
@@ -801,16 +922,20 @@
       "Fantasy",
       "Supernatural"
     ],
-    "externalUrl": "https://www.audible.co.uk/pd/The-Chrysalids-Audiobook/B09LNRXY77"
+    "externalUrl": "https://www.audible.co.uk/pd/The-Chrysalids-Audiobook/B09LNRXY77",
+    "entries": [
+      {
+        "dateCompleted": "2023-03-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "33",
     "title": "Design for How People Think: Using Brain Science to Build Better Products",
     "author": "John Whalen",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-02-01",
     "genre": [
       "Non-fiction",
       "Marketing",
@@ -827,16 +952,20 @@
       "Non-fiction",
       "Psychology"
     ],
-    "externalUrl": "https://www.amazon.com/Designing-How-People-Think-Products/dp/1491985453"
+    "externalUrl": "https://www.amazon.com/Designing-How-People-Think-Products/dp/1491985453",
+    "entries": [
+      {
+        "dateCompleted": "2023-02-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "34",
     "title": "The Science of Storytelling: Why Stories Make Us Human, and How to Tell Them Better",
     "author": "Will Storr",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-02-01",
     "genre": [
       "Non-fiction",
       "Psychology",
@@ -850,16 +979,20 @@
       "Non-fiction",
       "Psychology"
     ],
-    "externalUrl": "https://www.audible.co.uk/pd/The-Science-of-Storytelling-Audiobook/000827696X"
+    "externalUrl": "https://www.audible.co.uk/pd/The-Science-of-Storytelling-Audiobook/000827696X",
+    "entries": [
+      {
+        "dateCompleted": "2023-02-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "35",
     "title": "A Clash of Kings",
     "author": "George R. R. Martin",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2022-12-01",
     "genre": [
       "Fantasy Fiction",
       "High Fantasy",
@@ -889,16 +1022,20 @@
       "Political",
       "Political fiction"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/10572.A_Clash_of_Kings"
+    "externalUrl": "https://www.goodreads.com/book/show/10572.A_Clash_of_Kings",
+    "entries": [
+      {
+        "dateCompleted": "2022-12-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "36",
     "title": "A Game of Thrones",
     "author": "George R. R. Martin",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2022-10-01",
     "genre": [
       "Fantasy Fiction",
       "High Fantasy",
@@ -927,15 +1064,20 @@
       "Political",
       "Political fiction"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/13496.A_Game_of_Thrones"
+    "externalUrl": "https://www.goodreads.com/book/show/13496.A_Game_of_Thrones",
+    "entries": [
+      {
+        "dateCompleted": "2022-10-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "37",
     "title": "The E-Myth Revisited",
     "author": "Michael E. Gerber",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
     "genre": [
       "Non-fiction",
       "Business",
@@ -949,6 +1091,12 @@
       "Business",
       "Non-fiction",
       "Productivity"
+    ],
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 4
+      }
     ]
   },
   {
@@ -956,8 +1104,6 @@
     "title": "Building a Second Brain",
     "author": "Tiago Forte",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
     "genre": [
       "Non-fiction",
       "Organisation",
@@ -972,15 +1118,19 @@
       "Organisation",
       "Productivity"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/59616977-building-a-second-brain"
+    "externalUrl": "https://www.goodreads.com/book/show/59616977-building-a-second-brain",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "39",
     "title": "Thirst",
     "author": "Zachary Karabashliev",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
     "genre": [
       "Realism"
     ],
@@ -991,16 +1141,19 @@
     "topics": [
       "Realism"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/43067312"
+    "externalUrl": "https://www.goodreads.com/book/show/43067312",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "40",
     "title": "The Hunger Games",
     "author": "Suzanne Collins",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-10-01",
     "genre": [
       "Dystopian",
       "Survival",
@@ -1031,6 +1184,13 @@
       "Political",
       "Survival",
       "Young Adult (YA)"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-10-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -1038,9 +1198,6 @@
     "title": "Catching Fire",
     "author": "Suzanne Collins",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-10-15",
     "genre": [
       "Dystopian",
       "Survival",
@@ -1071,6 +1228,13 @@
       "Political",
       "Survival",
       "Young Adult (YA)"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-10-15",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -1078,9 +1242,6 @@
     "title": "Mockingjay",
     "author": "Suzanne Collins",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-11-01",
     "genre": [
       "Dystopian",
       "Survival",
@@ -1112,6 +1273,13 @@
       "Political",
       "Survival",
       "Young Adult (YA)"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-11-01",
+        "status": "completed",
+        "rating": 4
+      }
     ]
   },
   {
@@ -1119,9 +1287,6 @@
     "title": "The Ballad of Songbirds and Snakes (2023)",
     "director": "Francis Lawrence",
     "type": "movie",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-11-20",
     "genre": [
       "Dystopian",
       "Drama",
@@ -1144,16 +1309,20 @@
         "52"
       ]
     },
-    "links": {}
+    "links": {},
+    "entries": [
+      {
+        "dateCompleted": "2023-11-20",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "44",
     "title": "The Hunger Games (2012)",
     "director": "Gary Ross",
     "type": "movie",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-10-05",
     "genre": [
       "Dystopian",
       "Action",
@@ -1177,16 +1346,20 @@
         "52"
       ]
     },
-    "links": {}
+    "links": {},
+    "entries": [
+      {
+        "dateCompleted": "2023-10-05",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "45",
     "title": "The Hunger Games: Catching Fire (2013)",
     "director": "Francis Lawrence",
     "type": "movie",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-10-10",
     "genre": [
       "Dystopian",
       "Action",
@@ -1211,16 +1384,20 @@
         "52"
       ]
     },
-    "links": {}
+    "links": {},
+    "entries": [
+      {
+        "dateCompleted": "2023-10-10",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "46",
     "title": "The Hunger Games: Mockingjay - Part 1 (2014)",
     "director": "Francis Lawrence",
     "type": "movie",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-10-12",
     "genre": [
       "Dystopian",
       "Action",
@@ -1245,16 +1422,20 @@
         "52"
       ]
     },
-    "links": {}
+    "links": {},
+    "entries": [
+      {
+        "dateCompleted": "2023-10-12",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "47",
     "title": "The Hunger Games: Mockingjay - Part 2 (2015)",
     "director": "Francis Lawrence",
     "type": "movie",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-10-15",
     "genre": [
       "Dystopian",
       "Action",
@@ -1278,16 +1459,20 @@
         "52"
       ]
     },
-    "links": {}
+    "links": {},
+    "entries": [
+      {
+        "dateCompleted": "2023-10-15",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "48",
     "title": "A Storm of Swords",
     "author": "George R. R. Martin",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Fantasy Fiction",
       "High Fantasy",
@@ -1315,16 +1500,20 @@
       "Scottish History",
       "Witchcraft"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/62291.A_Storm_of_Swords"
+    "externalUrl": "https://www.goodreads.com/book/show/62291.A_Storm_of_Swords",
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "49",
     "title": "Game of Thrones",
     "creator": "David Benioff, D.B. Weiss",
     "type": "series",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-02-01",
     "genre": [
       "Fantasy",
       "Drama",
@@ -1346,16 +1535,20 @@
     },
     "links": {},
     "year": 2011,
-    "externalUrl": "https://www.imdb.com/title/tt0944947"
+    "externalUrl": "https://www.imdb.com/title/tt0944947",
+    "entries": [
+      {
+        "dateCompleted": "2023-02-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "50",
     "title": "House of the Dragon",
     "creator": "Ryan Condal, Miguel Sapochnik",
     "type": "series",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-03-01",
     "genre": [
       "Fantasy",
       "Drama",
@@ -1378,15 +1571,20 @@
     },
     "links": {},
     "year": 2022,
-    "externalUrl": "https://www.imdb.com/title/tt11198330/"
+    "externalUrl": "https://www.imdb.com/title/tt11198330/",
+    "entries": [
+      {
+        "dateCompleted": "2023-03-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "51",
     "title": "18% Gray (2008)",
     "author": "Zachary Karabashliev",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
     "genre": [
       "Realism"
     ],
@@ -1397,15 +1595,19 @@
     "topics": [
       "Realism"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/15712901-18-gray"
+    "externalUrl": "https://www.goodreads.com/book/show/15712901-18-gray",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "52",
     "title": "Sunrise on the Reaping",
     "author": "Suzanne Collins",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Dystopian",
       "Survival",
@@ -1441,15 +1643,19 @@
       "Young Adult (YA)"
     ],
     "externalUrl": "https://www.goodreads.com/book/show/214331246-sunrise-on-the-reaping",
-    "dateCompleted": "2025-03-01"
+    "entries": [
+      {
+        "dateCompleted": "2025-03-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "53",
     "title": "21 Lessons for the 21st Century",
     "author": "Yuval Noah Harari",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Non-fiction"
     ],
@@ -1460,15 +1666,19 @@
     "topics": [
       "Non-fiction"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/38820046-21-lessons-for-the-21st-century"
+    "externalUrl": "https://www.goodreads.com/book/show/38820046-21-lessons-for-the-21st-century",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "54",
     "title": "The Psychology of Money",
     "author": "Morgan Housel",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Non-fiction",
       "Finances",
@@ -1483,15 +1693,19 @@
       "Non-fiction",
       "Psychology"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/41881472-the-psychology-of-money"
+    "externalUrl": "https://www.goodreads.com/book/show/41881472-the-psychology-of-money",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "55",
     "title": "Prisoners of Geography",
     "author": "Tim Marshall",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Geography",
       "Politics",
@@ -1510,15 +1724,19 @@
       "Science"
     ],
     "externalUrl": "https://www.goodreads.com/book/show/25135194-prisoners-of-geography",
-    "dateCompleted": "2022-01-01"
+    "entries": [
+      {
+        "dateCompleted": "2022-01-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "56",
     "title": "The Millionaire Fastlane: Crack the Code to Wealth and Live Rich for a Lifetime!",
     "author": "M. J. DeMarco",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Non-fiction",
       "Finances",
@@ -1534,15 +1752,19 @@
       "Non-fiction"
     ],
     "externalUrl": "https://www.goodreads.com/book/show/18872437-the-millionaire-fastlane",
-    "dateCompleted": "2022-01-01"
+    "entries": [
+      {
+        "dateCompleted": "2022-01-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "57",
     "title": "The Righteous Mind: Why Good People are Divided by Politics and Religion",
     "author": "Jonathan Haidt",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Advice",
       "Non-fiction",
@@ -1561,15 +1783,19 @@
       "Religion"
     ],
     "externalUrl": "https://www.goodreads.com/book/show/11324722-the-righteous-mind",
-    "dateCompleted": "2022-01-01"
+    "entries": [
+      {
+        "dateCompleted": "2022-01-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "58",
     "title": "Skulduggery Pleasant Book 1",
     "author": "Derek Landy",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Fantasy",
       "Adventure"
@@ -1585,15 +1811,19 @@
       "Young Adult"
     ],
     "externalUrl": "https://www.goodreads.com/book/show/284440.Skulduggery_Pleasant",
-    "dateCompleted": "2021-02-01"
+    "entries": [
+      {
+        "dateCompleted": "2021-02-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "59",
     "title": "The Almanack of Naval Ravikant",
     "author": "Naval Ravikant",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Non-fiction",
       "Advice"
@@ -1603,15 +1833,19 @@
     "links": {},
     "year": 2020,
     "externalUrl": "https://www.navalmanack.com/",
-    "dateCompleted": "2021-08-01"
+    "entries": [
+      {
+        "dateCompleted": "2021-08-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "60",
     "title": "Ageless: The New Science of Getting Older Without Getting Old",
     "author": "Andrew Steele",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Non-fiction",
       "Science"
@@ -1620,15 +1854,19 @@
     "coverImage": "/resources/images/library/ageless.webp",
     "links": {},
     "year": 2020,
-    "externalUrl": "https://www.amazon.com/Ageless-Science-Getting-Older-Without/dp/0385544928"
+    "externalUrl": "https://www.amazon.com/Ageless-Science-Getting-Older-Without/dp/0385544928",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "61",
     "title": "The Motivation Myth: How High Achievers Really Set Themselves Up to Win",
     "author": "Jeff Haden",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Non-fiction",
       "Self-improvement"
@@ -1637,15 +1875,19 @@
     "coverImage": "/resources/images/library/the-motivation-myth.webp",
     "links": {},
     "year": 2018,
-    "externalUrl": "https://www.amazon.com/Motivation-Myth-Achievers-Really-Themselves/dp/0399563768"
+    "externalUrl": "https://www.amazon.com/Motivation-Myth-Achievers-Really-Themselves/dp/0399563768",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "62",
     "title": "The Total Money Makeover: A Proven Plan for Financial Fitness",
     "author": "Dave Ramsey",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Non-fiction",
       "Finances"
@@ -1654,15 +1896,19 @@
     "coverImage": "/resources/images/library/the-total-money-makeover.webp",
     "links": {},
     "year": 2003,
-    "externalUrl": "https://www.amazon.com/Total-Money-Makeover-Classic-Financial/dp/1595555277"
+    "externalUrl": "https://www.amazon.com/Total-Money-Makeover-Classic-Financial/dp/1595555277",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "63",
     "title": "Make Time: How to Focus on What Matters Every Day",
     "author": "Jake Knapp, John Zeratsky",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Non-fiction",
       "Productivity"
@@ -1671,15 +1917,19 @@
     "coverImage": "/resources/images/library/make-time.webp",
     "links": {},
     "year": 2018,
-    "externalUrl": "https://www.amazon.com/Make-Time-Focus-Matters-Every/dp/0525572422#:~:text=Make%20Time%20is%20a%20framework,absolutely%20can%20control%20your%20attention."
+    "externalUrl": "https://www.amazon.com/Make-Time-Focus-Matters-Every/dp/0525572422#:~:text=Make%20Time%20is%20a%20framework,absolutely%20can%20control%20your%20attention.",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "64",
     "title": "Digital Minimalism: Choosing a Focused Life in a Noisy World",
     "author": "Cal Newport",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Non-fiction",
       "Self-improvement"
@@ -1688,15 +1938,19 @@
     "coverImage": "/resources/images/library/digital-minimalism.webp",
     "links": {},
     "year": 2019,
-    "externalUrl": "https://www.amazon.com/Digital-Minimalism-Choosing-Focused-Noisy/dp/0525536515"
+    "externalUrl": "https://www.amazon.com/Digital-Minimalism-Choosing-Focused-Noisy/dp/0525536515",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "65",
     "title": "Sapiens: A Brief History of Humankind",
     "author": "Yuval Noah Harari",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Non-fiction",
       "History"
@@ -1705,30 +1959,38 @@
     "coverImage": "/resources/images/library/sapiens.webp",
     "links": {},
     "year": 2011,
-    "externalUrl": "https://www.amazon.com/Sapiens-Humankind-Yuval-Noah-Harari/dp/0062316095"
+    "externalUrl": "https://www.amazon.com/Sapiens-Humankind-Yuval-Noah-Harari/dp/0062316095",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "66",
     "title": "I Will Teach You to Be Rich (2019)",
     "author": "Ramit Sethi",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Non-fiction",
       "Finances"
     ],
     "description": "A practical guide to personal finance and wealth-building.",
     "coverImage": "/resources/images/library/i-will-teach-you-to-be-rich.webp",
-    "links": {}
+    "links": {},
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "67",
     "title": "Making Money (2007)",
     "author": "Terry Pratchett",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Fantasy",
       "Adventure"
@@ -1751,15 +2013,19 @@
     },
     "links": {},
     "year": 2007,
-    "externalUrl": "https://www.goodreads.com/book/show/116296.Making_Money"
+    "externalUrl": "https://www.goodreads.com/book/show/116296.Making_Money",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "68",
     "title": "A Blink of the Screen (2012)",
     "author": "Terry Pratchett",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Fantasy",
       "Adventure"
@@ -1768,15 +2034,19 @@
     "coverImage": "/resources/images/library/a-blink-of-the-screen.webp",
     "links": {},
     "year": 2012,
-    "externalUrl": "https://www.goodreads.com/book/show/13536811-a-blink-of-the-screen"
+    "externalUrl": "https://www.goodreads.com/book/show/13536811-a-blink-of-the-screen",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "69",
     "title": "The Messenger (2002)",
     "author": "Markus Zusak",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Drama"
     ],
@@ -1784,15 +2054,19 @@
     "coverImage": "/resources/images/library/the-messenger.webp",
     "links": {},
     "year": 2002,
-    "externalUrl": "https://www.goodreads.com/book/show/161262968-the-messenger"
+    "externalUrl": "https://www.goodreads.com/book/show/161262968-the-messenger",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "70",
     "title": "Reaper Man (1991)",
     "author": "Terry Pratchett",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Fantasy",
       "Adventure"
@@ -1819,15 +2093,19 @@
       "Adventure",
       "Fantasy"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/34517.Reaper_Man"
+    "externalUrl": "https://www.goodreads.com/book/show/34517.Reaper_Man",
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "71",
     "title": "Mort (1987)",
     "author": "Terry Pratchett",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Fantasy",
       "Adventure"
@@ -1853,6 +2131,12 @@
     "topics": [
       "Adventure",
       "Fantasy"
+    ],
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -1860,8 +2144,6 @@
     "title": "Moving Pictures (1990)",
     "author": "Terry Pratchett",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Fantasy",
       "Adventure"
@@ -1887,6 +2169,12 @@
     "topics": [
       "Adventure",
       "Fantasy"
+    ],
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -1894,8 +2182,6 @@
     "title": "Of Mice and Men (1937)",
     "author": "John Steinbeck",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
     "genre": [
       "Realism"
     ],
@@ -1905,6 +2191,12 @@
     "year": 1937,
     "topics": [
       "Realism"
+    ],
+    "entries": [
+      {
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -1912,8 +2204,6 @@
     "title": "Algorithms to Live By",
     "author": "Brian Christian, Tom Griffiths",
     "type": "book",
-    "rating": 4,
-    "status": "dnf",
     "genre": [
       "Non-fiction",
       "Science",
@@ -1921,15 +2211,19 @@
     ],
     "description": "How computer algorithms can be applied to everyday human decision-making.",
     "coverImage": "/resources/images/library/algorithms-to-live-by.webp",
-    "links": {}
+    "links": {},
+    "entries": [
+      {
+        "status": "dnf",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "arrival",
     "title": "Arrival",
     "author": "Denis Villeneuve",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2016,
     "genre": [
       "Drama",
@@ -1940,16 +2234,18 @@
     "coverImage": "/resources/images/library/arrival-2016.webp",
     "links": {},
     "externalUrl": "https://www.imdb.com/title/tt2543164/",
-    "director": "Denis Villeneuve"
+    "director": "Denis Villeneuve",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "a-life-of-meaning",
     "title": "A Life of Meaning: Relocating Your Center of Spiritual Gravity",
     "author": "James Hollis",
     "type": "book",
-    "rating": 4,
-    "status": "dnf",
-    "dateCompleted": "2025-01-01",
     "genre": [
       "Non-fiction",
       "Psychology",
@@ -1959,16 +2255,20 @@
     "coverImage": "/resources/images/library/a-life-of-meaning.webp",
     "links": {},
     "year": 2023,
-    "externalUrl": "https://www.goodreads.com/book/show/74886356-a-life-of-meaning"
+    "externalUrl": "https://www.goodreads.com/book/show/74886356-a-life-of-meaning",
+    "entries": [
+      {
+        "dateCompleted": "2025-01-01",
+        "status": "dnf",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "a-short-history-of-nearly-everything",
     "title": "A Short History of Nearly Everything",
     "author": "Bill Bryson",
     "type": "book",
-    "rating": 4,
-    "status": "dnf",
-    "dateCompleted": "2024-07-01",
     "genre": [
       "Non-fiction",
       "Science",
@@ -1978,15 +2278,20 @@
     "coverImage": "/resources/images/library/a-short-history-of-nearly-everything.webp",
     "links": {},
     "year": 2003,
-    "externalUrl": "https://www.goodreads.com/book/show/21.A_Short_History_of_Nearly_Everything"
+    "externalUrl": "https://www.goodreads.com/book/show/21.A_Short_History_of_Nearly_Everything",
+    "entries": [
+      {
+        "dateCompleted": "2024-07-01",
+        "status": "dnf",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "babel-necessity-of-violence",
     "title": "Babel, or the Necessity of Violence",
     "author": "R. F. Kuang",
     "type": "book",
-    "rating": null,
-    "status": "on-pause",
     "year": 2022,
     "genre": [
       "Fantasy",
@@ -2001,15 +2306,18 @@
       "Political"
     ],
     "externalUrl": "https://www.goodreads.com/book/show/57945316-babel",
-    "coverImage": "/resources/images/library/babel-or-the-necessity-of-violence.jpg"
+    "coverImage": "/resources/images/library/babel-or-the-necessity-of-violence.jpg",
+    "entries": [
+      {
+        "status": "on-pause"
+      }
+    ]
   },
   {
     "id": "batman-begins-2005",
     "title": "Batman Begins",
     "author": "Christopher Nolan",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2005,
     "genre": [
       "Action",
@@ -2039,16 +2347,18 @@
     ],
     "externalUrl": "https://www.imdb.com/title/tt0372784/",
     "director": "Christopher Nolan",
-    "dateCompleted": "2023-07-01"
+    "entries": [
+      {
+        "dateCompleted": "2023-07-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "before-the-coffee-gets-cold",
     "title": "Before the Coffee Gets Cold",
     "author": "Toshikazu Kawaguchi",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2024-11-01",
     "genre": [
       "Fantasy",
       "Realism"
@@ -2061,15 +2371,20 @@
       "Fantasy",
       "Realism"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/44421460-before-the-coffee-gets-cold"
+    "externalUrl": "https://www.goodreads.com/book/show/44421460-before-the-coffee-gets-cold",
+    "entries": [
+      {
+        "dateCompleted": "2024-11-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "choujin-x",
     "title": "Choujin X",
     "author": "Sui Ishida",
     "type": "book",
-    "rating": null,
-    "status": "in-progress",
     "year": 2021,
     "genre": [
       "Manga",
@@ -2083,6 +2398,11 @@
       "Action",
       "Manga",
       "Supernatural"
+    ],
+    "entries": [
+      {
+        "status": "in-progress"
+      }
     ]
   },
   {
@@ -2090,8 +2410,6 @@
     "title": "Creed",
     "author": "Ryan Coogler",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2015,
     "genre": [
       "Drama",
@@ -2115,15 +2433,18 @@
     },
     "externalUrl": "https://www.imdb.com/title/tt3076658/",
     "director": "Ryan Coogler",
-    "dateCompleted": "2024-06-01"
+    "entries": [
+      {
+        "dateCompleted": "2024-06-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "daliland-2022",
     "title": "Daliland",
     "author": "Mary Harron",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2022,
     "genre": [
       "Drama",
@@ -2138,16 +2459,18 @@
     ],
     "externalUrl": "https://www.imdb.com/title/tt8399658/",
     "director": "Mary Harron",
-    "dateCompleted": "2023-06-01"
+    "entries": [
+      {
+        "dateCompleted": "2023-06-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "dracula",
     "title": "Dracula",
     "author": "Bram Stoker",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2024-11-01",
     "genre": [
       "Fantasy",
       "Supernatural",
@@ -2164,32 +2487,40 @@
       "Supernatural",
       "Thriller & Mystery"
     ],
-    "externalUrl": "https://en.wikipedia.org/wiki/Dracula"
+    "externalUrl": "https://en.wikipedia.org/wiki/Dracula",
+    "entries": [
+      {
+        "dateCompleted": "2024-11-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "east-of-eden",
     "title": "East of Eden",
     "author": "John Steinbeck",
     "type": "book",
-    "rating": 5,
-    "status": "dnf",
-    "dateCompleted": "2023-07-01",
     "genre": [
       "Realism"
     ],
     "description": "A sprawling family saga set in California's Salinas Valley, exploring themes of good and evil.",
     "coverImage": "/resources/images/library/east-of-eden-1779880951982.jpg",
     "links": {},
-    "year": 1952
+    "year": 1952,
+    "entries": [
+      {
+        "dateCompleted": "2023-07-01",
+        "status": "dnf",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "ego-is-the-enemy",
     "title": "Ego is the Enemy",
     "author": "Ryan Holiday",
     "type": "book",
-    "rating": 4,
-    "status": "dnf",
-    "dateCompleted": "2024-10-01",
     "genre": [
       "Non-fiction",
       "Self-improvement",
@@ -2199,16 +2530,20 @@
     "coverImage": "/resources/images/library/ego-is-the-enemy.webp",
     "links": {},
     "year": 2016,
-    "externalUrl": "https://www.amazon.com/Ego-Enemy-Ryan-Holiday/dp/1591847818"
+    "externalUrl": "https://www.amazon.com/Ego-Enemy-Ryan-Holiday/dp/1591847818",
+    "entries": [
+      {
+        "dateCompleted": "2024-10-01",
+        "status": "dnf",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "ext-dragon-republic",
     "title": "The Dragon Republic",
     "author": "Rebecca Kuang",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2024-09-01",
     "genre": [
       "Fantasy",
       "Political",
@@ -2236,6 +2571,13 @@
       "Fantasy",
       "Political",
       "Young Adult (YA)"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2024-09-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -2243,9 +2585,6 @@
     "title": "The Battle of the Labyrinth",
     "author": "Rick Riordan",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Fantasy",
       "Young Adult (YA)",
@@ -2283,6 +2622,13 @@
       "Fantasy",
       "Supernatural",
       "Young Adult (YA)"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -2290,9 +2636,6 @@
     "title": "The Titan's Curse",
     "author": "Rick Riordan",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Fantasy",
       "Young Adult (YA)",
@@ -2330,6 +2673,13 @@
       "Fantasy",
       "Supernatural",
       "Young Adult (YA)"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -2337,9 +2687,6 @@
     "title": "The Sea of Monsters",
     "author": "Rick Riordan",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Fantasy",
       "Young Adult (YA)",
@@ -2377,6 +2724,13 @@
       "Fantasy",
       "Supernatural",
       "Young Adult (YA)"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -2384,9 +2738,6 @@
     "title": "The Lightning Thief",
     "author": "Rick Riordan",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Fantasy",
       "Young Adult (YA)",
@@ -2423,6 +2774,13 @@
       "Fantasy",
       "Supernatural",
       "Young Adult (YA)"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -2430,9 +2788,6 @@
     "title": "The Lost Hero",
     "author": "Rick Riordan",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Fantasy",
       "Young Adult (YA)",
@@ -2470,6 +2825,13 @@
       "Fantasy",
       "Supernatural",
       "Young Adult (YA)"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -2477,9 +2839,6 @@
     "title": "The Son of Neptune",
     "author": "Rick Riordan",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Fantasy",
       "Young Adult (YA)",
@@ -2516,6 +2875,13 @@
       "Fantasy",
       "Supernatural",
       "Young Adult (YA)"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -2523,9 +2889,6 @@
     "title": "Harry Potter and the Deathly Hallows",
     "author": "J.K. Rowling",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Fantasy",
       "Adventure"
@@ -2558,6 +2921,13 @@
     "topics": [
       "Adventure",
       "Fantasy"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -2565,9 +2935,6 @@
     "title": "Harry Potter and the Half-Blood Prince",
     "author": "J.K. Rowling",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Fantasy",
       "Adventure"
@@ -2601,6 +2968,13 @@
     "topics": [
       "Adventure",
       "Fantasy"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -2608,9 +2982,6 @@
     "title": "Harry Potter and the Order of the Phoenix",
     "author": "J.K. Rowling",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Fantasy",
       "Adventure"
@@ -2644,6 +3015,13 @@
     "topics": [
       "Adventure",
       "Fantasy"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -2651,9 +3029,6 @@
     "title": "Harry Potter and the Goblet of Fire",
     "author": "J.K. Rowling",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Fantasy",
       "Adventure"
@@ -2687,6 +3062,13 @@
     "topics": [
       "Adventure",
       "Fantasy"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -2694,9 +3076,6 @@
     "title": "Feel Good Productivity",
     "author": "Ali Abdaal",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2024-01-01",
     "genre": [
       "Non-fiction",
       "Productivity",
@@ -2713,6 +3092,13 @@
       "Productivity",
       "Psychology",
       "Self-improvement"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2024-01-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -2720,9 +3106,6 @@
     "title": "Harry Potter and the Prisoner of Azkaban",
     "author": "J.K. Rowling",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Fantasy",
       "Adventure"
@@ -2756,6 +3139,13 @@
     "topics": [
       "Adventure",
       "Fantasy"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -2763,9 +3153,6 @@
     "title": "Harry Potter and the Chamber of Secrets",
     "author": "J.K. Rowling",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Fantasy",
       "Adventure"
@@ -2799,6 +3186,13 @@
     "topics": [
       "Adventure",
       "Fantasy"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -2806,9 +3200,6 @@
     "title": "Harry Potter and the Philosopher's Stone",
     "author": "J.K. Rowling",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Fantasy",
       "Adventure"
@@ -2841,6 +3232,13 @@
     "topics": [
       "Adventure",
       "Fantasy"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -2848,9 +3246,6 @@
     "title": "Growth Levers and How to Find Them",
     "author": "Matthew Lerner",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2024-06-01",
     "genre": [
       "Non-fiction",
       "Business",
@@ -2865,16 +3260,20 @@
       "Marketing",
       "Non-fiction"
     ],
-    "externalUrl": "https://www.amazon.com/Growth-Levers-How-Find-Them/dp/1738426203"
+    "externalUrl": "https://www.amazon.com/Growth-Levers-How-Find-Them/dp/1738426203",
+    "entries": [
+      {
+        "dateCompleted": "2024-06-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "ext-endgame-calling",
     "title": "Endgame: The Calling",
     "author": "James Frey",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2024-01-01",
     "genre": [
       "Realism",
       "Young Adult (YA)",
@@ -2891,16 +3290,20 @@
       "Realism",
       "Young Adult (YA)"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/20510241-the-calling"
+    "externalUrl": "https://www.goodreads.com/book/show/20510241-the-calling",
+    "entries": [
+      {
+        "dateCompleted": "2024-01-01",
+        "status": "completed",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "ext-1984",
     "title": "1984",
     "author": "George Orwell",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Dystopian",
       "Political"
@@ -2913,16 +3316,20 @@
       "Dystopian",
       "Political"
     ],
-    "externalUrl": "https://www.audible.com/pd/1984-Audiobook/B002V19RO6"
+    "externalUrl": "https://www.audible.com/pd/1984-Audiobook/B002V19RO6",
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "ext-tobacco",
     "title": "Tobacco",
     "author": "Dimitar Dimov",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "History",
       "Political"
@@ -2934,6 +3341,13 @@
     "topics": [
       "History",
       "Political"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 4
+      }
     ]
   },
   {
@@ -2941,9 +3355,6 @@
     "title": "The Metamorphosis",
     "author": "Franz Kafka",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Psychology",
       "Supernatural",
@@ -2957,6 +3368,13 @@
       "Psychology",
       "Realism",
       "Supernatural"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -2964,9 +3382,6 @@
     "title": "Tokyo Ghoul:re",
     "author": "Sui Ishida",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Manga",
       "Action",
@@ -2993,6 +3408,13 @@
       "Horror",
       "Manga",
       "Supernatural"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 4
+      }
     ]
   },
   {
@@ -3000,9 +3422,6 @@
     "title": "Tokyo Ghoul",
     "author": "Sui Ishida",
     "type": "book",
-    "rating": 4,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Manga",
       "Action",
@@ -3029,6 +3448,13 @@
       "Horror",
       "Manga",
       "Supernatural"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 4
+      }
     ]
   },
   {
@@ -3036,9 +3462,6 @@
     "title": "The Last Olympian",
     "author": "Rick Riordan",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2023-01-01",
     "genre": [
       "Fantasy",
       "Young Adult (YA)",
@@ -3076,6 +3499,13 @@
       "Fantasy",
       "Supernatural",
       "Young Adult (YA)"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2023-01-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -3083,9 +3513,6 @@
     "title": "The Burning God",
     "author": "Rebecca Kuang",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2024-10-01",
     "genre": [
       "Fantasy",
       "Political",
@@ -3113,15 +3540,20 @@
       "Political",
       "Young Adult (YA)"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/45857086-the-burning-god"
+    "externalUrl": "https://www.goodreads.com/book/show/45857086-the-burning-god",
+    "entries": [
+      {
+        "dateCompleted": "2024-10-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "ex-machina-2014",
     "title": "Ex Machina",
     "author": "Alex Garland",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2014,
     "genre": [
       "Drama",
@@ -3132,15 +3564,18 @@
     "coverImage": "/resources/images/library/ex-machina-2014.webp",
     "links": {},
     "externalUrl": "https://www.imdb.com/title/tt0470752/",
-    "director": "Alex Garland"
+    "director": "Alex Garland",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "get-out-2017",
     "title": "Get Out",
     "author": "Jordan Peele",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2017,
     "genre": [
       "Horror",
@@ -3151,16 +3586,18 @@
     "coverImage": "/resources/images/library/get-out-2017.webp",
     "links": {},
     "externalUrl": "https://www.imdb.com/title/tt5052448/",
-    "director": "Jordan Peele"
+    "director": "Jordan Peele",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "goodnight-punpun",
     "title": "Goodnight, Punpun",
     "author": "Inio Asano",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2024-10-01",
     "genre": [
       "Manga",
       "Realism",
@@ -3174,6 +3611,13 @@
       "Manga",
       "Psychology",
       "Realism"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2024-10-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -3181,8 +3625,6 @@
     "title": "Green Book",
     "author": "Peter Farrelly",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2018,
     "genre": [
       "Drama",
@@ -3193,15 +3635,18 @@
     "coverImage": "/resources/images/library/green-book-2018.webp",
     "links": {},
     "externalUrl": "https://www.imdb.com/title/tt6966692/",
-    "director": "Peter Farrelly"
+    "director": "Peter Farrelly",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "heights-2017",
     "title": "Heights",
     "author": "Victor Bojinov",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2017,
     "genre": [
       "Drama",
@@ -3210,16 +3655,18 @@
     "description": "A Bulgarian drama film directed by Victor Bojinov, based on the novel by Milen Ruskov.",
     "coverImage": "/resources/images/library/heights-2017.webp",
     "links": {},
-    "director": "Victor Bojinov"
+    "director": "Victor Bojinov",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "iglatana-labakan",
     "title": "Иглата на Лабакан",
     "author": "Yulia Spiridonova",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2024-01-01",
     "genre": [
       "Fantasy",
       "Adventure"
@@ -3244,15 +3691,20 @@
       "Adventure",
       "Fantasy"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/17829716"
+    "externalUrl": "https://www.goodreads.com/book/show/17829716",
+    "entries": [
+      {
+        "dateCompleted": "2024-01-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "in-the-heart-of-the-machine-2022",
     "title": "In the Heart of the Machine",
     "author": "Martin Makariev",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2022,
     "genre": [
       "Drama",
@@ -3266,16 +3718,19 @@
     ],
     "externalUrl": "https://www.imdb.com/title/tt12595378/",
     "director": "Martin Makariev",
-    "dateCompleted": "2023-05-01",
-    "coverImage": "/resources/images/library/in-the-heart-of-the-machine.jpg"
+    "coverImage": "/resources/images/library/in-the-heart-of-the-machine.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2023-05-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "january-2021",
     "title": "January",
     "author": "Andrey Paounov",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2021,
     "genre": [
       "Drama",
@@ -3285,16 +3740,19 @@
     "links": {},
     "externalUrl": "https://www.imdb.com/title/tt13989462",
     "director": "Andrey Paounov",
-    "dateCompleted": "2022-02-01",
-    "coverImage": "/resources/images/library/january-1779877020964.jpg"
+    "coverImage": "/resources/images/library/january-1779877020964.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2022-02-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "joker-2019",
     "title": "Joker",
     "author": "Todd Phillips",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2019,
     "genre": [
       "Crime",
@@ -3305,15 +3763,18 @@
     "coverImage": "/resources/images/library/joker-2019.webp",
     "links": {},
     "director": "Todd Phillips",
-    "dateCompleted": "2020-02-01"
+    "entries": [
+      {
+        "dateCompleted": "2020-02-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "jujutsu-kaisen-0-2021",
     "title": "Jujutsu Kaisen 0",
     "author": "Gege Akutami, Sunghoo Park",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2021,
     "genre": [
       "Animation",
@@ -3325,16 +3786,18 @@
     "links": {},
     "externalUrl": "https://www.imdb.com/title/tt14331144/",
     "director": "Gege Akutami, Sunghoo Park",
-    "dateCompleted": "2022-03-01"
+    "entries": [
+      {
+        "dateCompleted": "2022-03-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "kralska-krav",
     "title": "Кралска кръв",
     "author": "Yulia Spiridonova",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2024-01-01",
     "genre": [
       "Fantasy",
       "Adventure"
@@ -3359,15 +3822,20 @@
       "Adventure",
       "Fantasy"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/10822851"
+    "externalUrl": "https://www.goodreads.com/book/show/10822851",
+    "entries": [
+      {
+        "dateCompleted": "2024-01-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "law-abiding-citizen-2009",
     "title": "Law Abiding Citizen",
     "author": "F. Gary Gray",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2009,
     "genre": [
       "Crime",
@@ -3378,15 +3846,18 @@
     "coverImage": "/resources/images/library/law-abiding-citizen-2009.webp",
     "links": {},
     "externalUrl": "https://www.imdb.com/title/tt1197624/",
-    "director": "F. Gary Gray"
+    "director": "F. Gary Gray",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "logan-2017",
     "title": "Logan",
     "author": "James Mangold",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2017,
     "genre": [
       "Action",
@@ -3397,16 +3868,18 @@
     "coverImage": "/resources/images/library/logan-2017.webp",
     "links": {},
     "externalUrl": "https://www.imdb.com/title/tt3315342/",
-    "director": "James Mangold"
+    "director": "James Mangold",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "lord-of-the-flies",
     "title": "Lord of the Flies",
     "author": "William Golding",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2024-10-01",
     "genre": [
       "Realism",
       "Action"
@@ -3418,6 +3891,13 @@
     "topics": [
       "Action",
       "Realism"
+    ],
+    "entries": [
+      {
+        "dateCompleted": "2024-10-01",
+        "status": "completed",
+        "rating": 5
+      }
     ]
   },
   {
@@ -3425,9 +3905,6 @@
     "title": "Любими Попътечо",
     "author": "Yulia Spiridonova",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2024-01-01",
     "genre": [
       "Fantasy",
       "Adventure"
@@ -3452,16 +3929,20 @@
       "Adventure",
       "Fantasy"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/7736137"
+    "externalUrl": "https://www.goodreads.com/book/show/7736137",
+    "entries": [
+      {
+        "dateCompleted": "2024-01-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "mamnik",
     "title": "Mamnik",
     "author": "Vasil Popov",
     "type": "book",
-    "rating": 1,
-    "status": "completed",
-    "dateCompleted": "2025-04-01",
     "genre": [
       "Fantasy",
       "Thriller & Mystery",
@@ -3478,15 +3959,20 @@
       "Supernatural",
       "Thriller & Mystery"
     ],
-    "externalUrl": "https://www.goodreads.com/book/show/59840044"
+    "externalUrl": "https://www.goodreads.com/book/show/59840044",
+    "entries": [
+      {
+        "dateCompleted": "2025-04-01",
+        "status": "completed",
+        "rating": 1
+      }
+    ]
   },
   {
     "id": "m-1931",
     "title": "M",
     "author": "Fritz Lang",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 1931,
     "genre": [
       "Crime",
@@ -3497,15 +3983,18 @@
     "coverImage": "/resources/images/library/m-1931.webp",
     "links": {},
     "externalUrl": "https://www.imdb.com/title/tt0022100/",
-    "director": "Fritz Lang"
+    "director": "Fritz Lang",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "navalny-2022",
     "title": "Navalny",
     "director": "Daniel Roher",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2022,
     "genre": [
       "Documentary",
@@ -3521,16 +4010,18 @@
       "Psychology"
     ],
     "externalUrl": "https://www.imdb.com/title/tt17041964/",
-    "dateCompleted": "2023-04-01"
+    "entries": [
+      {
+        "dateCompleted": "2023-04-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "no-more-mr-nice-guy",
     "title": "No More Mr. Nice Guy",
     "author": "Robert A. Glover",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2024-12-01",
     "genre": [
       "Non-fiction",
       "Masculinity",
@@ -3547,15 +4038,20 @@
       "Psychology",
       "Self-improvement"
     ],
-    "externalUrl": "https://www.amazon.com/No-More-Mr-Nice-Guy/dp/0762415339"
+    "externalUrl": "https://www.amazon.com/No-More-Mr-Nice-Guy/dp/0762415339",
+    "entries": [
+      {
+        "dateCompleted": "2024-12-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "parasite-2019",
     "title": "Parasite",
     "author": "Bong Joon-ho",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2019,
     "genre": [
       "Drama",
@@ -3565,16 +4061,18 @@
     "coverImage": "/resources/images/library/parasite-2019.webp",
     "links": {},
     "externalUrl": "https://www.imdb.com/title/tt6751668/",
-    "director": "Bong Joon-ho"
+    "director": "Bong Joon-ho",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "principles-for-dealing-with-the-changing-world-order",
     "title": "Principles for Dealing with the Changing World Order",
     "author": "Ray Dalio",
     "type": "book",
-    "rating": 4,
-    "status": "dnf",
-    "dateCompleted": "2022-11-01",
     "genre": [
       "Non-fiction",
       "Economics",
@@ -3582,16 +4080,20 @@
     ],
     "description": "Ray Dalio explores the patterns and cycles that shape the rise and fall of nations and economies.",
     "coverImage": "/resources/images/library/principles-for-dealing-with-the-changing-world-order.webp",
-    "links": {}
+    "links": {},
+    "entries": [
+      {
+        "dateCompleted": "2022-11-01",
+        "status": "dnf",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "rodopskiyat-paraklis",
     "title": "Родопският параклис",
     "author": "A. D.",
     "type": "book",
-    "rating": 4,
-    "status": "dnf",
-    "dateCompleted": "2024-07-01",
     "genre": [
       "Realism"
     ],
@@ -3599,15 +4101,20 @@
     "coverImage": "/resources/images/library/rodopskiyat-paraklis.webp",
     "links": {},
     "year": 2023,
-    "externalUrl": "https://www.goodreads.com/book/show/124653033"
+    "externalUrl": "https://www.goodreads.com/book/show/124653033",
+    "entries": [
+      {
+        "dateCompleted": "2024-07-01",
+        "status": "dnf",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "se7en-1995",
     "title": "Se7en",
     "author": "David Fincher",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 1995,
     "genre": [
       "Crime",
@@ -3616,15 +4123,18 @@
     ],
     "description": "A dark thriller about two detectives tracking a serial killer who uses the seven deadly sins as motives.",
     "coverImage": "/resources/images/library/se7en.webp",
-    "links": {}
+    "links": {},
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "shoe-dog",
     "title": "Shoe Dog: A Memoir by the Creator of Nike",
     "author": "Phil Knight",
     "type": "book",
-    "rating": null,
-    "status": "in-progress",
     "year": 2016,
     "genre": [
       "Memoir",
@@ -3634,15 +4144,18 @@
     "description": "The memoir of Phil Knight, founder of Nike, chronicling the company's early days and growth.",
     "coverImage": "/resources/images/library/shoe-dog.webp",
     "links": {},
-    "externalUrl": "https://www.goodreads.com/book/show/27220736-shoe-dog"
+    "externalUrl": "https://www.goodreads.com/book/show/27220736-shoe-dog",
+    "entries": [
+      {
+        "status": "in-progress"
+      }
+    ]
   },
   {
     "id": "the-banshees-of-inisherin",
     "title": "The Banshees of Inisherin",
     "author": "Martin McDonagh",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2022,
     "genre": [
       "Drama",
@@ -3652,15 +4165,18 @@
     "coverImage": "/resources/images/library/the-banshees-of-inisherin.webp",
     "links": {},
     "externalUrl": "https://www.imdb.com/title/tt11813216/",
-    "director": "Martin McDonagh"
+    "director": "Martin McDonagh",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "the-batman-2022",
     "title": "The Batman",
     "author": "Matt Reeves",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2022,
     "genre": [
       "Action",
@@ -3678,15 +4194,18 @@
     ],
     "externalUrl": "https://www.imdb.com/title/tt1877830/",
     "director": "Matt Reeves",
-    "dateCompleted": "2023-04-01"
+    "entries": [
+      {
+        "dateCompleted": "2023-04-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "the-body-a-guide-for-occupants",
     "title": "The Body: A Guide for Occupants",
     "author": "Bill Bryson",
     "type": "book",
-    "rating": 4,
-    "status": "dnf",
     "genre": [
       "Non-fiction",
       "Science",
@@ -3695,15 +4214,19 @@
     "description": "A fascinating tour of the human body, inside and out, by Bill Bryson.",
     "coverImage": "/resources/images/library/the-body-a-guide-for-occupants.webp",
     "links": {},
-    "year": 2019
+    "year": 2019,
+    "entries": [
+      {
+        "status": "dnf",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "the-boy-and-the-heron-2023",
     "title": "The Boy and the Heron",
     "author": "Hayao Miyazaki",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2023,
     "genre": [
       "Animation",
@@ -3715,15 +4238,18 @@
     "links": {},
     "externalUrl": "https://www.imdb.com/title/tt6587046/?ref_=ttls_li_tt",
     "director": "Hayao Miyazaki",
-    "dateCompleted": "2023-12-01"
+    "entries": [
+      {
+        "dateCompleted": "2023-12-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "the-cancer-code",
     "title": "The Cancer Code",
     "author": "Jason Fung",
     "type": "book",
-    "rating": 4,
-    "status": "dnf",
     "genre": [
       "Non-fiction",
       "Health",
@@ -3731,15 +4257,19 @@
     ],
     "description": "A new look at cancer and its treatment from a metabolic perspective.",
     "coverImage": "/resources/images/library/the-cancer-code.webp",
-    "links": {}
+    "links": {},
+    "entries": [
+      {
+        "status": "dnf",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "the-dark-knight",
     "title": "The Dark Knight",
     "author": "Christopher Nolan",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2008,
     "genre": [
       "Action",
@@ -3770,15 +4300,18 @@
     ],
     "externalUrl": "https://www.imdb.com/title/tt0468569/",
     "director": "Christopher Nolan",
-    "dateCompleted": "2023-07-01"
+    "entries": [
+      {
+        "dateCompleted": "2023-07-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "the-dark-knight-rises",
     "title": "The Dark Knight Rises",
     "author": "Christopher Nolan",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2012,
     "genre": [
       "Action",
@@ -3808,15 +4341,18 @@
     ],
     "externalUrl": "https://www.imdb.com/title/tt1345836/",
     "director": "Christopher Nolan",
-    "dateCompleted": "2023-07-01"
+    "entries": [
+      {
+        "dateCompleted": "2023-07-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "the-eternal-daughter-2022",
     "title": "The Eternal Daughter",
     "author": "Joanna Hogg",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2022,
     "genre": [
       "Drama",
@@ -3827,16 +4363,18 @@
     "links": {},
     "externalUrl": "https://www.imdb.com/title/tt13874422/",
     "director": "Joanna Hogg",
-    "dateCompleted": "2023-11-01"
+    "entries": [
+      {
+        "dateCompleted": "2023-11-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "the-headless-horseman",
     "title": "The Headless Horseman",
     "author": "Mayne Reid",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2024-08-01",
     "genre": [
       "Adventure"
     ],
@@ -3844,15 +4382,20 @@
     "coverImage": "/resources/images/library/the-headless-horseman.webp",
     "links": {},
     "year": 1866,
-    "externalUrl": "https://www.goodreads.com/book/show/2451552.The_Headless_Horseman"
+    "externalUrl": "https://www.goodreads.com/book/show/2451552.The_Headless_Horseman",
+    "entries": [
+      {
+        "dateCompleted": "2024-08-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "the-let-them-theory",
     "title": "The Let Them Theory",
     "author": "Mel Robbins",
     "type": "book",
-    "rating": 4,
-    "status": "dnf",
     "genre": [
       "Non-fiction",
       "Self-improvement"
@@ -3861,15 +4404,19 @@
     "coverImage": "/resources/images/library/the-let-them-theory.webp",
     "links": {},
     "year": 2024,
-    "externalUrl": "https://www.goodreads.com/book/show/216351768-the-let-them-theory"
+    "externalUrl": "https://www.goodreads.com/book/show/216351768-the-let-them-theory",
+    "entries": [
+      {
+        "status": "dnf",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "the-matrix",
     "title": "The Matrix",
     "author": "The Wachowskis",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 1999,
     "genre": [
       "Action",
@@ -3877,17 +4424,19 @@
     ],
     "description": "A groundbreaking sci-fi film about reality, freedom, and artificial intelligence.",
     "links": {},
-    "dateCompleted": "2023-07-01",
-    "coverImage": "/resources/images/library/the-matrix.png"
+    "coverImage": "/resources/images/library/the-matrix.png",
+    "entries": [
+      {
+        "dateCompleted": "2023-07-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "the-personal-mba",
     "title": "The Personal MBA",
     "author": "Josh Kaufman",
     "type": "book",
-    "rating": 4,
-    "status": "dnf",
-    "dateCompleted": "2024-07-01",
     "genre": [
       "Non-fiction",
       "Business",
@@ -3897,15 +4446,20 @@
     "coverImage": "/resources/images/library/the-personal-mba.webp",
     "links": {},
     "year": 2010,
-    "externalUrl": "https://personalmba.com/"
+    "externalUrl": "https://personalmba.com/",
+    "entries": [
+      {
+        "dateCompleted": "2024-07-01",
+        "status": "dnf",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "the-product-book",
     "title": "The Product Book",
     "author": "Russel Newton",
     "type": "book",
-    "rating": 4,
-    "status": "dnf",
     "genre": [
       "Non-fiction",
       "Business",
@@ -3915,15 +4469,19 @@
     "coverImage": "/resources/images/library/the-product-book.webp",
     "links": {},
     "year": 2019,
-    "externalUrl": "https://www.audible.co.uk/pd/B07N48YNVK?source_code=ASSORAP0511160007"
+    "externalUrl": "https://www.audible.co.uk/pd/B07N48YNVK?source_code=ASSORAP0511160007",
+    "entries": [
+      {
+        "status": "dnf",
+        "rating": 4
+      }
+    ]
   },
   {
     "id": "the-social-network-2010",
     "title": "The Social Network",
     "author": "David Fincher",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2010,
     "genre": [
       "Biography",
@@ -3932,16 +4490,18 @@
     "description": "A drama about the founding of Facebook and the lawsuits that followed.",
     "coverImage": "/resources/images/library/the-social-network-2010.webp",
     "links": {},
-    "dateCompleted": "2024-06-01"
+    "entries": [
+      {
+        "dateCompleted": "2024-06-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "tomorrow-and-tomorrow-and-tomorrow",
     "title": "Tomorrow, and Tomorrow, and Tomorrow",
     "author": "Gabrielle Zevin",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2025-05-01",
     "genre": [
       "Realism"
     ],
@@ -3949,15 +4509,20 @@
     "coverImage": "/resources/images/library/tomorrow-and-tomorrow-and-tomorrow.webp",
     "links": {},
     "year": 2022,
-    "externalUrl": "https://www.goodreads.com/book/show/58784475-tomorrow-and-tomorrow-and-tomorrow"
+    "externalUrl": "https://www.goodreads.com/book/show/58784475-tomorrow-and-tomorrow-and-tomorrow",
+    "entries": [
+      {
+        "dateCompleted": "2025-05-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "watchmen-2009",
     "title": "Watchmen",
     "author": "Zack Snyder",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "year": 2009,
     "genre": [
       "Action",
@@ -3968,16 +4533,18 @@
     "coverImage": "/resources/images/library/watchmen-2009.webp",
     "links": {},
     "externalUrl": "https://www.imdb.com/title/tt0409459/",
-    "director": "Zack Snyder"
+    "director": "Zack Snyder",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "why-good-people-do-bad-things",
     "title": "Why Good People Do Bad Things: Understanding Our Darker Selves",
     "author": "James Hollis",
     "type": "book",
-    "rating": 5,
-    "status": "completed",
-    "dateCompleted": "2024-12-01",
     "genre": [
       "Non-fiction",
       "Psychology",
@@ -3992,7 +4559,14 @@
       "Psychology",
       "Self-improvement"
     ],
-    "externalUrl": "https://www.amazon.com/Why-Good-People-Things-Understanding/dp/1592403417"
+    "externalUrl": "https://www.amazon.com/Why-Good-People-Things-Understanding/dp/1592403417",
+    "entries": [
+      {
+        "dateCompleted": "2024-12-01",
+        "status": "completed",
+        "rating": 5
+      }
+    ]
   },
   {
     "id": "74",
@@ -4042,8 +4616,6 @@
     "id": "76",
     "title": "Skulduggery Pleasant Book 2: Playing with Fire",
     "type": "book",
-    "rating": null,
-    "status": "dnf",
     "genre": [],
     "description": "The thrilling sequel follows Valkyrie and Skulduggery as they face a new threat when Baron Vengeous escapes from prison, determined to bring back the terrifying Grotesquery and resurrect the Faceless Ones. With dark humor and escalating stakes, this adventure tests their partnership as they race against time to prevent the return of ancient gods.",
     "year": 2008,
@@ -4058,7 +4630,12 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/2229579.Playing_with_Fire"
     },
-    "coverImage": "/resources/images/library/skulduggery-pleasant-book-2-playing-with-fire-1779880853227.jpg"
+    "coverImage": "/resources/images/library/skulduggery-pleasant-book-2-playing-with-fire-1779880853227.jpg",
+    "entries": [
+      {
+        "status": "dnf"
+      }
+    ]
   },
   {
     "id": "77",
@@ -4197,18 +4774,21 @@
     "id": "85",
     "title": "Akira",
     "type": "movie",
-    "rating": null,
-    "status": "in-progress",
     "genre": [],
     "description": "",
     "year": 1988,
     "externalUrl": "https://www.imdb.com/title/tt0094625/",
     "director": "Katsuhiro Omoro",
-    "dateCompleted": "2026-03-01",
     "links": {
       "imdb": "https://www.imdb.com/title/tt0094625/"
     },
-    "coverImage": "/resources/images/library/akira.jpg"
+    "coverImage": "/resources/images/library/akira.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2026-03-01",
+        "status": "in-progress"
+      }
+    ]
   },
   {
     "id": "86",
@@ -4230,8 +4810,6 @@
     "id": "87",
     "title": "Chernobyl",
     "type": "series",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2019,
@@ -4242,42 +4820,53 @@
     ],
     "externalUrl": "https://www.imdb.com/title/tt7366338/",
     "creator": "Craig Mazin",
-    "dateCompleted": "2023-06-01",
     "links": {
       "imdb": "https://www.imdb.com/title/tt7366338/"
     },
-    "coverImage": "/resources/images/library/chernobyl.jpg"
+    "coverImage": "/resources/images/library/chernobyl.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2023-06-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "88",
     "title": "Jujutsu Kaisen - S2",
     "type": "series",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2023,
     "creator": "Gege Akutami",
-    "dateCompleted": "2023-09-01",
     "links": {},
-    "coverImage": "/resources/images/library/jujutsu-kaisen-1779876994398.webp"
+    "coverImage": "/resources/images/library/jujutsu-kaisen-1779876994398.webp",
+    "entries": [
+      {
+        "dateCompleted": "2023-09-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "89",
     "title": "The Hunger Games: The Ballad of Songbirds and Snakes",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2023,
     "externalUrl": "https://www.imdb.com/title/tt10545296/",
     "director": "Francis Lawrence",
-    "dateCompleted": "2023-11-01",
     "links": {
       "imdb": "https://www.imdb.com/title/tt10545296/"
     },
-    "coverImage": "/resources/images/library/the-hunger-games-the-ballad-of-songbirds-and-snakes.jpg"
+    "coverImage": "/resources/images/library/the-hunger-games-the-ballad-of-songbirds-and-snakes.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2023-11-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "90",
@@ -4593,25 +5182,26 @@
     "id": "107",
     "title": "The Last Witch of Scotland",
     "type": "book",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2023,
     "externalUrl": "https://www.goodreads.com/book/show/123164836-the-last-witch-of-scotland",
     "author": "Philip Paris",
-    "dateCompleted": "2025-07-01",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/123164836-the-last-witch-of-scotland"
     },
-    "coverImage": "/resources/images/library/the-last-witch-of-scotland-1779877290946.webp"
+    "coverImage": "/resources/images/library/the-last-witch-of-scotland-1779877290946.webp",
+    "entries": [
+      {
+        "dateCompleted": "2025-07-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "108",
     "title": "I Will Teach You to Be Rich",
     "type": "book",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2009,
@@ -4620,7 +5210,12 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/4924862-i-will-teach-you-to-be-rich"
     },
-    "coverImage": "/resources/images/library/i-will-teach-you-to-be-rich-2009.jpg"
+    "coverImage": "/resources/images/library/i-will-teach-you-to-be-rich-2009.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "109",
@@ -4705,14 +5300,17 @@
     "id": "114",
     "title": "Fullmetal Alchemist: Brotherhood",
     "type": "series",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2009,
     "creator": "Hiromu Arakawa",
     "links": {},
-    "coverImage": "/resources/images/library/fullmetal-alchemist-brotherhood-1779877034374.jpg"
+    "coverImage": "/resources/images/library/fullmetal-alchemist-brotherhood-1779877034374.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "115",
@@ -4750,8 +5348,6 @@
     "id": "117",
     "title": "Akame ga Kill!",
     "type": "series",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2014,
@@ -4760,14 +5356,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt3742982/"
     },
-    "coverImage": "/resources/images/library/akame-ga-kill-1779877045795.jpg"
+    "coverImage": "/resources/images/library/akame-ga-kill-1779877045795.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "118",
     "title": "Mirai Nikki",
     "type": "series",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2011,
@@ -4776,14 +5375,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt2069441/"
     },
-    "coverImage": "/resources/images/library/mirai-nikki.jpg"
+    "coverImage": "/resources/images/library/mirai-nikki.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "119",
     "title": "Another",
     "type": "series",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2012,
@@ -4792,14 +5394,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt1891747/"
     },
-    "coverImage": "/resources/images/library/another.jpg"
+    "coverImage": "/resources/images/library/another.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "120",
     "title": "Attack on Titan",
     "type": "series",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2013,
@@ -4808,14 +5413,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt2560140/"
     },
-    "coverImage": "/resources/images/library/attack-on-titan-1779877054980.jpg"
+    "coverImage": "/resources/images/library/attack-on-titan-1779877054980.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "121",
     "title": "Chainsaw Man",
     "type": "series",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2022,
@@ -4824,14 +5432,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt13616990/"
     },
-    "coverImage": "/resources/images/library/chainsaw-man.jpg"
+    "coverImage": "/resources/images/library/chainsaw-man.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "122",
     "title": "My Hero Academia",
     "type": "series",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2016,
@@ -4840,14 +5451,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt5626028/"
     },
-    "coverImage": "/resources/images/library/my-hero-academia-1779877090596.jpg"
+    "coverImage": "/resources/images/library/my-hero-academia-1779877090596.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "123",
     "title": "Naruto",
     "type": "series",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2002,
@@ -4856,14 +5470,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0409591/"
     },
-    "coverImage": "/resources/images/library/naruto-1779877105945.jpg"
+    "coverImage": "/resources/images/library/naruto-1779877105945.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "124",
     "title": "Naruto: Shippuden",
     "type": "series",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2007,
@@ -4872,14 +5489,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0988824/"
     },
-    "coverImage": "/resources/images/library/naruto-shippuden-1779877113525.jpg"
+    "coverImage": "/resources/images/library/naruto-shippuden-1779877113525.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "125",
     "title": "Parasyte: The Maxim",
     "type": "series",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2014,
@@ -4888,14 +5508,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt3358020/"
     },
-    "coverImage": "/resources/images/library/parasyte-the-maxim.png"
+    "coverImage": "/resources/images/library/parasyte-the-maxim.png",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "126",
     "title": "Tokyo Ghoul",
     "type": "series",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2011,
@@ -4904,7 +5527,12 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt3741634/"
     },
-    "coverImage": "/resources/images/library/tokyo-ghoul-2011.jpg"
+    "coverImage": "/resources/images/library/tokyo-ghoul-2011.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "127",
@@ -5060,8 +5688,6 @@
     "id": "136",
     "title": "Inazuma Eleven",
     "type": "series",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2008,
@@ -5070,7 +5696,12 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt2189248/"
     },
-    "coverImage": "/resources/images/library/inazuma-eleven.jpg"
+    "coverImage": "/resources/images/library/inazuma-eleven.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "137",
@@ -5083,7 +5714,6 @@
     "year": 2024,
     "externalUrl": "https://www.goodreads.com/book/show/207611500-we-who-wrestle-with-god",
     "author": "Jordan B. Peterson",
-    "dateCompleted": "2024-11-01",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/207611500-we-who-wrestle-with-god"
     },
@@ -5224,14 +5854,17 @@
     "id": "146",
     "title": "Gundi (Legend of Love)",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2024,
-    "dateCompleted": "2025-03-01",
     "links": {},
-    "coverImage": "/resources/images/library/gundi-legend-of-love.jpg"
+    "coverImage": "/resources/images/library/gundi-legend-of-love.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2025-03-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "147",
@@ -5290,25 +5923,26 @@
     "id": "150",
     "title": "A Brief History of Time",
     "type": "book",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 1988,
     "externalUrl": "https://www.goodreads.com/book/show/3869.A_Brief_History_of_Time",
     "author": "Stephen Hawking",
-    "dateCompleted": "2025-07-01",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/3869.A_Brief_History_of_Time"
     },
-    "coverImage": "/resources/images/library/a-brief-history-of-time-1779877279376.jpg"
+    "coverImage": "/resources/images/library/a-brief-history-of-time-1779877279376.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2025-07-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "151",
     "title": "Lilo & Stitch",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "A young and parentless girl adopts a 'dog' from the local pound, completely unaware that it's supposedly a dangerous scientific experiment that's taken refuge on Earth and is now hiding from its creator and those who see it as a m...",
     "year": 2002,
@@ -5317,41 +5951,52 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0275847/?ref_=ls_i_56"
     },
-    "coverImage": "/resources/images/library/lilo-stitch.jpg"
+    "coverImage": "/resources/images/library/lilo-stitch.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "152",
     "title": "12 Months to $1 Million: How to Pick a Winning Product, Build a Real Business, and Become a Seven-Figure Entrepreneur",
     "type": "book",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2020,
     "externalUrl": "https://www.goodreads.com/book/show/52079141-12-months-to-1-million",
     "author": "Ryan Daniel Moran",
-    "dateCompleted": "2025-07-01",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/52079141-12-months-to-1-million"
     },
-    "coverImage": "/resources/images/library/12-months-to-1-million-how-to-pick-a-winning-product-build-a-real-business-and-b-1779877267440.jpg"
+    "coverImage": "/resources/images/library/12-months-to-1-million-how-to-pick-a-winning-product-build-a-real-business-and-b-1779877267440.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2025-07-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "153",
     "title": "Million Dollar Weekend: The Surprisingly Simple Way to Launch a 7-Figure Business in 48 Hours",
     "type": "book",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2024,
     "externalUrl": "https://www.goodreads.com/book/show/145624504-million-dollar-weekend",
     "author": "Noah Kagan",
-    "dateCompleted": "2025-07-01",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/145624504-million-dollar-weekend"
     },
-    "coverImage": "/resources/images/library/million-dollar-weekend-the-surprisingly-simple-way-to-launch-a-7-figure-business-1779877911922.jpg"
+    "coverImage": "/resources/images/library/million-dollar-weekend-the-surprisingly-simple-way-to-launch-a-7-figure-business-1779877911922.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2025-07-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "154",
@@ -5421,18 +6066,21 @@
     "id": "158",
     "title": "Legend",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2015,
     "externalUrl": "https://www.imdb.com/title/tt3569230/",
     "director": "Brian Helgeland",
-    "dateCompleted": "2025-12-01",
     "links": {
       "imdb": "https://www.imdb.com/title/tt3569230/"
     },
-    "coverImage": "/resources/images/library/legend-1779876454063.jpg"
+    "coverImage": "/resources/images/library/legend-1779876454063.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2025-12-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "159",
@@ -5454,18 +6102,21 @@
     "id": "160",
     "title": "Fahrenheit 451",
     "type": "book",
-    "rating": null,
-    "status": "on-pause",
     "genre": [],
     "description": "",
     "year": 1953,
     "externalUrl": "https://www.goodreads.com/book/show/13079982-fahrenheit-451",
     "author": "Ray Bradbury",
-    "dateCompleted": "2025-08-01",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/13079982-fahrenheit-451"
     },
-    "coverImage": "/resources/images/library/fahrenheit-451-1779877226344.jpg"
+    "coverImage": "/resources/images/library/fahrenheit-451-1779877226344.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2025-08-01",
+        "status": "on-pause"
+      }
+    ]
   },
   {
     "id": "161",
@@ -5487,8 +6138,6 @@
     "id": "162",
     "title": "WALL-E",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2008,
@@ -5497,7 +6146,12 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0910970/"
     },
-    "coverImage": "/resources/images/library/wall-e.jpg"
+    "coverImage": "/resources/images/library/wall-e.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "163",
@@ -5519,18 +6173,21 @@
     "id": "164",
     "title": "Billy & Molly: An Otter Love Story",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2024,
     "externalUrl": "https://www.imdb.com/title/tt31189897/",
     "director": "Charlie Hamilton-James",
-    "dateCompleted": "2025-12-01",
     "links": {
       "imdb": "https://www.imdb.com/title/tt31189897/"
     },
-    "coverImage": "/resources/images/library/billy-molly-an-otter-love-story-1779876497327.jpg"
+    "coverImage": "/resources/images/library/billy-molly-an-otter-love-story-1779876497327.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2025-12-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "165",
@@ -5552,18 +6209,21 @@
     "id": "166",
     "title": "Dandelion Wine",
     "type": "book",
-    "rating": null,
-    "status": "on-pause",
     "genre": [],
     "description": "",
     "year": 1957,
     "externalUrl": "https://www.goodreads.com/book/show/50033.Dandelion_Wine",
     "author": "Ray Bradbury",
-    "dateCompleted": "2025-10-01",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/50033.Dandelion_Wine"
     },
-    "coverImage": "/resources/images/library/dandelion-wine-1779877237736.jpg"
+    "coverImage": "/resources/images/library/dandelion-wine-1779877237736.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2025-10-01",
+        "status": "on-pause"
+      }
+    ]
   },
   {
     "id": "167",
@@ -5585,18 +6245,21 @@
     "id": "168",
     "title": "The Bear",
     "type": "series",
-    "rating": null,
-    "status": "in-progress",
     "genre": [],
     "description": "",
     "year": 2022,
     "externalUrl": "https://www.imdb.com/title/tt14452776/episodes/?season=5",
     "creator": "Christopher Storer",
-    "dateCompleted": "2025-12-01",
     "links": {
       "imdb": "https://www.imdb.com/title/tt14452776/episodes/?season=5"
     },
-    "coverImage": "/resources/images/library/the-bear-1779876478894.png"
+    "coverImage": "/resources/images/library/the-bear-1779876478894.png",
+    "entries": [
+      {
+        "dateCompleted": "2025-12-01",
+        "status": "in-progress"
+      }
+    ]
   },
   {
     "id": "169",
@@ -5714,18 +6377,21 @@
     "id": "176",
     "title": "Normal People",
     "type": "book",
-    "rating": null,
-    "status": "in-progress",
     "genre": [],
     "description": "",
     "year": 2018,
     "externalUrl": "https://www.goodreads.com/book/show/41057294-normal-people",
     "author": "Sally Rooney",
-    "dateCompleted": "2026-05-01",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/41057294-normal-people"
     },
-    "coverImage": "/resources/images/library/normal-people.png"
+    "coverImage": "/resources/images/library/normal-people.png",
+    "entries": [
+      {
+        "dateCompleted": "2026-05-01",
+        "status": "in-progress"
+      }
+    ]
   },
   {
     "id": "177",
@@ -5747,52 +6413,61 @@
     "id": "178",
     "title": "Laws of UX: Using Psychology to Design Better Products & Services",
     "type": "book",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2024,
     "externalUrl": "https://www.goodreads.com/book/show/198340226-laws-of-ux",
     "author": "Jon Yablonski",
-    "dateCompleted": "2025-12-01",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/198340226-laws-of-ux"
     },
-    "coverImage": "/resources/images/library/laws-of-ux-using-psychology-to-design-better-products-services-1779877195786.jpg"
+    "coverImage": "/resources/images/library/laws-of-ux-using-psychology-to-design-better-products-services-1779877195786.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2025-12-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "179",
     "title": "The Fall",
     "type": "book",
-    "rating": null,
-    "status": "in-progress",
     "genre": [],
     "description": "",
     "year": 1956,
     "externalUrl": "https://www.goodreads.com/book/show/11991.The_Fall",
     "author": "Albert Camus",
-    "dateCompleted": "2025-12-01",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/11991.The_Fall"
     },
-    "coverImage": "/resources/images/library/the-fall-1779877216075.jpg"
+    "coverImage": "/resources/images/library/the-fall-1779877216075.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2025-12-01",
+        "status": "in-progress"
+      }
+    ]
   },
   {
     "id": "180",
     "title": "Springsteen: Deliver Me from Nowhere",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2025,
     "externalUrl": "https://www.imdb.com/title/tt31923069/",
     "director": "Scott Cooper",
-    "dateCompleted": "2025-12-01",
     "links": {
       "imdb": "https://www.imdb.com/title/tt31923069/"
     },
-    "coverImage": "/resources/images/library/springsteen-deliver-me-from-nowhere.png"
+    "coverImage": "/resources/images/library/springsteen-deliver-me-from-nowhere.png",
+    "entries": [
+      {
+        "dateCompleted": "2025-12-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "181",
@@ -6198,35 +6873,41 @@
     "id": "206",
     "title": "Bullet Train",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2022,
     "externalUrl": "https://www.imdb.com/title/tt12593682",
     "director": "David Leitch",
-    "dateCompleted": "2025-12-01",
     "links": {
       "imdb": "https://www.imdb.com/title/tt12593682"
     },
-    "coverImage": "/resources/images/library/bullet-train.jpg"
+    "coverImage": "/resources/images/library/bullet-train.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2025-12-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "207",
     "title": "F1: The Movie",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2025,
     "externalUrl": "https://www.imdb.com/title/tt16311594",
     "director": "Joseph Kosinski",
-    "dateCompleted": "2026-01-01",
     "links": {
       "imdb": "https://www.imdb.com/title/tt16311594"
     },
-    "coverImage": "/resources/images/library/f1-the-movie.png"
+    "coverImage": "/resources/images/library/f1-the-movie.png",
+    "entries": [
+      {
+        "dateCompleted": "2026-01-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "208",
@@ -6535,8 +7216,6 @@
     "id": "227",
     "title": "Toy Story",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 1995,
@@ -6545,7 +7224,12 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0114709/?ref_=chttp_t_77"
     },
-    "coverImage": "/resources/images/library/toy-story.jpg"
+    "coverImage": "/resources/images/library/toy-story.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "228",
@@ -6583,8 +7267,6 @@
     "id": "230",
     "title": "Star Wars: Episode VI - Return of the Jedi",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 1983,
@@ -6593,14 +7275,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0086190/?ref_=chttp_t_92"
     },
-    "coverImage": "/resources/images/library/star-wars-episode-vi-return-of-the-jedi.jpg"
+    "coverImage": "/resources/images/library/star-wars-episode-vi-return-of-the-jedi.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "231",
     "title": "Eternal Sunshine of the Spotless Mind",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "When their relationship turns sour, a couple undergoes a medical procedure to have each other erased from their memories forever.",
     "year": 2004,
@@ -6609,14 +7294,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0338013/?ref_=chttp_t_96"
     },
-    "coverImage": "/resources/images/library/eternal-sunshine-of-the-spotless-mind.png"
+    "coverImage": "/resources/images/library/eternal-sunshine-of-the-spotless-mind.png",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "232",
     "title": "Up",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "78-year-old Carl Fredricksen travels to South America in his house equipped with balloons, inadvertently taking a young stowaway.",
     "year": 2009,
@@ -6625,14 +7313,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt1049413/?ref_=chttp_i_105"
     },
-    "coverImage": "/resources/images/library/up.jpg"
+    "coverImage": "/resources/images/library/up.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "233",
     "title": "Home Alone",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "An eight-year-old troublemaker, mistakenly left home alone, must defend his home against a pair of burglars on Christmas Eve.",
     "year": 1990,
@@ -6641,7 +7332,12 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0099785/?ref_=chtmvm_i_15"
     },
-    "coverImage": "/resources/images/library/home-alone.jpg"
+    "coverImage": "/resources/images/library/home-alone.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "234",
@@ -6839,18 +7535,21 @@
     "id": "246",
     "title": "500 Days of Summer",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "After being dumped by the girl he believes to be his soulmate, hopeless romantic Tom Hansen reflects on their relationship to try and figure out where things went wrong and how he can win her back.",
     "year": 2009,
     "externalUrl": "https://www.imdb.com/title/tt1022603/",
     "director": "Marc Webb",
-    "dateCompleted": "2026-02-01",
     "links": {
       "imdb": "https://www.imdb.com/title/tt1022603/"
     },
-    "coverImage": "/resources/images/library/500-days-of-summer.jpg"
+    "coverImage": "/resources/images/library/500-days-of-summer.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2026-02-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "247",
@@ -6949,8 +7648,6 @@
     "id": "253",
     "title": "Под игото",
     "type": "book",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 1888,
@@ -6959,14 +7656,17 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/3310284"
     },
-    "coverImage": "/resources/images/library/item-z8cbbo-1779880524868.jpg"
+    "coverImage": "/resources/images/library/item-z8cbbo-1779880524868.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "254",
     "title": "Под игото",
     "type": "book",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 1883,
@@ -6975,14 +7675,17 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/2722916--"
     },
-    "coverImage": "/resources/images/library/item-z8cbbo-1779880527354.jpg"
+    "coverImage": "/resources/images/library/item-z8cbbo-1779880527354.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "255",
     "title": "Бай Ганьо",
     "type": "book",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 1963,
@@ -6991,14 +7694,17 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/6251113?ref=rae_0"
     },
-    "coverImage": "/resources/images/library/item-j1h0qc-1779880538759.jpg"
+    "coverImage": "/resources/images/library/item-j1h0qc-1779880538759.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "256",
     "title": "Железният светилник",
     "type": "book",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 1995,
@@ -7007,14 +7713,17 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/1864618._?from_search=true&from_srp=true&qid=Lcn9w1Z6jW&rank=2"
     },
-    "coverImage": "/resources/images/library/item-tpva-1779880556124.jpg"
+    "coverImage": "/resources/images/library/item-tpva-1779880556124.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "257",
     "title": "Deception Point",
     "type": "book",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "On the eve of a presidential race in which NASA's budget is a pivotal issue, the space agency announces the discovery of an ancient meteorite filled with fossils deep in the Arctic ice.",
     "year": 2006,
@@ -7023,7 +7732,12 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/976.Deception_Point"
     },
-    "coverImage": "/resources/images/library/deception-point-1779880570319.jpg"
+    "coverImage": "/resources/images/library/deception-point-1779880570319.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "258",
@@ -7045,8 +7759,6 @@
     "id": "259",
     "title": "The Water Horse",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "A lonely boy discovers a mysterious egg that hatches a sea creature of Scottish legend.",
     "year": 2007,
@@ -7055,7 +7767,12 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0760329/"
     },
-    "coverImage": "/resources/images/library/the-water-horse.jpg"
+    "coverImage": "/resources/images/library/the-water-horse.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "260",
@@ -7093,17 +7810,20 @@
     "id": "262",
     "title": "Normal People",
     "type": "series",
-    "rating": null,
-    "status": "in-progress",
     "genre": [],
     "description": "A man and a woman embark on an on-again/off-again romance that starts at school and continues through college, testing their relationship as they explore different versions of themselves.",
     "year": 2020,
     "externalUrl": "https://www.imdb.com/title/tt9059760/",
-    "dateCompleted": "2026-05-01",
     "links": {
       "imdb": "https://www.imdb.com/title/tt9059760/"
     },
-    "coverImage": "/resources/images/library/normal-people-2020-1779876348414.jpg"
+    "coverImage": "/resources/images/library/normal-people-2020-1779876348414.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2026-05-01",
+        "status": "in-progress"
+      }
+    ]
   },
   {
     "id": "263",
@@ -7125,8 +7845,6 @@
     "id": "264",
     "title": "The Little Prince",
     "type": "book",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "The story of an airman's discovery in the desert of a small boy from another planet.",
     "year": 1995,
@@ -7135,7 +7853,12 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/157993"
     },
-    "coverImage": "/resources/images/library/the-little-prince-1779880135722.jpg"
+    "coverImage": "/resources/images/library/the-little-prince-1779880135722.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "265",
@@ -7205,35 +7928,41 @@
     "id": "269",
     "title": "The Housemaid",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "A struggling woman is happy to start over as a housemaid for an affluent, elite couple.",
     "year": 2025,
     "externalUrl": "https://www.imdb.com/title/tt27543632/",
     "director": "Paul Feig",
-    "dateCompleted": "2026-01-01",
     "links": {
       "imdb": "https://www.imdb.com/title/tt27543632/"
     },
-    "coverImage": "/resources/images/library/the-housemaid.jpg"
+    "coverImage": "/resources/images/library/the-housemaid.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2026-01-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "270",
     "title": "Marty Supreme",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "Marty Mauser, a young man with a dream no one respects, goes to hell and back in pursuit of greatness.",
     "year": 2025,
     "externalUrl": "https://www.imdb.com/title/tt32916440/",
     "director": "Josh Safdie",
-    "dateCompleted": "2026-02-01",
     "links": {
       "imdb": "https://www.imdb.com/title/tt32916440/"
     },
-    "coverImage": "/resources/images/library/marty-supreme.jpg"
+    "coverImage": "/resources/images/library/marty-supreme.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2026-02-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "271",
@@ -7246,7 +7975,6 @@
     "year": 2026,
     "externalUrl": "https://www.imdb.com/title/tt15574124/",
     "director": "Tom Harper",
-    "dateCompleted": "2026-03-01",
     "links": {
       "imdb": "https://www.imdb.com/title/tt15574124/"
     },
@@ -7288,18 +8016,21 @@
     "id": "274",
     "title": "The Iron Claw",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "The true story of the inseparable Von Erich brothers, who made history in the intensely competitive world of professional wrestling in the early 1980s.",
     "year": 2023,
     "externalUrl": "https://www.imdb.com/title/tt21064584/",
     "director": "Sean Durkin",
-    "dateCompleted": "2026-02-01",
     "links": {
       "imdb": "https://www.imdb.com/title/tt21064584/"
     },
-    "coverImage": "/resources/images/library/the-iron-claw.jpg"
+    "coverImage": "/resources/images/library/the-iron-claw.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2026-02-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "275",
@@ -7353,8 +8084,6 @@
     "id": "278",
     "title": "Bambi",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "The story of a young deer growing up in the forest.",
     "year": 1942,
@@ -7363,14 +8092,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0034492/?ref_=ls_i_5"
     },
-    "coverImage": "/resources/images/library/bambi.jpg"
+    "coverImage": "/resources/images/library/bambi.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "279",
     "title": "Pinocchio",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "A living puppet, with the help of a cricket as his conscience, must prove himself worthy to become a real boy.",
     "year": 1940,
@@ -7379,14 +8111,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0032910/?ref_=ls_t_2"
     },
-    "coverImage": "/resources/images/library/pinocchio.jpg"
+    "coverImage": "/resources/images/library/pinocchio.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "280",
     "title": "Incredibles 2",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "The Incredibles family takes on a new mission which involves a change in family roles: Bob Parr (Mr. Incredible) must manage the house while his wife Helen (Elastigirl) goes out to save the world.",
     "year": 2018,
@@ -7395,14 +8130,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt3606756/?ref_=ls_i_111"
     },
-    "coverImage": "/resources/images/library/incredibles-2.jpg"
+    "coverImage": "/resources/images/library/incredibles-2.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "281",
     "title": "Finding Dory",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "Friendly but forgetful blue tang Dory begins a search for her long-lost parents and everyone learns a few things about the real meaning of family along the way.",
     "year": 2016,
@@ -7411,14 +8149,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt2277860/?ref_=ls_t_107"
     },
-    "coverImage": "/resources/images/library/finding-dory.jpg"
+    "coverImage": "/resources/images/library/finding-dory.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "282",
     "title": "Big Hero 6",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "A special bond develops between plus-sized inflatable robot Baymax and prodigy Hiro Hamada, who together team up with a group of friends to form a band of high-tech heroes.",
     "year": 2014,
@@ -7427,14 +8168,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt2245084/?ref_=ls_i_101"
     },
-    "coverImage": "/resources/images/library/big-hero-6.jpg"
+    "coverImage": "/resources/images/library/big-hero-6.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "283",
     "title": "Frozen",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "Fearless optimist Anna teams up with rugged mountain man Kristoff and his loyal reindeer Sven in an epic journey to find Anna's sister Elsa, whose icy powers have trapped the kingdom of Arendelle in eternal winter.",
     "year": 2013,
@@ -7443,14 +8187,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt2294629/?ref_=ls_i_97"
     },
-    "coverImage": "/resources/images/library/frozen.jpg"
+    "coverImage": "/resources/images/library/frozen.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "284",
     "title": "Gnomeo & Juliet",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "Separated by a garden fence and a feud, are blue gnomes on one side and red gnomes on the other. This doesn't stop blue Gnomeo and red Juliet from falling in love with each other. Do they have a future together?",
     "year": 2011,
@@ -7459,14 +8206,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0377981/?ref_=ls_i_85"
     },
-    "coverImage": "/resources/images/library/gnomeo-juliet.jpg"
+    "coverImage": "/resources/images/library/gnomeo-juliet.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "285",
     "title": "Tangled",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "The magically long-haired Rapunzel has spent her entire life in a tower, but now that a runaway thief has stumbled upon her, she is about to discover the world for the first time, and who she really is.",
     "year": 2010,
@@ -7475,14 +8225,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0398286/?ref_=ls_i_84"
     },
-    "coverImage": "/resources/images/library/tangled.jpg"
+    "coverImage": "/resources/images/library/tangled.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "286",
     "title": "Bolt",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "The canine star of a fictional sci-fi/action show that believes his powers are real embarks on a cross country trek to save his co-star from a threat he believes is just as real.",
     "year": 2008,
@@ -7491,14 +8244,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0397892/?ref_=ls_i_76"
     },
-    "coverImage": "/resources/images/library/bolt.jpg"
+    "coverImage": "/resources/images/library/bolt.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "287",
     "title": "Ratatouille",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "A rat who can cook makes an unusual alliance with a young kitchen worker at a famous Paris restaurant.",
     "year": 2007,
@@ -7507,14 +8263,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0382932/?ref_=ls_i_72"
     },
-    "coverImage": "/resources/images/library/ratatouille.jpg"
+    "coverImage": "/resources/images/library/ratatouille.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "288",
     "title": "Cars",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "On the way to the biggest race of his life, a hotshot rookie race car gets stranded in a rundown town and learns that winning isn't everything in life.",
     "year": 2006,
@@ -7523,14 +8282,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0317219/?ref_=ls_i_70"
     },
-    "coverImage": "/resources/images/library/cars.jpg"
+    "coverImage": "/resources/images/library/cars.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "289",
     "title": "The Wild",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "An adolescent lion is accidentally shipped from the New York Zoo to Africa. Now running free, his zoo pals must put aside their differences to help bring him back.",
     "year": 2006,
@@ -7539,14 +8301,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0405469/?ref_=ls_i_69"
     },
-    "coverImage": "/resources/images/library/the-wild.jpg"
+    "coverImage": "/resources/images/library/the-wild.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "290",
     "title": "Chicken Little",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "After ruining his reputation with the town, a courageous chicken must come to the rescue of his fellow citizens when aliens start an invasion.",
     "year": 2005,
@@ -7555,14 +8320,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0371606/?ref_=ls_i_67"
     },
-    "coverImage": "/resources/images/library/chicken-little.jpg"
+    "coverImage": "/resources/images/library/chicken-little.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "291",
     "title": "The Incredibles",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "While trying to lead a quiet suburban life, a family of undercover superheroes are forced into action to save the world.",
     "year": 2004,
@@ -7571,14 +8339,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0317705/?ref_=ls_i_63"
     },
-    "coverImage": "/resources/images/library/the-incredibles.jpg"
+    "coverImage": "/resources/images/library/the-incredibles.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "292",
     "title": "Brother Bear",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "When a young Inuit hunter needlessly kills a bear, he is magically changed into a bear himself as punishment with a talkative cub being his only guide to changing back.",
     "year": 2003,
@@ -7587,14 +8358,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0328880/?ref_=ls_i_61"
     },
-    "coverImage": "/resources/images/library/brother-bear.png"
+    "coverImage": "/resources/images/library/brother-bear.png",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "293",
     "title": "Monsters, Inc.",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "In order to power the city, monsters have to scare children so that they scream. However, the children are toxic to the monsters, and after a child gets through, two monsters realize things may not be what they think.",
     "year": 2001,
@@ -7603,14 +8377,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0198781/?ref_=ls_i_54"
     },
-    "coverImage": "/resources/images/library/monsters-inc.jpg"
+    "coverImage": "/resources/images/library/monsters-inc.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "294",
     "title": "Dinosaur",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "An orphaned dinosaur raised by lemurs joins an arduous trek to a sanctuary after a meteorite shower destroys his family home.",
     "year": 2000,
@@ -7619,14 +8396,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0130623/?ref_=ls_i_50"
     },
-    "coverImage": "/resources/images/library/dinosaur.jpg"
+    "coverImage": "/resources/images/library/dinosaur.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "295",
     "title": "The Tigger Movie",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "Tigger goes looking through the hundred-acre-wood to find his family.",
     "year": 2000,
@@ -7635,14 +8415,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0220099/?ref_=ls_i_49"
     },
-    "coverImage": "/resources/images/library/the-tigger-movie.jpg"
+    "coverImage": "/resources/images/library/the-tigger-movie.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "296",
     "title": "Toy Story 2",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "When Woody is stolen by a toy collector, Buzz and his friends set out on a rescue mission to save Woody before he becomes a museum toy property with his roundup gang Jessie, Prospector, and Bullseye.",
     "year": 1999,
@@ -7651,14 +8434,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0120363/?ref_=ls_i_47"
     },
-    "coverImage": "/resources/images/library/toy-story-2.jpg"
+    "coverImage": "/resources/images/library/toy-story-2.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "297",
     "title": "Tarzan",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "A man raised by gorillas must decide where he really belongs when he discovers he is a human.",
     "year": 1999,
@@ -7667,14 +8453,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0120855/?ref_=ls_i_46"
     },
-    "coverImage": "/resources/images/library/tarzan.jpg"
+    "coverImage": "/resources/images/library/tarzan.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "298",
     "title": "Mulan",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "To save her father from death in the army, a young maiden secretly goes in his place and becomes one of China's greatest heroines in the process.",
     "year": 1998,
@@ -7683,14 +8472,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0120762/?ref_=ls_i_43"
     },
-    "coverImage": "/resources/images/library/mulan.jpg"
+    "coverImage": "/resources/images/library/mulan.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "299",
     "title": "The Lion King",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself.",
     "year": 1994,
@@ -7699,14 +8491,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0110357/?ref_=ls_i_36"
     },
-    "coverImage": "/resources/images/library/the-lion-king.jpg"
+    "coverImage": "/resources/images/library/the-lion-king.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "300",
     "title": "Aladdin",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "A kind-hearted street urchin and a power-hungry Grand Vizier vie for a magic lamp that has the power to make their deepest wishes come true.",
     "year": 1992,
@@ -7715,14 +8510,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0103639/?ref_=ls_i_34"
     },
-    "coverImage": "/resources/images/library/aladdin.jpg"
+    "coverImage": "/resources/images/library/aladdin.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "301",
     "title": "Beauty and the Beast",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "A prince cursed to spend his days as a hideous monster sets out to regain his humanity by earning a young woman's love.",
     "year": 1991,
@@ -7731,14 +8529,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0101414/?ref_=ls_i_33"
     },
-    "coverImage": "/resources/images/library/beauty-and-the-beast.jpg"
+    "coverImage": "/resources/images/library/beauty-and-the-beast.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "302",
     "title": "The Little Mermaid",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "A mermaid princess makes a Faustian bargain in an attempt to become human and win a prince's love.",
     "year": 1989,
@@ -7747,14 +8548,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0097757/?ref_=ls_i_30"
     },
-    "coverImage": "/resources/images/library/the-little-mermaid.png"
+    "coverImage": "/resources/images/library/the-little-mermaid.png",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "303",
     "title": "The Jungle Book",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "Bagheera the Panther and Baloo the Bear have a difficult time trying to convince a boy to leave the jungle for human civilization.",
     "year": 1967,
@@ -7763,14 +8567,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0061852/?ref_=ls_i_20"
     },
-    "coverImage": "/resources/images/library/the-jungle-book.jpg"
+    "coverImage": "/resources/images/library/the-jungle-book.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "304",
     "title": "Sleeping Beauty",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "After being snubbed by the royal family, a malevolent fairy places a curse on a princess which only a prince can break, along with the help of three good fairies.",
     "year": 1959,
@@ -7779,14 +8586,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0053285/?ref_=ls_i_17"
     },
-    "coverImage": "/resources/images/library/sleeping-beauty.jpg"
+    "coverImage": "/resources/images/library/sleeping-beauty.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "305",
     "title": "Peter Pan",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "Wendy and her brothers are whisked away to the magical world of Neverland with the hero of their stories, Peter Pan.",
     "year": 1953,
@@ -7795,14 +8605,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0046183/?ref_=ls_i_15"
     },
-    "coverImage": "/resources/images/library/peter-pan.jpg"
+    "coverImage": "/resources/images/library/peter-pan.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "306",
     "title": "Cinderella",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "When Cinderella's cruel stepmother prevents her from attending the Royal Ball, she gets some unexpected help from the lovable mice Gus and Jaq and from her Fairy Godmother.",
     "year": 1950,
@@ -7811,14 +8624,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0042332/?ref_=ls_i_13"
     },
-    "coverImage": "/resources/images/library/cinderella.jpg"
+    "coverImage": "/resources/images/library/cinderella.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "307",
     "title": "Pokémon: Detective Pikachu",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "In a world where people collect Pokémon to do battle, a boy comes across an intelligent talking Pikachu who seeks to be a detective.",
     "year": 2019,
@@ -7827,14 +8643,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt5884052/?ref_=fn_i_1"
     },
-    "coverImage": "/resources/images/library/pokemon-detective-pikachu.jpg"
+    "coverImage": "/resources/images/library/pokemon-detective-pikachu.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "308",
     "title": "Pokémon: The First Movie - Mewtwo Strikes Back",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "Scientists genetically create a new Pokémon, Mewtwo, but the results are horrific and disastrous.",
     "year": 1998,
@@ -7843,14 +8662,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0190641/?ref_=fn_t_2"
     },
-    "coverImage": "/resources/images/library/pokemon-the-first-movie-mewtwo-strikes-back-1779881163579.jpg"
+    "coverImage": "/resources/images/library/pokemon-the-first-movie-mewtwo-strikes-back-1779881163579.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "309",
     "title": "Pokémon the Movie 2000",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "Ash Ketchum must gather the three spheres of fire, ice and lightning in order to restore balance to the Orange Islands.",
     "year": 1999,
@@ -7859,14 +8681,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0210234/?ref_=fn_i_5"
     },
-    "coverImage": "/resources/images/library/pokemon-the-movie-2000.jpg"
+    "coverImage": "/resources/images/library/pokemon-the-movie-2000.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "310",
     "title": "Pokémon 3 the Movie: Spell of the Unown",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "In the town of Greenfield, a young, lonely girl's dreams and wishes are brought into reality by a collective of reality-warping Pokémon.",
     "year": 2000,
@@ -7875,14 +8700,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0235679/?ref_=fn_i_7"
     },
-    "coverImage": "/resources/images/library/pokemon-3-the-movie-spell-of-the-unown.jpg"
+    "coverImage": "/resources/images/library/pokemon-3-the-movie-spell-of-the-unown.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "311",
     "title": "Pokemon 4Ever: Celebi - Voice of the Forest",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "Ash must stop a hunter who forces the mythical Pokémon Celebi to help him destroy a forest.",
     "year": 2001,
@@ -7891,14 +8719,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0287635/?ref_=fn_i_4"
     },
-    "coverImage": "/resources/images/library/pokemon-4ever-celebi-voice-of-the-forest.jpg"
+    "coverImage": "/resources/images/library/pokemon-4ever-celebi-voice-of-the-forest.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "312",
     "title": "Pokémon: Jirachi - Wish Maker",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "A magician attempts to use the power of the Millennium Comet to awaken the legendary Pokémon Groudon.",
     "year": 2003,
@@ -7907,14 +8738,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0420076/?ref_=fn_i_12"
     },
-    "coverImage": "/resources/images/library/pokemon-jirachi-wish-maker.jpg"
+    "coverImage": "/resources/images/library/pokemon-jirachi-wish-maker.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "313",
     "title": "Pokémon the Movie: Genesect and the Legend Awakened",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "Ash, Pikachu, and friends must stop Mewtwo and a group of Genesect from the destroying the city.",
     "year": 2013,
@@ -7923,14 +8757,17 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt3257582/?ref_=fn_t_16"
     },
-    "coverImage": "/resources/images/library/pokemon-the-movie-genesect-and-the-legend-awakened.jpg"
+    "coverImage": "/resources/images/library/pokemon-the-movie-genesect-and-the-legend-awakened.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "314",
     "title": "Pokémon: Mewtwo Returns",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "Team Rocket's memories of Mewtwo had been erased, but the Team Rocket scientists' logs have not. After uncovering the logs, they track down Mewtwo and build a Base in a Johto. Ash and company meet Mr. Giovanni for the first time.",
     "year": 2000,
@@ -7939,7 +8776,12 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0304564/?ref_=nv_sr_srsg_1_tt_8_nm_0_in_0_q_mewtwo"
     },
-    "coverImage": "/resources/images/library/pokemon-mewtwo-returns-1779881189743.jpg"
+    "coverImage": "/resources/images/library/pokemon-mewtwo-returns-1779881189743.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "315",
@@ -8009,25 +8851,26 @@
     "id": "319",
     "title": "Project Hail Mary",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "An astronaut tries to save Earth while alone in outer space.",
     "year": 2026,
     "externalUrl": "https://www.imdb.com/title/tt12042730/?ref_=fn_t_1",
     "director": "Christopher Miller, Phil Lord",
-    "dateCompleted": "2026-04-01",
     "links": {
       "imdb": "https://www.imdb.com/title/tt12042730/?ref_=fn_t_1"
     },
-    "coverImage": "/resources/images/library/project-hail-mary-2026.jpg"
+    "coverImage": "/resources/images/library/project-hail-mary-2026.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2026-04-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "320",
     "title": "And Then There Were None",
     "type": "book",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "First, there were ten—a curious assortment of strangers summoned as weekend guests to a little private island off the coast of Devon. Their host, an eccentric millionaire unknown to all of them, is nowhere to be found. All that the guests have in common is a wicked past they're unwilling to reveal—and a secret that will seal their fate. For each has been marked for murder. A famous nursery rhyme is framed and hung in every room of the mansion: \"Ten little boys went out to dine; One choked his li",
     "year": 2024,
@@ -8036,14 +8879,17 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/16299.And_Then_There_Were_None?ac=1&from_search=true&qid=fKqTf3D7ur&rank=1"
     },
-    "coverImage": "/resources/images/library/and-then-there-were-none-1779880080366.jpg"
+    "coverImage": "/resources/images/library/and-then-there-were-none-1779880080366.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "321",
     "title": "Murder on the Orient Express: The Graphic Novel (Poirot)",
     "type": "book",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "Experience Agatha Christie’s puzzling masterpiece as you've never seen it before with this official graphic novel adaptations!",
     "year": 2024,
@@ -8052,14 +8898,17 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/853510.Murder_on_the_Orient_Express"
     },
-    "coverImage": "/resources/images/library/murder-on-the-orient-express-the-graphic-novel-poirot-1779880065056.jpg"
+    "coverImage": "/resources/images/library/murder-on-the-orient-express-the-graphic-novel-poirot-1779880065056.jpg",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "322",
     "title": "Death on the Nile",
     "type": "book",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "First published 1956",
     "year": 1995,
@@ -8068,7 +8917,12 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/131359.Death_on_the_Nile"
     },
-    "coverImage": "/resources/images/library/death-on-the-nile-1779880042123.png"
+    "coverImage": "/resources/images/library/death-on-the-nile-1779880042123.png",
+    "entries": [
+      {
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "323",
@@ -8120,50 +8974,59 @@
     "id": "326",
     "title": "Сизифовци",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2025,
     "externalUrl": "https://zlatenriton.bg/film/sizifovtsi/",
     "director": "Vladimir Lyutskanov",
-    "dateCompleted": "2026-02-01",
     "links": {
       "other": "https://zlatenriton.bg/film/sizifovtsi/"
     },
-    "coverImage": "/resources/images/library/item-c7zrfy-1779877875115.jpg"
+    "coverImage": "/resources/images/library/item-c7zrfy-1779877875115.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2026-02-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "327",
     "title": "Tales from the café",
     "type": "book",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2017,
     "externalUrl": "https://www.goodreads.com/book/show/54373691-tales-from-the-cafe",
     "author": "Toshikazu Kawaguchi",
-    "dateCompleted": "2026-03-01",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/54373691-tales-from-the-cafe"
     },
-    "coverImage": "/resources/images/library/tales-from-the-cafe-1779877184346.jpg"
+    "coverImage": "/resources/images/library/tales-from-the-cafe-1779877184346.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2026-03-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "328",
     "title": "Gary",
     "type": "movie",
-    "rating": null,
-    "status": "completed",
     "genre": [],
     "description": "",
     "year": 2026,
     "externalUrl": "https://www.imdb.com/title/tt42373968/?ref_=mv_desc",
-    "dateCompleted": "2026-05-01",
     "links": {
       "imdb": "https://www.imdb.com/title/tt42373968/?ref_=mv_desc"
     },
-    "coverImage": "/resources/images/library/gary-1779876327666.jpg"
+    "coverImage": "/resources/images/library/gary-1779876327666.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2026-05-01",
+        "status": "completed"
+      }
+    ]
   }
 ]

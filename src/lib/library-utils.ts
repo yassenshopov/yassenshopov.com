@@ -1,4 +1,39 @@
-import { LibraryItem } from '@/data/library';
+import { LibraryItem, LibraryEntry, getLatestEntry } from '@/data/library';
+
+/**
+ * Years (descending) in which this item has a recorded reading/watch.
+ * Returns an empty array for wishlist items so callers can fall back to an
+ * "undated" bucket.
+ */
+export const getEntryYears = (item: LibraryItem): number[] => {
+  if (!item.entries || item.entries.length === 0) return [];
+  const years = new Set<number>();
+  for (const entry of item.entries) {
+    const date = entry.dateCompleted || entry.dateStarted;
+    if (!date) continue;
+    years.add(new Date(date).getFullYear());
+  }
+  return [...years].sort((a, b) => b - a);
+};
+
+/**
+ * Pulls the entry that corresponds to a given year, useful when an item is
+ * rendered once per year it was engaged with.
+ */
+export const getEntryForYear = (
+  item: LibraryItem,
+  year: number,
+): LibraryEntry | undefined => {
+  if (!item.entries) return undefined;
+  return item.entries.find((entry) => {
+    const date = entry.dateCompleted || entry.dateStarted;
+    if (!date) return false;
+    return new Date(date).getFullYear() === year;
+  });
+};
+
+/** Re-exported so consumers don't need to reach into `@/data/library`. */
+export { getLatestEntry };
 
 export const getCreatorLabel = (item: LibraryItem): string => {
   switch (item.type) {
