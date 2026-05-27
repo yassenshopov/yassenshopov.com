@@ -1,0 +1,3319 @@
+[
+  {
+    "id": "1",
+    "title": "Money Heist",
+    "creator": "Álex Pina",
+    "type": "series",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2025-06-01",
+    "genre": [
+      "Crime",
+      "Drama",
+      "Thriller"
+    ],
+    "description": "A criminal mastermind who goes by \"The Professor\" has a plan to pull off the biggest heist in recorded history.",
+    "coverImage": "/resources/images/library/money-heist.webp",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt6468322/"
+    }
+  },
+  {
+    "id": "2",
+    "title": "Lilo & Stitch (2025)",
+    "director": "Dean DeBlois",
+    "type": "movie",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2025-06-01",
+    "genre": [
+      "Animation",
+      "Family",
+      "Comedy"
+    ],
+    "description": "A Hawaiian girl adopts an unusual pet who is actually a notorious extra-terrestrial fugitive.",
+    "coverImage": "/resources/images/library/lilo-and-stitch.webp",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt0275847/"
+    }
+  },
+  {
+    "id": "3",
+    "title": "The Last of Us",
+    "creator": "Craig Mazin, Neil Druckmann",
+    "type": "series",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2025-05-01",
+    "genre": [
+      "Post-apocalyptic",
+      "Drama",
+      "Survival",
+      "Adaptation"
+    ],
+    "description": "Following the events of Season 1, Ellie and Joel's journey continues as they face new challenges in a world still ravaged by the fungal infection. Based on the critically acclaimed video game 'The Last of Us Part II', this season promises to explore themes of revenge, consequences, and the cycle of violence, while testing the bonds formed in their previous journey.",
+    "coverImage": "/resources/images/library/the-last-of-us.webp",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt1888075/"
+    }
+  },
+  {
+    "id": "4",
+    "title": "Thunderbolts",
+    "director": "Jake Schreier",
+    "type": "movie",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2025-05-01",
+    "genre": [
+      "Action",
+      "Superhero",
+      "Adventure"
+    ],
+    "description": "A team of antiheroes from the Marvel Cinematic Universe come together for a mission.",
+    "coverImage": "/resources/images/library/thunderbolts.webp",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt13651794/"
+    }
+  },
+  {
+    "id": "5",
+    "title": "Gundi",
+    "type": "movie",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2025-03-01",
+    "genre": [
+      "Drama"
+    ],
+    "description": "A compelling drama exploring personal and social themes.",
+    "coverImage": "/resources/images/library/gundi.webp",
+    "links": {}
+  },
+  {
+    "id": "6",
+    "title": "Peaky Blinders",
+    "creator": "Steven Knight",
+    "type": "series",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2025-02-01",
+    "genre": [
+      "Crime",
+      "Drama",
+      "Historical"
+    ],
+    "description": "A gangster family epic set in 1900s England, centering on a gang who sew razor blades in the peaks of their caps, and their fierce boss Tommy Shelby.",
+    "coverImage": "/resources/images/library/peaky-blinders.webp",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt2442560/"
+    }
+  },
+  {
+    "id": "7",
+    "title": "Gladiator II",
+    "director": "Ridley Scott",
+    "type": "movie",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2025-01-01",
+    "genre": [
+      "Action",
+      "Drama",
+      "Historical"
+    ],
+    "description": "The sequel to the epic historical drama Gladiator, continuing the story in ancient Rome.",
+    "coverImage": "/resources/images/library/gladiator-ii.webp",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt9218128/"
+    }
+  },
+  {
+    "id": "8",
+    "title": "Paddington in Peru",
+    "director": "Dougal Wilson",
+    "type": "movie",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2025-01-01",
+    "genre": [
+      "Family",
+      "Adventure",
+      "Comedy"
+    ],
+    "description": "Paddington travels to Peru to visit his beloved Aunt Lucy, who now resides at the Home for Retired Bears.",
+    "coverImage": "/resources/images/library/paddington-in-peru.webp",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt8076346/"
+    }
+  },
+  {
+    "id": "9",
+    "title": "Undercover",
+    "creator": "Nico Moolenaar",
+    "type": "series",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2024-12-01",
+    "genre": [
+      "Crime",
+      "Drama",
+      "Thriller"
+    ],
+    "description": "Undercover agents infiltrate a drug ring, but their mission becomes complicated when personal and professional lines blur.",
+    "coverImage": "/resources/images/library/undercover.webp",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt9016974/"
+    }
+  },
+  {
+    "id": "10",
+    "title": "Joker: Folie à Deux",
+    "director": "Todd Phillips",
+    "type": "movie",
+    "rating": 3,
+    "status": "completed",
+    "dateCompleted": "2024-10-01",
+    "genre": [
+      "Drama",
+      "Crime",
+      "Musical"
+    ],
+    "description": "The sequel to Joker, exploring Arthur Fleck's continued descent into madness alongside Harley Quinn.",
+    "coverImage": "/resources/images/library/joker-folie-deux.webp",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt11315808/"
+    }
+  },
+  {
+    "id": "11",
+    "title": "Fight Club",
+    "director": "David Fincher",
+    "type": "movie",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2024-09-01",
+    "genre": [
+      "Drama",
+      "Thriller"
+    ],
+    "description": "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.",
+    "coverImage": "/resources/images/library/fight-club.webp",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt0137523/"
+    }
+  },
+  {
+    "id": "12",
+    "title": "The Boys",
+    "creator": "Eric Kripke",
+    "type": "series",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2024-08-01",
+    "genre": [
+      "Action",
+      "Comedy",
+      "Crime",
+      "Superhero"
+    ],
+    "description": "In a world where superheroes abuse their powers, a group of vigilantes known as \"The Boys\" sets out to expose the corrupt and dangerous actions of these superhumans. Led by the determined and vengeful Billy Butcher, they embark on a mission to take down the most powerful and revered superhero group, \"The Seven,\" while uncovering dark secrets along the way.",
+    "coverImage": "/resources/images/library/the-boys.webp",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt1190634/"
+    }
+  },
+  {
+    "id": "13",
+    "title": "Inside Out 2",
+    "director": "Kelsey Mann",
+    "type": "movie",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2024-07-01",
+    "genre": [
+      "Animation",
+      "Family",
+      "Comedy"
+    ],
+    "description": "The sequel to Inside Out, continuing Riley's emotional journey as she navigates new challenges.",
+    "coverImage": "/resources/images/library/inside-out-2.webp",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt22022452/"
+    }
+  },
+  {
+    "id": "14",
+    "title": "Despicable Me 4",
+    "director": "Chris Renaud",
+    "type": "movie",
+    "rating": 3,
+    "status": "completed",
+    "dateCompleted": "2024-07-01",
+    "genre": [
+      "Animation",
+      "Family",
+      "Comedy"
+    ],
+    "description": "Gru and his family face new adventures and challenges in the fourth installment of the beloved franchise.",
+    "coverImage": "/resources/images/library/despicable-me-4.webp",
+    "links": {}
+  },
+  {
+    "id": "15",
+    "title": "Creed III",
+    "director": "Michael B. Jordan",
+    "type": "movie",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2024-06-01",
+    "genre": [
+      "Drama",
+      "Sport"
+    ],
+    "description": "Adonis Creed faces his most formidable opponent yet in this third installment of the Creed series.",
+    "coverImage": "/resources/images/library/creed-iii.webp",
+    "series": "Creed",
+    "seriesOrder": 3,
+    "relationships": {
+      "prequel": "16",
+      "related": [
+        "creed-2015",
+        "16"
+      ],
+      "sameUniverse": [
+        "creed-2015",
+        "16"
+      ]
+    },
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt11145118/"
+    }
+  },
+  {
+    "id": "16",
+    "title": "Creed II",
+    "director": "Steven Caple Jr.",
+    "type": "movie",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2024-06-01",
+    "genre": [
+      "Drama",
+      "Sport"
+    ],
+    "description": "Adonis Creed faces the son of Ivan Drago, the man who killed his father Apollo Creed in the ring.",
+    "coverImage": "/resources/images/library/creed-ii.webp",
+    "series": "Creed",
+    "seriesOrder": 2,
+    "relationships": {
+      "prequel": "creed-2015",
+      "sequel": "15",
+      "related": [
+        "creed-2015",
+        "15"
+      ],
+      "sameUniverse": [
+        "creed-2015",
+        "15"
+      ]
+    },
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt6343314/"
+    }
+  },
+  {
+    "id": "17",
+    "title": "Project Hail Mary",
+    "author": "Andy Weir",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Sci-Fi",
+      "Science",
+      "Adventure"
+    ],
+    "description": "A lone astronaut must save humanity in this thrilling science fiction novel about problem-solving, friendship, and sacrifice.",
+    "coverImage": "/resources/images/library/project-hail-mary.webp",
+    "links": {}
+  },
+  {
+    "id": "18",
+    "title": "The Ballad of Songbirds and Snakes",
+    "author": "Suzanne Collins",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-11-01",
+    "genre": [
+      "Dystopian",
+      "Survival",
+      "Political",
+      "Young Adult"
+    ],
+    "description": "A prequel to The Hunger Games trilogy, exploring the early days of Panem and the origins of President Snow.",
+    "coverImage": "/resources/images/library/the-ballad-of-songbirds-and-snakes.webp",
+    "series": "The Hunger Games",
+    "seriesOrder": 0,
+    "relationships": {
+      "related": [
+        "40",
+        "41",
+        "42",
+        "52"
+      ],
+      "adaptations": [
+        "43"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "19",
+    "title": "The Martian",
+    "author": "Andy Weir",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Sci-Fi",
+      "Science",
+      "Adventure"
+    ],
+    "description": "An astronaut becomes stranded on Mars and must use his ingenuity to survive while awaiting rescue.",
+    "coverImage": "/resources/images/library/the-martian.webp",
+    "links": {}
+  },
+  {
+    "id": "20",
+    "title": "12 Rules for Life: An Antidote to Chaos",
+    "author": "Jordan B. Peterson",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-04-01",
+    "genre": [
+      "Advice",
+      "Non-fiction",
+      "Psychology",
+      "Self-improvement"
+    ],
+    "description": "A set of principles for living a meaningful life, combining psychology, philosophy, and personal anecdotes.",
+    "coverImage": "/resources/images/library/12-rules-for-life-an-antidote-to-chaos.webp",
+    "series": "Jordan B. Peterson Rules",
+    "seriesOrder": 1,
+    "relationships": {
+      "sequel": "21",
+      "related": [
+        "21"
+      ],
+      "sameUniverse": [
+        "21"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "21",
+    "title": "Beyond Order: 12 More Rules for Life",
+    "author": "Jordan B. Peterson",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-07-01",
+    "genre": [
+      "Advice",
+      "Non-fiction",
+      "Psychology",
+      "Self-improvement"
+    ],
+    "description": "The sequel to 12 Rules for Life, offering additional principles for navigating life's complexities.",
+    "coverImage": "/resources/images/library/beyond-order-12-more-rules-for-life.webp",
+    "series": "Jordan B. Peterson Rules",
+    "seriesOrder": 2,
+    "relationships": {
+      "prequel": "20",
+      "related": [
+        "20"
+      ],
+      "sameUniverse": [
+        "20"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "22",
+    "title": "The Poppy War",
+    "author": "Rebecca Kuang",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2024-01-01",
+    "genre": [
+      "Fantasy",
+      "Political",
+      "Young Adult"
+    ],
+    "description": "A grimdark military fantasy inspired by 20th-century Chinese history, following a war orphan who discovers her deadly powers.",
+    "coverImage": "/resources/images/library/the-poppy-war.webp",
+    "series": "The Poppy War",
+    "seriesOrder": 1,
+    "relationships": {
+      "sequel": "ext-dragon-republic",
+      "related": [
+        "ext-dragon-republic",
+        "ext-burning-god"
+      ],
+      "sameUniverse": [
+        "ext-dragon-republic",
+        "ext-burning-god"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "23",
+    "title": "Everything is F*cked",
+    "author": "Mark Manson",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2021-11-01",
+    "genre": [
+      "Non-fiction",
+      "Psychology",
+      "Self-improvement"
+    ],
+    "description": "A book about hope, exploring why we struggle to find meaning in modern life and how to build resilience.",
+    "coverImage": "/resources/images/library/everything-is-fcked.webp",
+    "series": "Mark Manson Philosophy",
+    "seriesOrder": 2,
+    "relationships": {
+      "related": [
+        "24"
+      ],
+      "sameUniverse": [
+        "24"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "24",
+    "title": "The Subtle Art of Not Giving a F*ck",
+    "author": "Mark Manson",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "genre": [
+      "Non-fiction",
+      "Psychology",
+      "Self-improvement"
+    ],
+    "description": "A counterintuitive approach to living a good life by focusing on what truly matters and letting go of what doesn't.",
+    "coverImage": "/resources/images/library/the-subtle-art-of-not-giving-a-fck.webp",
+    "series": "Mark Manson Philosophy",
+    "seriesOrder": 1,
+    "relationships": {
+      "related": [
+        "23"
+      ],
+      "sameUniverse": [
+        "23"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "25",
+    "title": "Lifespan: Why We Age - and Why We Don't Have To",
+    "author": "David Sinclair",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "genre": [
+      "Non-fiction",
+      "Science"
+    ],
+    "description": "A groundbreaking exploration of aging and longevity research, offering insights into extending human lifespan.",
+    "coverImage": "/resources/images/library/lifespan-why-we-age-and-why-we-dont-have-to.webp",
+    "links": {}
+  },
+  {
+    "id": "26",
+    "title": "Dotcom Secrets",
+    "author": "Russell Brunson",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-08-01",
+    "genre": [
+      "Non-fiction",
+      "Business",
+      "Marketing"
+    ],
+    "description": "The underground playbook for growing your company online with sales funnels and digital marketing strategies.",
+    "coverImage": "/resources/images/library/dotcom-secrets.webp",
+    "links": {}
+  },
+  {
+    "id": "27",
+    "title": "Immune: A Journey into the Mysterious System That Keeps You Alive",
+    "author": "Philipp Dettmer",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-12-01",
+    "genre": [
+      "Non-fiction",
+      "Science"
+    ],
+    "description": "An accessible and engaging exploration of the human immune system and how it protects us from disease.",
+    "coverImage": "/resources/images/library/immune-a-journey-into-the-mysterious-system-that-keeps-you-alive.webp",
+    "links": {}
+  },
+  {
+    "id": "28",
+    "title": "Outlive: The Science and Art of Longevity",
+    "author": "Peter Attia",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-09-01",
+    "genre": [
+      "Non-fiction",
+      "Science"
+    ],
+    "description": "A comprehensive guide to living longer and healthier through evidence-based strategies for longevity.",
+    "coverImage": "/resources/images/library/outlive-the-science-and-art-of-longevity.webp",
+    "links": {}
+  },
+  {
+    "id": "29",
+    "title": "Всички и никой",
+    "author": "Yordan Radichkov",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-06-01",
+    "genre": [
+      "Realism",
+      "Thriller & Mystery"
+    ],
+    "description": "A Bulgarian literary work exploring themes of identity and society.",
+    "coverImage": "/resources/images/library/vsichki-i-nikoj.webp",
+    "links": {}
+  },
+  {
+    "id": "30",
+    "title": "Transcend: 9 Steps to Living Well Forever",
+    "author": "Ray Kurzweil",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-05-01",
+    "genre": [
+      "Non-fiction",
+      "Science"
+    ],
+    "description": "A guide to extending human lifespan through technology, nutrition, and lifestyle optimization.",
+    "coverImage": "/resources/images/library/transcend-9-steps-to-living-well-forever.webp",
+    "links": {}
+  },
+  {
+    "id": "31",
+    "title": "Killing Commendatore",
+    "author": "Haruki Murakami",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-05-01",
+    "genre": [
+      "Fantasy",
+      "Thriller & Mystery"
+    ],
+    "description": "A surreal novel about a portrait painter who discovers a mysterious painting that changes his life.",
+    "coverImage": "/resources/images/library/killing-commendatore.webp",
+    "links": {}
+  },
+  {
+    "id": "32",
+    "title": "The Chrysalids",
+    "author": "John Wyndham",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-03-01",
+    "genre": [
+      "Fantasy",
+      "Dystopian",
+      "Supernatural"
+    ],
+    "description": "A post-apocalyptic novel about telepathic children in a society that fears genetic mutations.",
+    "coverImage": "/resources/images/library/the-chrysalids.webp",
+    "links": {}
+  },
+  {
+    "id": "33",
+    "title": "Design for How People Think: Using Brain Science to Build Better Products",
+    "author": "John Whalen",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-02-01",
+    "genre": [
+      "Non-fiction",
+      "Marketing",
+      "Psychology",
+      "Design"
+    ],
+    "description": "A guide to creating user-centered products by understanding how the human brain processes information.",
+    "coverImage": "/resources/images/library/design-for-how-people-think-using-brain-science-to-build-better-products.webp",
+    "links": {}
+  },
+  {
+    "id": "34",
+    "title": "The Science of Storytelling: Why Stories Make Us Human, and How to Tell Them Better",
+    "author": "Will Storr",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-02-01",
+    "genre": [
+      "Non-fiction",
+      "Psychology",
+      "Creativity"
+    ],
+    "description": "An exploration of the psychology behind storytelling and how to craft compelling narratives.",
+    "coverImage": "/resources/images/library/the-science-of-storytelling-why-stories-make-us-human-and-how-to-tell-them-better.webp",
+    "links": {}
+  },
+  {
+    "id": "35",
+    "title": "A Clash of Kings",
+    "author": "George R. R. Martin",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2022-12-01",
+    "genre": [
+      "Fantasy Fiction",
+      "High Fantasy",
+      "Political Fiction"
+    ],
+    "description": "The second book in A Song of Ice and Fire series, continuing the epic tale of war and politics in Westeros.",
+    "coverImage": "/resources/images/library/a-clash-of-kings.webp",
+    "series": "A Song of Ice and Fire",
+    "seriesOrder": 2,
+    "relationships": {
+      "prequel": "36",
+      "sequel": "48",
+      "related": [
+        "36",
+        "48"
+      ],
+      "adaptations": [
+        "49"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "36",
+    "title": "A Game of Thrones",
+    "author": "George R. R. Martin",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2022-10-01",
+    "genre": [
+      "Fantasy Fiction",
+      "High Fantasy",
+      "Political Fiction"
+    ],
+    "description": "The first book in the epic A Song of Ice and Fire series, introducing the world of Westeros and its complex characters.",
+    "coverImage": "/resources/images/library/a-game-of-thrones.webp",
+    "series": "A Song of Ice and Fire",
+    "seriesOrder": 1,
+    "relationships": {
+      "sequel": "35",
+      "related": [
+        "35",
+        "48"
+      ],
+      "adaptations": [
+        "49"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "37",
+    "title": "The E-Myth Revisited",
+    "author": "Michael E. Gerber",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "genre": [
+      "Non-fiction",
+      "Business",
+      "Productivity"
+    ],
+    "description": "A guide to building successful businesses by working on your business, not just in it.",
+    "coverImage": "/resources/images/library/the-emyth-revisited.webp",
+    "links": {}
+  },
+  {
+    "id": "38",
+    "title": "Building a Second Brain",
+    "author": "Tiago Forte",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "genre": [
+      "Non-fiction",
+      "Organisation",
+      "Productivity"
+    ],
+    "description": "A proven method for organizing your digital life and unlocking your creative potential.",
+    "coverImage": "/resources/images/library/building-a-second-brain.webp",
+    "links": {}
+  },
+  {
+    "id": "39",
+    "title": "Thirst",
+    "author": "Zachary Karabashliev",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "genre": [
+      "Realism"
+    ],
+    "description": "A contemporary Bulgarian novel exploring themes of desire and human nature.",
+    "coverImage": "/resources/images/library/thirst.webp",
+    "links": {}
+  },
+  {
+    "id": "40",
+    "title": "The Hunger Games",
+    "author": "Suzanne Collins",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-10-01",
+    "genre": [
+      "Dystopian",
+      "Survival",
+      "Political",
+      "Young Adult"
+    ],
+    "description": "In a dark vision of the near future, sixteen-year-old Katniss Everdeen is forced to compete in the Hunger Games, a televised fight to the death.",
+    "coverImage": "/resources/images/library/the-hunger-games.webp",
+    "series": "The Hunger Games",
+    "seriesOrder": 1,
+    "relationships": {
+      "sequel": "41",
+      "related": [
+        "18",
+        "41",
+        "42",
+        "52"
+      ],
+      "adaptations": [
+        "44",
+        "45"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "41",
+    "title": "Catching Fire",
+    "author": "Suzanne Collins",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-10-15",
+    "genre": [
+      "Dystopian",
+      "Survival",
+      "Political",
+      "Young Adult"
+    ],
+    "description": "Katniss Everdeen and Peeta Mellark become targets of the Capitol after their victory in the 74th Hunger Games sparks a rebellion.",
+    "coverImage": "/resources/images/library/catching-fire.webp",
+    "series": "The Hunger Games",
+    "seriesOrder": 2,
+    "relationships": {
+      "prequel": "40",
+      "sequel": "42",
+      "related": [
+        "18",
+        "40",
+        "42",
+        "52"
+      ],
+      "adaptations": [
+        "46"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "42",
+    "title": "Mockingjay",
+    "author": "Suzanne Collins",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-11-01",
+    "genre": [
+      "Dystopian",
+      "Survival",
+      "Political",
+      "Young Adult"
+    ],
+    "description": "Katniss Everdeen reluctantly becomes the symbol of a mass rebellion against the autocratic Capitol.",
+    "coverImage": "/resources/images/library/mockingjay.webp",
+    "series": "The Hunger Games",
+    "seriesOrder": 3,
+    "relationships": {
+      "prequel": "41",
+      "sequel": "52",
+      "related": [
+        "18",
+        "40",
+        "41",
+        "52"
+      ],
+      "adaptations": [
+        "47",
+        "48"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "43",
+    "title": "The Ballad of Songbirds and Snakes (2023)",
+    "director": "Francis Lawrence",
+    "type": "movie",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-11-20",
+    "genre": [
+      "Dystopian",
+      "Drama",
+      "Adaptation"
+    ],
+    "description": "Years before he would become the tyrannical President of Panem, 18-year-old Coriolanus Snow is the last hope for his fading lineage.",
+    "coverImage": "/resources/images/library/ballad-movie.webp",
+    "series": "The Hunger Games",
+    "seriesOrder": 0,
+    "relationships": {
+      "basedOn": [
+        "18"
+      ],
+      "sameUniverse": [
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "52"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "44",
+    "title": "The Hunger Games (2012)",
+    "director": "Gary Ross",
+    "type": "movie",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-10-05",
+    "genre": [
+      "Dystopian",
+      "Action",
+      "Adaptation"
+    ],
+    "description": "Katniss Everdeen voluntarily takes her younger sister's place in the Hunger Games: a televised competition in which two teenagers from each district fight to the death.",
+    "coverImage": "/resources/images/library/hunger-games-movie.webp",
+    "series": "The Hunger Games",
+    "seriesOrder": 1,
+    "relationships": {
+      "basedOn": [
+        "40"
+      ],
+      "sequel": "45",
+      "sameUniverse": [
+        "43",
+        "45",
+        "46",
+        "47",
+        "48",
+        "52"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "45",
+    "title": "The Hunger Games: Catching Fire (2013)",
+    "director": "Francis Lawrence",
+    "type": "movie",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-10-10",
+    "genre": [
+      "Dystopian",
+      "Action",
+      "Adaptation"
+    ],
+    "description": "Katniss and Peeta are forced to compete in the 75th Hunger Games, known as the Quarter Quell, against other previous victors.",
+    "coverImage": "/resources/images/library/catching-fire-movie.webp",
+    "series": "The Hunger Games",
+    "seriesOrder": 2,
+    "relationships": {
+      "basedOn": [
+        "41"
+      ],
+      "prequel": "44",
+      "sequel": "46",
+      "sameUniverse": [
+        "43",
+        "44",
+        "46",
+        "47",
+        "48",
+        "52"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "46",
+    "title": "The Hunger Games: Mockingjay - Part 1 (2014)",
+    "director": "Francis Lawrence",
+    "type": "movie",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-10-12",
+    "genre": [
+      "Dystopian",
+      "Action",
+      "Adaptation"
+    ],
+    "description": "Katniss becomes the reluctant leader of a rebellion against the Capitol, while Peeta is held captive and used against her.",
+    "coverImage": "/resources/images/library/mockingjay-part1.webp",
+    "series": "The Hunger Games",
+    "seriesOrder": 3,
+    "relationships": {
+      "basedOn": [
+        "42"
+      ],
+      "prequel": "45",
+      "sequel": "47",
+      "sameUniverse": [
+        "43",
+        "44",
+        "45",
+        "47",
+        "48",
+        "52"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "47",
+    "title": "The Hunger Games: Mockingjay - Part 2 (2015)",
+    "director": "Francis Lawrence",
+    "type": "movie",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-10-15",
+    "genre": [
+      "Dystopian",
+      "Action",
+      "Adaptation"
+    ],
+    "description": "Katniss and a team of rebels from District 13 prepare for the final battle that will decide the fate of Panem.",
+    "coverImage": "/resources/images/library/mockingjay-part2.webp",
+    "series": "The Hunger Games",
+    "seriesOrder": 4,
+    "relationships": {
+      "basedOn": [
+        "42"
+      ],
+      "prequel": "46",
+      "sameUniverse": [
+        "43",
+        "44",
+        "45",
+        "46",
+        "48",
+        "52"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "48",
+    "title": "A Storm of Swords",
+    "author": "George R. R. Martin",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Fantasy Fiction",
+      "High Fantasy",
+      "Political Fiction"
+    ],
+    "description": "The third book in A Song of Ice and Fire series, featuring the Red Wedding and other pivotal events.",
+    "coverImage": "/resources/images/library/a-storm-of-swords.webp",
+    "series": "A Song of Ice and Fire",
+    "seriesOrder": 3,
+    "relationships": {
+      "prequel": "35",
+      "related": [
+        "35",
+        "36"
+      ],
+      "adaptations": [
+        "49"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "49",
+    "title": "Game of Thrones",
+    "creator": "David Benioff, D.B. Weiss",
+    "type": "series",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-02-01",
+    "genre": [
+      "Fantasy",
+      "Drama",
+      "Political",
+      "Adaptation"
+    ],
+    "description": "An epic fantasy series based on George R.R. Martin's A Song of Ice and Fire novels, featuring political intrigue and supernatural elements.",
+    "coverImage": "/resources/images/library/game-of-thrones-series.webp",
+    "series": "A Song of Ice and Fire",
+    "relationships": {
+      "basedOn": [
+        "35",
+        "36",
+        "48"
+      ],
+      "related": [
+        "50"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "50",
+    "title": "House of the Dragon",
+    "creator": "Ryan Condal, Miguel Sapochnik",
+    "type": "series",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-03-01",
+    "genre": [
+      "Fantasy",
+      "Drama",
+      "Political"
+    ],
+    "description": "A prequel to Game of Thrones, focusing on the Targaryen civil war known as the Dance of the Dragons.",
+    "coverImage": "/resources/images/library/house-of-the-dragon.webp",
+    "series": "A Song of Ice and Fire",
+    "seriesOrder": 0,
+    "relationships": {
+      "related": [
+        "49"
+      ],
+      "sameUniverse": [
+        "35",
+        "36",
+        "48",
+        "49"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "51",
+    "title": "18% Gray (2008)",
+    "author": "Zachary Karabashliev",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "genre": [
+      "Realism"
+    ],
+    "description": "A Bulgarian novel about a man searching for meaning and love across Europe and America.",
+    "coverImage": "/resources/images/library/18-percent-gray.webp",
+    "links": {}
+  },
+  {
+    "id": "52",
+    "title": "Sunrise on the Reaping",
+    "author": "Suzanne Collins",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Dystopian",
+      "Survival",
+      "Political",
+      "Young Adult"
+    ],
+    "description": "The upcoming fifth book in The Hunger Games series, set in Panem.",
+    "coverImage": "/resources/images/library/sunrise-on-the-reaping.webp",
+    "series": "The Hunger Games",
+    "seriesOrder": 4,
+    "relationships": {
+      "related": [
+        "18",
+        "40",
+        "41",
+        "42"
+      ],
+      "sameUniverse": [
+        "43",
+        "44",
+        "45",
+        "46",
+        "47"
+      ],
+      "prequel": "42"
+    },
+    "links": {}
+  },
+  {
+    "id": "53",
+    "title": "21 Lessons for the 21st Century",
+    "author": "Yuval Noah Harari",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Non-fiction"
+    ],
+    "description": "A thought-provoking look at today's most urgent issues by the author of Sapiens.",
+    "coverImage": "/resources/images/library/21-lessons-for-the-21st-century.webp",
+    "links": {}
+  },
+  {
+    "id": "54",
+    "title": "The Psychology of Money",
+    "author": "Morgan Housel",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Non-fiction",
+      "Finances",
+      "Psychology"
+    ],
+    "description": "Timeless lessons on wealth, greed, and happiness.",
+    "coverImage": "/resources/images/library/the-psychology-of-money.webp",
+    "links": {}
+  },
+  {
+    "id": "55",
+    "title": "Prisoners of Geography",
+    "author": "Tim Marshall",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Geography",
+      "Politics",
+      "Non-fiction",
+      "History"
+    ],
+    "description": "Ten maps that tell you everything you need to know about global politics.",
+    "coverImage": "/resources/images/library/prisoners-of-geography.webp",
+    "links": {}
+  },
+  {
+    "id": "56",
+    "title": "The Millionaire Fastlane: Crack the Code to Wealth and Live Rich for a Lifetime!",
+    "author": "M. J. DeMarco",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Non-fiction",
+      "Finances",
+      "Business"
+    ],
+    "description": "A roadmap to wealth and financial freedom.",
+    "coverImage": "/resources/images/library/the-millionaire-fastlane.webp",
+    "links": {}
+  },
+  {
+    "id": "57",
+    "title": "The Righteous Mind: Why Good People are Divided by Politics and Religion",
+    "author": "Jonathan Haidt",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Advice",
+      "Non-fiction",
+      "Religion",
+      "Psychology"
+    ],
+    "description": "Explores why people have such different yet strongly held moral beliefs.",
+    "coverImage": "/resources/images/library/the-righteous-mind.webp",
+    "links": {}
+  },
+  {
+    "id": "58",
+    "title": "Skulduggery Pleasant Book 1",
+    "author": "Derek Landy",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "description": "A witty, magical detective adventure featuring a skeleton detective.",
+    "coverImage": "/resources/images/library/skulduggery-pleasant-book-1.webp",
+    "links": {}
+  },
+  {
+    "id": "59",
+    "title": "The Almanack of Naval Ravikant",
+    "author": "Naval Ravikant",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Non-fiction",
+      "Advice"
+    ],
+    "description": "A collection of wisdom and experience from entrepreneur Naval Ravikant.",
+    "coverImage": "/resources/images/library/the-almanack-of-naval-ravikant.webp",
+    "links": {}
+  },
+  {
+    "id": "60",
+    "title": "Ageless: The New Science of Getting Older Without Getting Old",
+    "author": "Andrew Steele",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Non-fiction",
+      "Science"
+    ],
+    "description": "A look at the science of aging and how we might slow or reverse it.",
+    "coverImage": "/resources/images/library/ageless.webp",
+    "links": {}
+  },
+  {
+    "id": "61",
+    "title": "The Motivation Myth: How High Achievers Really Set Themselves Up to Win",
+    "author": "Jeff Haden",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Non-fiction",
+      "Self-improvement"
+    ],
+    "description": "Debunks the idea that motivation leads to success, showing instead how success breeds motivation.",
+    "coverImage": "/resources/images/library/the-motivation-myth.webp",
+    "links": {}
+  },
+  {
+    "id": "62",
+    "title": "The Total Money Makeover: A Proven Plan for Financial Fitness",
+    "author": "Dave Ramsey",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Non-fiction",
+      "Finances"
+    ],
+    "description": "A step-by-step plan for financial fitness and debt freedom.",
+    "coverImage": "/resources/images/library/the-total-money-makeover.webp",
+    "links": {}
+  },
+  {
+    "id": "63",
+    "title": "Make Time: How to Focus on What Matters Every Day",
+    "author": "Jake Knapp, John Zeratsky",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Non-fiction",
+      "Productivity"
+    ],
+    "description": "Practical strategies to help you make time for what matters.",
+    "coverImage": "/resources/images/library/make-time.webp",
+    "links": {}
+  },
+  {
+    "id": "64",
+    "title": "Digital Minimalism: Choosing a Focused Life in a Noisy World",
+    "author": "Cal Newport",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Non-fiction",
+      "Self-improvement"
+    ],
+    "description": "A guide to living better with less technology.",
+    "coverImage": "/resources/images/library/digital-minimalism.webp",
+    "links": {}
+  },
+  {
+    "id": "65",
+    "title": "Sapiens: A Brief History of Humankind",
+    "author": "Yuval Noah Harari",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Non-fiction",
+      "History"
+    ],
+    "description": "A sweeping history of humankind from the Stone Age to the present.",
+    "coverImage": "/resources/images/library/sapiens.webp",
+    "links": {}
+  },
+  {
+    "id": "66",
+    "title": "I Will Teach You to Be Rich (2019)",
+    "author": "Ramit Sethi",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Non-fiction",
+      "Finances"
+    ],
+    "description": "A practical guide to personal finance and wealth-building.",
+    "coverImage": "/resources/images/library/i-will-teach-you-to-be-rich.webp",
+    "links": {}
+  },
+  {
+    "id": "67",
+    "title": "Making Money (2007)",
+    "author": "Terry Pratchett",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "description": "A Discworld novel about the world of banking and economics.",
+    "coverImage": "/resources/images/library/making-money.webp",
+    "series": "Discworld",
+    "seriesOrder": 36,
+    "relationships": {
+      "related": [
+        "70",
+        "71",
+        "72"
+      ],
+      "sameUniverse": [
+        "70",
+        "71",
+        "72"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "68",
+    "title": "A Blink of the Screen (2012)",
+    "author": "Terry Pratchett",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "description": "A collection of short fiction by Terry Pratchett.",
+    "coverImage": "/resources/images/library/a-blink-of-the-screen.webp",
+    "links": {}
+  },
+  {
+    "id": "69",
+    "title": "The Messenger (2002)",
+    "author": "Markus Zusak",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Drama"
+    ],
+    "description": "A young man receives mysterious messages that change his life.",
+    "coverImage": "/resources/images/library/the-messenger.webp",
+    "links": {}
+  },
+  {
+    "id": "70",
+    "title": "Reaper Man (1991)",
+    "author": "Terry Pratchett",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "description": "A Discworld novel where Death takes a holiday.",
+    "coverImage": "/resources/images/library/reaper-man.webp",
+    "series": "Discworld",
+    "seriesOrder": 11,
+    "relationships": {
+      "related": [
+        "67",
+        "71",
+        "72"
+      ],
+      "sameUniverse": [
+        "67",
+        "71",
+        "72"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "71",
+    "title": "Mort (1987)",
+    "author": "Terry Pratchett",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "description": "A Discworld novel about a boy who becomes Death's apprentice.",
+    "coverImage": "/resources/images/library/mort.webp",
+    "series": "Discworld",
+    "seriesOrder": 4,
+    "relationships": {
+      "related": [
+        "67",
+        "70",
+        "72"
+      ],
+      "sameUniverse": [
+        "67",
+        "70",
+        "72"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "72",
+    "title": "Moving Pictures (1990)",
+    "author": "Terry Pratchett",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "description": "A Discworld novel satirizing the movie industry.",
+    "coverImage": "/resources/images/library/moving-pictures.webp",
+    "series": "Discworld",
+    "seriesOrder": 10,
+    "relationships": {
+      "related": [
+        "67",
+        "70",
+        "71"
+      ],
+      "sameUniverse": [
+        "67",
+        "70",
+        "71"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "73",
+    "title": "Of Mice and Men (1937)",
+    "author": "John Steinbeck",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "genre": [
+      "Realism"
+    ],
+    "description": "A classic novella about two displaced migrant ranch workers during the Great Depression.",
+    "coverImage": "/resources/images/library/of-mice-and-men.webp",
+    "links": {}
+  },
+  {
+    "id": "algorithms-to-live-by",
+    "title": "Algorithms to Live By",
+    "author": "Brian Christian, Tom Griffiths",
+    "type": "book",
+    "rating": 4,
+    "status": "dnf",
+    "genre": [
+      "Non-fiction",
+      "Science",
+      "Productivity"
+    ],
+    "description": "How computer algorithms can be applied to everyday human decision-making.",
+    "coverImage": "/resources/images/library/algorithms-to-live-by.webp",
+    "links": {}
+  },
+  {
+    "id": "arrival",
+    "title": "Arrival",
+    "author": "Denis Villeneuve",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2016,
+    "genre": [
+      "Drama",
+      "Sci-Fi",
+      "Mystery"
+    ],
+    "description": "A linguist is recruited to communicate with aliens in this cerebral sci-fi drama.",
+    "coverImage": "/resources/images/library/arrival-2016.webp",
+    "links": {}
+  },
+  {
+    "id": "a-life-of-meaning",
+    "title": "A Life of Meaning: Relocating Your Center of Spiritual Gravity",
+    "author": "James Hollis",
+    "type": "book",
+    "rating": 4,
+    "status": "dnf",
+    "dateCompleted": "2025-01-01",
+    "genre": [
+      "Non-fiction",
+      "Psychology",
+      "Spirituality"
+    ],
+    "description": "James Hollis explores how to find deeper meaning and purpose in life.",
+    "coverImage": "/resources/images/library/a-life-of-meaning.webp",
+    "links": {}
+  },
+  {
+    "id": "a-short-history-of-nearly-everything",
+    "title": "A Short History of Nearly Everything",
+    "author": "Bill Bryson",
+    "type": "book",
+    "rating": 4,
+    "status": "dnf",
+    "dateCompleted": "2024-07-01",
+    "genre": [
+      "Non-fiction",
+      "Science",
+      "History"
+    ],
+    "description": "Bill Bryson's accessible and entertaining history of science and discovery.",
+    "coverImage": "/resources/images/library/a-short-history-of-nearly-everything.webp",
+    "links": {}
+  },
+  {
+    "id": "babel-necessity-of-violence",
+    "title": "Babel, or the Necessity of Violence",
+    "author": "R. F. Kuang",
+    "type": "book",
+    "rating": null,
+    "status": "on-pause",
+    "year": 2022,
+    "genre": [
+      "Fantasy",
+      "Historical",
+      "Fiction"
+    ],
+    "description": "A dark academia fantasy novel exploring language, colonialism, and revolution.",
+    "coverImage": "/resources/images/library/babel.webp",
+    "links": {}
+  },
+  {
+    "id": "batman-begins-2005",
+    "title": "Batman Begins",
+    "author": "Christopher Nolan",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2005,
+    "genre": [
+      "Action",
+      "Crime",
+      "Drama"
+    ],
+    "description": "The origin story of Batman in Christopher Nolan's acclaimed trilogy.",
+    "coverImage": "/resources/images/library/batman-begins-2005.webp",
+    "links": {},
+    "series": "The Dark Knight Trilogy",
+    "seriesOrder": 1,
+    "relationships": {
+      "sequel": "the-dark-knight",
+      "related": [
+        "the-dark-knight",
+        "the-dark-knight-rises"
+      ],
+      "sameUniverse": [
+        "the-dark-knight",
+        "the-dark-knight-rises"
+      ]
+    }
+  },
+  {
+    "id": "before-the-coffee-gets-cold",
+    "title": "Before the Coffee Gets Cold",
+    "author": "Toshikazu Kawaguchi",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2024-11-01",
+    "genre": [
+      "Fantasy",
+      "Realism"
+    ],
+    "description": "A novel about a Tokyo café where customers can travel back in time, but only for as long as their coffee stays warm.",
+    "coverImage": "/resources/images/library/before-the-coffee-gets-cold.webp",
+    "links": {}
+  },
+  {
+    "id": "choujin-x",
+    "title": "Choujin X",
+    "author": "Sui Ishida",
+    "type": "book",
+    "rating": null,
+    "status": "in-progress",
+    "year": 2021,
+    "genre": [
+      "Manga",
+      "Fantasy",
+      "Action"
+    ],
+    "description": "A dark fantasy manga series by the creator of Tokyo Ghoul.",
+    "coverImage": "/resources/images/library/choujin-x.webp",
+    "links": {}
+  },
+  {
+    "id": "creed-2015",
+    "title": "Creed",
+    "author": "Ryan Coogler",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2015,
+    "genre": [
+      "Drama",
+      "Sport"
+    ],
+    "description": "The first film in the Creed series, following Adonis Creed, the son of Apollo Creed.",
+    "coverImage": "/resources/images/library/creed-2015.webp",
+    "links": {},
+    "series": "Creed",
+    "seriesOrder": 1,
+    "relationships": {
+      "sequel": "16",
+      "related": [
+        "16",
+        "15"
+      ],
+      "sameUniverse": [
+        "16",
+        "15"
+      ]
+    }
+  },
+  {
+    "id": "daliland-2022",
+    "title": "Daliland",
+    "author": "Mary Harron",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2022,
+    "genre": [
+      "Drama",
+      "Biography"
+    ],
+    "description": "A biographical drama about the later years of artist Salvador Dalí.",
+    "coverImage": "/resources/images/library/daliland-2022.webp",
+    "links": {}
+  },
+  {
+    "id": "dracula",
+    "title": "Dracula",
+    "author": "Bram Stoker",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2024-11-01",
+    "genre": [
+      "Fantasy",
+      "Supernatural",
+      "Horror",
+      "Thriller & Mystery"
+    ],
+    "description": "The classic Gothic horror novel introducing Count Dracula and vampire lore.",
+    "coverImage": "/resources/images/library/dracula.webp",
+    "links": {}
+  },
+  {
+    "id": "east-of-eden",
+    "title": "East of Eden",
+    "author": "John Steinbeck",
+    "type": "book",
+    "rating": 5,
+    "status": "dnf",
+    "dateCompleted": "2023-07-01",
+    "genre": [
+      "Realism"
+    ],
+    "description": "A sprawling family saga set in California's Salinas Valley, exploring themes of good and evil.",
+    "coverImage": "/resources/images/library/east-of-eden.webp",
+    "links": {}
+  },
+  {
+    "id": "ego-is-the-enemy",
+    "title": "Ego is the Enemy",
+    "author": "Ryan Holiday",
+    "type": "book",
+    "rating": 4,
+    "status": "dnf",
+    "dateCompleted": "2024-10-01",
+    "genre": [
+      "Non-fiction",
+      "Self-improvement",
+      "Philosophy"
+    ],
+    "description": "Ryan Holiday examines how ego can sabotage success and how to overcome it.",
+    "coverImage": "/resources/images/library/ego-is-the-enemy.webp",
+    "links": {}
+  },
+  {
+    "id": "ext-dragon-republic",
+    "title": "The Dragon Republic",
+    "author": "Rebecca Kuang",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2024-09-01",
+    "genre": [
+      "Fantasy",
+      "Political",
+      "Young Adult (YA)"
+    ],
+    "description": "The sequel to The Poppy War, following Rin as she navigates war and politics in a fractured empire.",
+    "coverImage": "/resources/images/library/the-dragon-republic.webp",
+    "series": "The Poppy War",
+    "seriesOrder": 2,
+    "relationships": {
+      "prequel": "22",
+      "sequel": "ext-burning-god",
+      "related": [
+        "22",
+        "ext-burning-god"
+      ],
+      "sameUniverse": [
+        "22",
+        "ext-burning-god"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ext-battle-labyrinth",
+    "title": "The Battle of the Labyrinth",
+    "author": "Rick Riordan",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Fantasy",
+      "Young Adult (YA)",
+      "Supernatural",
+      "Adventure"
+    ],
+    "description": "Percy Jackson and friends must navigate the Labyrinth to stop Kronos' army.",
+    "coverImage": "/resources/images/library/the-battle-of-the-labyrinth.webp",
+    "series": "Percy Jackson and the Olympians",
+    "seriesOrder": 4,
+    "relationships": {
+      "prequel": "ext-titans-curse",
+      "sequel": "ext-last-olympian",
+      "related": [
+        "ext-lightning-thief",
+        "ext-sea-monsters",
+        "ext-titans-curse",
+        "ext-last-olympian",
+        "ext-lost-hero",
+        "ext-son-neptune"
+      ],
+      "sameUniverse": [
+        "ext-lightning-thief",
+        "ext-sea-monsters",
+        "ext-titans-curse",
+        "ext-last-olympian",
+        "ext-lost-hero",
+        "ext-son-neptune"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ext-titans-curse",
+    "title": "The Titan's Curse",
+    "author": "Rick Riordan",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Fantasy",
+      "Young Adult (YA)",
+      "Supernatural",
+      "Adventure"
+    ],
+    "description": "Percy and his friends go on a quest to rescue Artemis and Annabeth.",
+    "coverImage": "/resources/images/library/the-titans-curse.webp",
+    "series": "Percy Jackson and the Olympians",
+    "seriesOrder": 3,
+    "relationships": {
+      "prequel": "ext-sea-monsters",
+      "sequel": "ext-battle-labyrinth",
+      "related": [
+        "ext-lightning-thief",
+        "ext-sea-monsters",
+        "ext-battle-labyrinth",
+        "ext-last-olympian",
+        "ext-lost-hero",
+        "ext-son-neptune"
+      ],
+      "sameUniverse": [
+        "ext-lightning-thief",
+        "ext-sea-monsters",
+        "ext-battle-labyrinth",
+        "ext-last-olympian",
+        "ext-lost-hero",
+        "ext-son-neptune"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ext-sea-monsters",
+    "title": "The Sea of Monsters",
+    "author": "Rick Riordan",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Fantasy",
+      "Young Adult (YA)",
+      "Supernatural",
+      "Adventure"
+    ],
+    "description": "Percy Jackson must journey into the Sea of Monsters to save Camp Half-Blood.",
+    "coverImage": "/resources/images/library/the-sea-of-monsters.webp",
+    "series": "Percy Jackson and the Olympians",
+    "seriesOrder": 2,
+    "relationships": {
+      "prequel": "ext-lightning-thief",
+      "sequel": "ext-titans-curse",
+      "related": [
+        "ext-lightning-thief",
+        "ext-titans-curse",
+        "ext-battle-labyrinth",
+        "ext-last-olympian",
+        "ext-lost-hero",
+        "ext-son-neptune"
+      ],
+      "sameUniverse": [
+        "ext-lightning-thief",
+        "ext-titans-curse",
+        "ext-battle-labyrinth",
+        "ext-last-olympian",
+        "ext-lost-hero",
+        "ext-son-neptune"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ext-lightning-thief",
+    "title": "The Lightning Thief",
+    "author": "Rick Riordan",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Fantasy",
+      "Young Adult (YA)",
+      "Supernatural",
+      "Adventure"
+    ],
+    "description": "Percy Jackson discovers he is a demigod and embarks on a quest to find Zeus' stolen lightning bolt.",
+    "coverImage": "/resources/images/library/the-lightning-thief.webp",
+    "series": "Percy Jackson and the Olympians",
+    "seriesOrder": 1,
+    "relationships": {
+      "sequel": "ext-sea-monsters",
+      "related": [
+        "ext-sea-monsters",
+        "ext-titans-curse",
+        "ext-battle-labyrinth",
+        "ext-last-olympian",
+        "ext-lost-hero",
+        "ext-son-neptune"
+      ],
+      "sameUniverse": [
+        "ext-sea-monsters",
+        "ext-titans-curse",
+        "ext-battle-labyrinth",
+        "ext-last-olympian",
+        "ext-lost-hero",
+        "ext-son-neptune"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ext-lost-hero",
+    "title": "The Lost Hero",
+    "author": "Rick Riordan",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Fantasy",
+      "Young Adult (YA)",
+      "Supernatural",
+      "Adventure"
+    ],
+    "description": "Jason, Piper, and Leo must rescue Hera and stop a new threat to Olympus.",
+    "coverImage": "/resources/images/library/the-lost-hero.webp",
+    "series": "Heroes of Olympus",
+    "seriesOrder": 1,
+    "relationships": {
+      "prequel": "ext-last-olympian",
+      "sequel": "ext-son-neptune",
+      "related": [
+        "ext-lightning-thief",
+        "ext-sea-monsters",
+        "ext-titans-curse",
+        "ext-battle-labyrinth",
+        "ext-last-olympian",
+        "ext-son-neptune"
+      ],
+      "sameUniverse": [
+        "ext-lightning-thief",
+        "ext-sea-monsters",
+        "ext-titans-curse",
+        "ext-battle-labyrinth",
+        "ext-last-olympian",
+        "ext-son-neptune"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ext-son-neptune",
+    "title": "The Son of Neptune",
+    "author": "Rick Riordan",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Fantasy",
+      "Young Adult (YA)",
+      "Supernatural",
+      "Adventure"
+    ],
+    "description": "Percy Jackson finds himself at a Roman demigod camp with no memory of his past.",
+    "coverImage": "/resources/images/library/the-son-of-neptune.webp",
+    "series": "Heroes of Olympus",
+    "seriesOrder": 2,
+    "relationships": {
+      "prequel": "ext-lost-hero",
+      "related": [
+        "ext-lightning-thief",
+        "ext-sea-monsters",
+        "ext-titans-curse",
+        "ext-battle-labyrinth",
+        "ext-last-olympian",
+        "ext-lost-hero"
+      ],
+      "sameUniverse": [
+        "ext-lightning-thief",
+        "ext-sea-monsters",
+        "ext-titans-curse",
+        "ext-battle-labyrinth",
+        "ext-last-olympian",
+        "ext-lost-hero"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ext-hp-deathly-hallows",
+    "title": "Harry Potter and the Deathly Hallows",
+    "author": "J.K. Rowling",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "description": "The final battle between Harry Potter and Lord Voldemort.",
+    "coverImage": "/resources/images/library/hp-deathly-hallows.webp",
+    "series": "Harry Potter",
+    "seriesOrder": 7,
+    "relationships": {
+      "prequel": "ext-hp-half-blood-prince",
+      "related": [
+        "ext-hp-philosophers-stone",
+        "ext-hp-chamber-secrets",
+        "ext-hp-prisoner-azkaban",
+        "ext-hp-goblet-fire",
+        "ext-hp-order-phoenix",
+        "ext-hp-half-blood-prince"
+      ],
+      "sameUniverse": [
+        "ext-hp-philosophers-stone",
+        "ext-hp-chamber-secrets",
+        "ext-hp-prisoner-azkaban",
+        "ext-hp-goblet-fire",
+        "ext-hp-order-phoenix",
+        "ext-hp-half-blood-prince"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ext-hp-half-blood-prince",
+    "title": "Harry Potter and the Half-Blood Prince",
+    "author": "J.K. Rowling",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "description": "Harry discovers the identity of the Half-Blood Prince and learns more about Voldemort's past.",
+    "coverImage": "/resources/images/library/hp-half-blood-prince.webp",
+    "series": "Harry Potter",
+    "seriesOrder": 6,
+    "relationships": {
+      "prequel": "ext-hp-order-phoenix",
+      "sequel": "ext-hp-deathly-hallows",
+      "related": [
+        "ext-hp-philosophers-stone",
+        "ext-hp-chamber-secrets",
+        "ext-hp-prisoner-azkaban",
+        "ext-hp-goblet-fire",
+        "ext-hp-order-phoenix",
+        "ext-hp-deathly-hallows"
+      ],
+      "sameUniverse": [
+        "ext-hp-philosophers-stone",
+        "ext-hp-chamber-secrets",
+        "ext-hp-prisoner-azkaban",
+        "ext-hp-goblet-fire",
+        "ext-hp-order-phoenix",
+        "ext-hp-deathly-hallows"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ext-hp-order-phoenix",
+    "title": "Harry Potter and the Order of the Phoenix",
+    "author": "J.K. Rowling",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "description": "Harry and his friends form Dumbledore's Army to fight against the Ministry of Magic's interference at Hogwarts.",
+    "coverImage": "/resources/images/library/hp-order-phoenix.webp",
+    "series": "Harry Potter",
+    "seriesOrder": 5,
+    "relationships": {
+      "prequel": "ext-hp-goblet-fire",
+      "sequel": "ext-hp-half-blood-prince",
+      "related": [
+        "ext-hp-philosophers-stone",
+        "ext-hp-chamber-secrets",
+        "ext-hp-prisoner-azkaban",
+        "ext-hp-goblet-fire",
+        "ext-hp-half-blood-prince",
+        "ext-hp-deathly-hallows"
+      ],
+      "sameUniverse": [
+        "ext-hp-philosophers-stone",
+        "ext-hp-chamber-secrets",
+        "ext-hp-prisoner-azkaban",
+        "ext-hp-goblet-fire",
+        "ext-hp-half-blood-prince",
+        "ext-hp-deathly-hallows"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ext-hp-goblet-fire",
+    "title": "Harry Potter and the Goblet of Fire",
+    "author": "J.K. Rowling",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "description": "Harry competes in the dangerous Triwizard Tournament.",
+    "coverImage": "/resources/images/library/hp-goblet-fire.webp",
+    "series": "Harry Potter",
+    "seriesOrder": 4,
+    "relationships": {
+      "prequel": "ext-hp-prisoner-azkaban",
+      "sequel": "ext-hp-order-phoenix",
+      "related": [
+        "ext-hp-philosophers-stone",
+        "ext-hp-chamber-secrets",
+        "ext-hp-prisoner-azkaban",
+        "ext-hp-order-phoenix",
+        "ext-hp-half-blood-prince",
+        "ext-hp-deathly-hallows"
+      ],
+      "sameUniverse": [
+        "ext-hp-philosophers-stone",
+        "ext-hp-chamber-secrets",
+        "ext-hp-prisoner-azkaban",
+        "ext-hp-order-phoenix",
+        "ext-hp-half-blood-prince",
+        "ext-hp-deathly-hallows"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ext-feel-good-productivity",
+    "title": "Feel Good Productivity",
+    "author": "Ali Abdaal",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2024-01-01",
+    "genre": [
+      "Non-fiction",
+      "Productivity",
+      "Psychology",
+      "Organisation"
+    ],
+    "description": "A guide to achieving more by feeling better, from the popular productivity YouTuber and doctor.",
+    "coverImage": "/resources/images/library/feel-good-productivity.webp",
+    "links": {}
+  },
+  {
+    "id": "ext-hp-prisoner-azkaban",
+    "title": "Harry Potter and the Prisoner of Azkaban",
+    "author": "J.K. Rowling",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "description": "Harry learns the truth about Sirius Black and his parents' past.",
+    "coverImage": "/resources/images/library/hp-prisoner-azkaban.webp",
+    "series": "Harry Potter",
+    "seriesOrder": 3,
+    "relationships": {
+      "prequel": "ext-hp-chamber-secrets",
+      "sequel": "ext-hp-goblet-fire",
+      "related": [
+        "ext-hp-philosophers-stone",
+        "ext-hp-chamber-secrets",
+        "ext-hp-goblet-fire",
+        "ext-hp-order-phoenix",
+        "ext-hp-half-blood-prince",
+        "ext-hp-deathly-hallows"
+      ],
+      "sameUniverse": [
+        "ext-hp-philosophers-stone",
+        "ext-hp-chamber-secrets",
+        "ext-hp-goblet-fire",
+        "ext-hp-order-phoenix",
+        "ext-hp-half-blood-prince",
+        "ext-hp-deathly-hallows"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ext-hp-chamber-secrets",
+    "title": "Harry Potter and the Chamber of Secrets",
+    "author": "J.K. Rowling",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "description": "Harry returns to Hogwarts and faces the mystery of the Chamber of Secrets.",
+    "coverImage": "/resources/images/library/hp-chamber-secrets.webp",
+    "series": "Harry Potter",
+    "seriesOrder": 2,
+    "relationships": {
+      "prequel": "ext-hp-philosophers-stone",
+      "sequel": "ext-hp-prisoner-azkaban",
+      "related": [
+        "ext-hp-philosophers-stone",
+        "ext-hp-prisoner-azkaban",
+        "ext-hp-goblet-fire",
+        "ext-hp-order-phoenix",
+        "ext-hp-half-blood-prince",
+        "ext-hp-deathly-hallows"
+      ],
+      "sameUniverse": [
+        "ext-hp-philosophers-stone",
+        "ext-hp-prisoner-azkaban",
+        "ext-hp-goblet-fire",
+        "ext-hp-order-phoenix",
+        "ext-hp-half-blood-prince",
+        "ext-hp-deathly-hallows"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ext-hp-philosophers-stone",
+    "title": "Harry Potter and the Philosopher's Stone",
+    "author": "J.K. Rowling",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "description": "Harry discovers he is a wizard and attends Hogwarts for the first time.",
+    "coverImage": "/resources/images/library/hp-philosophers-stone.webp",
+    "series": "Harry Potter",
+    "seriesOrder": 1,
+    "relationships": {
+      "sequel": "ext-hp-chamber-secrets",
+      "related": [
+        "ext-hp-chamber-secrets",
+        "ext-hp-prisoner-azkaban",
+        "ext-hp-goblet-fire",
+        "ext-hp-order-phoenix",
+        "ext-hp-half-blood-prince",
+        "ext-hp-deathly-hallows"
+      ],
+      "sameUniverse": [
+        "ext-hp-chamber-secrets",
+        "ext-hp-prisoner-azkaban",
+        "ext-hp-goblet-fire",
+        "ext-hp-order-phoenix",
+        "ext-hp-half-blood-prince",
+        "ext-hp-deathly-hallows"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ext-growth-levers",
+    "title": "Growth Levers and How to Find Them",
+    "author": "Matthew Lerner",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2024-06-01",
+    "genre": [
+      "Non-fiction",
+      "Business",
+      "Marketing"
+    ],
+    "description": "A practical guide to identifying and using growth levers in business.",
+    "coverImage": "/resources/images/library/growth-levers.webp",
+    "links": {}
+  },
+  {
+    "id": "ext-endgame-calling",
+    "title": "Endgame: The Calling",
+    "author": "James Frey",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2024-01-01",
+    "genre": [
+      "Realism",
+      "Young Adult (YA)",
+      "Action",
+      "Adventure"
+    ],
+    "description": "Twelve players. Young people from all over the world. They must fight to the death to save their bloodline—and the world.",
+    "coverImage": "/resources/images/library/endgame-the-calling.webp",
+    "links": {}
+  },
+  {
+    "id": "ext-1984",
+    "title": "1984",
+    "author": "George Orwell",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Dystopian",
+      "Political"
+    ],
+    "description": "A dystopian novel set in a totalitarian society ruled by Big Brother.",
+    "coverImage": "/resources/images/library/1984.webp",
+    "links": {}
+  },
+  {
+    "id": "ext-tobacco",
+    "title": "Tobacco",
+    "author": "Dimitar Dimov",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "History",
+      "Political"
+    ],
+    "description": "A Bulgarian classic exploring the rise and fall of a tobacco empire.",
+    "coverImage": "/resources/images/library/tobacco.webp",
+    "links": {}
+  },
+  {
+    "id": "ext-metamorphosis",
+    "title": "The Metamorphosis",
+    "author": "Franz Kafka",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Psychology",
+      "Supernatural",
+      "Realism"
+    ],
+    "description": "A man wakes up one morning to find himself transformed into a giant insect.",
+    "coverImage": "/resources/images/library/the-metamorphosis.webp",
+    "links": {}
+  },
+  {
+    "id": "ext-tokyo-ghoul-re",
+    "title": "Tokyo Ghoul:re",
+    "author": "Sui Ishida",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Manga",
+      "Action",
+      "Supernatural",
+      "Horror"
+    ],
+    "description": "The sequel to Tokyo Ghoul, following the story of Haise Sasaki.",
+    "coverImage": "/resources/images/library/tokyo-ghoul-re.webp",
+    "series": "Tokyo Ghoul",
+    "seriesOrder": 2,
+    "relationships": {
+      "prequel": "ext-tokyo-ghoul",
+      "related": [
+        "ext-tokyo-ghoul"
+      ],
+      "sameUniverse": [
+        "ext-tokyo-ghoul"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ext-tokyo-ghoul",
+    "title": "Tokyo Ghoul",
+    "author": "Sui Ishida",
+    "type": "book",
+    "rating": 4,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Manga",
+      "Action",
+      "Supernatural",
+      "Horror"
+    ],
+    "description": "A dark fantasy manga series about a college student who becomes a half-ghoul.",
+    "coverImage": "/resources/images/library/tokyo-ghoul.webp",
+    "series": "Tokyo Ghoul",
+    "seriesOrder": 1,
+    "relationships": {
+      "sequel": "ext-tokyo-ghoul-re",
+      "related": [
+        "ext-tokyo-ghoul-re"
+      ],
+      "sameUniverse": [
+        "ext-tokyo-ghoul-re"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ext-last-olympian",
+    "title": "The Last Olympian",
+    "author": "Rick Riordan",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2023-01-01",
+    "genre": [
+      "Fantasy",
+      "Young Adult (YA)",
+      "Supernatural",
+      "Adventure"
+    ],
+    "description": "The final battle for Olympus begins as Percy Jackson and his friends face Kronos.",
+    "coverImage": "/resources/images/library/the-last-olympian.webp",
+    "series": "Percy Jackson and the Olympians",
+    "seriesOrder": 5,
+    "relationships": {
+      "prequel": "ext-battle-labyrinth",
+      "sequel": "ext-lost-hero",
+      "related": [
+        "ext-lightning-thief",
+        "ext-sea-monsters",
+        "ext-titans-curse",
+        "ext-battle-labyrinth",
+        "ext-lost-hero",
+        "ext-son-neptune"
+      ],
+      "sameUniverse": [
+        "ext-lightning-thief",
+        "ext-sea-monsters",
+        "ext-titans-curse",
+        "ext-battle-labyrinth",
+        "ext-lost-hero",
+        "ext-son-neptune"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ext-burning-god",
+    "title": "The Burning God",
+    "author": "Rebecca Kuang",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2024-10-01",
+    "genre": [
+      "Fantasy",
+      "Political",
+      "Young Adult (YA)"
+    ],
+    "description": "The epic conclusion to The Poppy War trilogy, as Rin faces her final battles.",
+    "coverImage": "/resources/images/library/the-burning-god.webp",
+    "series": "The Poppy War",
+    "seriesOrder": 3,
+    "relationships": {
+      "prequel": "ext-dragon-republic",
+      "related": [
+        "22",
+        "ext-dragon-republic"
+      ],
+      "sameUniverse": [
+        "22",
+        "ext-dragon-republic"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "id": "ex-machina-2014",
+    "title": "Ex Machina",
+    "author": "Alex Garland",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2014,
+    "genre": [
+      "Drama",
+      "Sci-Fi",
+      "Thriller"
+    ],
+    "description": "A thought-provoking sci-fi thriller about artificial intelligence and ethics.",
+    "coverImage": "/resources/images/library/ex-machina-2014.webp",
+    "links": {}
+  },
+  {
+    "id": "get-out-2017",
+    "title": "Get Out",
+    "author": "Jordan Peele",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2017,
+    "genre": [
+      "Horror",
+      "Thriller",
+      "Mystery"
+    ],
+    "description": "A psychological horror film about a Black man who uncovers disturbing secrets when meeting his white girlfriend's family.",
+    "coverImage": "/resources/images/library/get-out-2017.webp",
+    "links": {}
+  },
+  {
+    "id": "goodnight-punpun",
+    "title": "Goodnight, Punpun",
+    "author": "Inio Asano",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2024-10-01",
+    "genre": [
+      "Manga",
+      "Realism",
+      "Psychology"
+    ],
+    "description": "A coming-of-age manga exploring the dark and surreal journey of Punpun Punyama.",
+    "coverImage": "/resources/images/library/goodnight-punpun.webp",
+    "links": {}
+  },
+  {
+    "id": "green-book-2018",
+    "title": "Green Book",
+    "author": "Peter Farrelly",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2018,
+    "genre": [
+      "Drama",
+      "Biography",
+      "Comedy"
+    ],
+    "description": "A road trip film about the friendship between a Black pianist and his Italian-American driver in the 1960s American South.",
+    "coverImage": "/resources/images/library/green-book-2018.webp",
+    "links": {}
+  },
+  {
+    "id": "heights-2017",
+    "title": "Heights",
+    "author": "Victor Bojinov",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2017,
+    "genre": [
+      "Drama",
+      "Adventure"
+    ],
+    "description": "A Bulgarian drama film directed by Victor Bojinov, based on the novel by Milen Ruskov.",
+    "coverImage": "/resources/images/library/heights-2017.webp",
+    "links": {}
+  },
+  {
+    "id": "iglatana-labakan",
+    "title": "Иглата на Лабакан",
+    "author": "Yulia Spiridonova",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2024-01-01",
+    "genre": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "series": "Labakan",
+    "seriesOrder": 3,
+    "relationships": {
+      "related": [
+        "lyubimi-poputecho",
+        "kralska-krav"
+      ],
+      "sameUniverse": [
+        "lyubimi-poputecho",
+        "kralska-krav"
+      ]
+    },
+    "description": "A magical adventure by Bulgarian author Yulia Spiridonova.",
+    "coverImage": "/resources/images/library/iglatana-labakan.webp",
+    "links": {}
+  },
+  {
+    "id": "in-the-heart-of-the-machine-2022",
+    "title": "In the Heart of the Machine",
+    "author": "Martin Makariev",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2022,
+    "genre": [
+      "Drama",
+      "Crime"
+    ],
+    "description": "A Bulgarian prison drama about a group of inmates and a mysterious machine.",
+    "coverImage": "/resources/images/library/in-the-heart-of-the-machine-2022.webp",
+    "links": {}
+  },
+  {
+    "id": "january-2021",
+    "title": "January",
+    "author": "Andrey Paounov",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2021,
+    "genre": [
+      "Drama",
+      "Mystery"
+    ],
+    "description": "A Bulgarian drama film directed by Andrey Paounov.",
+    "coverImage": "/resources/images/library/january-2021.webp",
+    "links": {}
+  },
+  {
+    "id": "joker-2019",
+    "title": "Joker",
+    "author": "Todd Phillips",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2019,
+    "genre": [
+      "Crime",
+      "Drama",
+      "Thriller"
+    ],
+    "description": "A psychological thriller about the origin of Batman's iconic nemesis.",
+    "coverImage": "/resources/images/library/joker-2019.webp",
+    "links": {}
+  },
+  {
+    "id": "jujutsu-kaisen-0-2021",
+    "title": "Jujutsu Kaisen 0",
+    "author": "Gege Akutami, Sunghoo Park",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2021,
+    "genre": [
+      "Animation",
+      "Action",
+      "Fantasy"
+    ],
+    "description": "A prequel to the Jujutsu Kaisen anime series, following Yuta Okkotsu's story.",
+    "coverImage": "/resources/images/library/jujutsu-kaisen-0-2021.webp",
+    "links": {}
+  },
+  {
+    "id": "kralska-krav",
+    "title": "Кралска кръв",
+    "author": "Yulia Spiridonova",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2024-01-01",
+    "genre": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "series": "Labakan",
+    "seriesOrder": 2,
+    "relationships": {
+      "related": [
+        "lyubimi-poputecho",
+        "iglatana-labakan"
+      ],
+      "sameUniverse": [
+        "lyubimi-poputecho",
+        "iglatana-labakan"
+      ]
+    },
+    "description": "A Bulgarian fantasy novel about royal intrigue and adventure.",
+    "coverImage": "/resources/images/library/kralska-krav.webp",
+    "links": {}
+  },
+  {
+    "id": "law-abiding-citizen-2009",
+    "title": "Law Abiding Citizen",
+    "author": "F. Gary Gray",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2009,
+    "genre": [
+      "Crime",
+      "Drama",
+      "Thriller"
+    ],
+    "description": "A man seeks justice for his family's murder, taking on the legal system in this thriller.",
+    "coverImage": "/resources/images/library/law-abiding-citizen-2009.webp",
+    "links": {}
+  },
+  {
+    "id": "logan-2017",
+    "title": "Logan",
+    "author": "James Mangold",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2017,
+    "genre": [
+      "Action",
+      "Drama",
+      "Sci-Fi"
+    ],
+    "description": "A gritty and emotional send-off for Hugh Jackman's Wolverine in the X-Men film series.",
+    "coverImage": "/resources/images/library/logan-2017.webp",
+    "links": {}
+  },
+  {
+    "id": "lord-of-the-flies",
+    "title": "Lord of the Flies",
+    "author": "William Golding",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2024-10-01",
+    "genre": [
+      "Realism",
+      "Action"
+    ],
+    "description": "A group of boys stranded on an uninhabited island descend into savagery in this classic novel.",
+    "coverImage": "/resources/images/library/lord-of-the-flies.webp",
+    "links": {}
+  },
+  {
+    "id": "lyubimi-poputecho",
+    "title": "Любими Попътечо",
+    "author": "Yulia Spiridonova",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2024-01-01",
+    "genre": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "series": "Land of Dreams",
+    "seriesOrder": 1,
+    "relationships": {
+      "related": [
+        "iglatana-labakan",
+        "kralska-krav"
+      ],
+      "sameUniverse": [
+        "iglatana-labakan",
+        "kralska-krav"
+      ]
+    },
+    "description": "A Bulgarian fantasy adventure for young readers.",
+    "coverImage": "/resources/images/library/lyubimi-poputecho.webp",
+    "links": {}
+  },
+  {
+    "id": "mamnik",
+    "title": "Mamnik",
+    "author": "Vasil Popov",
+    "type": "book",
+    "rating": 1,
+    "status": "completed",
+    "dateCompleted": "2025-04-01",
+    "genre": [
+      "Fantasy",
+      "Thriller & Mystery",
+      "Horror",
+      "Supernatural"
+    ],
+    "description": "A Bulgarian novel blending fantasy, horror, and folklore.",
+    "coverImage": "/resources/images/library/mamnik.webp",
+    "links": {}
+  },
+  {
+    "id": "m-1931",
+    "title": "M",
+    "author": "Fritz Lang",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 1931,
+    "genre": [
+      "Crime",
+      "Drama",
+      "Thriller"
+    ],
+    "description": "A classic German thriller about the hunt for a child murderer in Berlin.",
+    "coverImage": "/resources/images/library/m-1931.webp",
+    "links": {}
+  },
+  {
+    "id": "navalny-2022",
+    "title": "Navalny",
+    "director": "Daniel Roher",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2022,
+    "genre": [
+      "Documentary",
+      "Biography",
+      "Crime"
+    ],
+    "description": "A documentary about Russian opposition leader Alexei Navalny and the attempt on his life.",
+    "coverImage": "/resources/images/library/navalny-2022.webp",
+    "links": {}
+  },
+  {
+    "id": "no-more-mr-nice-guy",
+    "title": "No More Mr. Nice Guy",
+    "author": "Robert A. Glover",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2024-12-01",
+    "genre": [
+      "Non-fiction",
+      "Masculinity",
+      "Self-improvement",
+      "Psychology"
+    ],
+    "description": "A guide to breaking free from the 'Nice Guy Syndrome' and living authentically.",
+    "coverImage": "/resources/images/library/no-more-mr-nice-guy.webp",
+    "links": {}
+  },
+  {
+    "id": "parasite-2019",
+    "title": "Parasite",
+    "author": "Bong Joon-ho",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2019,
+    "genre": [
+      "Drama",
+      "Thriller"
+    ],
+    "description": "A darkly comedic thriller about class struggle in South Korea.",
+    "coverImage": "/resources/images/library/parasite-2019.webp",
+    "links": {}
+  },
+  {
+    "id": "principles-for-dealing-with-the-changing-world-order",
+    "title": "Principles for Dealing with the Changing World Order",
+    "author": "Ray Dalio",
+    "type": "book",
+    "rating": 4,
+    "status": "dnf",
+    "dateCompleted": "2022-11-01",
+    "genre": [
+      "Non-fiction",
+      "Economics",
+      "History"
+    ],
+    "description": "Ray Dalio explores the patterns and cycles that shape the rise and fall of nations and economies.",
+    "coverImage": "/resources/images/library/principles-for-dealing-with-the-changing-world-order.webp",
+    "links": {}
+  },
+  {
+    "id": "rodopskiyat-paraklis",
+    "title": "Родопският параклис",
+    "author": "A. D.",
+    "type": "book",
+    "rating": 4,
+    "status": "dnf",
+    "dateCompleted": "2024-07-01",
+    "genre": [
+      "Realism"
+    ],
+    "description": "A Bulgarian novel set in the Rhodope mountains, exploring local culture and spirituality.",
+    "coverImage": "/resources/images/library/rodopskiyat-paraklis.webp",
+    "links": {}
+  },
+  {
+    "id": "se7en-1995",
+    "title": "Se7en",
+    "author": "David Fincher",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 1995,
+    "genre": [
+      "Crime",
+      "Drama",
+      "Mystery"
+    ],
+    "description": "A dark thriller about two detectives tracking a serial killer who uses the seven deadly sins as motives.",
+    "coverImage": "/resources/images/library/se7en.webp",
+    "links": {}
+  },
+  {
+    "id": "shoe-dog",
+    "title": "Shoe Dog: A Memoir by the Creator of Nike",
+    "author": "Phil Knight",
+    "type": "book",
+    "rating": null,
+    "status": "in-progress",
+    "year": 2016,
+    "genre": [
+      "Memoir",
+      "Business",
+      "Non-fiction"
+    ],
+    "description": "The memoir of Phil Knight, founder of Nike, chronicling the company's early days and growth.",
+    "coverImage": "/resources/images/library/shoe-dog.webp",
+    "links": {}
+  },
+  {
+    "id": "the-banshees-of-inisherin",
+    "title": "The Banshees of Inisherin",
+    "author": "Martin McDonagh",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2022,
+    "genre": [
+      "Drama",
+      "Comedy"
+    ],
+    "description": "A tragicomedy about friendship and isolation on a remote Irish island.",
+    "coverImage": "/resources/images/library/the-banshees-of-inisherin.webp",
+    "links": {}
+  },
+  {
+    "id": "the-batman-2022",
+    "title": "The Batman",
+    "author": "Matt Reeves",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2022,
+    "genre": [
+      "Action",
+      "Crime",
+      "Drama"
+    ],
+    "description": "A noir-inspired reboot of the Batman franchise starring Robert Pattinson.",
+    "coverImage": "/resources/images/library/the-batman-2022.webp",
+    "links": {}
+  },
+  {
+    "id": "the-body-a-guide-for-occupants",
+    "title": "The Body: A Guide for Occupants",
+    "author": "Bill Bryson",
+    "type": "book",
+    "rating": 4,
+    "status": "dnf",
+    "genre": [
+      "Non-fiction",
+      "Science",
+      "Health"
+    ],
+    "description": "A fascinating tour of the human body, inside and out, by Bill Bryson.",
+    "coverImage": "/resources/images/library/the-body-a-guide-for-occupants.webp",
+    "links": {}
+  },
+  {
+    "id": "the-boy-and-the-heron-2023",
+    "title": "The Boy and the Heron",
+    "author": "Hayao Miyazaki",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2023,
+    "genre": [
+      "Animation",
+      "Adventure",
+      "Fantasy"
+    ],
+    "description": "A fantasy adventure film by Hayao Miyazaki, exploring themes of grief and imagination.",
+    "coverImage": "/resources/images/library/the-boy-and-the-heron-2023.webp",
+    "links": {}
+  },
+  {
+    "id": "the-cancer-code",
+    "title": "The Cancer Code",
+    "author": "Jason Fung",
+    "type": "book",
+    "rating": 4,
+    "status": "dnf",
+    "genre": [
+      "Non-fiction",
+      "Health",
+      "Science"
+    ],
+    "description": "A new look at cancer and its treatment from a metabolic perspective.",
+    "coverImage": "/resources/images/library/the-cancer-code.webp",
+    "links": {}
+  },
+  {
+    "id": "the-dark-knight",
+    "title": "The Dark Knight",
+    "author": "Christopher Nolan",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2008,
+    "genre": [
+      "Action",
+      "Crime",
+      "Drama"
+    ],
+    "description": "The second film in Christopher Nolan's Batman trilogy, featuring Heath Ledger as the Joker.",
+    "coverImage": "/resources/images/library/the-dark-knight-2008.webp",
+    "links": {},
+    "series": "The Dark Knight Trilogy",
+    "seriesOrder": 2,
+    "relationships": {
+      "prequel": "batman-begins-2005",
+      "sequel": "the-dark-knight-rises",
+      "related": [
+        "batman-begins-2005",
+        "the-dark-knight-rises"
+      ],
+      "sameUniverse": [
+        "batman-begins-2005",
+        "the-dark-knight-rises"
+      ]
+    }
+  },
+  {
+    "id": "the-dark-knight-rises",
+    "title": "The Dark Knight Rises",
+    "author": "Christopher Nolan",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2012,
+    "genre": [
+      "Action",
+      "Drama",
+      "Thriller"
+    ],
+    "description": "The epic conclusion to Christopher Nolan's Batman trilogy.",
+    "coverImage": "/resources/images/library/the-dark-knight-rises-2012.webp",
+    "links": {},
+    "series": "The Dark Knight Trilogy",
+    "seriesOrder": 3,
+    "relationships": {
+      "prequel": "the-dark-knight",
+      "related": [
+        "batman-begins-2005",
+        "the-dark-knight"
+      ],
+      "sameUniverse": [
+        "batman-begins-2005",
+        "the-dark-knight"
+      ]
+    }
+  },
+  {
+    "id": "the-eternal-daughter-2022",
+    "title": "The Eternal Daughter",
+    "author": "Joanna Hogg",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2022,
+    "genre": [
+      "Drama",
+      "Mystery"
+    ],
+    "description": "A haunting drama about a daughter and her elderly mother confronting long-buried secrets.",
+    "coverImage": "/resources/images/library/the-eternal-daughter-2022.webp",
+    "links": {}
+  },
+  {
+    "id": "the-headless-horseman",
+    "title": "The Headless Horseman",
+    "author": "Mayne Reid",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2024-08-01",
+    "genre": [
+      "Adventure"
+    ],
+    "description": "A classic adventure novel set in Texas, featuring mystery and romance.",
+    "coverImage": "/resources/images/library/the-headless-horseman.webp",
+    "links": {}
+  },
+  {
+    "id": "the-let-them-theory",
+    "title": "The Let Them Theory",
+    "author": "Mel Robbins",
+    "type": "book",
+    "rating": 4,
+    "status": "dnf",
+    "genre": [
+      "Non-fiction",
+      "Self-improvement"
+    ],
+    "description": "Mel Robbins shares a simple but powerful mindset shift for letting go of control and finding peace.",
+    "coverImage": "/resources/images/library/the-let-them-theory.webp",
+    "links": {}
+  },
+  {
+    "id": "the-matrix",
+    "title": "The Matrix",
+    "author": "The Wachowskis",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 1999,
+    "genre": [
+      "Action",
+      "Sci-Fi"
+    ],
+    "description": "A groundbreaking sci-fi film about reality, freedom, and artificial intelligence.",
+    "coverImage": "/resources/images/library/the-matrix.webp",
+    "links": {}
+  },
+  {
+    "id": "the-personal-mba",
+    "title": "The Personal MBA",
+    "author": "Josh Kaufman",
+    "type": "book",
+    "rating": 4,
+    "status": "dnf",
+    "dateCompleted": "2024-07-01",
+    "genre": [
+      "Non-fiction",
+      "Business",
+      "Self-improvement"
+    ],
+    "description": "A comprehensive guide to business concepts and entrepreneurship without a formal MBA.",
+    "coverImage": "/resources/images/library/the-personal-mba.webp",
+    "links": {}
+  },
+  {
+    "id": "the-product-book",
+    "title": "The Product Book",
+    "author": "Russel Newton",
+    "type": "book",
+    "rating": 4,
+    "status": "dnf",
+    "genre": [
+      "Non-fiction",
+      "Business",
+      "Product Management"
+    ],
+    "description": "A practical guide to product management and building successful products.",
+    "coverImage": "/resources/images/library/the-product-book.webp",
+    "links": {}
+  },
+  {
+    "id": "the-social-network-2010",
+    "title": "The Social Network",
+    "author": "David Fincher",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2010,
+    "genre": [
+      "Biography",
+      "Drama"
+    ],
+    "description": "A drama about the founding of Facebook and the lawsuits that followed.",
+    "coverImage": "/resources/images/library/the-social-network-2010.webp",
+    "links": {}
+  },
+  {
+    "id": "tomorrow-and-tomorrow-and-tomorrow",
+    "title": "Tomorrow, and Tomorrow, and Tomorrow",
+    "author": "Gabrielle Zevin",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2025-05-01",
+    "genre": [
+      "Realism"
+    ],
+    "description": "A novel about friendship, creativity, and the worlds we build together.",
+    "coverImage": "/resources/images/library/tomorrow-and-tomorrow-and-tomorrow.webp",
+    "links": {}
+  },
+  {
+    "id": "watchmen-2009",
+    "title": "Watchmen",
+    "author": "Zack Snyder",
+    "type": "movie",
+    "rating": null,
+    "status": "completed",
+    "year": 2009,
+    "genre": [
+      "Action",
+      "Drama",
+      "Sci-Fi"
+    ],
+    "description": "A dark and complex superhero film based on the graphic novel by Alan Moore and Dave Gibbons.",
+    "coverImage": "/resources/images/library/watchmen-2009.webp",
+    "links": {}
+  },
+  {
+    "id": "why-good-people-do-bad-things",
+    "title": "Why Good People Do Bad Things: Understanding Our Darker Selves",
+    "author": "James Hollis",
+    "type": "book",
+    "rating": 5,
+    "status": "completed",
+    "dateCompleted": "2024-12-01",
+    "genre": [
+      "Non-fiction",
+      "Psychology",
+      "Self-improvement"
+    ],
+    "description": "A deep dive into the unconscious forces that drive our self-sabotaging behaviors.",
+    "coverImage": "/resources/images/library/why-good-people-do-bad-things.webp",
+    "links": {}
+  }
+]

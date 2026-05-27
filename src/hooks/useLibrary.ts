@@ -1,86 +1,53 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { libraryItems, LibraryItem, loadAllLibraryItems } from '@/data/library';
-import { 
-  getCreatorLabel as getCreatorLabelUtil, 
+import { libraryItems, LibraryItem } from '@/data/library';
+import {
+  getCreatorLabel as getCreatorLabelUtil,
   getStatusColor as getStatusColorUtil,
   getRelatedItems as getRelatedItemsUtil,
   getSeriesInfo as getSeriesInfoUtil,
   getRelationshipLabel as getRelationshipLabelUtil,
   calculateStatistics,
-  exportToCSV as exportToCSVUtil,
-  exportToJSON as exportToJSONUtil
 } from '@/lib/library-utils';
 import { toast } from 'sonner';
 
+export type LibraryCategory = 'books' | 'watchables';
+
+const ITEMS_PER_PAGE = 12;
+
 export function useLibrary() {
-  // State
-  const [selectedType, setSelectedType] = useState('all');
-  const [selectedStatus, setSelectedStatus] = useState('all');
+  const [category, setCategory] = useState<LibraryCategory>('books');
   const [selectedItem, setSelectedItem] = useState<LibraryItem | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'recent' | 'rating' | 'title' | 'date'>('date');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [favorites, setFavorites] = useState<string[]>([]);
-  const [showStats, setShowStats] = useState(false);
-  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
-  const [ratingRange, setRatingRange] = useState<[number, number]>([1, 5]);
-  const [itemsToShow, setItemsToShow] = useState(12);
+  const [itemsToShow, setItemsToShow] = useState(ITEMS_PER_PAGE);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [animatingHearts, setAnimatingHearts] = useState<string[]>([]);
   const [copiedId, setCopiedId] = useState<string | null>(null);
-  const [showThisYearOnly, setShowThisYearOnly] = useState(false);
-  const [allLibraryItems, setAllLibraryItems] = useState<LibraryItem[]>(libraryItems);
-  const [isLoadingExternal, setIsLoadingExternal] = useState(false);
   const loadMoreRef = useRef<HTMLDivElement>(null);
-  const lastToastRef = useRef<{id: string, action: 'like' | 'unlike', time: number} | null>(null);
-
-  // Load external library items
-  useEffect(() => {
-    const loadExternalItems = async () => {
-      setIsLoadingExternal(true);
-      try {
-        // Add a small delay to show loading state for better UX
-        const loadPromise = loadAllLibraryItems();
-        
-        // Show loading for at least 500ms to prevent flash
-        const [items] = await Promise.all([
-          loadPromise,
-          new Promise(resolve => setTimeout(resolve, 500))
-        ]);
-        
-        setAllLibraryItems(items);
-      } catch (error) {
-        console.warn('Failed to load external library items, using internal only:', error);
-        setAllLibraryItems(libraryItems);
-      } finally {
-        setIsLoadingExternal(false);
-      }
-    };
-
-    loadExternalItems();
-  }, []);
+  const lastToastRef = useRef<{ id: string; action: 'like' | 'unlike'; time: number } | null>(null);
 
   // Load preferences from localStorage
   useEffect(() => {
     const savedFavorites = localStorage.getItem('library-favorites');
     const savedViewMode = localStorage.getItem('library-view-mode');
     const savedSortBy = localStorage.getItem('library-sort-by');
-    const savedShowStats = localStorage.getItem('library-show-stats');
-    
+    const savedCategory = localStorage.getItem('library-category');
+
     if (savedFavorites) setFavorites(JSON.parse(savedFavorites));
     if (savedViewMode) setViewMode(savedViewMode as 'grid' | 'list');
     if (savedSortBy) setSortBy(savedSortBy as any);
-    if (savedShowStats) setShowStats(JSON.parse(savedShowStats));
+    if (savedCategory === 'books' || savedCategory === 'watchables') setCategory(savedCategory);
   }, []);
 
-  // Save preferences to localStorage
   useEffect(() => {
     try {
       localStorage.setItem('library-favorites', JSON.stringify(favorites));
-    } catch (e) {
+    } catch {
       // Silently ignore QuotaExceededError
     }
   }, [favorites]);
@@ -94,176 +61,125 @@ export function useLibrary() {
   }, [sortBy]);
 
   useEffect(() => {
-    localStorage.setItem('library-show-stats', JSON.stringify(showStats));
-  }, [showStats]);
+    localStorage.setItem('library-category', category);
+    setItemsToShow(ITEMS_PER_PAGE);
+  }, [category]);
 
-  // Get all unique genres for filtering
-  const allGenres = [...new Set(allLibraryItems.flatMap(item => item.genre))].sort();
+  // Filter to the active category (books vs movies+series)
+  const itemsInCategory = libraryItems.filter((item) =>
+    category === 'books' ? item.type === 'book' : item.type === 'movie' || item.type === 'series',
+  );
 
-  // Filtering logic
-  const filteredItems = allLibraryItems.filter(item => {
-    const typeMatch = selectedType === 'all' || item.type === selectedType;
-    const statusMatch = selectedStatus === 'all' || item.status === selectedStatus;
-    
-    // Search functionality
-    const searchMatch = searchQuery === '' || 
-      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (item.author && item.author.toLowerCase().includes(searchQuery.toLowerCase())) ||
-      (item.director && item.director.toLowerCase().includes(searchQuery.toLowerCase())) ||
-      (item.creator && item.creator.toLowerCase().includes(searchQuery.toLowerCase())) ||
-      (item.series && item.series.toLowerCase().includes(searchQuery.toLowerCase())) ||
-      item.genre.some(g => g.toLowerCase().includes(searchQuery.toLowerCase())) ||
-      item.description.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    // Genre filtering
-    const genreMatch = selectedGenres.length === 0 || 
-      selectedGenres.some(selectedGenre => item.genre.includes(selectedGenre));
-    
-    // Rating filtering (FIX: include items with null/undefined rating)
-    const ratingMatch = item.rating == null || (item.rating >= ratingRange[0] && item.rating <= ratingRange[1]);
-
-    // This year filtering
-    let thisYearMatch = true;
-    if (showThisYearOnly) {
-      const year = new Date().getFullYear();
-      const completedYear = item.dateCompleted ? new Date(item.dateCompleted).getFullYear() : null;
-      const startedYear = item.dateStarted ? new Date(item.dateStarted).getFullYear() : null;
-      thisYearMatch = completedYear === year || startedYear === year;
-    }
-    
-    return typeMatch && statusMatch && searchMatch && genreMatch && ratingMatch && thisYearMatch;
+  // Filtering logic - search only
+  const filteredItems = itemsInCategory.filter((item) => {
+    if (searchQuery === '') return true;
+    const q = searchQuery.toLowerCase();
+    return (
+      item.title.toLowerCase().includes(q) ||
+      (item.author && item.author.toLowerCase().includes(q)) ||
+      (item.director && item.director.toLowerCase().includes(q)) ||
+      (item.creator && item.creator.toLowerCase().includes(q)) ||
+      (item.series && item.series.toLowerCase().includes(q)) ||
+      item.genre.some((g) => g.toLowerCase().includes(q)) ||
+      item.description.toLowerCase().includes(q)
+    );
   });
 
   // Sorting logic
   const allSortedItems = [...filteredItems].sort((a, b) => {
     switch (sortBy) {
       case 'rating':
-        return b.rating - a.rating;
+        return (b.rating ?? 0) - (a.rating ?? 0);
       case 'title':
         return a.title.localeCompare(b.title);
-      case 'date':
+      case 'date': {
         const dateA = new Date(a.dateCompleted || a.dateStarted || '1900-01-01');
         const dateB = new Date(b.dateCompleted || b.dateStarted || '1900-01-01');
         return dateB.getTime() - dateA.getTime();
+      }
       case 'recent':
-      default:
-        return parseInt(b.id) - parseInt(a.id);
+      default: {
+        const aId = parseInt(a.id, 10);
+        const bId = parseInt(b.id, 10);
+        if (isNaN(aId) && isNaN(bId)) return a.id.localeCompare(b.id);
+        if (isNaN(aId)) return 1;
+        if (isNaN(bId)) return -1;
+        return bId - aId;
+      }
     }
   });
   const sortedItems = allSortedItems.slice(0, itemsToShow);
   const hasMoreItems = allSortedItems.length > itemsToShow;
 
-  // Utility functions - use imported utilities
   const getCreatorLabel = getCreatorLabelUtil;
   const getStatusColor = getStatusColorUtil;
 
-  // Favorites functionality
   const toggleFavorite = (itemId: string, itemTitle?: string) => {
-    setFavorites(prev => {
+    setFavorites((prev) => {
       const isLiking = !prev.includes(itemId);
       const now = Date.now();
       const last = lastToastRef.current;
-      const action = isLiking ? 'like' : 'unlike';
+      const action: 'like' | 'unlike' = isLiking ? 'like' : 'unlike';
       if (!last || last.id !== itemId || last.action !== action || now - last.time > 1000) {
         if (isLiking) {
           toast.success(`Added to favorites: "${itemTitle || 'Item'}" (saved on this device only)`);
         } else {
           toast(`Removed from favorites: "${itemTitle || 'Item'}" (saved on this device only)`);
         }
-        lastToastRef.current = {id: itemId, action, time: now};
+        lastToastRef.current = { id: itemId, action, time: now };
       }
       if (isLiking) {
-        setAnimatingHearts(ah => [...ah, itemId]);
+        setAnimatingHearts((ah) => [...ah, itemId]);
         setTimeout(() => {
-          setAnimatingHearts(ah => ah.filter(id => id !== itemId));
+          setAnimatingHearts((ah) => ah.filter((id) => id !== itemId));
         }, 600);
       }
-      return isLiking
-        ? [...prev, itemId]
-        : prev.filter(id => id !== itemId);
+      return isLiking ? [...prev, itemId] : prev.filter((id) => id !== itemId);
     });
   };
 
-  // Statistics calculations
-  const getStatistics = (items?: LibraryItem[]) => calculateStatistics(items || allLibraryItems);
+  const getStatistics = (items?: LibraryItem[]) => calculateStatistics(items || libraryItems);
 
-  // Related items algorithm
-  const getRelatedItems = (item: LibraryItem, limit: number = 4): LibraryItem[] => 
-    getRelatedItemsUtil(item, allLibraryItems, limit);
+  const getRelatedItems = (item: LibraryItem, limit: number = 4): LibraryItem[] =>
+    getRelatedItemsUtil(item, libraryItems, limit);
 
-  // Get series information for an item
-  const getSeriesInfo = (item: LibraryItem) => getSeriesInfoUtil(item, allLibraryItems);
+  const getSeriesInfo = (item: LibraryItem) => getSeriesInfoUtil(item, libraryItems);
 
-  // Get relationship type display text
-  const getRelationshipLabel = (fromItem: LibraryItem, toItem: LibraryItem): string => 
+  const getRelationshipLabel = (fromItem: LibraryItem, toItem: LibraryItem): string =>
     getRelationshipLabelUtil(fromItem, toItem);
 
-  // Navigation functions
   const navigateToItem = (direction: 'prev' | 'next') => {
     if (!selectedItem || isTransitioning) return;
-    
-    const currentIndex = sortedItems.findIndex(item => item.id === selectedItem.id);
+
+    const currentIndex = sortedItems.findIndex((item) => item.id === selectedItem.id);
     if (currentIndex === -1) return;
-    
-    let newIndex;
+
+    let newIndex: number;
     if (direction === 'prev') {
       newIndex = currentIndex > 0 ? currentIndex - 1 : sortedItems.length - 1;
     } else {
       newIndex = currentIndex < sortedItems.length - 1 ? currentIndex + 1 : 0;
     }
-    
+
     setIsTransitioning(true);
-    
     requestAnimationFrame(() => {
       setSelectedItem(sortedItems[newIndex]);
-      requestAnimationFrame(() => {
-        setIsTransitioning(false);
-      });
+      requestAnimationFrame(() => setIsTransitioning(false));
     });
   };
 
-  // Export functionality
-  const exportToCSV = () => exportToCSVUtil(sortedItems);
-  const exportToJSON = () => exportToJSONUtil(sortedItems, {
-    search: searchQuery,
-    type: selectedType,
-    status: selectedStatus,
-    genres: selectedGenres,
-    ratingRange
-  }, getStatistics());
-
-  // Copy functionality
-  const handleCopy = (id: string, text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 1500);
-  };
-
-  // Clear filters
-  const clearFilters = () => {
-    setSearchQuery('');
-    setSelectedGenres([]);
-    setRatingRange([1, 5]);
-    setSelectedType('all');
-    setSelectedStatus('all');
-    setShowThisYearOnly(false);
-  };
-
-  // Load more items
   const showMoreItems = () => {
     setIsLoadingMore(true);
     setTimeout(() => {
-      setItemsToShow(prev => prev + 12);
+      setItemsToShow((prev) => prev + ITEMS_PER_PAGE);
       setIsLoadingMore(false);
-    }, 500);
+    }, 300);
   };
 
   return {
     // State
-    selectedType,
-    setSelectedType,
-    selectedStatus,
-    setSelectedStatus,
+    category,
+    setCategory,
     selectedItem,
     setSelectedItem,
     searchQuery,
@@ -273,28 +189,19 @@ export function useLibrary() {
     viewMode,
     setViewMode,
     favorites,
-    showStats,
-    setShowStats,
-    selectedGenres,
-    setSelectedGenres,
-    ratingRange,
-    setRatingRange,
     itemsToShow,
     isLoadingMore,
     isTransitioning,
     animatingHearts,
     copiedId,
-    showThisYearOnly,
-    setShowThisYearOnly,
-    isLoadingExternal,
     loadMoreRef,
 
     // Data
-    allGenres,
     filteredItems,
     sortedItems,
     allSortedItems,
     hasMoreItems,
+    allItems: libraryItems,
 
     // Functions
     getCreatorLabel,
@@ -305,10 +212,6 @@ export function useLibrary() {
     getSeriesInfo,
     getRelationshipLabel,
     navigateToItem,
-    exportToCSV,
-    exportToJSON,
-    handleCopy,
-    clearFilters,
     showMoreItems,
   };
-} 
+}

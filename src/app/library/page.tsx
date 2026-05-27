@@ -1,17 +1,15 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Grid, List, RefreshCw, Search, X } from 'lucide-react';
+import { Grid, List, Search, X } from 'lucide-react';
 import Layout from '@/components/Layout';
 import LibraryHero from '@/components/library/LibraryHero';
-import LibraryStats from '@/components/library/LibraryStats';
-import LibraryFilters from '@/components/library/LibraryFilters';
+import LibraryTabs from '@/components/library/LibraryTabs';
 import LibraryItemCard from '@/components/library/LibraryItemCard';
 import LibraryModal from '@/components/library/LibraryModal';
 import LibraryResults from '@/components/library/LibraryResults';
 import LibraryItemSkeleton from '@/components/library/LibraryItemSkeleton';
-import FilterBadges from '@/components/library/FilterBadges';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -19,18 +17,14 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
 import { useLibrary } from '@/hooks/useLibrary';
 import { Input } from '@/components/ui/input';
 
 export default function LibraryPage() {
-  const [isLoadingMore, setIsLoadingMore] = useState(false);
   const {
-    // State
-    selectedType,
-    setSelectedType,
-    selectedStatus,
-    setSelectedStatus,
+    category,
+    setCategory,
     selectedItem,
     setSelectedItem,
     searchQuery,
@@ -40,25 +34,13 @@ export default function LibraryPage() {
     viewMode,
     setViewMode,
     favorites,
-    showStats,
-    setShowStats,
-    selectedGenres,
-    setSelectedGenres,
-    ratingRange,
-    setRatingRange,
     itemsToShow,
+    isLoadingMore,
     showMoreItems,
-    showThisYearOnly,
-    setShowThisYearOnly,
-    isLoadingExternal,
-    
-    // Data
-    allGenres,
     sortedItems,
     allSortedItems,
     hasMoreItems,
-    
-    // Functions
+    allItems,
     getCreatorLabel,
     getStatusColor,
     toggleFavorite,
@@ -67,52 +49,38 @@ export default function LibraryPage() {
     getSeriesInfo,
     getRelationshipLabel,
     navigateToItem,
-    exportToCSV,
-    exportToJSON,
-    handleCopy,
-    clearFilters,
     loadMoreRef,
     animatingHearts,
     copiedId,
     isTransitioning,
   } = useLibrary();
 
-  const stats = getStatistics(sortedItems);
+  const overallStats = getStatistics(allItems);
 
-  // Handle category click from LibraryHero
-  const handleCategoryClick = (type: string) => {
-    if (type === 'thisYear') {
-      setShowThisYearOnly(true);
-    } else {
-      setShowThisYearOnly(false);
-      setSelectedType(type);
-    }
-  };
+  const bookCount = allItems.filter((i) => i.type === 'book').length;
+  const watchableCount = allItems.filter((i) => i.type === 'movie' || i.type === 'series').length;
 
-  // Infinite scroll logic
+  // Infinite scroll
   useEffect(() => {
+    const node = loadMoreRef.current;
+    if (!node) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && !isLoadingMore && itemsToShow < allSortedItems.length) {
-          setIsLoadingMore(true);
           showMoreItems();
-          setIsLoadingMore(false);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
-    if (loadMoreRef.current) {
-      observer.observe(loadMoreRef.current);
-    }
-
+    observer.observe(node);
     return () => observer.disconnect();
   }, [allSortedItems.length, itemsToShow, isLoadingMore, showMoreItems, loadMoreRef]);
 
-  // Enhanced keyboard navigation
+  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      // Modal navigation
       if (selectedItem) {
         if (event.key === 'ArrowLeft') {
           event.preventDefault();
@@ -126,15 +94,17 @@ export default function LibraryPage() {
         return;
       }
 
-      // Global shortcuts (when no modal is open)
-      if (event.target instanceof HTMLInputElement) return; // Don't interfere with input fields
-      
+      if (event.target instanceof HTMLInputElement) return;
+
       switch (event.key) {
-        case '/':
+        case '/': {
           event.preventDefault();
-          const searchInput = document.querySelector('input[placeholder*="Search"]') as HTMLInputElement;
+          const searchInput = document.querySelector(
+            'input[placeholder*="Search"]',
+          ) as HTMLInputElement | null;
           searchInput?.focus();
           break;
+        }
         case 'g':
           if (event.ctrlKey || event.metaKey) {
             event.preventDefault();
@@ -147,113 +117,36 @@ export default function LibraryPage() {
             setViewMode('list');
           }
           break;
-        case 's':
-          if (event.ctrlKey || event.metaKey) {
-            event.preventDefault();
-            setShowStats(!showStats);
-          }
-          break;
-        case 'f':
-          if (event.ctrlKey || event.metaKey) {
-            event.preventDefault();
-            setRatingRange([5, 5]);
-            setSelectedStatus('completed');
-          }
-          break;
       }
     };
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [selectedItem, sortedItems, showStats, setViewMode, setShowStats, setRatingRange, setSelectedStatus, navigateToItem, setSelectedItem]);
-
-  useEffect(() => {
-    function checkAndLoadMore() {
-      if (
-        hasMoreItems &&
-        loadMoreRef.current &&
-        loadMoreRef.current.getBoundingClientRect().top < window.innerHeight
-      ) {
-        showMoreItems();
-      }
-    }
-    checkAndLoadMore();
-    window.addEventListener('resize', checkAndLoadMore);
-    return () => window.removeEventListener('resize', checkAndLoadMore);
-  }, [hasMoreItems, showMoreItems, loadMoreRef]);
+  }, [selectedItem, setViewMode, navigateToItem, setSelectedItem]);
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <LibraryHero 
-        stats={stats} 
-        onCategoryClick={handleCategoryClick} 
-        isLoading={isLoadingExternal}
+      <LibraryHero stats={overallStats} />
+
+      <LibraryTabs
+        category={category}
+        onChange={setCategory}
+        bookCount={bookCount}
+        watchableCount={watchableCount}
       />
 
-      {/* Statistics Dashboard */}
-      <LibraryStats 
-        showStats={showStats} 
-        libraryItems={sortedItems} 
-        stats={stats} 
-        isLoading={isLoadingExternal}
-      />
-
-      {/* Floating Controls Menu */}
-      <LibraryFilters
-        selectedType={selectedType}
-        setSelectedType={setSelectedType}
-        selectedStatus={selectedStatus}
-        setSelectedStatus={setSelectedStatus}
-        selectedGenres={selectedGenres}
-        setSelectedGenres={setSelectedGenres}
-        ratingRange={ratingRange}
-        setRatingRange={setRatingRange}
-        showStats={showStats}
-        setShowStats={setShowStats}
-        allGenres={allGenres}
-        sortedItemsLength={sortedItems.length}
-        onExportCSV={exportToCSV}
-        onExportJSON={exportToJSON}
-        onClearFilters={clearFilters}
-      />
-
-      {/* Results Summary, Filter Badges, Search, and View Toggle */}
       <div className="container mx-auto px-4 py-6">
-        <div className="flex items-center justify-between">
-          <div className="flex-1">
-            <LibraryResults 
-              sortedItemsLength={allSortedItems.length} 
-              searchQuery={searchQuery} 
-              isLoading={isLoadingExternal}
-            />
-            
-            {/* Filter Badges */}
-            <div className="mt-3">
-              <FilterBadges
-                searchQuery={searchQuery}
-                selectedType={selectedType}
-                selectedStatus={selectedStatus}
-                selectedGenres={selectedGenres}
-                ratingRange={ratingRange}
-                showThisYearOnly={showThisYearOnly}
-                onRemoveThisYear={() => setShowThisYearOnly(false)}
-                onRemoveSearch={() => setSearchQuery('')}
-                onRemoveType={() => setSelectedType('all')}
-                onRemoveStatus={() => setSelectedStatus('all')}
-                onRemoveGenre={(genre) => setSelectedGenres(prev => prev.filter(g => g !== genre))}
-                onRemoveRating={() => setRatingRange([1, 5])}
-              />
-            </div>
-          </div>
-          
-          {/* Search, Sort, and View Toggle */}
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <LibraryResults
+            sortedItemsLength={allSortedItems.length}
+            searchQuery={searchQuery}
+          />
+
           <div className="flex items-center gap-4">
-            {/* Search */}
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
               <Input
-                placeholder="Search library\u2026"
+                placeholder={`Search ${category === 'books' ? 'books' : 'movies & series'}…`}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 w-64"
@@ -269,8 +162,7 @@ export default function LibraryPage() {
                 </Button>
               )}
             </div>
-            
-            {/* Sort */}
+
             <div className="flex items-center gap-2">
               <span className="text-sm font-medium text-muted-foreground">Sort:</span>
               <Select value={sortBy} onValueChange={(value: any) => setSortBy(value)}>
@@ -285,13 +177,12 @@ export default function LibraryPage() {
                 </SelectContent>
               </Select>
             </div>
-            
-            {/* View Toggle */}
+
             <div className="flex items-center gap-2">
               <span className="text-sm font-medium text-muted-foreground">View:</span>
               <div className="flex bg-muted rounded-lg p-1">
                 <Button
-                  variant={viewMode === 'grid' ? "default" : "ghost"}
+                  variant={viewMode === 'grid' ? 'default' : 'ghost'}
                   size="sm"
                   onClick={() => setViewMode('grid')}
                   className="h-8 px-3"
@@ -299,7 +190,7 @@ export default function LibraryPage() {
                   <Grid className="w-4 h-4" />
                 </Button>
                 <Button
-                  variant={viewMode === 'list' ? "default" : "ghost"}
+                  variant={viewMode === 'list' ? 'default' : 'ghost'}
                   size="sm"
                   onClick={() => setViewMode('list')}
                   className="h-8 px-3"
@@ -312,78 +203,68 @@ export default function LibraryPage() {
         </div>
       </div>
 
-      {/* Library Items */}
       <section className="pt-2 pb-16">
         <div className="container mx-auto px-2 sm:px-4">
-          {isLoadingExternal && (
-            <div className="flex justify-center py-8">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                Loading library items\u2026
-              </div>
-            </div>
-          )}
           <motion.div
+            key={category}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className={viewMode === 'grid' ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8" : "space-y-4"}
+            transition={{ duration: 0.3 }}
+            className={
+              viewMode === 'grid'
+                ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8'
+                : 'space-y-4'
+            }
           >
-            {sortedItems.map((item, index) => (
-              <motion.div
+            {sortedItems.map((item) => (
+              <LibraryItemCard
                 key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <LibraryItemCard
-                  item={item}
-                  viewMode={viewMode}
-                  favorites={favorites}
-                  animatingHearts={animatingHearts}
-                  copiedId={copiedId}
-                  onItemClick={setSelectedItem}
-                  onToggleFavorite={(id, title) => toggleFavorite(id, title)}
-                  getCreatorLabel={getCreatorLabel}
-                  getStatusColor={getStatusColor}
-                />
-              </motion.div>
+                item={item}
+                viewMode={viewMode}
+                favorites={favorites}
+                animatingHearts={animatingHearts}
+                copiedId={copiedId}
+                onItemClick={setSelectedItem}
+                onToggleFavorite={(id, title) => toggleFavorite(id, title)}
+                getCreatorLabel={getCreatorLabel}
+                getStatusColor={getStatusColor}
+              />
             ))}
-            {isLoadingMore && Array.from({ length: 3 }).map((_, i) => (
-              <LibraryItemSkeleton key={`skeleton-${i}`} viewMode={viewMode} />
-            ))}
+            {isLoadingMore &&
+              Array.from({ length: 3 }).map((_, i) => (
+                <LibraryItemSkeleton key={`skeleton-${i}`} viewMode={viewMode} />
+              ))}
           </motion.div>
-          
-          {/* Infinite Scroll Loading */}
+
           {hasMoreItems && (
             <div ref={loadMoreRef} className="flex justify-center py-8">
               {isLoadingMore ? (
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                  Loading more items\u2026
+                  Loading more items…
                 </div>
               ) : (
-                <div className="text-muted-foreground text-sm">
-                  Scroll down to load more
-                </div>
+                <div className="text-muted-foreground text-sm">Scroll down to load more</div>
               )}
             </div>
           )}
-          
+
           {sortedItems.length === 0 && (
             <div className="text-center py-16">
               <p className="text-muted-foreground text-lg">
-                No items found matching your filters.
+                No {category === 'books' ? 'books' : 'movies or series'} found
+                {searchQuery ? ` matching "${searchQuery}"` : ''}.
               </p>
-              <p className="text-muted-foreground text-sm mt-2">
-                Try adjusting your search or filter criteria.
-              </p>
+              {searchQuery && (
+                <p className="text-muted-foreground text-sm mt-2">
+                  Try a different search term.
+                </p>
+              )}
             </div>
           )}
         </div>
       </section>
 
-      {/* Modal for detailed view */}
       <LibraryModal
         selectedItem={selectedItem}
         onClose={() => setSelectedItem(null)}
@@ -399,4 +280,4 @@ export default function LibraryPage() {
       />
     </Layout>
   );
-} 
+}

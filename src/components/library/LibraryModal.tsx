@@ -144,7 +144,10 @@ export default function LibraryModal({
     }
   }, [selectedItem, colorCache]);
 
-  const renderStars = (rating: number) => {
+  const renderStars = (rating: number | null) => {
+    if (rating == null) {
+      return <span className="text-sm text-muted-foreground italic">Unrated</span>;
+    }
     return Array.from({ length: 5 }, (_, i) => (
       <Star
         key={i}
@@ -329,9 +332,11 @@ export default function LibraryModal({
                     <div className="flex items-center gap-4">
                       <div className="flex items-center gap-2">
                         {renderStars(selectedItem.rating)}
-                        <span className="text-sm font-medium ml-1">
-                          {selectedItem.rating}/5
-                        </span>
+                        {selectedItem.rating != null && (
+                          <span className="text-sm font-medium ml-1">
+                            {selectedItem.rating}/5
+                          </span>
+                        )}
                       </div>
                       <Badge className={`${getStatusColor(selectedItem.status)} text-xs px-2 py-1`}>
                         {selectedItem.status.replace('-', ' ')}
@@ -461,12 +466,18 @@ export default function LibraryModal({
                           </p>
                         )}
                         <div className="flex items-center gap-1">
-                          {Array.from({ length: relatedItem.rating }, (_, i) => (
-                            <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                          ))}
-                          <span className="text-xs text-muted-foreground ml-1">
-                            {relatedItem.rating}/5
-                          </span>
+                          {relatedItem.rating == null ? (
+                            <span className="text-xs text-muted-foreground italic">Unrated</span>
+                          ) : (
+                            <>
+                              {Array.from({ length: relatedItem.rating }, (_, i) => (
+                                <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                              ))}
+                              <span className="text-xs text-muted-foreground ml-1">
+                                {relatedItem.rating}/5
+                              </span>
+                            </>
+                          )}
                         </div>
                       </div>
                     </div>

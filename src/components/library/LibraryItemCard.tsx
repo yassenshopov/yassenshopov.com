@@ -45,7 +45,10 @@ export default function LibraryItemCard({
   getCreatorLabel,
   getStatusColor,
 }: LibraryItemCardProps) {
-  const renderStars = (rating: number) => {
+  const renderStars = (rating: number | null) => {
+    if (rating == null) {
+      return <span className="text-xs text-muted-foreground italic">Unrated</span>;
+    }
     return Array.from({ length: 5 }, (_, i) => (
       <Star
         key={i}

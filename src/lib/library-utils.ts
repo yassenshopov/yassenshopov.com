@@ -136,7 +136,9 @@ export const getRelatedItems = (item: LibraryItem, allItems: LibraryItem[], limi
     score += genreOverlap * 4;
     
     // Similar rating (within 1 star)
-    if (Math.abs(other.rating - item.rating) <= 1) score += 2;
+    if (other.rating != null && item.rating != null && Math.abs(other.rating - item.rating) <= 1) {
+      score += 2;
+    }
     
     // Same creator/author
     const itemCreator = getCreatorLabel(item);
@@ -171,7 +173,10 @@ export const calculateStatistics = (items: LibraryItem[]) => {
   const movies = completed.filter(item => item.type === 'movie');
   const series = completed.filter(item => item.type === 'series');
   
-  const avgRating = completed.reduce((sum, item) => sum + item.rating, 0) / completed.length;
+  const ratedItems = completed.filter((item) => item.rating != null);
+  const avgRating = ratedItems.length
+    ? ratedItems.reduce((sum, item) => sum + (item.rating ?? 0), 0) / ratedItems.length
+    : 0;
   const genreCount = completed.reduce((acc, item) => {
     item.genre.forEach(genre => {
       acc[genre] = (acc[genre] || 0) + 1;
@@ -195,62 +200,9 @@ export const calculateStatistics = (items: LibraryItem[]) => {
     books: books.length,
     movies: movies.length,
     series: series.length,
-    avgRating: avgRating || 0,
+    avgRating,
     topGenres,
     thisYear: thisYearItems.length,
-    fiveStarCount: completed.filter(item => item.rating === 5).length
+    fiveStarCount: completed.filter((item) => item.rating === 5).length,
   };
 };
-
-export const exportToCSV = (items: LibraryItem[]) => {
-  const headers = ['Title', 'Type', 'Creator', 'Rating', 'Status', 'Genres', 'Date Completed'];
-  const csvData = items.map(item => [
-    item.title,
-    item.type,
-    getCreatorLabel(item) || '',
-    item.rating,
-    item.status,
-    item.genre.join('; '),
-    item.dateCompleted || ''
-  ]);
-  
-  const csvContent = [headers, ...csvData]
-    .map(row => row.map(cell => `"${cell}"`).join(','))
-    .join('\n');
-  
-  const blob = new Blob([csvContent], { type: 'text/csv' });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = `library-export-${new Date().toISOString().split('T')[0]}.csv`;
-  link.click();
-  URL.revokeObjectURL(url);
-};
-
-export const exportToJSON = (items: LibraryItem[], filters: any, stats: any) => {
-  const exportData = {
-    exportDate: new Date().toISOString(),
-    totalItems: items.length,
-    filters,
-    statistics: stats,
-    items
-  };
-  
-  const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = `library-export-${new Date().toISOString().split('T')[0]}.json`;
-  link.click();
-  URL.revokeObjectURL(url);
-};
-
-// Utility to refresh library cache (for development)
-export async function refreshLibraryCache(): Promise<void> {
-  try {
-    await fetch('/api/library-files?refresh=true');
-    console.log('Library cache refreshed');
-  } catch (error) {
-    console.error('Failed to refresh library cache:', error);
-  }
-} 
