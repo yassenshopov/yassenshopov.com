@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Grid, List, Search, X } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import Layout from '@/components/Layout';
 import LibraryHero from '@/components/library/LibraryHero';
 import LibraryTabs from '@/components/library/LibraryTabs';
@@ -11,13 +11,6 @@ import LibraryModal from '@/components/library/LibraryModal';
 import LibraryResults from '@/components/library/LibraryResults';
 import LibraryItemSkeleton from '@/components/library/LibraryItemSkeleton';
 import { Button } from '@/components/ui/button';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { useLibrary } from '@/hooks/useLibrary';
 import { Input } from '@/components/ui/input';
 
@@ -29,11 +22,6 @@ export default function LibraryPage() {
     setSelectedItem,
     searchQuery,
     setSearchQuery,
-    sortBy,
-    setSortBy,
-    viewMode,
-    setViewMode,
-    favorites,
     itemsToShow,
     isLoadingMore,
     showMoreItems,
@@ -43,22 +31,35 @@ export default function LibraryPage() {
     allItems,
     getCreatorLabel,
     getStatusColor,
-    toggleFavorite,
     getStatistics,
     getRelatedItems,
     getSeriesInfo,
     getRelationshipLabel,
     navigateToItem,
     loadMoreRef,
-    animatingHearts,
-    copiedId,
     isTransitioning,
   } = useLibrary();
 
   const overallStats = getStatistics(allItems);
 
   const bookCount = allItems.filter((i) => i.type === 'book').length;
-  const watchableCount = allItems.filter((i) => i.type === 'movie' || i.type === 'series').length;
+  const movieCount = allItems.filter((i) => i.type === 'movie').length;
+  const seriesCount = allItems.filter((i) => i.type === 'series').length;
+  const watchableCount = movieCount + seriesCount;
+
+  // The hero strip should reflect the whole catalog (matching the tabs and the
+  // marquee), not just completed items. `getStatistics` filters to completed,
+  // so we override the type counts here while keeping its derived fields.
+  const heroStats = {
+    ...overallStats,
+    books: bookCount,
+    movies: movieCount,
+    series: seriesCount,
+  };
+
+  const heroCovers = allItems
+    .map((item) => item.coverImage)
+    .filter((src): src is string => Boolean(src));
 
   // Infinite scroll
   useEffect(() => {
@@ -96,37 +97,22 @@ export default function LibraryPage() {
 
       if (event.target instanceof HTMLInputElement) return;
 
-      switch (event.key) {
-        case '/': {
-          event.preventDefault();
-          const searchInput = document.querySelector(
-            'input[placeholder*="Search"]',
-          ) as HTMLInputElement | null;
-          searchInput?.focus();
-          break;
-        }
-        case 'g':
-          if (event.ctrlKey || event.metaKey) {
-            event.preventDefault();
-            setViewMode('grid');
-          }
-          break;
-        case 'l':
-          if (event.ctrlKey || event.metaKey) {
-            event.preventDefault();
-            setViewMode('list');
-          }
-          break;
+      if (event.key === '/') {
+        event.preventDefault();
+        const searchInput = document.querySelector(
+          'input[placeholder*="Search"]',
+        ) as HTMLInputElement | null;
+        searchInput?.focus();
       }
     };
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [selectedItem, setViewMode, navigateToItem, setSelectedItem]);
+  }, [selectedItem, navigateToItem, setSelectedItem]);
 
   return (
     <Layout>
-      <LibraryHero stats={overallStats} />
+      <LibraryHero stats={heroStats} covers={heroCovers} />
 
       <LibraryTabs
         category={category}
@@ -163,77 +149,89 @@ export default function LibraryPage() {
               )}
             </div>
 
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-muted-foreground">Sort:</span>
-              <Select value={sortBy} onValueChange={(value: any) => setSortBy(value)}>
-                <SelectTrigger className="w-32">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="recent">Recent</SelectItem>
-                  <SelectItem value="rating">Rating</SelectItem>
-                  <SelectItem value="title">Title</SelectItem>
-                  <SelectItem value="date">Date</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-muted-foreground">View:</span>
-              <div className="flex bg-muted rounded-lg p-1">
-                <Button
-                  variant={viewMode === 'grid' ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => setViewMode('grid')}
-                  className="h-8 px-3"
-                >
-                  <Grid className="w-4 h-4" />
-                </Button>
-                <Button
-                  variant={viewMode === 'list' ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => setViewMode('list')}
-                  className="h-8 px-3"
-                >
-                  <List className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
           </div>
         </div>
       </div>
 
       <section className="pt-2 pb-16">
-        <div className="container mx-auto px-2 sm:px-4">
+        <div className="container mx-auto px-4">
           <motion.div
             key={category}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className={
-              viewMode === 'grid'
-                ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8'
-                : 'space-y-4'
-            }
+            className="space-y-16"
           >
-            {sortedItems.map((item) => (
-              <LibraryItemCard
-                key={item.id}
-                item={item}
-                viewMode={viewMode}
-                favorites={favorites}
-                animatingHearts={animatingHearts}
-                copiedId={copiedId}
-                onItemClick={setSelectedItem}
-                onToggleFavorite={(id, title) => toggleFavorite(id, title)}
-                getCreatorLabel={getCreatorLabel}
-                getStatusColor={getStatusColor}
-              />
-            ))}
-            {isLoadingMore &&
-              Array.from({ length: 3 }).map((_, i) => (
-                <LibraryItemSkeleton key={`skeleton-${i}`} viewMode={viewMode} />
-              ))}
+            {(() => {
+              const UNDATED_KEY = 'undated';
+
+              const itemsByYear = sortedItems.reduce<Record<string, typeof sortedItems>>(
+                (acc, item) => {
+                  const dateStr = item.dateCompleted || item.dateStarted;
+                  const key = dateStr
+                    ? new Date(dateStr).getFullYear().toString()
+                    : UNDATED_KEY;
+                  (acc[key] ||= []).push(item);
+                  return acc;
+                },
+                {},
+              );
+
+              const yearKeys = Object.keys(itemsByYear).sort((a, b) => {
+                if (a === UNDATED_KEY) return 1;
+                if (b === UNDATED_KEY) return -1;
+                return Number(b) - Number(a);
+              });
+
+              return yearKeys.map((yearKey) => {
+                const itemsInYear = itemsByYear[yearKey];
+                const isUndated = yearKey === UNDATED_KEY;
+                const heading = isUndated
+                  ? category === 'books'
+                    ? 'Wishlist'
+                    : 'Watchlist'
+                  : yearKey;
+                const ariaLabel = isUndated
+                  ? `${heading} items`
+                  : `Items from ${yearKey}`;
+
+                return (
+                  <div key={yearKey}>
+                    <div className="flex items-end gap-6 mb-8" aria-label={ariaLabel}>
+                      <h2 className="text-5xl md:text-6xl font-bold tracking-tighter leading-none text-foreground">
+                        {heading}
+                      </h2>
+                      <div className="flex-1 pb-2 flex items-center gap-4">
+                        <div className="flex-1 h-px bg-border" />
+                        <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                          {itemsInYear.length}{' '}
+                          {itemsInYear.length === 1 ? 'item' : 'items'}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5">
+                      {itemsInYear.map((item) => (
+                        <LibraryItemCard
+                          key={item.id}
+                          item={item}
+                          onItemClick={setSelectedItem}
+                          getCreatorLabel={getCreatorLabel}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                );
+              });
+            })()}
+
+            {isLoadingMore && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <LibraryItemSkeleton key={`skeleton-${i}`} />
+                ))}
+              </div>
+            )}
           </motion.div>
 
           {hasMoreItems && (

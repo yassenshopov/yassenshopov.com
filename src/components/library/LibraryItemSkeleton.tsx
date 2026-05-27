@@ -1,7 +1,12 @@
-export default function LibraryItemSkeleton({ viewMode }: { viewMode: 'grid' | 'list' }) {
-  return viewMode === 'grid' ? (
-    <div className="rounded-lg bg-muted animate-pulse h-80 w-full" />
-  ) : (
-    <div className="rounded-lg bg-muted animate-pulse h-24 w-full" />
+export default function LibraryItemSkeleton() {
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="aspect-video w-full rounded-md bg-muted animate-pulse" />
+      <div className="space-y-2">
+        <div className="h-4 w-3/4 rounded bg-muted animate-pulse" />
+        <div className="h-3 w-1/2 rounded bg-muted animate-pulse" />
+        <div className="h-3 w-20 rounded bg-muted animate-pulse" />
+      </div>
+    </div>
   );
-} 
+}
