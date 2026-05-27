@@ -17,16 +17,72 @@ import LibraryTableOfContents, {
 import { Button } from '@/components/ui/button';
 import { useLibrary } from '@/hooks/useLibrary';
 import { Input } from '@/components/ui/input';
+import type { LibraryItem } from '@/data/library';
 
 const UNDATED_KEY = 'undated';
 
-function groupByYear<T extends { dateCompleted?: string; dateStarted?: string }>(
-  items: T[],
-): Record<string, T[]> {
-  return items.reduce<Record<string, T[]>>((acc, item) => {
-    const dateStr = item.dateCompleted || item.dateStarted;
-    const key = dateStr ? new Date(dateStr).getFullYear().toString() : UNDATED_KEY;
-    (acc[key] ||= []).push(item);
+interface LibraryOccurrence {
+  item: LibraryItem;
+  yearKey: string;
+  /**
+   * Total entries across all years for this item. `> 1` means the card
+   * represents a re-read / re-watch and the card should show a badge.
+   */
+  totalEntries: number;
+  /** True when this occurrence corresponds to the most recent entry. */
+  isLatestEntry: boolean;
+}
+
+/**
+ * Expand each item into one occurrence per year it has a reading/watch entry.
+ * Items without entries (wishlist/watchlist) fall into the `UNDATED_KEY`
+ * bucket. Re-reads naturally appear in multiple year sections.
+ */
+function toOccurrences(items: LibraryItem[]): LibraryOccurrence[] {
+  const out: LibraryOccurrence[] = [];
+
+  for (const item of items) {
+    const entries = item.entries ?? [];
+    const totalEntries = entries.length;
+
+    if (totalEntries === 0) {
+      out.push({ item, yearKey: UNDATED_KEY, totalEntries: 0, isLatestEntry: true });
+      continue;
+    }
+
+    // Pick the latest entry once so each occurrence can flag itself.
+    const latestTimestamp = Math.max(
+      ...entries.map((entry) => {
+        const d = entry.dateCompleted || entry.dateStarted;
+        return d ? new Date(d).getTime() : 0;
+      }),
+    );
+
+    const seen = new Set<string>();
+    for (const entry of entries) {
+      const dateStr = entry.dateCompleted || entry.dateStarted;
+      const yearKey = dateStr ? new Date(dateStr).getFullYear().toString() : UNDATED_KEY;
+      // Multiple entries inside the same calendar year collapse to a single card.
+      if (seen.has(yearKey)) continue;
+      seen.add(yearKey);
+      const entryTimestamp = dateStr ? new Date(dateStr).getTime() : 0;
+      out.push({
+        item,
+        yearKey,
+        totalEntries,
+        isLatestEntry: entryTimestamp === latestTimestamp,
+      });
+    }
+  }
+
+  return out;
+}
+
+function groupOccurrencesByYear(
+  occurrences: LibraryOccurrence[],
+): Record<string, LibraryOccurrence[]> {
+  return occurrences.reduce<Record<string, LibraryOccurrence[]>>((acc, occ) => {
+    (acc[occ.yearKey] ||= []).push(occ);
     return acc;
   }, {});
 }
@@ -87,10 +143,11 @@ export default function LibraryPage() {
     .map((item) => item.coverImage)
     .filter((src): src is string => Boolean(src));
 
-  // Group items by year (with an "undated" bucket for wishlist/watchlist).
-  // We do this against the full filtered set so the ToC can list every
-  // section, not just the ones currently rendered by infinite scroll.
-  const visibleByYear = groupByYear(sortedItems);
+  // Flatten items to per-year occurrences so re-reads/re-watches appear in
+  // every year they happened. Pagination still operates on items (via
+  // `sortedItems`), so a book with three entries contributes one slot to the
+  // infinite-scroll counter but three cards in the rendered grid.
+  const visibleByYear = groupOccurrencesByYear(toOccurrences(sortedItems));
   const visibleYearKeys = sortYearKeys(Object.keys(visibleByYear));
 
   const undatedLabel = category === 'books' ? 'Wishlist' : 'Watchlist';
@@ -98,7 +155,7 @@ export default function LibraryPage() {
 
   // Build ToC sections from the full filtered list so users can jump to a
   // year even before infinite scroll has loaded it.
-  const allByYear = groupByYear(allSortedItems);
+  const allByYear = groupOccurrencesByYear(toOccurrences(allSortedItems));
   const allYearKeys = sortYearKeys(Object.keys(allByYear));
   const tocSections: LibraryTocSection[] = (() => {
     let cumulative = 0;
@@ -223,7 +280,7 @@ export default function LibraryPage() {
             className="space-y-16"
           >
             {visibleYearKeys.map((yearKey) => {
-              const itemsInYear = visibleByYear[yearKey];
+              const occurrencesInYear = visibleByYear[yearKey];
               const isUndated = yearKey === UNDATED_KEY;
               const heading = labelForYear(yearKey);
               const ariaLabel = isUndated
@@ -239,19 +296,22 @@ export default function LibraryPage() {
                     <div className="flex-1 pb-2 flex items-center gap-4">
                       <div className="flex-1 h-px bg-border" />
                       <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                        {itemsInYear.length}{' '}
-                        {itemsInYear.length === 1 ? 'item' : 'items'}
+                        {occurrencesInYear.length}{' '}
+                        {occurrencesInYear.length === 1 ? 'item' : 'items'}
                       </span>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5">
-                    {itemsInYear.map((item) => (
+                    {occurrencesInYear.map((occ) => (
                       <LibraryItemCard
-                        key={item.id}
-                        item={item}
+                        key={`${occ.item.id}-${occ.yearKey}`}
+                        item={occ.item}
                         onItemClick={setSelectedItem}
                         getCreatorLabel={getCreatorLabel}
+                        entryYear={isUndated ? undefined : Number(occ.yearKey)}
+                        totalEntries={occ.totalEntries}
+                        isLatestEntry={occ.isLatestEntry}
                       />
                     ))}
                   </div>

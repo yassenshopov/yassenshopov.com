@@ -10,6 +10,19 @@ interface LibraryItemCardProps {
   item: LibraryItem;
   onItemClick: (item: LibraryItem) => void;
   getCreatorLabel: (item: LibraryItem) => string;
+  /**
+   * Year this card occurrence represents (the year of the entry being shown).
+   * Omitted for wishlist/watchlist items in the "undated" section.
+   */
+  entryYear?: number;
+  /**
+   * Total number of reading/watch entries this item has across all years.
+   * When `> 1`, the card shows a re-read / first-read badge so users can see
+   * that the work has been engaged with multiple times.
+   */
+  totalEntries?: number;
+  /** True when this occurrence is the most recent entry for the item. */
+  isLatestEntry?: boolean;
 }
 
 // Temporary: drag-and-drop cover replacement, dev-only. Remove this block
@@ -68,8 +81,20 @@ export default function LibraryItemCard({
   item,
   onItemClick,
   getCreatorLabel,
+  entryYear,
+  totalEntries = item.entries?.length ?? 0,
+  isLatestEntry = true,
 }: LibraryItemCardProps) {
   const creator = getCreatorLabel(item);
+  const verb = item.type === 'book' ? 'read' : 'watched';
+  // Show a chip only when this work has been engaged with more than once —
+  // first reading shouldn't be flagged on a one-and-done item.
+  const showEntryBadge = totalEntries > 1 && entryYear != null;
+  const entryBadgeLabel = isLatestEntry
+    ? totalEntries === 2
+      ? `Re-${verb}`
+      : `${verb.charAt(0).toUpperCase() + verb.slice(1)} ×${totalEntries}`
+    : `First ${verb}`;
   const [isDragOver, setIsDragOver] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   // Tracks the cover URL we want to show right now. Defaults to the prop value
@@ -194,6 +219,15 @@ export default function LibraryItemCard({
               </>
             )}
           </div>
+        )}
+
+        {showEntryBadge && (
+          <span
+            className="absolute top-2 left-2 inline-flex items-center gap-1 rounded-full bg-background/90 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-foreground shadow-sm ring-1 ring-border backdrop-blur-sm"
+            aria-label={`${entryBadgeLabel} in ${entryYear}`}
+          >
+            {entryBadgeLabel}
+          </span>
         )}
       </div>
 

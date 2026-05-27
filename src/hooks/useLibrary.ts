@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { libraryItems, LibraryItem } from '@/data/library';
+import { libraryItems, LibraryItem, getLatestEntry } from '@/data/library';
 import {
   getCreatorLabel as getCreatorLabelUtil,
   getStatusColor as getStatusColorUtil,
@@ -10,6 +10,17 @@ import {
   getRelationshipLabel as getRelationshipLabelUtil,
   calculateStatistics,
 } from '@/lib/library-utils';
+
+/**
+ * Most recent engagement timestamp for an item — the completion date of the
+ * latest entry, falling back to its start date. Returns 0 for items with no
+ * entries (wishlist/watchlist) so they sort to the bottom.
+ */
+function latestEntryTimestamp(item: LibraryItem): number {
+  const latest = item.entries ? getLatestEntry(item.entries) : undefined;
+  const dateStr = latest?.dateCompleted || latest?.dateStarted;
+  return dateStr ? new Date(dateStr).getTime() : 0;
+}
 
 export type LibraryCategory = 'books' | 'watchables';
 
@@ -55,12 +66,11 @@ export function useLibrary() {
     );
   });
 
-  // Sort by most recent (dateCompleted / dateStarted, newest first)
-  const allSortedItems = [...filteredItems].sort((a, b) => {
-    const dateA = new Date(a.dateCompleted || a.dateStarted || '1900-01-01');
-    const dateB = new Date(b.dateCompleted || b.dateStarted || '1900-01-01');
-    return dateB.getTime() - dateA.getTime();
-  });
+  // Sort by the latest entry across all engagements, newest first. A re-read
+  // in 2026 of a book first read in 2022 sorts ahead of a 2025 first-read.
+  const allSortedItems = [...filteredItems].sort(
+    (a, b) => latestEntryTimestamp(b) - latestEntryTimestamp(a),
+  );
   const sortedItems = allSortedItems.slice(0, itemsToShow);
   const hasMoreItems = allSortedItems.length > itemsToShow;
 
