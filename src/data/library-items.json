@@ -1900,7 +1900,7 @@
       "Realism"
     ],
     "description": "A classic novella about two displaced migrant ranch workers during the Great Depression.",
-    "coverImage": "/resources/images/library/of-mice-and-men.webp",
+    "coverImage": "/resources/images/library/of-mice-and-men-1779880902703.jpg",
     "links": {},
     "year": 1937,
     "topics": [
@@ -2178,7 +2178,7 @@
       "Realism"
     ],
     "description": "A sprawling family saga set in California's Salinas Valley, exploring themes of good and evil.",
-    "coverImage": "/resources/images/library/east-of-eden.webp",
+    "coverImage": "/resources/images/library/east-of-eden-1779880951982.jpg",
     "links": {},
     "year": 1952
   },
@@ -4014,7 +4014,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/13497.A_Feast_for_Crows"
     },
-    "coverImage": "/resources/images/library/a-feast-for-crows.jpg"
+    "coverImage": "/resources/images/library/a-feast-for-crows-1779878073270.jpg"
   },
   {
     "id": "75",
@@ -4036,7 +4036,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/10664113-a-dance-with-dragons"
     },
-    "coverImage": "/resources/images/library/a-dance-with-dragons.jpg"
+    "coverImage": "/resources/images/library/a-dance-with-dragons-1779880871324.webp"
   },
   {
     "id": "76",
@@ -4058,7 +4058,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/2229579.Playing_with_Fire"
     },
-    "coverImage": "/resources/images/library/skulduggery-pleasant-book-2-playing-with-fire.jpg"
+    "coverImage": "/resources/images/library/skulduggery-pleasant-book-2-playing-with-fire-1779880853227.jpg"
   },
   {
     "id": "77",
@@ -4074,7 +4074,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/4069.Man_s_Search_for_Meaning"
     },
-    "coverImage": "/resources/images/library/man-s-search-for-meaning.jpg"
+    "coverImage": "/resources/images/library/man-s-search-for-meaning-1779878044170.jpg"
   },
   {
     "id": "78",
@@ -4090,7 +4090,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/author/list/259882.Mauro_F_Guill_n"
     },
-    "coverImage": "/resources/images/library/2030.jpg"
+    "coverImage": "/resources/images/library/2030-1779878063211.jpg"
   },
   {
     "id": "79",
@@ -4121,7 +4121,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/18693655-a-mind-for-numbers"
     },
-    "coverImage": "/resources/images/library/a-mind-for-numbers.jpg"
+    "coverImage": "/resources/images/library/a-mind-for-numbers-1779878054650.jpg"
   },
   {
     "id": "81",
@@ -4143,7 +4143,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/6059541-the-faceless-ones"
     },
-    "coverImage": "/resources/images/library/skulduggery-pleasant-book-3-the-faceless-ones.jpg"
+    "coverImage": "/resources/images/library/skulduggery-pleasant-book-3-the-faceless-ones-1779878088062.jpg"
   },
   {
     "id": "82",
@@ -4292,7 +4292,8 @@
     "author": "Marshall Rosenberg PhD",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/58686063-nonviolent-communication"
-    }
+    },
+    "coverImage": "/resources/images/library/nonviolent-communication-create-your-life-your-relationships-and-your-world-in-h-1779880838206.jpg"
   },
   {
     "id": "91",
@@ -4304,7 +4305,8 @@
     "description": "",
     "year": 2023,
     "author": "Zachary Karabashliev",
-    "links": {}
+    "links": {},
+    "coverImage": "/resources/images/library/wound-1779880821765.jpg"
   },
   {
     "id": "92",
@@ -4319,7 +4321,7 @@
     "links": {
       "amazon": "https://www.amazon.com/Guards-Discworld-Terry-Pratchett/dp/0062225758"
     },
-    "coverImage": "/resources/images/library/guards-guards.jpg"
+    "coverImage": "/resources/images/library/guards-guards-1779878103860.jpg"
   },
   {
     "id": "93",
@@ -4356,7 +4358,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/11275.The_Wind_Up_Bird_Chronicle"
     },
-    "coverImage": "/resources/images/library/the-wind-up-bird-chronicle.jpg"
+    "coverImage": "/resources/images/library/the-wind-up-bird-chronicle-1779880812065.jpg"
   },
   {
     "id": "95",
@@ -4394,7 +4396,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/12165.Babylon_Revisited_and_Other_Stories"
     },
-    "coverImage": "/resources/images/library/babylon-revisited-and-other-short-stories.jpg"
+    "coverImage": "/resources/images/library/babylon-revisited-and-other-short-stories-1779880800924.jpg"
   },
   {
     "id": "97",
@@ -4437,7 +4439,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/7092800-dark-days"
     },
-    "coverImage": "/resources/images/library/skulduggery-pleasant-book-4-dark-days.jpg"
+    "coverImage": "/resources/images/library/skulduggery-pleasant-book-4-dark-days-1779878118634.jpg"
   },
   {
     "id": "99",
@@ -4459,7 +4461,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/8187844-mortal-coil"
     },
-    "coverImage": "/resources/images/library/skulduggery-pleasant-book-5-mortal-coil.jpg"
+    "coverImage": "/resources/images/library/skulduggery-pleasant-book-5-mortal-coil-1779878127053.jpg"
   },
   {
     "id": "100",
@@ -4481,7 +4483,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/10505660-death-bringer"
     },
-    "coverImage": "/resources/images/library/skulduggery-pleasant-book-6-death-bringer.jpg"
+    "coverImage": "/resources/images/library/skulduggery-pleasant-book-6-death-bringer-1779878138663.jpg"
   },
   {
     "id": "101",
@@ -4503,7 +4505,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/13547203-last-stand-of-dead-men"
     },
-    "coverImage": "/resources/images/library/skulduggery-pleasant-book-7-kingdom-of-the-wicked.jpg"
+    "coverImage": "/resources/images/library/skulduggery-pleasant-book-7-kingdom-of-the-wicked-1779878148016.jpg"
   },
   {
     "id": "102",
@@ -4515,7 +4517,7 @@
     "description": "",
     "author": "Derek Landy",
     "links": {},
-    "coverImage": "/resources/images/library/skulduggery-pleasant-book-9-the-dying-of-the-light.jpg"
+    "coverImage": "/resources/images/library/skulduggery-pleasant-book-9-the-dying-of-the-light-1779878156572.jpg"
   },
   {
     "id": "103",
@@ -4536,7 +4538,8 @@
     "author": "George R. R. Martin",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/11970747-the-tales-of-dunk-and-egg"
-    }
+    },
+    "coverImage": "/resources/images/library/tales-of-dunk-and-egg-1779878179372.jpg"
   },
   {
     "id": "104",
@@ -4552,7 +4555,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/17934530-annihilation"
     },
-    "coverImage": "/resources/images/library/annihilation.png"
+    "coverImage": "/resources/images/library/annihilation-1779878168211.jpg"
   },
   {
     "id": "105",
@@ -4633,7 +4636,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/204169121-the-art-of-focus"
     },
-    "coverImage": "/resources/images/library/the-art-of-focus.jpg"
+    "coverImage": "/resources/images/library/the-art-of-focus-1779878210349.jpg"
   },
   {
     "id": "110",
@@ -4696,7 +4699,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/244096.Bel_Ami"
     },
-    "coverImage": "/resources/images/library/bel-ami.jpg"
+    "coverImage": "/resources/images/library/bel-ami-1779878219172.jpg"
   },
   {
     "id": "114",
@@ -4741,7 +4744,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/7126.The_Count_of_Monte_Cristo"
     },
-    "coverImage": "/resources/images/library/the-count-of-monte-cristo.jpg"
+    "coverImage": "/resources/images/library/the-count-of-monte-cristo-1779878241596.webp"
   },
   {
     "id": "117",
@@ -5018,7 +5021,8 @@
     "author": "Ryan Holiday",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/43582733-stillness-is-the-key"
-    }
+    },
+    "coverImage": "/resources/images/library/stillness-is-the-key-1779878256022.jpg"
   },
   {
     "id": "134",
@@ -5050,7 +5054,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/56799622-falken"
     },
-    "coverImage": "/resources/images/library/falken.png"
+    "coverImage": "/resources/images/library/falken-1779878276808.jpg"
   },
   {
     "id": "136",
@@ -5119,7 +5123,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/44767458-dune"
     },
-    "coverImage": "/resources/images/library/dune.jpg"
+    "coverImage": "/resources/images/library/dune-1779880785577.webp"
   },
   {
     "id": "140",
@@ -5135,7 +5139,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/10505660-death-bringer"
     },
-    "coverImage": "/resources/images/library/neuromancer.jpg"
+    "coverImage": "/resources/images/library/neuromancer-1779880780238.jpg"
   },
   {
     "id": "141",
@@ -5150,7 +5154,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/35503533"
     },
-    "coverImage": "/resources/images/library/havra.png"
+    "coverImage": "/resources/images/library/havra-1779878319143.jpg"
   },
   {
     "id": "142",
@@ -5165,7 +5169,8 @@
     "author": "Rob Fitzpatrick",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/52283963-the-mom-test"
-    }
+    },
+    "coverImage": "/resources/images/library/the-mom-test-how-to-talk-to-customers-learn-if-your-business-is-a-good-idea-when-1779878328803.jpg"
   },
   {
     "id": "143",
@@ -5180,7 +5185,8 @@
     "author": "John Gwynne",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/61755703-the-fury-of-the-gods"
-    }
+    },
+    "coverImage": "/resources/images/library/the-fury-of-the-gods-1779880753787.jpg"
   },
   {
     "id": "144",
@@ -5196,7 +5202,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/57341045-the-hunger-of-the-gods"
     },
-    "coverImage": "/resources/images/library/the-hunger-of-the-gods.jpg"
+    "coverImage": "/resources/images/library/the-hunger-of-the-gods-1779880744215.jpg"
   },
   {
     "id": "145",
@@ -5212,7 +5218,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/944073.The_Blade_Itself"
     },
-    "coverImage": "/resources/images/library/the-shadow-of-the-gods.jpg"
+    "coverImage": "/resources/images/library/the-shadow-of-the-gods-1779880734819.jpg"
   },
   {
     "id": "146",
@@ -5263,7 +5269,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/13545194-kingdom-of-the-wicked"
     },
-    "coverImage": "/resources/images/library/skulduggery-pleasant-book-8-last-stand-of-dead-men.jpg"
+    "coverImage": "/resources/images/library/skulduggery-pleasant-book-8-last-stand-of-dead-men-1779880721317.jpg"
   },
   {
     "id": "149",
@@ -5344,7 +5350,8 @@
     "dateCompleted": "2025-07-01",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/145624504-million-dollar-weekend"
-    }
+    },
+    "coverImage": "/resources/images/library/million-dollar-weekend-the-surprisingly-simple-way-to-launch-a-7-figure-business-1779877911922.jpg"
   },
   {
     "id": "154",
@@ -5506,7 +5513,7 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt2303687/"
     },
-    "coverImage": "/resources/images/library/line-of-duty.jpg"
+    "coverImage": "/resources/images/library/line-of-duty-1779881033865.jpg"
   },
   {
     "id": "164",
@@ -5538,7 +5545,8 @@
     "creator": "Gareth Evans",
     "links": {
       "imdb": "https://www.imdb.com/title/tt7661390/"
-    }
+    },
+    "coverImage": "/resources/images/library/gangs-of-london-1779881042882.jpg"
   },
   {
     "id": "166",
@@ -5620,7 +5628,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/49552.The_Stranger"
     },
-    "coverImage": "/resources/images/library/the-stranger.jpg"
+    "coverImage": "/resources/images/library/the-stranger-1779880701355.jpg"
   },
   {
     "id": "171",
@@ -5636,7 +5644,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/29044.The_Secret_History"
     },
-    "coverImage": "/resources/images/library/the-secret-history.jpg"
+    "coverImage": "/resources/images/library/the-secret-history-1779880688023.jpg"
   },
   {
     "id": "172",
@@ -5684,7 +5692,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/11297.Norwegian_Wood"
     },
-    "coverImage": "/resources/images/library/norwegian-wood.jpg"
+    "coverImage": "/resources/images/library/norwegian-wood-1779880650217.jpg"
   },
   {
     "id": "175",
@@ -5700,7 +5708,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/239775146-kafka-on-the-shore"
     },
-    "coverImage": "/resources/images/library/kafka-on-the-shore.jpg"
+    "coverImage": "/resources/images/library/kafka-on-the-shore-1779880672575.jpg"
   },
   {
     "id": "176",
@@ -5733,7 +5741,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/16631.Steppenwolf"
     },
-    "coverImage": "/resources/images/library/steppenwolf.jpg"
+    "coverImage": "/resources/images/library/steppenwolf-1779880663046.jpg"
   },
   {
     "id": "178",
@@ -5800,7 +5808,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/20518872-the-three-body-problem"
     },
-    "coverImage": "/resources/images/library/the-three-body-problem.jpg"
+    "coverImage": "/resources/images/library/the-three-body-problem-1779880630463.jpg"
   },
   {
     "id": "182",
@@ -5912,7 +5920,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/840.The_Design_of_Everyday_Things"
     },
-    "coverImage": "/resources/images/library/the-design-of-everyday-things.jpg"
+    "coverImage": "/resources/images/library/the-design-of-everyday-things-1779880497973.jpg"
   },
   {
     "id": "189",
@@ -5944,7 +5952,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/2615.The_Innovator_s_Dilemma"
     },
-    "coverImage": "/resources/images/library/the-innovator-s-dilemma.jpg"
+    "coverImage": "/resources/images/library/the-innovator-s-dilemma-1779880481971.jpg"
   },
   {
     "id": "191",
@@ -5991,7 +5999,8 @@
     "author": "Steven L. Peck",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/13456414-a-short-stay-in-hell"
-    }
+    },
+    "coverImage": "/resources/images/library/a-short-stay-in-hell-1779880469388.jpg"
   },
   {
     "id": "194",
@@ -6006,7 +6015,8 @@
     "author": "Dan Charnas",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/26114603-work-clean"
-    }
+    },
+    "coverImage": "/resources/images/library/work-clean-the-life-changing-power-of-mise-en-place-to-organize-your-life-work-a-1779880458617.jpg"
   },
   {
     "id": "195",
@@ -6038,7 +6048,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/646175.Modern_Man_in_Search_of_a_Soul"
     },
-    "coverImage": "/resources/images/library/modern-man-in-search-of-a-soul.jpg"
+    "coverImage": "/resources/images/library/modern-man-in-search-of-a-soul-1779880448985.jpg"
   },
   {
     "id": "197",
@@ -6054,7 +6064,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/12321.Beyond_Good_and_Evil"
     },
-    "coverImage": "/resources/images/library/beyond-good-and-evil.jpg"
+    "coverImage": "/resources/images/library/beyond-good-and-evil-1779880436786.jpg"
   },
   {
     "id": "198",
@@ -6070,7 +6080,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/19063.The_Book_Thief"
     },
-    "coverImage": "/resources/images/library/the-book-thief.jpg"
+    "coverImage": "/resources/images/library/the-book-thief-1779880399024.jpg"
   },
   {
     "id": "199",
@@ -6085,7 +6095,8 @@
     "author": "Jonas Leijonhufvud, Sven Carlsson",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/54810079-the-spotify-play"
-    }
+    },
+    "coverImage": "/resources/images/library/the-spotify-play-1779880411264.jpg"
   },
   {
     "id": "200",
@@ -6101,7 +6112,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/76620.Watership_Down"
     },
-    "coverImage": "/resources/images/library/watership-down.jpg"
+    "coverImage": "/resources/images/library/watership-down-1779880389728.jpg"
   },
   {
     "id": "201",
@@ -6116,7 +6127,8 @@
     "author": "Alex Pang",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/29502354-rest"
-    }
+    },
+    "coverImage": "/resources/images/library/rest-why-you-get-more-done-when-you-work-less-1779880422219.jpg"
   },
   {
     "id": "202",
@@ -6131,7 +6143,8 @@
     "author": "Michael Masterson",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/2490652.Ready_Fire_Aim"
-    }
+    },
+    "coverImage": "/resources/images/library/ready-fire-aim-zero-to-100-million-in-no-time-flat-1779880377909.jpg"
   },
   {
     "id": "203",
@@ -6229,7 +6242,7 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt2707408"
     },
-    "coverImage": "/resources/images/library/narcos.jpg"
+    "coverImage": "/resources/images/library/narcos-1779881056951.jpg"
   },
   {
     "id": "209",
@@ -6243,7 +6256,8 @@
     "author": "Fyodor Dostoevsky",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/1772910.White_Nights"
-    }
+    },
+    "coverImage": "/resources/images/library/white-nights-1779880366754.jpg"
   },
   {
     "id": "210",
@@ -6259,7 +6273,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/406235.Giovanni_s_Room"
     },
-    "coverImage": "/resources/images/library/giovanni-s-room.jpg"
+    "coverImage": "/resources/images/library/giovanni-s-room-1779880356288.jpg"
   },
   {
     "id": "211",
@@ -6275,7 +6289,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/36739755-convenience-store-woman"
     },
-    "coverImage": "/resources/images/library/convenience-store-woman.png"
+    "coverImage": "/resources/images/library/convenience-store-woman-1779880341773.webp"
   },
   {
     "id": "212",
@@ -6323,7 +6337,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/13572289-the-way-of-men"
     },
-    "coverImage": "/resources/images/library/the-way-of-men.jpg"
+    "coverImage": "/resources/images/library/the-way-of-men-1779880328395.jpg"
   },
   {
     "id": "215",
@@ -6451,7 +6465,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/35957157-thinking-in-bets"
     },
-    "coverImage": "/resources/images/library/thinking-in-bets.jpg"
+    "coverImage": "/resources/images/library/thinking-in-bets-1779880003033.jpg"
   },
   {
     "id": "223",
@@ -6466,7 +6480,8 @@
     "author": "Jaime Levy",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/24346911-ux-strategy"
-    }
+    },
+    "coverImage": "/resources/images/library/ux-strategy-1779880017503.jpg"
   },
   {
     "id": "224",
@@ -6482,7 +6497,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/12910715-designing-for-emotion"
     },
-    "coverImage": "/resources/images/library/designing-for-emotion.jpg"
+    "coverImage": "/resources/images/library/designing-for-emotion-1779880304405.jpg"
   },
   {
     "id": "225",
@@ -6546,7 +6561,7 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0364569/?ref_=chttp_i_79"
     },
-    "coverImage": "/resources/images/library/oldboy.jpg"
+    "coverImage": "/resources/images/library/oldboy-1779881070669.jpg"
   },
   {
     "id": "229",
@@ -6770,7 +6785,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/25744928"
     },
-    "coverImage": "/resources/images/library/deep-work.jpg"
+    "coverImage": "/resources/images/library/deep-work-1779880294351.jpg"
   },
   {
     "id": "243",
@@ -6786,7 +6801,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/37559166"
     },
-    "coverImage": "/resources/images/library/measure-what-matters.png"
+    "coverImage": "/resources/images/library/measure-what-matters-1779880271159.jpg"
   },
   {
     "id": "244",
@@ -6801,7 +6816,8 @@
     "author": "J.J. Holt",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/18077903"
-    }
+    },
+    "coverImage": "/resources/images/library/creativity-inc-overcoming-the-unseen-forces-that-stand-in-the-way-of-true-inspir-1779880257646.jpg"
   },
   {
     "id": "245",
@@ -6817,7 +6833,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/2761"
     },
-    "coverImage": "/resources/images/library/the-denial-of-death.jpg"
+    "coverImage": "/resources/images/library/the-denial-of-death-1779880584146.jpg"
   },
   {
     "id": "246",
@@ -6850,7 +6866,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/41733839-the-great-gatsby?ref=nav_sb_noss_l_11"
     },
-    "coverImage": "/resources/images/library/the-great-gatsby.jpg"
+    "coverImage": "/resources/images/library/the-great-gatsby-1779880215664.avif"
   },
   {
     "id": "248",
@@ -6866,7 +6882,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/91950.The_Myth_of_Sisyphus"
     },
-    "coverImage": "/resources/images/library/the-myth-of-sisyphus.jpg"
+    "coverImage": "/resources/images/library/the-myth-of-sisyphus-1779880197843.jpg"
   },
   {
     "id": "249",
@@ -6878,7 +6894,8 @@
     "description": "",
     "year": 2025,
     "author": "Zachary Karabashliev",
-    "links": {}
+    "links": {},
+    "coverImage": "/resources/images/library/the-last-dolphin-hunter-1779880187253.jpg"
   },
   {
     "id": "250",
@@ -6894,7 +6911,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/24465662-sky-key"
     },
-    "coverImage": "/resources/images/library/sky-key.jpg"
+    "coverImage": "/resources/images/library/sky-key-1779880232223.jpg"
   },
   {
     "id": "251",
@@ -6910,7 +6927,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/27067085-rules-of-the-game"
     },
-    "coverImage": "/resources/images/library/rules-of-the-game.jpg"
+    "coverImage": "/resources/images/library/rules-of-the-game-1779880244308.jpg"
   },
   {
     "id": "252",
@@ -6925,7 +6942,8 @@
     "author": "Milen Ruskov",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/37846552"
-    }
+    },
+    "coverImage": "/resources/images/library/item-n5a9s0-1779880515636.jpg"
   },
   {
     "id": "253",
@@ -6941,7 +6959,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/3310284"
     },
-    "coverImage": "/resources/images/library/item-z8cbbo.jpg"
+    "coverImage": "/resources/images/library/item-z8cbbo-1779880524868.jpg"
   },
   {
     "id": "254",
@@ -6956,7 +6974,8 @@
     "author": "Ivan Vazov",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/2722916--"
-    }
+    },
+    "coverImage": "/resources/images/library/item-z8cbbo-1779880527354.jpg"
   },
   {
     "id": "255",
@@ -6971,7 +6990,8 @@
     "author": "Aleko Konstantinov",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/6251113?ref=rae_0"
-    }
+    },
+    "coverImage": "/resources/images/library/item-j1h0qc-1779880538759.jpg"
   },
   {
     "id": "256",
@@ -6986,7 +7006,8 @@
     "author": "Димитър Талев",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/1864618._?from_search=true&from_srp=true&qid=Lcn9w1Z6jW&rank=2"
-    }
+    },
+    "coverImage": "/resources/images/library/item-tpva-1779880556124.jpg"
   },
   {
     "id": "257",
@@ -7002,7 +7023,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/976.Deception_Point"
     },
-    "coverImage": "/resources/images/library/deception-point.jpg"
+    "coverImage": "/resources/images/library/deception-point-1779880570319.jpg"
   },
   {
     "id": "258",
@@ -7050,7 +7071,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/92625.The_Ones_Who_Walk_Away_from_Omelas"
     },
-    "coverImage": "/resources/images/library/the-ones-who-walk-away-from-omelas.jpg"
+    "coverImage": "/resources/images/library/the-ones-who-walk-away-from-omelas-1779880157255.jpg"
   },
   {
     "id": "261",
@@ -7113,7 +7134,8 @@
     "author": "Antoine de Saint-Exupéry",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/157993"
-    }
+    },
+    "coverImage": "/resources/images/library/the-little-prince-1779880135722.jpg"
   },
   {
     "id": "265",
@@ -7145,7 +7167,7 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0289043/?ref_=tt_mlt_i_2"
     },
-    "coverImage": "/resources/images/library/28-days-later.jpg"
+    "coverImage": "/resources/images/library/28-days-later-1779881085033.jpg"
   },
   {
     "id": "267",
@@ -7161,7 +7183,7 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0463854/?ref_=tt_mlt_i_1"
     },
-    "coverImage": "/resources/images/library/28-weeks-later.jpg"
+    "coverImage": "/resources/images/library/28-weeks-later-1779881094763.jpg"
   },
   {
     "id": "268",
@@ -7260,7 +7282,7 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt29603959/"
     },
-    "coverImage": "/resources/images/library/novocaine.jpg"
+    "coverImage": "/resources/images/library/novocaine-1779881134914.jpg"
   },
   {
     "id": "274",
@@ -7821,7 +7843,7 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0190641/?ref_=fn_t_2"
     },
-    "coverImage": "/resources/images/library/pokemon-the-first-movie-mewtwo-strikes-back.jpg"
+    "coverImage": "/resources/images/library/pokemon-the-first-movie-mewtwo-strikes-back-1779881163579.jpg"
   },
   {
     "id": "309",
@@ -7917,7 +7939,7 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt0304564/?ref_=nv_sr_srsg_1_tt_8_nm_0_in_0_q_mewtwo"
     },
-    "coverImage": "/resources/images/library/pokemon-mewtwo-returns.png"
+    "coverImage": "/resources/images/library/pokemon-mewtwo-returns-1779881189743.jpg"
   },
   {
     "id": "315",
@@ -8014,7 +8036,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/16299.And_Then_There_Were_None?ac=1&from_search=true&qid=fKqTf3D7ur&rank=1"
     },
-    "coverImage": "/resources/images/library/and-then-there-were-none.jpg"
+    "coverImage": "/resources/images/library/and-then-there-were-none-1779880080366.jpg"
   },
   {
     "id": "321",
@@ -8030,7 +8052,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/853510.Murder_on_the_Orient_Express"
     },
-    "coverImage": "/resources/images/library/murder-on-the-orient-express-the-graphic-novel-poirot.jpg"
+    "coverImage": "/resources/images/library/murder-on-the-orient-express-the-graphic-novel-poirot-1779880065056.jpg"
   },
   {
     "id": "322",
@@ -8046,7 +8068,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/131359.Death_on_the_Nile"
     },
-    "coverImage": "/resources/images/library/death-on-the-nile.jpg"
+    "coverImage": "/resources/images/library/death-on-the-nile-1779880042123.png"
   },
   {
     "id": "323",
@@ -8077,7 +8099,7 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt27497448/"
     },
-    "coverImage": "/resources/images/library/a-knight-of-the-seven-kingdoms.jpg"
+    "coverImage": "/resources/images/library/a-knight-of-the-seven-kingdoms-1779881227677.jpg"
   },
   {
     "id": "325",
@@ -8092,7 +8114,7 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt1586680/"
     },
-    "coverImage": "/resources/images/library/shameless.png"
+    "coverImage": "/resources/images/library/shameless-1779881216948.jpg"
   },
   {
     "id": "326",
@@ -8108,7 +8130,8 @@
     "dateCompleted": "2026-02-01",
     "links": {
       "other": "https://zlatenriton.bg/film/sizifovtsi/"
-    }
+    },
+    "coverImage": "/resources/images/library/item-c7zrfy-1779877875115.jpg"
   },
   {
     "id": "327",
