@@ -1,7 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { BookOpen, Clapperboard, Star, TrendingUp } from 'lucide-react';
+import Image from 'next/image';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
+import { LibraryHeroMarquee } from '@/components/library/LibraryHeroMarquee';
 
 interface LibraryStats {
   books: number;
@@ -13,47 +15,148 @@ interface LibraryStats {
 
 interface LibraryHeroProps {
   stats: LibraryStats;
+  covers?: string[];
 }
 
-export default function LibraryHero({ stats }: LibraryHeroProps) {
+export default function LibraryHero({ stats, covers = [] }: LibraryHeroProps) {
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollY } = useScroll();
+
+  const backgroundY = useTransform(scrollY, [0, 600], [0, 120]);
+  const gridY = useTransform(scrollY, [0, 600], [0, 60]);
+  const contentY = useTransform(scrollY, [0, 600], [0, -40]);
+  const contentOpacity = useTransform(scrollY, [0, 400], [1, 0.6]);
+  const arrowOpacity = useTransform(scrollY, [0, 180], [1, 0]);
+
+  const safeBackgroundY = prefersReducedMotion ? 0 : backgroundY;
+  const safeGridY = prefersReducedMotion ? 0 : gridY;
+  const safeContentY = prefersReducedMotion ? 0 : contentY;
+  const safeContentOpacity = prefersReducedMotion ? 1 : contentOpacity;
+
   const watchables = stats.movies + stats.series;
 
+  const handleScrollDown = () => {
+    const target = document.querySelector('[role="tablist"]');
+    if (target instanceof HTMLElement) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="relative py-12 sm:py-16 md:py-24 bg-gradient-to-br from-background to-muted">
-      <div className="container mx-auto px-2 sm:px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-4xl mx-auto"
-        >
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 text-foreground">
-            My Library
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 sm:mb-8">
-            Books, movies, and series that have shaped my thinking and worldview.
-            Complete with my notes, ratings, and recommendations.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-6 sm:gap-x-8 gap-y-3 text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <BookOpen className="w-5 h-5 sm:w-6 sm:h-6" />
-              <span className="text-sm sm:text-base">{stats.books} Books</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Clapperboard className="w-5 h-5 sm:w-6 sm:h-6" />
-              <span className="text-sm sm:text-base">{watchables} Movies &amp; Series</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Star className="w-5 h-5 sm:w-6 sm:h-6 fill-yellow-400 text-yellow-400" />
-              <span className="text-sm sm:text-base">{stats.avgRating.toFixed(1)} Avg Rating</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6" />
-              <span className="text-sm sm:text-base">{stats.thisYear} This Year</span>
-            </div>
+    <section
+      id="library-hero"
+      className="relative isolate flex items-center overflow-hidden bg-gradient-to-b from-background via-background to-muted scroll-mt-16 min-h-[28rem] md:min-h-[34rem]"
+    >
+      <LibraryHeroMarquee covers={covers} />
+
+      <motion.div
+        aria-hidden
+        style={{
+          y: safeBackgroundY,
+          backgroundImage:
+            'radial-gradient(circle at 15% 20%, color-mix(in oklch, var(--primary) 18%, transparent) 0%, transparent 45%), radial-gradient(circle at 85% 80%, color-mix(in oklch, var(--primary) 14%, transparent) 0%, transparent 45%)',
+        }}
+        className="absolute inset-0 -z-10 opacity-40 will-change-transform"
+      />
+      <motion.div
+        aria-hidden
+        style={{ y: safeGridY }}
+        className="absolute inset-0 bg-grid-white/10 -z-10 will-change-transform"
+      />
+
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 pointer-events-none"
+        style={{
+          background: 'color-mix(in oklch, var(--background) 65%, transparent)',
+        }}
+      />
+
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 pointer-events-none mix-blend-hard-light opacity-95 dark:opacity-40 dark:mix-blend-overlay [.olive_&]:opacity-40 [.olive_&]:mix-blend-overlay"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3' intercept='-1'/%3E%3CfeFuncG type='linear' slope='3' intercept='-1'/%3E%3CfeFuncB type='linear' slope='3' intercept='-1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+          backgroundSize: '220px 220px',
+        }}
+      />
+
+      <motion.div
+        style={{ y: safeContentY, opacity: safeContentOpacity }}
+        className="container mx-auto px-4 py-12 md:py-16 will-change-transform"
+      >
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary mb-5">
+            <span className="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium">
+              A personal catalog by
+              <span className="relative w-5 h-5 rounded-full overflow-hidden shrink-0">
+                <Image
+                  src="/resources/images/main_page/YassenShopov.jpg"
+                  alt="Yassen Shopov"
+                  fill
+                  sizes="20px"
+                  className="object-cover"
+                />
+              </span>
+              Yassen Shopov
+            </span>
           </div>
-        </motion.div>
-      </div>
+
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[0.95] text-foreground mb-2">
+            The Library
+          </h1>
+
+          <p className="text-base md:text-xl text-muted-foreground font-medium mb-5">
+            [books, films &amp; series]
+          </p>
+
+          <div className="mx-auto h-px w-full max-w-md bg-border mb-5" />
+
+          <p className="text-sm md:text-base text-muted-foreground max-w-xl mx-auto mb-6 leading-relaxed">
+            Everything I&rsquo;ve read or watched &mdash; with my notes, ratings, and the threads
+            between them.
+          </p>
+
+          <div className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[0.7rem] md:text-xs text-muted-foreground uppercase tracking-[0.18em]">
+            <span>
+              <span className="text-foreground font-semibold">{stats.books}</span> Books
+            </span>
+            <span aria-hidden className="text-border">
+              &bull;
+            </span>
+            <span>
+              <span className="text-foreground font-semibold">{watchables}</span> Films &amp; Series
+            </span>
+            <span aria-hidden className="text-border">
+              &bull;
+            </span>
+            <span>
+              <span className="text-foreground font-semibold">{stats.thisYear}</span> This Year
+            </span>
+          </div>
+        </div>
+      </motion.div>
+
+      <motion.button
+        onClick={handleScrollDown}
+        style={{ opacity: arrowOpacity }}
+        aria-label="Scroll to the library"
+        className="group absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"
+      >
+        <span className="text-[0.65rem] md:text-xs uppercase tracking-[0.22em]">
+          Browse the shelves
+        </span>
+        <motion.span
+          animate={prefersReducedMotion ? undefined : { y: [0, 6, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+          className="flex items-center justify-center w-9 h-9 rounded-full border border-border bg-background/60 backdrop-blur-sm group-hover:border-primary"
+        >
+          <ChevronDown className="w-4 h-4" />
+        </motion.span>
+      </motion.button>
     </section>
   );
 }
