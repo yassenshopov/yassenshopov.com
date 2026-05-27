@@ -10,9 +10,34 @@ import LibraryItemCard from '@/components/library/LibraryItemCard';
 import LibraryModal from '@/components/library/LibraryModal';
 import LibraryResults from '@/components/library/LibraryResults';
 import LibraryItemSkeleton from '@/components/library/LibraryItemSkeleton';
+import LibraryTableOfContents, {
+  type LibraryTocSection,
+  libraryTocSectionId,
+} from '@/components/library/LibraryTableOfContents';
 import { Button } from '@/components/ui/button';
 import { useLibrary } from '@/hooks/useLibrary';
 import { Input } from '@/components/ui/input';
+
+const UNDATED_KEY = 'undated';
+
+function groupByYear<T extends { dateCompleted?: string; dateStarted?: string }>(
+  items: T[],
+): Record<string, T[]> {
+  return items.reduce<Record<string, T[]>>((acc, item) => {
+    const dateStr = item.dateCompleted || item.dateStarted;
+    const key = dateStr ? new Date(dateStr).getFullYear().toString() : UNDATED_KEY;
+    (acc[key] ||= []).push(item);
+    return acc;
+  }, {});
+}
+
+function sortYearKeys(keys: string[]): string[] {
+  return [...keys].sort((a, b) => {
+    if (a === UNDATED_KEY) return 1;
+    if (b === UNDATED_KEY) return -1;
+    return Number(b) - Number(a);
+  });
+}
 
 export default function LibraryPage() {
   const {
@@ -38,6 +63,7 @@ export default function LibraryPage() {
     navigateToItem,
     loadMoreRef,
     isTransitioning,
+    revealItemsUpTo,
   } = useLibrary();
 
   const overallStats = getStatistics(allItems);
@@ -60,6 +86,33 @@ export default function LibraryPage() {
   const heroCovers = allItems
     .map((item) => item.coverImage)
     .filter((src): src is string => Boolean(src));
+
+  // Group items by year (with an "undated" bucket for wishlist/watchlist).
+  // We do this against the full filtered set so the ToC can list every
+  // section, not just the ones currently rendered by infinite scroll.
+  const visibleByYear = groupByYear(sortedItems);
+  const visibleYearKeys = sortYearKeys(Object.keys(visibleByYear));
+
+  const undatedLabel = category === 'books' ? 'Wishlist' : 'Watchlist';
+  const labelForYear = (key: string) => (key === UNDATED_KEY ? undatedLabel : key);
+
+  // Build ToC sections from the full filtered list so users can jump to a
+  // year even before infinite scroll has loaded it.
+  const allByYear = groupByYear(allSortedItems);
+  const allYearKeys = sortYearKeys(Object.keys(allByYear));
+  const tocSections: LibraryTocSection[] = (() => {
+    let cumulative = 0;
+    return allYearKeys.map((key) => {
+      const count = allByYear[key].length;
+      cumulative += count;
+      return {
+        key,
+        label: labelForYear(key),
+        count,
+        cumulativeCount: cumulative,
+      };
+    });
+  })();
 
   // Infinite scroll
   useEffect(() => {
@@ -114,6 +167,13 @@ export default function LibraryPage() {
     <Layout>
       <LibraryHero stats={heroStats} covers={heroCovers} />
 
+      {tocSections.length > 1 && (
+        <LibraryTableOfContents
+          sections={tocSections}
+          onJumpTo={revealItemsUpTo}
+        />
+      )}
+
       <LibraryTabs
         category={category}
         onChange={setCategory}
@@ -162,68 +222,42 @@ export default function LibraryPage() {
             transition={{ duration: 0.3 }}
             className="space-y-16"
           >
-            {(() => {
-              const UNDATED_KEY = 'undated';
+            {visibleYearKeys.map((yearKey) => {
+              const itemsInYear = visibleByYear[yearKey];
+              const isUndated = yearKey === UNDATED_KEY;
+              const heading = labelForYear(yearKey);
+              const ariaLabel = isUndated
+                ? `${heading} items`
+                : `Items from ${yearKey}`;
 
-              const itemsByYear = sortedItems.reduce<Record<string, typeof sortedItems>>(
-                (acc, item) => {
-                  const dateStr = item.dateCompleted || item.dateStarted;
-                  const key = dateStr
-                    ? new Date(dateStr).getFullYear().toString()
-                    : UNDATED_KEY;
-                  (acc[key] ||= []).push(item);
-                  return acc;
-                },
-                {},
-              );
-
-              const yearKeys = Object.keys(itemsByYear).sort((a, b) => {
-                if (a === UNDATED_KEY) return 1;
-                if (b === UNDATED_KEY) return -1;
-                return Number(b) - Number(a);
-              });
-
-              return yearKeys.map((yearKey) => {
-                const itemsInYear = itemsByYear[yearKey];
-                const isUndated = yearKey === UNDATED_KEY;
-                const heading = isUndated
-                  ? category === 'books'
-                    ? 'Wishlist'
-                    : 'Watchlist'
-                  : yearKey;
-                const ariaLabel = isUndated
-                  ? `${heading} items`
-                  : `Items from ${yearKey}`;
-
-                return (
-                  <div key={yearKey}>
-                    <div className="flex items-end gap-6 mb-8" aria-label={ariaLabel}>
-                      <h2 className="text-5xl md:text-6xl font-bold tracking-tighter leading-none text-foreground">
-                        {heading}
-                      </h2>
-                      <div className="flex-1 pb-2 flex items-center gap-4">
-                        <div className="flex-1 h-px bg-border" />
-                        <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                          {itemsInYear.length}{' '}
-                          {itemsInYear.length === 1 ? 'item' : 'items'}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5">
-                      {itemsInYear.map((item) => (
-                        <LibraryItemCard
-                          key={item.id}
-                          item={item}
-                          onItemClick={setSelectedItem}
-                          getCreatorLabel={getCreatorLabel}
-                        />
-                      ))}
+              return (
+                <div key={yearKey} id={libraryTocSectionId(yearKey)} className="scroll-mt-24">
+                  <div className="flex items-end gap-6 mb-8" aria-label={ariaLabel}>
+                    <h2 className="text-5xl md:text-6xl font-bold tracking-tighter leading-none text-foreground">
+                      {heading}
+                    </h2>
+                    <div className="flex-1 pb-2 flex items-center gap-4">
+                      <div className="flex-1 h-px bg-border" />
+                      <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                        {itemsInYear.length}{' '}
+                        {itemsInYear.length === 1 ? 'item' : 'items'}
+                      </span>
                     </div>
                   </div>
-                );
-              });
-            })()}
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5">
+                    {itemsInYear.map((item) => (
+                      <LibraryItemCard
+                        key={item.id}
+                        item={item}
+                        onItemClick={setSelectedItem}
+                        getCreatorLabel={getCreatorLabel}
+                      />
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
 
             {isLoadingMore && (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5">

@@ -30,6 +30,22 @@ function getFallbackIcon(type: LibraryItem['type']) {
   }
 }
 
+function CurrentlyOnLine({ type }: { type: LibraryItem['type'] }) {
+  const verb = type === 'book' ? 'Reading' : 'Watching';
+  return (
+    <p
+      className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400"
+      aria-label={`Currently ${verb.toLowerCase()}`}
+    >
+      <span className="relative flex h-1.5 w-1.5" aria-hidden>
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
+        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+      </span>
+      Currently {verb}
+    </p>
+  );
+}
+
 function Stars({ rating }: { rating: number | null }) {
   if (rating == null) {
     return <span className="text-xs text-muted-foreground italic">Unrated</span>;
@@ -193,7 +209,10 @@ export default function LibraryItemCard({
         {creator && (
           <p className="text-sm text-muted-foreground line-clamp-1">by {creator}</p>
         )}
-        <Stars rating={item.rating} />
+        <div className="flex items-center justify-between gap-2">
+          <Stars rating={item.rating} />
+          {item.status === 'in-progress' && <CurrentlyOnLine type={item.type} />}
+        </div>
       </div>
     </button>
   );

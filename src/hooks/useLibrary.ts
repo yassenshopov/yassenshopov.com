@@ -105,6 +105,17 @@ export function useLibrary() {
     }, 300);
   };
 
+  // Ensure at least `count` items are rendered. Rounded up to the next page
+  // boundary so the section we're jumping to is fully visible (and so the
+  // infinite-scroll cadence stays consistent afterwards).
+  const revealItemsUpTo = (count: number) => {
+    setItemsToShow((prev) => {
+      if (count <= prev) return prev;
+      const next = Math.ceil(count / ITEMS_PER_PAGE) * ITEMS_PER_PAGE;
+      return Math.min(next, allSortedItems.length);
+    });
+  };
+
   return {
     // State
     category,
@@ -134,5 +145,6 @@ export function useLibrary() {
     getRelationshipLabel,
     navigateToItem,
     showMoreItems,
+    revealItemsUpTo,
   };
 }
