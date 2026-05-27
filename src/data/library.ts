@@ -8,8 +8,16 @@ export interface LibraryItem {
   creator?: string;
   type: 'book' | 'movie' | 'series';
   rating: number | null;
-  status: 'completed' | 'in-progress' | 'want-to-read' | 'want-to-watch';
+  status:
+    | 'completed'
+    | 'in-progress'
+    | 'on-pause'
+    | 'dnf'
+    | 'want-to-read'
+    | 'want-to-watch';
   year?: number;
+  topics?: string[];
+  externalUrl?: string;
   dateCompleted?: string;
   dateStarted?: string;
   genre: string[];

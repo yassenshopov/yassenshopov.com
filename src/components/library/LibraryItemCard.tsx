@@ -1,391 +1,200 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Star, Heart, BookOpen, Clapperboard, Monitor, Copy, Check, Clock, Bookmark, Eye } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Star, BookOpen, Clapperboard, Monitor, Upload, Loader2 } from 'lucide-react';
 import Image from 'next/image';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { toast } from 'sonner';
 import { LibraryItem } from '@/data/library';
-import { useEffect, useState } from 'react';
 
 interface LibraryItemCardProps {
   item: LibraryItem;
-  viewMode: 'grid' | 'list';
-  favorites: string[];
-  animatingHearts: string[];
-  copiedId: string | null;
   onItemClick: (item: LibraryItem) => void;
-  onToggleFavorite: (itemId: string, itemTitle: string) => void;
   getCreatorLabel: (item: LibraryItem) => string;
-  getStatusColor: (status: string) => string;
 }
 
-const statusIconMap: Record<string, JSX.Element> = {
-  completed: <Check className="w-4 h-4" />,
-  'in-progress': <Clock className="w-4 h-4" />,
-  'want-to-read': <Bookmark className="w-4 h-4" />,
-  'want-to-watch': <Eye className="w-4 h-4" />,
-};
-const statusLabelMap: Record<string, string> = {
-  completed: 'Completed',
-  'in-progress': 'In Progress',
-  'want-to-read': 'Want to Read',
-  'want-to-watch': 'Want to Watch',
-};
+// Temporary: drag-and-drop cover replacement, dev-only. Remove this block
+// (and the matching API route at src/app/api/library/upload-cover/route.ts)
+// when the library data is locked down.
+const COVER_EDIT_ENABLED = process.env.NODE_ENV === 'development';
+
+function getFallbackIcon(type: LibraryItem['type']) {
+  switch (type) {
+    case 'book':
+      return <BookOpen className="w-10 h-10" />;
+    case 'movie':
+      return <Clapperboard className="w-10 h-10" />;
+    case 'series':
+      return <Monitor className="w-10 h-10" />;
+    default:
+      return null;
+  }
+}
+
+function Stars({ rating }: { rating: number | null }) {
+  if (rating == null) {
+    return <span className="text-xs text-muted-foreground italic">Unrated</span>;
+  }
+  return (
+    <div className="flex items-center gap-0.5">
+      {Array.from({ length: 5 }, (_, i) => (
+        <Star
+          key={i}
+          className={`w-3.5 h-3.5 ${
+            i < rating ? 'fill-yellow-400 text-yellow-400' : 'text-muted-foreground/30'
+          }`}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function LibraryItemCard({
   item,
-  viewMode,
-  favorites,
-  animatingHearts,
-  copiedId,
   onItemClick,
-  onToggleFavorite,
   getCreatorLabel,
-  getStatusColor,
 }: LibraryItemCardProps) {
-  const renderStars = (rating: number | null) => {
-    if (rating == null) {
-      return <span className="text-xs text-muted-foreground italic">Unrated</span>;
-    }
-    return Array.from({ length: 5 }, (_, i) => (
-      <Star
-        key={i}
-        className={`w-4 h-4 ${
-          i < rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
-        }`}
-      />
-    ));
-  };
+  const creator = getCreatorLabel(item);
+  const [isDragOver, setIsDragOver] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  // Tracks the cover URL we want to show right now. Defaults to the prop value
+  // and gets updated optimistically after a successful upload. The effect keeps
+  // it in sync when the prop changes (e.g. HMR after the JSON write lands).
+  const [coverImage, setCoverImage] = useState(item.coverImage);
+  // dragenter/dragleave fire for every child element, so track depth.
+  const dragDepth = useRef(0);
 
-  const getTypeIcon = (type: string) => {
-    switch (type) {
-      case 'book':
-        return <BookOpen className="w-5 h-5 text-muted-foreground" />;
-      case 'movie':
-        return <Clapperboard className="w-5 h-5 text-muted-foreground" />;
-      case 'series':
-        return <Monitor className="w-5 h-5 text-muted-foreground" />;
-      default:
-        return null;
-    }
-  };
+  useEffect(() => {
+    setCoverImage(item.coverImage);
+  }, [item.coverImage]);
 
-  const getTypeIconLarge = (type: string) => {
-    switch (type) {
-      case 'book':
-        return <BookOpen className="w-12 h-12" />;
-      case 'movie':
-        return <Clapperboard className="w-12 h-12" />;
-      case 'series':
-        return <Monitor className="w-12 h-12" />;
-      default:
-        return null;
+  async function uploadFile(file: File) {
+    if (!file.type.startsWith('image/')) {
+      toast.error('Drop an image file (jpg, png, webp, gif, avif).');
+      return;
     }
-  };
+    const form = new FormData();
+    form.append('id', item.id);
+    form.append('file', file);
 
-  if (viewMode === 'list') {
-    return (
-      <Card className="overflow-hidden h-full hover:bg-muted/50 transition-colors group cursor-pointer flex flex-row p-4 shadow-none" onClick={() => onItemClick(item)}>
-        <div className="flex-shrink-0 w-16 h-20 bg-muted dark:bg-black rounded-lg mr-4 overflow-hidden">
-          {item.coverImage ? (
-            <Image
-              src={item.coverImage}
-              alt={item.title}
-              width={64}
-              height={80}
-              className="object-contain w-full h-full"
-            />
-          ) : (
-            <div className="flex items-center justify-center h-full text-muted-foreground">
-              {getTypeIconLarge(item.type)}
-            </div>
-          )}
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between">
-            <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-lg mb-1 group-hover:text-primary transition-colors truncate flex items-center gap-2">
-                {getTypeIcon(item.type)}
-                {item.title}
-              </h3>
-              {getCreatorLabel(item) && (
-                <p className="text-muted-foreground text-sm mb-2">
-                  by {getCreatorLabel(item)}
-                </p>
-              )}
-              {item.series && (
-                <div className="flex items-center gap-2 mb-2">
-                  <Badge variant="outline" className="text-xs bg-primary/10 text-primary border-primary/20">
-                    {item.series} #{item.seriesOrder}
-                  </Badge>
-                </div>
-              )}
-              <div className="flex flex-wrap gap-1 mb-2">
-                {item.genre.slice(0, 4).map((genre) => (
-                  <Badge key={genre} variant="secondary" className="text-xs">
-                    {genre}
-                  </Badge>
-                ))}
-              </div>
-              <p className="text-muted-foreground text-sm line-clamp-2">
-                {item.description}
-              </p>
-            </div>
-            <div className="flex items-center gap-2 ml-4">
-              <div className="flex items-center gap-1">
-                {renderStars(item.rating)}
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onToggleFavorite(item.id, item.title);
-                }}
-                className="p-1 h-8 w-8 relative overflow-hidden"
-              >
-                <motion.div
-                  animate={animatingHearts.includes(item.id) ? {
-                    scale: [1, 1.3, 1],
-                    rotate: [0, -10, 10, 0],
-                  } : {}}
-                  transition={{ 
-                    duration: 0.6, 
-                    ease: [0.25, 0.46, 0.45, 0.94]
-                  }}
-                  className="relative"
-                >
-                  <Heart className={`w-4 h-4 transition-all duration-300 ${
-                    favorites.includes(item.id) 
-                      ? 'fill-red-500 text-red-500 drop-shadow-sm' 
-                      : 'text-muted-foreground hover:text-red-500 hover:scale-110'
-                  }`} />
-                  
-                  {animatingHearts.includes(item.id) && (
-                    <motion.div
-                      initial={{ scale: 0.8, opacity: 0.8 }}
-                      animate={{ scale: 2, opacity: 0 }}
-                      transition={{ duration: 0.6 }}
-                      className="absolute inset-0 rounded-full bg-red-500/20"
-                    />
-                  )}
-                  
-                  {animatingHearts.includes(item.id) && favorites.includes(item.id) && (
-                    <>
-                      {[...Array(6)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ 
-                            scale: 0,
-                            x: 0,
-                            y: 0,
-                            opacity: 1
-                          }}
-                          animate={{ 
-                            scale: [0, 1, 0],
-                            x: [0, (Math.random() - 0.5) * 24],
-                            y: [0, (Math.random() - 0.5) * 24],
-                            opacity: [1, 1, 0]
-                          }}
-                          transition={{ 
-                            duration: 0.6,
-                            delay: i * 0.1,
-                            ease: "easeOut"
-                          }}
-                          className="absolute top-1/2 left-1/2 w-1 h-1 bg-red-400 rounded-full pointer-events-none"
-                          style={{
-                            transform: 'translate(-50%, -50%)'
-                          }}
-                        />
-                      ))}
-                    </>
-                  )}
-                </motion.div>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </Card>
-    );
+    setIsUploading(true);
+    const toastId = toast.loading(`Replacing cover for "${item.title}"…`);
+    try {
+      const res = await fetch('/api/library/upload-cover', {
+        method: 'POST',
+        body: form,
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(body.error || `HTTP ${res.status}`);
+      }
+      if (typeof body.coverImage === 'string') {
+        setCoverImage(body.coverImage);
+      }
+      toast.success('Cover replaced.', { id: toastId });
+    } catch (err) {
+      toast.error(`Upload failed: ${(err as Error).message}`, { id: toastId });
+    } finally {
+      setIsUploading(false);
+    }
   }
 
-  // Grid View
+  const dragHandlers = COVER_EDIT_ENABLED
+    ? {
+        onDragEnter: (e: React.DragEvent) => {
+          if (!e.dataTransfer.types.includes('Files')) return;
+          e.preventDefault();
+          e.stopPropagation();
+          dragDepth.current += 1;
+          setIsDragOver(true);
+        },
+        onDragLeave: (e: React.DragEvent) => {
+          if (!e.dataTransfer.types.includes('Files')) return;
+          e.preventDefault();
+          e.stopPropagation();
+          dragDepth.current -= 1;
+          if (dragDepth.current <= 0) {
+            dragDepth.current = 0;
+            setIsDragOver(false);
+          }
+        },
+        onDragOver: (e: React.DragEvent) => {
+          if (!e.dataTransfer.types.includes('Files')) return;
+          e.preventDefault();
+          e.stopPropagation();
+          e.dataTransfer.dropEffect = 'copy';
+        },
+        onDrop: (e: React.DragEvent) => {
+          if (!e.dataTransfer.types.includes('Files')) return;
+          e.preventDefault();
+          e.stopPropagation();
+          dragDepth.current = 0;
+          setIsDragOver(false);
+          const file = e.dataTransfer.files[0];
+          if (file) void uploadFile(file);
+        },
+      }
+    : {};
+
   return (
-    <Card className="overflow-hidden h-full hover:bg-muted/50 transition-colors group cursor-pointer shadow-none" onClick={() => onItemClick(item)}>
-      <div className="aspect-video relative bg-black dark:bg-black bg-muted flex items-center justify-center">
-        {item.coverImage ? (
+    <button
+      type="button"
+      onClick={() => {
+        if (isDragOver || isUploading) return;
+        onItemClick(item);
+      }}
+      {...dragHandlers}
+      className="group text-left flex flex-col gap-3 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-opacity"
+    >
+      <div
+        className={`relative aspect-video w-full overflow-hidden rounded-md bg-muted dark:bg-black transition-shadow ${
+          isDragOver ? 'ring-2 ring-primary ring-offset-2 ring-offset-background' : ''
+        }`}
+      >
+        {coverImage ? (
           <Image
-            src={item.coverImage}
+            src={coverImage}
             alt={item.title}
             fill
-            className="object-contain"
+            sizes="(min-width: 1536px) 20vw, (min-width: 1280px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
+            className="object-contain transition-transform duration-300 group-hover:scale-[1.02]"
           />
         ) : (
-          <div className="text-muted-foreground transition-transform group-hover:scale-105">
-            {getTypeIconLarge(item.type)}
+          <div className="flex items-center justify-center h-full text-muted-foreground">
+            {getFallbackIcon(item.type)}
           </div>
         )}
-        <div className="absolute top-2 right-2">
-          <Badge
-            className={
-              getStatusColor(item.status) +
-              ' flex items-center gap-1 font-semibold px-2 py-1 text-sm transition-all duration-200 overflow-hidden max-w-[2rem] group hover:max-w-[10rem] cursor-pointer'
-            }
-            style={{ minWidth: '2rem' }}
-          >
-            {statusIconMap[item.status]}
-            <span className="ml-1 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              {statusLabelMap[item.status]}
-            </span>
-          </Badge>
-        </div>
-        <div className="absolute top-2 left-2">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={(e) => {
-              e.stopPropagation();
-              onToggleFavorite(item.id, item.title);
-            }}
-            className="p-1 h-8 w-8 bg-background/80 backdrop-blur-sm hover:bg-background/90 relative overflow-hidden"
-          >
-            <motion.div
-              animate={animatingHearts.includes(item.id) ? {
-                scale: [1, 1.4, 1],
-                rotate: [0, -15, 15, 0],
-              } : {}}
-              transition={{ 
-                duration: 0.6, 
-                ease: [0.25, 0.46, 0.45, 0.94]
-              }}
-              className="relative"
-            >
-              <Heart className={`w-4 h-4 transition-all duration-300 ${
-                favorites.includes(item.id) 
-                  ? 'fill-red-500 text-red-500 drop-shadow-lg' 
-                  : 'text-muted-foreground hover:text-red-500 hover:scale-110'
-              }`} />
-              
-              {animatingHearts.includes(item.id) && (
-                <>
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0.8 }}
-                    animate={{ scale: 2.5, opacity: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="absolute inset-0 rounded-full bg-red-500/30"
-                  />
-                  <motion.div
-                    initial={{ scale: 0.6, opacity: 0.6 }}
-                    animate={{ scale: 1.8, opacity: 0 }}
-                    transition={{ duration: 0.4, delay: 0.1 }}
-                    className="absolute inset-0 rounded-full bg-red-500/40"
-                  />
-                </>
-              )}
-              
-              {animatingHearts.includes(item.id) && favorites.includes(item.id) && (
-                <>
-                  {[...Array(8)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ 
-                        scale: 0,
-                        x: 0,
-                        y: 0,
-                        opacity: 1
-                      }}
-                      animate={{ 
-                        scale: [0, 1.2, 0],
-                        x: [0, (Math.random() - 0.5) * 32],
-                        y: [0, (Math.random() - 0.5) * 32],
-                        opacity: [1, 1, 0],
-                        rotate: [0, Math.random() * 360]
-                      }}
-                      transition={{ 
-                        duration: 0.7,
-                        delay: i * 0.08,
-                        ease: "easeOut"
-                      }}
-                      className="absolute top-1/2 left-1/2 w-1.5 h-1.5 bg-gradient-to-r from-red-400 to-pink-400 rounded-full pointer-events-none"
-                      style={{
-                        transform: 'translate(-50%, -50%)'
-                      }}
-                    />
-                  ))}
-                  
-                  {[...Array(3)].map((_, i) => (
-                    <motion.div
-                      key={`heart-${i}`}
-                      initial={{ 
-                        scale: 0,
-                        x: 0,
-                        y: 0,
-                        opacity: 0.8
-                      }}
-                      animate={{ 
-                        scale: [0, 0.6, 0],
-                        x: [0, (Math.random() - 0.5) * 28],
-                        y: [0, -Math.random() * 20 - 10],
-                        opacity: [0.8, 0.8, 0]
-                      }}
-                      transition={{ 
-                        duration: 0.8,
-                        delay: i * 0.15,
-                        ease: "easeOut"
-                      }}
-                      className="absolute top-1/2 left-1/2 pointer-events-none"
-                      style={{
-                        transform: 'translate(-50%, -50%)'
-                      }}
-                    >
-                      <Heart className="w-2 h-2 fill-red-400 text-red-400" />
-                    </motion.div>
-                  ))}
-                </>
-              )}
-            </motion.div>
-          </Button>
-        </div>
+
+        {COVER_EDIT_ENABLED && (isDragOver || isUploading) && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-background/85 text-foreground backdrop-blur-sm pointer-events-none">
+            {isUploading ? (
+              <>
+                <Loader2 className="w-6 h-6 animate-spin" />
+                <span className="text-xs font-medium">Uploading…</span>
+              </>
+            ) : (
+              <>
+                <Upload className="w-6 h-6" />
+                <span className="text-xs font-medium">Drop to replace cover</span>
+              </>
+            )}
+          </div>
+        )}
       </div>
-      <CardHeader className="space-y-3">
-        <div className="flex items-start justify-between">
-          <div className="flex-1">
-            <h3 className="text-xl font-bold leading-tight group-hover:text-primary transition-colors flex items-center gap-2">
-              {getTypeIcon(item.type)}
-              {item.title}
-            </h3>
-            {getCreatorLabel(item) && (
-              <p className="text-muted-foreground text-sm mt-1">
-                by {getCreatorLabel(item)}
-              </p>
-            )}
-            {item.series && (
-              <div className="flex items-center gap-2 mt-1">
-                <Badge variant="outline" className="text-xs bg-primary/10 text-primary border-primary/20">
-                  {item.series} #{item.seriesOrder}
-                </Badge>
-              </div>
-            )}
-          </div>
-          <div className="flex items-center gap-1">
-            {renderStars(item.rating)}
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-1">
-          {item.genre.map((g) => (
-            <Badge key={g} variant="secondary" className="text-xs">
-              {g}
-            </Badge>
-          ))}
-        </div>
-      </CardHeader>
-      <CardContent className="space-y-2 pb-6">
-        <p className="text-muted-foreground text-sm line-clamp-2">
-          {item.description}
-        </p>
-      </CardContent>
-    </Card>
+
+      <div className="flex flex-col gap-1">
+        <h3 className="text-base font-semibold leading-snug text-foreground group-hover:text-primary transition-colors line-clamp-2">
+          {item.title}
+          {item.series && item.seriesOrder != null && (
+            <span className="ml-1.5 text-xs font-normal text-muted-foreground align-middle">
+              · {item.series} #{item.seriesOrder}
+            </span>
+          )}
+        </h3>
+        {creator && (
+          <p className="text-sm text-muted-foreground line-clamp-1">by {creator}</p>
+        )}
+        <Stars rating={item.rating} />
+      </div>
+    </button>
   );
-} 
+}

@@ -19,6 +19,10 @@ export const getStatusColor = (status: string): string => {
       return 'bg-green-500/10 text-green-700 dark:text-green-400 border border-green-500/20';
     case 'in-progress':
       return 'bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20';
+    case 'on-pause':
+      return 'bg-purple-500/10 text-purple-700 dark:text-purple-400 border border-purple-500/20';
+    case 'dnf':
+      return 'bg-rose-500/10 text-rose-700 dark:text-rose-400 border border-rose-500/20';
     case 'want-to-read':
     case 'want-to-watch':
       return 'bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20';
