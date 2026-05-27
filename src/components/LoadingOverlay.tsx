@@ -55,7 +55,7 @@ export function LoadingOverlay() {
         >
           <Image
             src={getLogo()}
-            alt="Loading\u2026"
+            alt="Loading…"
             fill
             className="object-contain"
             priority

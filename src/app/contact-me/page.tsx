@@ -102,7 +102,7 @@ export default function ContactPage() {
                     id="message"
                     name="message"
                     autoComplete="off"
-                    placeholder="Tell me about your project\u2026"
+                    placeholder="Tell me about your project…"
                     value={message}
                     onChange={handleMessageChange}
                     required
@@ -113,7 +113,7 @@ export default function ContactPage() {
                   {isSending ? (
                     <>
                       <Loader2 className="mr-2 w-4 h-4 animate-spin" aria-hidden="true" />
-                      Sending{"\u2026"}
+                      Sending…
                     </>
                   ) : (
                     <>
