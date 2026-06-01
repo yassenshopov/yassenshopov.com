@@ -5763,8 +5763,6 @@
     "id": "140",
     "title": "Neuromancer",
     "type": "book",
-    "rating": null,
-    "status": "want-to-read",
     "genre": [],
     "description": "",
     "year": 1984,
@@ -5773,7 +5771,13 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/10505660-death-bringer"
     },
-    "coverImage": "/resources/images/library/neuromancer-1779880780238.jpg"
+    "coverImage": "/resources/images/library/neuromancer-1779880780238.jpg",
+    "entries": [
+      {
+        "dateStarted": "2026-06-01",
+        "status": "in-progress"
+      }
+    ]
   },
   {
     "id": "141",
@@ -6377,8 +6381,9 @@
     "coverImage": "/resources/images/library/normal-people.png",
     "entries": [
       {
-        "dateCompleted": "2026-05-01",
-        "status": "in-progress"
+        "dateStarted": "2026-05-01",
+        "dateCompleted": "2026-06-01",
+        "status": "completed"
       }
     ]
   },
@@ -7809,8 +7814,9 @@
     "coverImage": "/resources/images/library/normal-people-2020-1779876348414.jpg",
     "entries": [
       {
-        "dateCompleted": "2026-05-01",
-        "status": "in-progress"
+        "dateStarted": "2026-05-01",
+        "dateCompleted": "2026-06-01",
+        "status": "completed"
       }
     ]
   },
