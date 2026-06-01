@@ -108,13 +108,14 @@
   },
   {
     "id": "5",
-    "title": "Gundi",
+    "title": "Gundi (Legend of Love)",
     "type": "movie",
     "genre": [
       "Drama"
     ],
     "description": "A compelling drama exploring personal and social themes.",
-    "coverImage": "/resources/images/library/gundi.webp",
+    "coverImage": "/resources/images/library/gundi-legend-of-love.jpg",
+    "year": 2024,
     "links": {},
     "entries": [
       {
@@ -450,7 +451,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2022-09-01"
       }
     ]
   },
@@ -717,7 +719,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 4
+        "rating": 4,
+        "dateCompleted": "2021-01-01"
       }
     ]
   },
@@ -2259,8 +2262,8 @@
     "entries": [
       {
         "dateCompleted": "2025-01-01",
-        "status": "dnf",
-        "rating": 4
+        "status": "completed",
+        "rating": 2
       }
     ]
   },
@@ -2401,7 +2404,8 @@
     ],
     "entries": [
       {
-        "status": "in-progress"
+        "status": "in-progress",
+        "dateStarted": "2020-01-01"
       }
     ]
   },
@@ -2511,7 +2515,7 @@
     "entries": [
       {
         "dateCompleted": "2023-07-01",
-        "status": "dnf",
+        "status": "completed",
         "rating": 5
       }
     ]
@@ -3371,7 +3375,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2018-01-01",
         "status": "completed",
         "rating": 5
       }
@@ -3694,7 +3698,7 @@
     "externalUrl": "https://www.goodreads.com/book/show/17829716",
     "entries": [
       {
-        "dateCompleted": "2024-01-01",
+        "dateCompleted": "2010-01-01",
         "status": "completed",
         "rating": 5
       }
@@ -3894,9 +3898,9 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2024-10-01",
+        "dateCompleted": "2018-10-01",
         "status": "completed",
-        "rating": 5
+        "rating": 4
       }
     ]
   },
@@ -4147,7 +4151,7 @@
     "externalUrl": "https://www.goodreads.com/book/show/27220736-shoe-dog",
     "entries": [
       {
-        "status": "in-progress"
+        "status": "on-pause"
       }
     ]
   },
@@ -4379,13 +4383,13 @@
       "Adventure"
     ],
     "description": "A classic adventure novel set in Texas, featuring mystery and romance.",
-    "coverImage": "/resources/images/library/the-headless-horseman.webp",
+    "coverImage": "/resources/images/library/the-headless-horseman-1779897412937.jpg",
     "links": {},
     "year": 1866,
     "externalUrl": "https://www.goodreads.com/book/show/2451552.The_Headless_Horseman",
     "entries": [
       {
-        "dateCompleted": "2024-08-01",
+        "dateCompleted": "2017-08-01",
         "status": "completed",
         "rating": 5
       }
@@ -5851,22 +5855,6 @@
     "coverImage": "/resources/images/library/the-shadow-of-the-gods-1779880734819.jpg"
   },
   {
-    "id": "146",
-    "title": "Gundi (Legend of Love)",
-    "type": "movie",
-    "genre": [],
-    "description": "",
-    "year": 2024,
-    "links": {},
-    "coverImage": "/resources/images/library/gundi-legend-of-love.jpg",
-    "entries": [
-      {
-        "dateCompleted": "2025-03-01",
-        "status": "completed"
-      }
-    ]
-  },
-  {
     "id": "147",
     "title": "Bull Run",
     "type": "movie",
@@ -6257,7 +6245,8 @@
     "entries": [
       {
         "dateCompleted": "2025-12-01",
-        "status": "in-progress"
+        "status": "in-progress",
+        "rating": 5
       }
     ]
   },
@@ -9006,7 +8995,8 @@
     "entries": [
       {
         "dateCompleted": "2026-03-01",
-        "status": "completed"
+        "status": "completed",
+        "rating": 4
       }
     ]
   },
