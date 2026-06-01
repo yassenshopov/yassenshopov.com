@@ -150,7 +150,7 @@ export default function LibraryPage() {
   const visibleByYear = groupOccurrencesByYear(toOccurrences(sortedItems));
   const visibleYearKeys = sortYearKeys(Object.keys(visibleByYear));
 
-  const undatedLabel = category === 'books' ? 'Wishlist' : 'Watchlist';
+  const undatedLabel = category === 'books' ? 'To Read' : 'Watchlist';
   const labelForYear = (key: string) => (key === UNDATED_KEY ? undatedLabel : key);
 
   // Build ToC sections from the full filtered list so users can jump to a
