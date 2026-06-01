@@ -5,180 +5,389 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Send, Github, Linkedin, Twitter, ArrowRight, MessageSquare, Loader2 } from "lucide-react";
+import { KitNewsletterForm } from "@/components/KitNewsletterForm";
+import {
+  ArrowRight,
+  Clock,
+  Github,
+  Instagram,
+  Linkedin,
+  Mail,
+  MessageSquare,
+  Send,
+  Sparkles,
+  Twitter,
+} from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+
+const CONTACT_EMAIL = "yassenshopov00@gmail.com";
+
+type Topic = "collab" | "templates" | "commission" | "hi";
+
+type TopicOption = {
+  value: Topic;
+  label: string;
+  subject: string;
+  // Some topics route better through a tailored page (e.g. the art commissions
+  // form). When set, the form shows a nudge but still lets the user proceed.
+  redirect?: { href: string; cta: string; note: string };
+};
+
+const TOPIC_OPTIONS: TopicOption[] = [
+  { value: "collab", label: "Collab / project", subject: "Project inquiry" },
+  { value: "templates", label: "Notion templates", subject: "Notion templates" },
+  {
+    value: "commission",
+    label: "Art commission",
+    subject: "Art commission inquiry",
+    redirect: {
+      href: "/art#commissions",
+      cta: "Use the commissions form",
+      note: "There’s a tailored brief over on the art page — quicker for both of us, and you can attach references in the same flow.",
+    },
+  },
+  { value: "hi", label: "Just saying hi", subject: "Hi" },
+];
+
+// /now-style status snapshot. Edit these when you re-base the page; the
+// "Updated" stamp on the card should match.
+const NOW_LAST_UPDATED = "June 2026";
+const NOW_ROWS: { label: string; value: string }[] = [
+  {
+    label: "Building",
+    value: "Refreshing the site page by page — library, art, blog, contact.",
+  },
+  {
+    label: "Open for",
+    value: "Collab ideas, art commissions, advice calls.",
+  },
+  {
+    label: "Heads up",
+    value: "Reply latency runs a few days on weekdays.",
+  },
+];
+
+const SOCIAL_LINKS = [
+  { name: "GitHub", icon: Github, href: "https://github.com/yassenshopov" },
+  { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/yassen-shopov/" },
+  { name: "Twitter", icon: Twitter, href: "https://twitter.com/yassenshopov" },
+  { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/kofiscrib/" },
+];
 
 export default function ContactPage() {
+  const [topic, setTopic] = useState<Topic>("collab");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [isSending, setIsSending] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSending(true);
-    setTimeout(() => setIsSending(false), 1000);
-  };
+  const selectedTopic =
+    TOPIC_OPTIONS.find((t) => t.value === topic) ?? TOPIC_OPTIONS[0];
 
-  const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMessage(e.target.value);
-  };
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
-  const socialLinks = [
-    {
-      name: "GitHub",
-      icon: Github,
-      href: "https://github.com/yassenshopov",
-      color: "hover:text-[#333] dark:hover:text-[#fff]"
-    },
-    {
-      name: "LinkedIn",
-      icon: Linkedin,
-      href: "https://www.linkedin.com/in/yassen-shopov/",
-      color: "hover:text-[#0077b5]"
-    },
-    {
-      name: "Twitter",
-      icon: Twitter,
-      href: "https://twitter.com/yassenshopov",
-      color: "hover:text-[#1DA1F2]"
-    }
-  ];
+  // mailto pre-fill — same pattern as /art#commissions. Nothing leaves the
+  // browser until the user hits send in their own mail client, so we don't
+  // need a backend or worry about spam.
+  const mailtoHref = useMemo(() => {
+    const subject = `${selectedTopic.subject}${name ? ` — ${name}` : ""}`;
+    const body = [
+      `Hi Yassen,`,
+      ``,
+      `Name: ${name || "(your name)"}`,
+      `Reply to: ${email || "(your email)"}`,
+      `Topic: ${selectedTopic.label}`,
+      ``,
+      message || "(a few lines about what's on your mind…)",
+    ].join("\n");
+    return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+  }, [selectedTopic, name, email, message]);
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative min-h-[40vh] flex items-center overflow-hidden bg-gradient-to-b from-background to-muted">
-        <div className="absolute inset-0 bg-grid-white/10 -z-10" />
-        <div className="container mx-auto px-4">
+      {/* Hero */}
+      <section className="relative isolate overflow-hidden">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background to-muted" />
+
+        {/* Soft brand glow — two blurred radial accents */}
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 opacity-60"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 18% 28%, color-mix(in oklch, var(--primary) 22%, transparent) 0%, transparent 45%), radial-gradient(circle at 82% 78%, color-mix(in oklch, var(--primary) 16%, transparent) 0%, transparent 48%)",
+          }}
+        />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-grid-white/10" />
+
+        {/* Grain texture — matches the blog hero */}
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 pointer-events-none mix-blend-hard-light opacity-90 dark:opacity-40 dark:mix-blend-overlay [.olive_&]:opacity-40 [.olive_&]:mix-blend-overlay"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3' intercept='-1'/%3E%3CfeFuncG type='linear' slope='3' intercept='-1'/%3E%3CfeFuncB type='linear' slope='3' intercept='-1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+            backgroundSize: "220px 220px",
+          }}
+        />
+
+        <div className="container mx-auto px-4 py-20 md:py-28">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
-              <MessageSquare className="w-4 h-4" aria-hidden="true" />
-              <span>Let{"\u2019"}s Connect</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary mb-6 text-sm">
+              <MessageSquare className="w-3.5 h-3.5" aria-hidden="true" />
+              <span className="inline-flex items-center gap-1.5">
+                Inbox open — say hi to
+                <span className="relative w-5 h-5 rounded-full overflow-hidden shrink-0 ring-1 ring-primary/30">
+                  <Image
+                    src="/resources/images/main_page/YassenShopov.jpg"
+                    alt="Yassen Shopov"
+                    fill
+                    sizes="20px"
+                    className="object-cover"
+                  />
+                </span>
+                Yassen
+              </span>
             </div>
-            <h1 className="text-4xl md:text-7xl font-bold tracking-tighter leading-[0.95] text-foreground mb-6">
-              Get in Touch
+
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.95] text-foreground mb-6">
+              Let’s talk.
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl">
-              Have a project in mind? Want to collaborate? Or just want to say hi? I{"\u2019"}d love to hear from you.
+
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl">
+              Project idea, art commission, Notion template question, or just a
+              kind hello — the form below funnels straight into my inbox. I read
+              every message.
             </p>
+
+            <div className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              <Clock className="w-3.5 h-3.5" aria-hidden="true" />
+              Usually replies within a few days
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-20">
+      {/* Main: form + sidebar */}
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            {/* Contact Form */}
-            <Card className="p-8 backdrop-blur-xl bg-card/50">
-              <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-start">
+            {/* Form */}
+            <Card className="p-6 md:p-8 backdrop-blur-xl bg-card/60">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  window.location.href = mailtoHref;
+                }}
+                className="space-y-6"
+              >
+                {/* Topic pills */}
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-foreground">
-                    Your Email
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    inputMode="email"
-                    autoComplete="email"
-                    spellCheck={false}
-                    placeholder="hello@example.com"
-                    value={email}
-                    onChange={handleEmailChange}
-                    required
-                    className="bg-background/50"
-                  />
+                  <span className="text-sm font-medium text-foreground">
+                    What’s this about?
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {TOPIC_OPTIONS.map((opt) => {
+                      const selected = topic === opt.value;
+                      return (
+                        <button
+                          key={opt.value}
+                          type="button"
+                          onClick={() => setTopic(opt.value)}
+                          className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
+                            selected
+                              ? "bg-primary text-primary-foreground border-primary"
+                              : "bg-background text-muted-foreground border-border hover:text-foreground hover:bg-accent"
+                          }`}
+                          aria-pressed={selected}
+                        >
+                          {opt.label}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
+
+                {/* Topic-specific nudge (currently only the commissions topic) */}
+                {selectedTopic.redirect && (
+                  <div className="rounded-lg border border-primary/20 bg-primary/5 p-4">
+                    <p className="text-sm text-muted-foreground mb-3">
+                      {selectedTopic.redirect.note}
+                    </p>
+                    <Button asChild variant="outline" size="sm" className="group">
+                      <Link href={selectedTopic.redirect.href}>
+                        {selectedTopic.redirect.cta}
+                        <ArrowRight className="ml-2 w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </Button>
+                  </div>
+                )}
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="contact-name"
+                      className="text-sm font-medium text-foreground"
+                    >
+                      Your name
+                    </label>
+                    <Input
+                      id="contact-name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Alex Doe"
+                      autoComplete="name"
+                      className="bg-background/60"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="contact-email"
+                      className="text-sm font-medium text-foreground"
+                    >
+                      Reply email
+                    </label>
+                    <Input
+                      id="contact-email"
+                      type="email"
+                      inputMode="email"
+                      autoComplete="email"
+                      spellCheck={false}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="you@example.com"
+                      required
+                      className="bg-background/60"
+                    />
+                  </div>
+                </div>
+
                 <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium text-foreground">
+                  <label
+                    htmlFor="contact-message"
+                    className="text-sm font-medium text-foreground"
+                  >
                     Message
                   </label>
                   <Textarea
-                    id="message"
-                    name="message"
-                    autoComplete="off"
-                    placeholder="Tell me about your project…"
+                    id="contact-message"
                     value={message}
-                    onChange={handleMessageChange}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="A few lines about what's on your mind — context, links, what 'done' looks like…"
                     required
-                    className="min-h-[150px] bg-background/50"
+                    className="min-h-[170px] bg-background/60"
                   />
                 </div>
-                <Button type="submit" size="lg" className="w-full group" disabled={isSending}>
-                  {isSending ? (
-                    <>
-                      <Loader2 className="mr-2 w-4 h-4 animate-spin" aria-hidden="true" />
-                      Sending…
-                    </>
-                  ) : (
-                    <>
-                      Send Message
-                      <Send className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                    </>
-                  )}
+
+                <Button type="submit" size="lg" className="w-full group">
+                  Send via email
+                  <Send className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Button>
+                <p className="text-xs text-muted-foreground text-center">
+                  Opens your email client with the message pre-filled — nothing
+                  leaves the browser until you hit send there.
+                </p>
               </form>
             </Card>
 
-            {/* Contact Info */}
-            <div className="space-y-12">
-              {/* Quick Contact */}
-              <div className="space-y-4">
-                <h2 className="text-2xl font-bold tracking-tight">Quick Contact</h2>
-                <p className="text-muted-foreground">
-                  For quick inquiries, you can reach me directly at:
-                </p>
-                <Link
-                  href="mailto:yassenshopov00@gmail.com"
-                  className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
-                >
-                  <Mail className="w-4 h-4" aria-hidden="true" />
-                  yassenshopov00@gmail.com
-                </Link>
-              </div>
-
-              {/* Social Links */}
-              <div className="space-y-4">
-                <h2 className="text-2xl font-bold tracking-tight">Follow Me</h2>
-                <p className="text-muted-foreground">
-                  Connect with me on social media for updates on my latest projects and thoughts.
-                </p>
-                <div className="flex gap-4">
-                  {socialLinks.map((social) => (
-                    <Link
-                      key={social.name}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`p-3 rounded-lg bg-card hover:bg-accent transition-colors ${social.color}`}
-                      aria-label={social.name}
+            {/* Sidebar */}
+            <div className="space-y-8 lg:sticky lg:top-24">
+              {/* Now panel — small dated status snapshot */}
+              <Card className="p-6 bg-card/60 backdrop-blur-xl">
+                <div className="flex items-center justify-between mb-5">
+                  <h2 className="text-lg font-semibold tracking-tight flex items-center gap-2.5">
+                    <span
+                      className="relative flex h-2 w-2"
+                      aria-hidden="true"
                     >
-                      <social.icon className="w-5 h-5" aria-hidden="true" />
-                    </Link>
+                      <span className="absolute inset-0 rounded-full bg-primary opacity-60 motion-safe:animate-ping" />
+                      <span className="relative rounded-full bg-primary h-2 w-2" />
+                    </span>
+                    Now
+                  </h2>
+                  <span className="text-[0.65rem] uppercase tracking-[0.18em] text-muted-foreground">
+                    Updated {NOW_LAST_UPDATED}
+                  </span>
+                </div>
+                <dl className="space-y-3 text-sm">
+                  {NOW_ROWS.map((row) => (
+                    <div
+                      key={row.label}
+                      className="grid grid-cols-[88px_1fr] gap-3"
+                    >
+                      <dt className="text-[0.7rem] uppercase tracking-[0.14em] text-muted-foreground pt-0.5">
+                        {row.label}
+                      </dt>
+                      <dd className="text-foreground leading-relaxed">
+                        {row.value}
+                      </dd>
+                    </div>
                   ))}
+                </dl>
+              </Card>
+
+              {/* Quiet alternatives — email + socials */}
+              <div className="space-y-5">
+                <div className="space-y-2">
+                  <p className="text-[0.7rem] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                    Or email directly
+                  </p>
+                  <Link
+                    href={`mailto:${CONTACT_EMAIL}`}
+                    className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
+                  >
+                    <Mail className="w-4 h-4" aria-hidden="true" />
+                    {CONTACT_EMAIL}
+                  </Link>
+                </div>
+
+                <div className="space-y-2">
+                  <p className="text-[0.7rem] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                    Find me elsewhere
+                  </p>
+                  <div className="flex gap-2">
+                    {SOCIAL_LINKS.map((s) => (
+                      <Link
+                        key={s.name}
+                        href={s.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2.5 rounded-lg bg-card border border-border text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+                        aria-label={s.name}
+                      >
+                        <s.icon className="w-4 h-4" aria-hidden="true" />
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
-
-              {/* Collaboration */}
-              <Card className="p-6 bg-primary/5 border-primary/10">
-                <h2 className="text-2xl font-bold tracking-tight mb-2">Let{"\u2019"}s Build Something</h2>
-                <p className="text-muted-foreground mb-4">
-                  Looking for a technical co-founder or want to collaborate on an exciting project? I{"\u2019"}m always open to interesting opportunities.
-                </p>
-                <Button variant="outline" className="group" asChild>
-                  <Link href="/projects">
-                    View My Work
-                    <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                  </Link>
-                </Button>
-              </Card>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Newsletter — soft alternative for people who don't have a specific ask */}
+      <section className="py-16 md:py-20 bg-muted">
+        <div className="container mx-auto px-4">
+          <Card className="p-8 md:p-10 max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary mb-5 text-xs">
+              <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
+              <span className="uppercase tracking-[0.18em]">
+                Quieter alternative
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
+              Not sure what to say?
+            </h2>
+            <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
+              Subscribe to{" "}
+              <span className="font-medium text-foreground">Life Engineering</span>{" "}
+              instead — a weekly letter on building, creating, and living more on
+              purpose. You can always hit reply.
+            </p>
+            <KitNewsletterForm variant="inline" />
+          </Card>
         </div>
       </section>
     </Layout>
