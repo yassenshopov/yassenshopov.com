@@ -18,8 +18,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { LibraryItem } from '@/data/library';
+import { LibraryItem, LibraryEntry, getLatestEntry } from '@/data/library';
 import { formatDate } from '@/lib/format-date';
+import LibraryEntryEditor from './LibraryEntryEditor';
+
+// Temporary: dev-only inline entry editor. Remove this flag (and the editor
+// section below) when the library data is locked down — same lifecycle as the
+// cover-upload drag-and-drop in LibraryItemCard.
+const ENTRY_EDIT_ENABLED = process.env.NODE_ENV === 'development';
 
 interface LibraryModalProps {
   selectedItem: LibraryItem | null;
@@ -143,6 +149,16 @@ export default function LibraryModal({
 }: LibraryModalProps) {
   const [dominantColors, setDominantColors] = useState<string[]>([]);
   const [colorCache, setColorCache] = useState<{ [key: string]: string[] }>({});
+  // Dev-only overrides: after a successful save we mirror the new entries / id
+  // here so the modal updates without waiting for HMR to pick up the JSON
+  // write. Both reset whenever the selection changes.
+  const [entriesOverride, setEntriesOverride] = useState<LibraryEntry[] | null>(null);
+  const [idOverride, setIdOverride] = useState<string | null>(null);
+
+  useEffect(() => {
+    setEntriesOverride(null);
+    setIdOverride(null);
+  }, [selectedItem?.id]);
 
   // Extract dominant colors from cover image (off-screen canvas, no DOM node)
   useEffect(() => {
@@ -189,10 +205,96 @@ export default function LibraryModal({
 
   if (!selectedItem) return null;
 
+  // When the dev editor has saved a new entry or renamed the id, re-project
+  // the latest-entry values (and the new id) on top of the original item so
+  // the modal reflects the change immediately.
+  const displayItem: LibraryItem = (() => {
+    if (!entriesOverride && !idOverride) return selectedItem;
+
+    const base: LibraryItem = idOverride
+      ? { ...selectedItem, id: idOverride }
+      : selectedItem;
+
+    if (!entriesOverride) return base;
+
+    const latest = getLatestEntry(entriesOverride);
+    if (!latest) return { ...base, entries: entriesOverride };
+    return {
+      ...base,
+      entries: entriesOverride,
+      status: latest.status,
+      rating: latest.rating ?? null,
+      dateCompleted: latest.dateCompleted,
+      dateStarted: latest.dateStarted,
+      notes: latest.notes,
+    };
+  })();
+
   const boosted = dominantColors.map((c) => boostColor(c));
-  const creatorLabel = getCreatorLabel(selectedItem);
-  const seriesInfo = selectedItem.series ? getSeriesInfo(selectedItem) : null;
-  const relatedItems = getRelatedItems(selectedItem, 6);
+
+  // Decorative blobs that drift around the top-right of the header. Using
+  // pixel-based circles (not percentage ellipses) keeps each blob perfectly
+  // round regardless of the header's aspect ratio, and a soft mid-stop gives
+  // each one a spherical falloff instead of a flat wash. Every blob follows
+  // its own orbit-like path so the composition never feels static.
+  const BLOBS = [
+    {
+      color: boosted[0],
+      alpha: 0.95,
+      frames: [
+        { x: 86, y: 18, size: 380 },
+        { x: 92, y: 14, size: 390 },
+        { x: 90, y: 24, size: 370 },
+        { x: 84, y: 20, size: 385 },
+        { x: 88, y: 16, size: 380 },
+      ],
+    },
+    {
+      color: boosted[1] || boosted[0],
+      alpha: 0.75,
+      frames: [
+        { x: 92, y: 10, size: 280 },
+        { x: 88, y: 16, size: 285 },
+        { x: 96, y: 14, size: 275 },
+        { x: 90, y: 22, size: 285 },
+        { x: 86, y: 12, size: 280 },
+      ],
+    },
+    {
+      color: boosted[2] || boosted[0],
+      alpha: 0.7,
+      frames: [
+        { x: 82, y: 28, size: 320 },
+        { x: 90, y: 32, size: 325 },
+        { x: 80, y: 24, size: 315 },
+        { x: 92, y: 28, size: 325 },
+        { x: 88, y: 30, size: 320 },
+      ],
+    },
+    {
+      color: boosted[3] || boosted[0],
+      alpha: 0.55,
+      frames: [
+        { x: 96, y: 26, size: 240 },
+        { x: 88, y: 18, size: 245 },
+        { x: 100, y: 32, size: 235 },
+        { x: 92, y: 30, size: 245 },
+        { x: 86, y: 22, size: 240 },
+      ],
+    },
+  ];
+
+  const FRAME_COUNT = 5;
+  const gradientFrames = Array.from({ length: FRAME_COUNT }, (_, i) =>
+    BLOBS.map(({ color, alpha, frames }) => {
+      const { x, y, size } = frames[i];
+      const mid = (alpha * 0.5).toFixed(2);
+      return `radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(${color}, ${alpha}) 0%, rgba(${color}, ${mid}) 22%, transparent 62%)`;
+    }).join(', '),
+  );
+  const creatorLabel = getCreatorLabel(displayItem);
+  const seriesInfo = displayItem.series ? getSeriesInfo(displayItem) : null;
+  const relatedItems = getRelatedItems(displayItem, 6);
   const hasNav = sortedItems.length > 1;
 
   return (
@@ -257,18 +359,14 @@ export default function LibraryModal({
                 {dominantColors.length > 0 ? (
                   <motion.div
                     className="absolute inset-0"
-                    style={{
-                      background: `radial-gradient(ellipse 55% 65% at 95% 10%, rgba(${boosted[0]}, 0.95) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 80% 5%, rgba(${boosted[1] || boosted[0]}, 0.75) 0%, transparent 65%), radial-gradient(ellipse 45% 55% at 100% 25%, rgba(${boosted[2] || boosted[0]}, 0.7) 0%, transparent 65%), radial-gradient(ellipse 35% 45% at 85% 30%, rgba(${boosted[3] || boosted[0]}, 0.55) 0%, transparent 60%)`,
+                    style={{ background: gradientFrames[0] }}
+                    animate={{ background: gradientFrames }}
+                    transition={{
+                      duration: 22,
+                      repeat: Infinity,
+                      repeatType: 'reverse',
+                      ease: 'easeInOut',
                     }}
-                    animate={{
-                      background: [
-                        `radial-gradient(ellipse 55% 65% at 95% 10%, rgba(${boosted[0]}, 0.95) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 80% 5%, rgba(${boosted[1] || boosted[0]}, 0.75) 0%, transparent 65%), radial-gradient(ellipse 45% 55% at 100% 25%, rgba(${boosted[2] || boosted[0]}, 0.7) 0%, transparent 65%), radial-gradient(ellipse 35% 45% at 85% 30%, rgba(${boosted[3] || boosted[0]}, 0.55) 0%, transparent 60%)`,
-                        `radial-gradient(ellipse 55% 65% at 100% 20%, rgba(${boosted[0]}, 0.95) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 85% 30%, rgba(${boosted[1] || boosted[0]}, 0.75) 0%, transparent 65%), radial-gradient(ellipse 45% 55% at 90% 5%, rgba(${boosted[2] || boosted[0]}, 0.7) 0%, transparent 65%), radial-gradient(ellipse 35% 45% at 75% 20%, rgba(${boosted[3] || boosted[0]}, 0.55) 0%, transparent 60%)`,
-                        `radial-gradient(ellipse 55% 65% at 85% 30%, rgba(${boosted[0]}, 0.95) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 100% 10%, rgba(${boosted[1] || boosted[0]}, 0.75) 0%, transparent 65%), radial-gradient(ellipse 45% 55% at 75% 15%, rgba(${boosted[2] || boosted[0]}, 0.7) 0%, transparent 65%), radial-gradient(ellipse 35% 45% at 95% 35%, rgba(${boosted[3] || boosted[0]}, 0.55) 0%, transparent 60%)`,
-                        `radial-gradient(ellipse 55% 65% at 90% 5%, rgba(${boosted[0]}, 0.95) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 100% 30%, rgba(${boosted[1] || boosted[0]}, 0.75) 0%, transparent 65%), radial-gradient(ellipse 45% 55% at 80% 25%, rgba(${boosted[2] || boosted[0]}, 0.7) 0%, transparent 65%), radial-gradient(ellipse 35% 45% at 95% 15%, rgba(${boosted[3] || boosted[0]}, 0.55) 0%, transparent 60%)`,
-                      ],
-                    }}
-                    transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
                   />
                 ) : (
                   <div
@@ -304,18 +402,18 @@ export default function LibraryModal({
               >
                 {/* Cover */}
                 <div className="flex-shrink-0 mx-auto md:mx-0">
-                  <div className="w-32 h-48 sm:w-40 sm:h-60 relative bg-muted dark:bg-black rounded-lg overflow-hidden shadow-xl ring-1 ring-black/5">
-                    {selectedItem.coverImage ? (
+                  <div className="w-32 h-48 sm:w-40 sm:h-60 relative bg-muted dark:bg-black rounded-lg overflow-hidden ring-1 ring-black/5">
+                    {displayItem.coverImage ? (
                       <Image
-                        src={selectedItem.coverImage}
-                        alt={selectedItem.title}
+                        src={displayItem.coverImage}
+                        alt={displayItem.title}
                         fill
                         sizes="160px"
                         className="object-contain"
                       />
                     ) : (
                       <div className="flex items-center justify-center h-full text-muted-foreground">
-                        {getTypeIcon(selectedItem.type)}
+                        {getTypeIcon(displayItem.type)}
                       </div>
                     )}
                   </div>
@@ -326,15 +424,15 @@ export default function LibraryModal({
                   <div>
                     <div className="flex flex-wrap items-start justify-center md:justify-start gap-2 mb-1">
                       <h1 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight">
-                        {selectedItem.title}
+                        {displayItem.title}
                       </h1>
-                      {selectedItem.series && selectedItem.seriesOrder != null && (
+                      {displayItem.series && displayItem.seriesOrder != null && (
                         <Badge
                           variant="outline"
                           className="bg-primary/10 text-primary border-primary/30 px-2 py-0.5 mt-1.5 self-start"
                         >
                           <span className="text-xs font-medium">
-                            {selectedItem.series} #{selectedItem.seriesOrder}
+                            {displayItem.series} #{displayItem.seriesOrder}
                           </span>
                         </Badge>
                       )}
@@ -345,22 +443,22 @@ export default function LibraryModal({
                     {seriesInfo && (
                       <p className="text-xs text-muted-foreground mt-1">
                         Part {seriesInfo.currentIndex + 1} of {seriesInfo.totalItems} in the{' '}
-                        {selectedItem.series} series
+                        {displayItem.series} series
                       </p>
                     )}
                   </div>
 
                   <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
-                    <Stars rating={selectedItem.rating} size="md" />
+                    <Stars rating={displayItem.rating} size="md" />
                     <Badge
-                      className={`${getStatusColor(selectedItem.status)} text-xs px-2 py-0.5`}
+                      className={`${getStatusColor(displayItem.status)} text-xs px-2 py-0.5`}
                     >
-                      {formatStatus(selectedItem.status)}
+                      {formatStatus(displayItem.status)}
                     </Badge>
                   </div>
 
                   <div className="flex flex-wrap justify-center md:justify-start gap-1.5">
-                    {selectedItem.genre.map((g) => (
+                    {displayItem.genre.map((g) => (
                       <Badge key={g} variant="secondary" className="text-xs">
                         {g}
                       </Badge>
@@ -368,16 +466,16 @@ export default function LibraryModal({
                   </div>
 
                   <div className="flex flex-wrap justify-center md:justify-start gap-x-5 gap-y-1 text-sm text-muted-foreground">
-                    {selectedItem.dateCompleted && (
+                    {displayItem.dateCompleted && (
                       <div className="flex items-center gap-1.5">
                         <Calendar className="w-3.5 h-3.5" />
-                        <span>Completed {formatDate(selectedItem.dateCompleted)}</span>
+                        <span>Completed {formatDate(displayItem.dateCompleted)}</span>
                       </div>
                     )}
-                    {selectedItem.dateStarted && selectedItem.status === 'in-progress' && (
+                    {displayItem.dateStarted && displayItem.status === 'in-progress' && (
                       <div className="flex items-center gap-1.5">
                         <Clock className="w-3.5 h-3.5" />
-                        <span>Started {formatDate(selectedItem.dateStarted)}</span>
+                        <span>Started {formatDate(displayItem.dateStarted)}</span>
                       </div>
                     )}
                   </div>
@@ -398,25 +496,38 @@ export default function LibraryModal({
             >
               {/* Lede description */}
               <p className="text-base md:text-lg leading-relaxed text-foreground/90 max-w-3xl">
-                {selectedItem.description}
+                {displayItem.description}
               </p>
 
               {/* Notes */}
-              {selectedItem.notes && (
+              {displayItem.notes && (
                 <section>
                   <SectionLabel>Notes</SectionLabel>
                   <div className="border-l-2 border-primary/60 pl-4 py-1">
-                    <p className="text-foreground/90 leading-relaxed">{selectedItem.notes}</p>
+                    <p className="text-foreground/90 leading-relaxed">{displayItem.notes}</p>
                   </div>
                 </section>
               )}
 
+              {/* Dev-only entry editor — see note at top of file. The key
+                  ensures the editor remounts (and resets its draft state)
+                  whenever the user navigates to a different item, but stays
+                  put across in-place edits like a rename. */}
+              {ENTRY_EDIT_ENABLED && (
+                <LibraryEntryEditor
+                  key={selectedItem.id}
+                  item={displayItem}
+                  onSaved={(nextEntries) => setEntriesOverride(nextEntries)}
+                  onIdSaved={(nextId) => setIdOverride(nextId)}
+                />
+              )}
+
               {/* Links */}
-              {selectedItem.links && Object.keys(selectedItem.links).length > 0 && (
+              {displayItem.links && Object.keys(displayItem.links).length > 0 && (
                 <section>
                   <SectionLabel>Links</SectionLabel>
                   <div className="flex flex-wrap gap-2">
-                    {Object.entries(selectedItem.links).map(([platform, url]) =>
+                    {Object.entries(displayItem.links).map(([platform, url]) =>
                       url ? (
                         <Link
                           key={platform}
