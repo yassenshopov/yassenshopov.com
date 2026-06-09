@@ -6251,6 +6251,10 @@
         "dateCompleted": "2025-12-01",
         "status": "in-progress",
         "rating": 5
+      },
+      {
+        "dateStarted": "2026-06-01",
+        "status": "in-progress"
       }
     ]
   },
@@ -6701,7 +6705,13 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/50202953-piranesi"
     },
-    "coverImage": "/resources/images/library/piranesi.png"
+    "coverImage": "/resources/images/library/piranesi.png",
+    "entries": [
+      {
+        "dateStarted": "2026-06-01",
+        "status": "in-progress"
+      }
+    ]
   },
   {
     "id": "196",
