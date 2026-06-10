@@ -493,6 +493,7 @@
     "externalUrl": "https://www.audible.co.uk/pd/The-Ballad-Of-Songbirds-And-Snakes-A-Hunger-Games-Novel-Audiobook/1338635204",
     "entries": [
       {
+        "dateStarted": "2023-07-01",
         "dateCompleted": "2023-11-01",
         "status": "completed",
         "rating": 4
@@ -642,6 +643,7 @@
     ],
     "entries": [
       {
+        "dateStarted": "2023-12-01",
         "dateCompleted": "2024-01-01",
         "status": "completed",
         "rating": 4
@@ -680,7 +682,7 @@
     "externalUrl": "https://www.goodreads.com/book/show/43808723-everything-is-f-cked",
     "entries": [
       {
-        "dateCompleted": "2021-11-01",
+        "dateCompleted": "2021-10-01",
         "status": "completed",
         "rating": 4
       }
@@ -1028,7 +1030,7 @@
     "externalUrl": "https://www.goodreads.com/book/show/10572.A_Clash_of_Kings",
     "entries": [
       {
-        "dateCompleted": "2022-12-01",
+        "dateCompleted": "2022-11-01",
         "status": "completed",
         "rating": 5
       }
@@ -1070,7 +1072,7 @@
     "externalUrl": "https://www.goodreads.com/book/show/13496.A_Game_of_Thrones",
     "entries": [
       {
-        "dateCompleted": "2022-10-01",
+        "dateCompleted": "2022-09-01",
         "status": "completed",
         "rating": 5
       }
@@ -1729,7 +1731,8 @@
     "externalUrl": "https://www.goodreads.com/book/show/25135194-prisoners-of-geography",
     "entries": [
       {
-        "dateCompleted": "2022-01-01",
+        "dateStarted": "2022-01-01",
+        "dateCompleted": "2022-02-01",
         "status": "completed",
         "rating": 5
       }
@@ -2377,6 +2380,7 @@
     "externalUrl": "https://www.goodreads.com/book/show/44421460-before-the-coffee-gets-cold",
     "entries": [
       {
+        "dateStarted": "2024-10-01",
         "dateCompleted": "2024-11-01",
         "status": "completed",
         "rating": 5
@@ -2578,6 +2582,7 @@
     ],
     "entries": [
       {
+        "dateStarted": "2024-01-01",
         "dateCompleted": "2024-09-01",
         "status": "completed",
         "rating": 5
@@ -3966,6 +3971,7 @@
     "externalUrl": "https://www.goodreads.com/book/show/59840044",
     "entries": [
       {
+        "dateStarted": "2025-03-01",
         "dateCompleted": "2025-04-01",
         "status": "completed",
         "rating": 1
@@ -4516,7 +4522,8 @@
     "externalUrl": "https://www.goodreads.com/book/show/58784475-tomorrow-and-tomorrow-and-tomorrow",
     "entries": [
       {
-        "dateCompleted": "2025-05-01",
+        "dateStarted": "2025-05-01",
+        "dateCompleted": "2025-06-01",
         "status": "completed",
         "rating": 5
       }
@@ -4566,6 +4573,7 @@
     "externalUrl": "https://www.amazon.com/Why-Good-People-Things-Understanding/dp/1592403417",
     "entries": [
       {
+        "dateStarted": "2024-11-01",
         "dateCompleted": "2024-12-01",
         "status": "completed",
         "rating": 5
@@ -5197,7 +5205,8 @@
     "coverImage": "/resources/images/library/the-last-witch-of-scotland-1779877290946.webp",
     "entries": [
       {
-        "dateCompleted": "2025-07-01",
+        "dateStarted": "2025-07-01",
+        "dateCompleted": "2025-11-01",
         "status": "completed"
       }
     ]
@@ -6442,6 +6451,7 @@
     "coverImage": "/resources/images/library/the-fall-1779877216075.jpg",
     "entries": [
       {
+        "dateStarted": "2025-12-01",
         "dateCompleted": "2026-06-09",
         "status": "completed",
         "rating": 3
@@ -9011,7 +9021,8 @@
     "coverImage": "/resources/images/library/tales-from-the-cafe-1779877184346.jpg",
     "entries": [
       {
-        "dateCompleted": "2026-03-01",
+        "dateStarted": "2026-03-01",
+        "dateCompleted": "2026-05-01",
         "status": "completed",
         "rating": 4
       }
