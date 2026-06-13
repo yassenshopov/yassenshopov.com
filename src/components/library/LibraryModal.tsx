@@ -6,7 +6,6 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
-  Star,
   Calendar,
   Clock,
   ExternalLink,
@@ -21,6 +20,7 @@ import { Badge } from '@/components/ui/badge';
 import { LibraryItem, LibraryEntry, getLatestEntry } from '@/data/library';
 import { formatDate } from '@/lib/format-date';
 import LibraryEntryEditor from './LibraryEntryEditor';
+import TierBadge from './TierBadge';
 
 // Temporary: dev-only inline entry editor. Remove this flag (and the editor
 // section below) when the library data is locked down — same lifecycle as the
@@ -60,25 +60,6 @@ function getTypeIcon(type: string, size: 'sm' | 'lg' = 'lg') {
     default:
       return null;
   }
-}
-
-function Stars({ rating, size = 'sm' }: { rating: number | null; size?: 'sm' | 'md' }) {
-  if (rating == null) {
-    return <span className="text-xs text-muted-foreground italic">Unrated</span>;
-  }
-  const cls = size === 'md' ? 'w-4 h-4' : 'w-3.5 h-3.5';
-  return (
-    <div className="flex items-center gap-0.5">
-      {Array.from({ length: 5 }, (_, i) => (
-        <Star
-          key={i}
-          className={`${cls} ${
-            i < rating ? 'fill-yellow-400 text-yellow-400' : 'text-muted-foreground/30'
-          }`}
-        />
-      ))}
-    </div>
-  );
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -449,7 +430,7 @@ export default function LibraryModal({
                   </div>
 
                   <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
-                    <Stars rating={displayItem.rating} size="md" />
+                    <TierBadge itemId={displayItem.id} size="md" />
                     <Badge
                       className={`${getStatusColor(displayItem.status)} text-xs px-2 py-0.5`}
                     >
@@ -595,7 +576,7 @@ export default function LibraryModal({
                                 {related.series} #{related.seriesOrder}
                               </p>
                             )}
-                            <Stars rating={related.rating} />
+                            <TierBadge itemId={related.id} />
                           </div>
                         </button>
                       );

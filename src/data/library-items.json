@@ -1314,14 +1314,18 @@
         "52"
       ]
     },
-    "links": {},
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt10545296/"
+    },
     "entries": [
       {
         "dateCompleted": "2023-11-20",
         "status": "completed",
         "rating": 4
       }
-    ]
+    ],
+    "year": 2023,
+    "externalUrl": "https://www.imdb.com/title/tt10545296/"
   },
   {
     "id": "44",
@@ -1984,13 +1988,17 @@
     ],
     "description": "A practical guide to personal finance and wealth-building.",
     "coverImage": "/resources/images/library/i-will-teach-you-to-be-rich.webp",
-    "links": {},
+    "links": {
+      "goodreads": "https://www.goodreads.com/book/show/4924862-i-will-teach-you-to-be-rich"
+    },
     "entries": [
       {
         "status": "completed",
         "rating": 5
       }
-    ]
+    ],
+    "year": 2009,
+    "externalUrl": "https://www.goodreads.com/book/show/4924862-i-will-teach-you-to-be-rich"
   },
   {
     "id": "67",
@@ -4861,26 +4869,6 @@
     ]
   },
   {
-    "id": "89",
-    "title": "The Hunger Games: The Ballad of Songbirds and Snakes",
-    "type": "movie",
-    "genre": [],
-    "description": "",
-    "year": 2023,
-    "externalUrl": "https://www.imdb.com/title/tt10545296/",
-    "director": "Francis Lawrence",
-    "links": {
-      "imdb": "https://www.imdb.com/title/tt10545296/"
-    },
-    "coverImage": "/resources/images/library/the-hunger-games-the-ballad-of-songbirds-and-snakes.jpg",
-    "entries": [
-      {
-        "dateCompleted": "2023-11-01",
-        "status": "completed"
-      }
-    ]
-  },
-  {
     "id": "90",
     "title": "Nonviolent Communication: Create Your Life, Your Relationships, and Your World in Harmony with Your Values",
     "type": "book",
@@ -5207,25 +5195,6 @@
       {
         "dateStarted": "2025-07-01",
         "dateCompleted": "2025-11-01",
-        "status": "completed"
-      }
-    ]
-  },
-  {
-    "id": "108",
-    "title": "I Will Teach You to Be Rich",
-    "type": "book",
-    "genre": [],
-    "description": "",
-    "year": 2009,
-    "externalUrl": "https://www.goodreads.com/book/show/4924862-i-will-teach-you-to-be-rich",
-    "author": "Ramit Sethi",
-    "links": {
-      "goodreads": "https://www.goodreads.com/book/show/4924862-i-will-teach-you-to-be-rich"
-    },
-    "coverImage": "/resources/images/library/i-will-teach-you-to-be-rich-2009.jpg",
-    "entries": [
-      {
         "status": "completed"
       }
     ]
@@ -7672,25 +7641,6 @@
       "goodreads": "https://www.goodreads.com/book/show/3310284"
     },
     "coverImage": "/resources/images/library/item-z8cbbo-1779880524868.jpg",
-    "entries": [
-      {
-        "status": "completed"
-      }
-    ]
-  },
-  {
-    "id": "254",
-    "title": "Под игото",
-    "type": "book",
-    "genre": [],
-    "description": "",
-    "year": 1883,
-    "externalUrl": "https://www.goodreads.com/book/show/2722916--",
-    "author": "Ivan Vazov",
-    "links": {
-      "goodreads": "https://www.goodreads.com/book/show/2722916--"
-    },
-    "coverImage": "/resources/images/library/item-z8cbbo-1779880527354.jpg",
     "entries": [
       {
         "status": "completed"

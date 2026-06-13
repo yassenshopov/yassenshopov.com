@@ -2,7 +2,8 @@
 
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Search, X } from 'lucide-react';
+import { Search, X, Layers } from 'lucide-react';
+import Link from 'next/link';
 import Layout from '@/components/Layout';
 import LibraryHero from '@/components/library/LibraryHero';
 import LibraryTabs from '@/components/library/LibraryTabs';
@@ -246,6 +247,13 @@ export default function LibraryPage() {
           />
 
           <div className="flex items-center gap-4">
+            <Link
+              href="/library/tier-list"
+              className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
+            >
+              <Layers className="w-4 h-4" />
+              Tier List
+            </Link>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
               <Input

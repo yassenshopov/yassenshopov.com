@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Star, BookOpen, Clapperboard, Monitor, Upload, Loader2 } from 'lucide-react';
+import { BookOpen, Clapperboard, Monitor, Upload, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import { toast } from 'sonner';
 import { LibraryItem } from '@/data/library';
+import TierBadge from './TierBadge';
 
 interface LibraryItemCardProps {
   item: LibraryItem;
@@ -56,24 +57,6 @@ function CurrentlyOnLine({ type }: { type: LibraryItem['type'] }) {
       </span>
       Currently {verb}
     </p>
-  );
-}
-
-function Stars({ rating }: { rating: number | null }) {
-  if (rating == null) {
-    return <span className="text-xs text-muted-foreground italic">Unrated</span>;
-  }
-  return (
-    <div className="flex items-center gap-0.5">
-      {Array.from({ length: 5 }, (_, i) => (
-        <Star
-          key={i}
-          className={`w-3.5 h-3.5 ${
-            i < rating ? 'fill-yellow-400 text-yellow-400' : 'text-muted-foreground/30'
-          }`}
-        />
-      ))}
-    </div>
   );
 }
 
@@ -244,7 +227,7 @@ export default function LibraryItemCard({
           <p className="text-sm text-muted-foreground line-clamp-1">by {creator}</p>
         )}
         <div className="flex items-center justify-between gap-2">
-          <Stars rating={item.rating} />
+          <TierBadge itemId={item.id} />
           {item.status === 'in-progress' && <CurrentlyOnLine type={item.type} />}
         </div>
       </div>
