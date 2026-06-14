@@ -1192,7 +1192,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-10-01",
+        "dateCompleted": "2015-10-01",
         "status": "completed",
         "rating": 5
       }
@@ -1236,7 +1236,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-10-15",
+        "dateCompleted": "2015-10-15",
         "status": "completed",
         "rating": 5
       }
@@ -1281,7 +1281,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-11-01",
+        "dateCompleted": "2015-11-01",
         "status": "completed",
         "rating": 4
       }
@@ -1994,7 +1994,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2020-05-05"
       }
     ],
     "year": 2009,
@@ -2506,7 +2507,7 @@
     "externalUrl": "https://en.wikipedia.org/wiki/Dracula",
     "entries": [
       {
-        "dateCompleted": "2024-11-01",
+        "dateCompleted": "2013-11-01",
         "status": "completed",
         "rating": 5
       }
@@ -3310,7 +3311,7 @@
     "externalUrl": "https://www.goodreads.com/book/show/20510241-the-calling",
     "entries": [
       {
-        "dateCompleted": "2024-01-01",
+        "dateCompleted": "2013-01-01",
         "status": "completed",
         "rating": 4
       }
@@ -3406,7 +3407,7 @@
       "Horror"
     ],
     "description": "The sequel to Tokyo Ghoul, following the story of Haise Sasaki.",
-    "coverImage": "/resources/images/library/tokyo-ghoul-re.webp",
+    "coverImage": "/resources/images/library/tokyo-ghoul-re-1781421071025.webp",
     "series": "Tokyo Ghoul",
     "seriesOrder": 2,
     "relationships": {
@@ -3468,9 +3469,10 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2017-01-01",
         "status": "completed",
-        "rating": 4
+        "rating": 4,
+        "dateStarted": "2016-02-02"
       }
     ]
   },
@@ -3519,7 +3521,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2013-01-01",
         "status": "completed",
         "rating": 5
       }
@@ -3631,7 +3633,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2024-10-01",
+        "dateCompleted": "2018-10-01",
         "status": "completed",
         "rating": 5
       }
@@ -3842,7 +3844,7 @@
     "externalUrl": "https://www.goodreads.com/book/show/10822851",
     "entries": [
       {
-        "dateCompleted": "2024-01-01",
+        "dateCompleted": "2010-01-01",
         "status": "completed",
         "rating": 5
       }
@@ -3949,7 +3951,7 @@
     "externalUrl": "https://www.goodreads.com/book/show/7736137",
     "entries": [
       {
-        "dateCompleted": "2024-01-01",
+        "dateCompleted": "2010-01-01",
         "status": "completed",
         "rating": 5
       }
@@ -5357,7 +5359,7 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt2069441/"
     },
-    "coverImage": "/resources/images/library/mirai-nikki.jpg",
+    "coverImage": "/resources/images/library/mirai-nikki-1781420052904.jpg",
     "entries": [
       {
         "status": "completed"
@@ -5509,7 +5511,7 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt3741634/"
     },
-    "coverImage": "/resources/images/library/tokyo-ghoul-2011.jpg",
+    "coverImage": "/resources/images/library/tokyo-ghoul-2011-1781419929305.jpg",
     "entries": [
       {
         "status": "completed"
