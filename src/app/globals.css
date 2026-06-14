@@ -347,70 +347,15 @@ html {
 }
 
 /* -------------------------------------------------------------------------
- * Art-page gallery parallax (scroll-driven, GPU-accelerated)
+ * Art-page gallery "spotlight" hover
  *
- * Uses the View Timeline API (`animation-timeline: view()`) so each tile is
- * driven by its own position in the viewport — no JS per frame.
- *
- * Each tile is assigned one of three "lanes" (a/b/c) with different drift
- * ranges so adjacent tiles in the masonry feel less mechanical. The animation
- * runs from when the tile enters the viewport (entry 0%) to when it leaves
- * (exit 100%), translating Y from a positive offset to a negative offset.
- * That gives the visual illusion of the tile lagging slightly behind the
- * scroll, i.e. parallax.
- *
- * Graceful fallbacks:
- *   - Browsers without view-timeline (Firefox today) skip the animation block
- *     entirely via @supports and just render the tiles flat.
- *   - Users with prefers-reduced-motion: reduce never get the animation.
+ * Tiles render in full color by default. When the gallery is hovered (or a
+ * tile is keyboard-focused), every tile EXCEPT the active one desaturates,
+ * so the piece under the cursor stands out. The `transition` lives on the
+ * <img> in the markup, so the fade is smooth in both directions.
  * ------------------------------------------------------------------------- */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .art-parallax-tile {
-      animation-timeline: view();
-      animation-range: cover 0% cover 100%;
-      animation-fill-mode: both;
-      animation-timing-function: linear;
-      animation-duration: auto;
-      will-change: transform;
-    }
-
-    .art-parallax-tile--a {
-      animation-name: art-parallax-lane-a;
-    }
-    .art-parallax-tile--b {
-      animation-name: art-parallax-lane-b;
-    }
-    .art-parallax-tile--c {
-      animation-name: art-parallax-lane-c;
-    }
-  }
-}
-
-@keyframes art-parallax-lane-a {
-  from {
-    transform: translate3d(0, 40px, 0);
-  }
-  to {
-    transform: translate3d(0, -40px, 0);
-  }
-}
-
-@keyframes art-parallax-lane-b {
-  from {
-    transform: translate3d(0, 16px, 0);
-  }
-  to {
-    transform: translate3d(0, -64px, 0);
-  }
-}
-
-@keyframes art-parallax-lane-c {
-  from {
-    transform: translate3d(0, 64px, 0);
-  }
-  to {
-    transform: translate3d(0, -16px, 0);
-  }
+.gallery-flush:hover .gallery-tile:not(:hover) img,
+.gallery-flush:focus-within .gallery-tile:not(:focus-within):not(:hover) img {
+  filter: grayscale(1);
 }
 

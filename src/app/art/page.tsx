@@ -42,24 +42,17 @@ const PIECE_OPTIONS: { value: CommissionPieceType; label: string }[] = [
   { value: "other", label: "Other" },
 ];
 
-// Hero tile parallax: each of the four floating thumbnails drifts at a
-// different rate (and direction) as the page scrolls. Indices map to the
-// `artworks` array; speeds are multiplied by scrollY to get translateY (px).
-const HERO_TILES: { idx: number; speed: number; baseY: number }[] = [
-  { idx: 0, speed: -0.16, baseY: 24 },
-  { idx: 6, speed: 0.10, baseY: -8 },
-  { idx: 12, speed: -0.22, baseY: 24 },
-  { idx: 18, speed: 0.14, baseY: -8 },
+// Four floating hero thumbnails. Indices map to the `artworks` array; the
+// staggered `baseY` offsets give the grid a gentle masonry-like stagger.
+const HERO_TILES: { idx: number; baseY: number }[] = [
+  { idx: 0, baseY: 24 },
+  { idx: 6, baseY: -8 },
+  { idx: 12, baseY: 24 },
+  { idx: 18, baseY: -8 },
 ];
-
-// Three gallery-tile "lanes" keyed by `:nth-child`-ish offset. Each lane gets
-// a different scroll-timeline @keyframes pair in globals.css so adjacent tiles
-// drift at different rates and feel less mechanical.
-const PARALLAX_LANES = ["a", "b", "c"] as const;
 
 export default function ArtPage() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [heroScrollY, setHeroScrollY] = useState(0);
 
   // Commission form state
   const [name, setName] = useState("");
@@ -93,34 +86,6 @@ export default function ArtPage() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [lightboxIndex]);
-
-  // Hero parallax: drive the floating-thumbnail offsets from window.scrollY,
-  // rAF-throttled so we never do more work than the browser is painting.
-  // No-ops under prefers-reduced-motion and once the hero is well off-screen.
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReducedMotion) return;
-
-    let rafId = 0;
-    const onScroll = () => {
-      if (rafId) return;
-      rafId = window.requestAnimationFrame(() => {
-        rafId = 0;
-        // Cap the value — beyond the hero we don't need to keep updating.
-        setHeroScrollY(Math.min(window.scrollY, 1200));
-      });
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (rafId) window.cancelAnimationFrame(rafId);
-    };
-  }, []);
 
   // Enable smooth scrolling while on this page (e.g. for the in-page "Commission a piece"
   // anchor jump), but honour `prefers-reduced-motion` and restore the prior behaviour
@@ -212,15 +177,14 @@ export default function ArtPage() {
             </div>
             <div className="relative hidden lg:block">
               <div className="grid grid-cols-2 gap-4">
-                {HERO_TILES.map(({ idx, speed, baseY }, i) => {
-                  const offsetY = baseY + heroScrollY * speed;
+                {HERO_TILES.map(({ idx, baseY }, i) => {
                   return (
                     <div
                       key={idx}
-                      className="relative overflow-hidden rounded-2xl border border-border/60 will-change-transform"
+                      className="relative overflow-hidden rounded-2xl border border-border/60"
                       style={{
                         aspectRatio: "3 / 4",
-                        transform: `translate3d(0, ${offsetY.toFixed(2)}px, 0)`,
+                        transform: `translateY(${baseY}px)`,
                       }}
                     >
                       <Image
@@ -266,19 +230,18 @@ export default function ArtPage() {
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
+        </div>
 
-          {/* CSS columns masonry — natural fit for mixed aspect ratios. */}
-          {/* Per-tile parallax is driven by `animation-timeline: view()` in globals.css; */}
-          {/* the `art-parallax-tile--{a,b,c}` lane class controls drift speed and direction. */}
-          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 [column-fill:_balance]">
+        {/* CSS columns masonry — natural fit for mixed aspect ratios. The grid is */}
+        {/* full-bleed (no container padding) for an edge-to-edge gallery wall. */}
+        <div className="gallery-flush columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-2 [column-fill:_balance]">
             {artworks.map((art, i) => {
-              const lane = PARALLAX_LANES[i % PARALLAX_LANES.length];
               return (
                 <button
                   key={art.src}
                   type="button"
                   onClick={() => setLightboxIndex(i)}
-                  className={`art-parallax-tile art-parallax-tile--${lane} mb-4 block w-full overflow-hidden rounded-xl border border-border/60 bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 group`}
+                  className="gallery-tile relative mb-2 block w-full overflow-hidden rounded-sm bg-card focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/60 group"
                   aria-label={`Open ${art.alt}`}
                 >
                   <Image
@@ -287,7 +250,7 @@ export default function ArtPage() {
                     width={800}
                     height={1000}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                    className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="block h-auto w-full transition-[transform,filter] duration-500 ease-out group-hover:scale-[1.03]"
                     loading={i < 4 ? "eager" : "lazy"}
                     priority={i < 4}
                   />
@@ -295,7 +258,6 @@ export default function ArtPage() {
               );
             })}
           </div>
-        </div>
       </section>
 
       {/* Follow band */}
