@@ -2,9 +2,10 @@
 
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Search, X, Layers } from 'lucide-react';
+import { Search, X, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import Layout from '@/components/Layout';
+import { TIERS } from '@/data/library-tiers';
 import LibraryHero from '@/components/library/LibraryHero';
 import LibraryTabs from '@/components/library/LibraryTabs';
 import LibraryItemCard from '@/components/library/LibraryItemCard';
@@ -249,10 +250,23 @@ export default function LibraryPage() {
           <div className="flex items-center gap-4">
             <Link
               href="/library/tier-list"
-              className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
+              aria-label="View library as a tier list"
+              className="group inline-flex items-center gap-2.5 rounded-lg border border-border bg-card px-3 py-2 transition-colors hover:border-primary"
             >
-              <Layers className="w-4 h-4" />
-              Tier List
+              <span className="flex items-center gap-px" aria-hidden>
+                {TIERS.map((t) => (
+                  <span
+                    key={t.id}
+                    className={`flex h-4 w-4 items-center justify-center rounded-[2px] text-[9px] font-black leading-none text-black/85 ${t.colorClass}`}
+                  >
+                    {t.label}
+                  </span>
+                ))}
+              </span>
+              <span className="flex items-center gap-1 text-sm font-semibold text-foreground transition-colors group-hover:text-primary">
+                Tier List
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+              </span>
             </Link>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />

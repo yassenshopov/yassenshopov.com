@@ -17,7 +17,7 @@ export default function TierBadge({ itemId, size = 'sm' }: TierBadgeProps) {
   if (!tierId) {
     return (
       <span
-        className={`inline-flex shrink-0 items-center gap-1.5 rounded-md bg-muted/50 ring-1 ring-inset ring-border ${
+        className={`inline-flex w-fit shrink-0 items-center gap-1.5 rounded-md bg-muted/50 shadow-none ring-1 ring-inset ring-border ${
           isMd ? 'px-2.5 py-1' : 'px-2 py-0.5'
         }`}
       >
@@ -40,12 +40,12 @@ export default function TierBadge({ itemId, size = 'sm' }: TierBadgeProps) {
     <span
       title={`${tier.label} tier`}
       aria-label={`${tier.label} tier`}
-      className={`inline-flex shrink-0 items-center gap-1.5 rounded-md bg-muted/50 ring-1 ring-inset ring-border ${
+      className={`inline-flex w-fit shrink-0 items-center gap-1.5 rounded-md bg-muted/50 shadow-none ring-1 ring-inset ring-border ${
         isMd ? 'py-1 pl-1 pr-2.5' : 'py-0.5 pl-0.5 pr-2'
       }`}
     >
       <span
-        className={`inline-flex items-center justify-center font-black leading-none text-black/85 ${tier.colorClass} ${chip}`}
+        className={`inline-flex items-center justify-center font-black leading-none text-black/85 shadow-none ${tier.colorClass} ${chip}`}
       >
         {tier.label}
       </span>
