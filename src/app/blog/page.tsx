@@ -64,6 +64,7 @@ export default function BlogPage() {
                           fill
                           sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                           className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          unoptimized
                         />
                       </div>
                       <div className="p-6 flex flex-col flex-grow">

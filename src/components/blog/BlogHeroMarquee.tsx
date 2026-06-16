@@ -32,6 +32,7 @@ function MarqueeRow({ images, direction = 'left', durationSec = 100 }: MarqueeRo
             fill
             sizes="(min-width: 768px) 512px, (min-width: 640px) 416px, 352px"
             className="object-cover"
+            unoptimized
           />
         </li>
       ))}

@@ -434,6 +434,68 @@ function parseYouTubeUrl(
   return { videoId, start: Number.isFinite(start) ? start : undefined };
 }
 
+/**
+ * Extracts the resource type and id from an open.spotify.com URL. Handles the
+ * localized `/intl-xx/` prefix Spotify sometimes adds. Returns null for any
+ * non-Spotify or unrecognized URL.
+ */
+function parseSpotifyUrl(
+  href: string | undefined
+): { type: string; id: string } | null {
+  if (!href) return null;
+  let url: URL;
+  try {
+    url = new URL(href);
+  } catch {
+    return null;
+  }
+  if (url.hostname.replace(/^www\./, '') !== 'open.spotify.com') return null;
+  const m = url.pathname.match(
+    /^\/(?:intl-[a-z]{2}\/)?(track|album|playlist|episode|show|artist)\/([A-Za-z0-9]+)/
+  );
+  if (!m) return null;
+  return { type: m[1], id: m[2] };
+}
+
+/** Flattens a hast node's text content (used to derive embed titles). */
+function hastText(node: unknown): string {
+  if (!node || typeof node !== 'object') return '';
+  const n = node as { value?: string; children?: unknown[] };
+  if (typeof n.value === 'string') return n.value;
+  if (Array.isArray(n.children)) return n.children.map(hastText).join('');
+  return '';
+}
+
+function SpotifyEmbed({
+  type,
+  id,
+  title,
+}: {
+  type: string;
+  id: string;
+  title?: string;
+}) {
+  // Tracks and episodes look best in the compact bar; larger collections get
+  // the taller player so their artwork and track list have room to breathe.
+  const compact = type === 'track' || type === 'episode';
+  const height = compact ? 152 : 352;
+  return (
+    <figure className="not-prose my-10">
+      <iframe
+        title={title || 'Spotify player'}
+        src={`https://open.spotify.com/embed/${type}/${id}?utm_source=generator`}
+        width="100%"
+        height={height}
+        loading="lazy"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        allowFullScreen
+        className="w-full border-0 shadow-sm"
+        style={{ borderRadius: 12 }}
+      />
+    </figure>
+  );
+}
+
 function YouTubeEmbed({
   videoId,
   start,
@@ -495,6 +557,24 @@ function isYouTubeEmbedNode(node: unknown): boolean {
     significant[0].type === 'element' &&
     significant[0].tagName === 'img'
   );
+}
+
+/**
+ * Returns true when a hast node is an `<a>` pointing at a Spotify resource.
+ * The `p` override uses this to swap a standalone Spotify link for a full
+ * embedded player while leaving inline Spotify links untouched.
+ */
+function isSpotifyEmbedNode(node: unknown): boolean {
+  if (!node || typeof node !== 'object') return false;
+  const n = node as {
+    type?: string;
+    tagName?: string;
+    properties?: { href?: unknown };
+  };
+  if (n.type !== 'element' || n.tagName !== 'a') return false;
+  const href =
+    typeof n.properties?.href === 'string' ? n.properties.href : undefined;
+  return !!parseSpotifyUrl(href);
 }
 
 /**
@@ -572,6 +652,20 @@ const markdownComponents: Components = {
     // and let the <a> override render the embed (a <figure>).
     if (kids.length === 1 && isYouTubeEmbedNode(kids[0])) {
       return <>{children}</>;
+    }
+
+    // Standalone Spotify link: replace the <p> with a full-width player.
+    if (kids.length === 1 && isSpotifyEmbedNode(kids[0])) {
+      const aNode = kids[0] as { properties?: { href?: unknown } };
+      const href =
+        typeof aNode.properties?.href === 'string'
+          ? aNode.properties.href
+          : '';
+      const sp = parseSpotifyUrl(href);
+      if (sp) {
+        const title = hastText(kids[0]).trim() || undefined;
+        return <SpotifyEmbed type={sp.type} id={sp.id} title={title} />;
+      }
     }
 
     // Standalone `![alt](src)` image: replace the <p> with a real <figure>.
@@ -688,6 +782,7 @@ export function BlogContent({
               priority
               sizes="100vw"
               className="object-cover opacity-15 dark:opacity-25 [.olive_&]:opacity-20"
+              unoptimized
             />
             {/* Top-down fade so the navbar area stays clean, plus a strong
                 bottom fade so the article body emerges from the hero. */}
@@ -969,6 +1064,7 @@ export function BlogContent({
                     fill
                     sizes="(max-width: 640px) 96px, 112px"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    unoptimized
                   />
                 </div>
                 <div className="flex-1 min-w-0 p-4">
@@ -1030,6 +1126,7 @@ export function BlogContent({
                     fill
                     sizes="(max-width: 640px) 96px, 112px"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    unoptimized
                   />
                 </div>
               </Link>
