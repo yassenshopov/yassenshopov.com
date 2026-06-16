@@ -916,6 +916,7 @@ export function BlogContent({
                 prose-p:leading-[1.75]
                 prose-a:font-medium prose-a:underline-offset-4 hover:prose-a:opacity-90
                 prose-blockquote:not-italic prose-blockquote:border-l-4 prose-blockquote:border-primary/50 prose-blockquote:bg-muted/40 prose-blockquote:rounded-r-md prose-blockquote:px-5 prose-blockquote:py-3
+                [&_blockquote_p:first-of-type::before]:content-none [&_blockquote_p:last-of-type::after]:content-none
                 prose-strong:text-foreground prose-strong:font-semibold
                 prose-li:marker:text-primary/60
                 prose-hr:my-12
