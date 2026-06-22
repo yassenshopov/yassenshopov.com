@@ -247,18 +247,20 @@ export default function LibraryItemCard({
       </div>
 
       <div className="flex flex-col gap-1">
-        <h3 className="text-base font-semibold leading-snug text-foreground group-hover:text-primary transition-colors line-clamp-2">
-          {item.title}
-          {item.series && item.seriesOrder != null && (
-            <span className="ml-1.5 text-xs font-normal text-muted-foreground align-middle">
-              · {item.series} #{item.seriesOrder}
-            </span>
+        <div className="flex min-h-[4.25rem] flex-col gap-1">
+          <h3 className="text-base font-semibold leading-snug text-foreground group-hover:text-primary transition-colors line-clamp-2">
+            {item.title}
+            {item.series && item.seriesOrder != null && (
+              <span className="ml-1.5 text-xs font-normal text-muted-foreground align-middle">
+                · {item.series} #{item.seriesOrder}
+              </span>
+            )}
+          </h3>
+          {creator && (
+            <p className="text-sm text-muted-foreground line-clamp-1">by {creator}</p>
           )}
-        </h3>
-        {creator && (
-          <p className="text-sm text-muted-foreground line-clamp-1">by {creator}</p>
-        )}
-        <div className="flex items-center justify-between gap-2">
+        </div>
+        <div className="flex min-h-[1.5rem] items-center justify-between gap-2">
           <TierBadge itemId={item.id} />
           {item.status === 'in-progress' && <CurrentlyOnLine type={item.type} />}
         </div>

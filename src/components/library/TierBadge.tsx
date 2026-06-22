@@ -7,29 +7,15 @@ interface TierBadgeProps {
 
 /**
  * Shows the item's manual tier ranking (S/A/B/C/D) as a colored badge,
- * replacing the old star rating in the library card and modal. Falls back to a
- * muted "Unranked" label when the item hasn't been placed on any board.
+ * replacing the old star rating in the library card and modal. Renders nothing
+ * when the item hasn't been placed on any board.
  */
 export default function TierBadge({ itemId, size = 'sm' }: TierBadgeProps) {
   const tierId = getItemTier(itemId);
   const isMd = size === 'md';
 
   if (!tierId) {
-    return (
-      <span
-        className={`inline-flex w-fit shrink-0 items-center gap-1.5 rounded-md bg-muted/50 shadow-none ring-1 ring-inset ring-border ${
-          isMd ? 'px-2.5 py-1' : 'px-2 py-0.5'
-        }`}
-      >
-        <span
-          className={`font-semibold uppercase tracking-wider text-muted-foreground ${
-            isMd ? 'text-xs' : 'text-[10px]'
-          }`}
-        >
-          Unranked
-        </span>
-      </span>
-    );
+    return null;
   }
 
   const tier = TIER_BY_ID[tierId];
