@@ -75,6 +75,11 @@
     "externalUrl": "https://www.imdb.com/title/tt3581920/",
     "entries": [
       {
+        "dateCompleted": "2023-02-01",
+        "status": "completed",
+        "rating": 5
+      },
+      {
         "dateCompleted": "2025-05-01",
         "status": "completed",
         "rating": 5
@@ -452,7 +457,7 @@
       {
         "status": "completed",
         "rating": 5,
-        "dateCompleted": "2022-09-01"
+        "dateCompleted": "2022-10-01"
       }
     ]
   },
@@ -523,7 +528,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2022-09-09"
       }
     ]
   },
@@ -747,7 +753,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 4
+        "rating": 4,
+        "dateCompleted": "2020-05-05"
       }
     ]
   },
@@ -1100,7 +1107,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 4
+        "rating": 4,
+        "dateCompleted": "2021-05-05"
       }
     ]
   },
@@ -1127,7 +1135,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 4
+        "rating": 4,
+        "dateCompleted": "2022-06-06"
       }
     ]
   },
@@ -1150,7 +1159,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 4
+        "rating": 4,
+        "dateCompleted": "2019-08-08"
       }
     ]
   },
@@ -1608,7 +1618,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 4
+        "rating": 4,
+        "dateCompleted": "2019-01-01"
       }
     ]
   },
@@ -1679,7 +1690,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2021-12-12"
       }
     ]
   },
@@ -1706,7 +1718,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2021-11-11"
       }
     ]
   },
@@ -1868,7 +1881,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2021-02-02"
       }
     ]
   },
@@ -1889,7 +1903,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2020-05-10"
       }
     ]
   },
@@ -1910,7 +1925,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2020-03-02"
       }
     ]
   },
@@ -1931,7 +1947,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2020-01-01"
       }
     ]
   },
@@ -1952,7 +1969,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2019-12-12"
       }
     ]
   },
@@ -1973,7 +1991,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2019-11-11"
       }
     ]
   },
@@ -2032,7 +2051,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2019-06-06"
       }
     ]
   },
@@ -2053,7 +2073,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2019-04-04"
       }
     ]
   },
@@ -2073,7 +2094,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2019-03-03"
       }
     ]
   },
@@ -2112,7 +2134,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2016-07-07"
       }
     ]
   },
@@ -2150,7 +2173,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2017-07-07"
       }
     ]
   },
@@ -2188,7 +2212,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2018-04-05"
       }
     ]
   },
@@ -2210,7 +2235,8 @@
     "entries": [
       {
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "dateCompleted": "2018-08-08"
       }
     ]
   },
@@ -2643,7 +2669,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2012-02-01",
         "status": "completed",
         "rating": 5
       }
@@ -2694,7 +2720,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2012-01-01",
         "status": "completed",
         "rating": 5
       }
@@ -2745,7 +2771,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2011-02-01",
         "status": "completed",
         "rating": 5
       }
@@ -2795,7 +2821,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2011-01-01",
         "status": "completed",
         "rating": 5
       }
@@ -2846,7 +2872,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2014-01-01",
         "status": "completed",
         "rating": 5
       }
@@ -2896,7 +2922,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2014-02-01",
         "status": "completed",
         "rating": 5
       }
@@ -2942,7 +2968,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2012-01-01",
         "status": "completed",
         "rating": 5
       }
@@ -2989,7 +3015,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2011-11-11",
         "status": "completed",
         "rating": 5
       }
@@ -3036,7 +3062,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2011-10-01",
         "status": "completed",
         "rating": 5
       }
@@ -3083,7 +3109,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2012-01-01",
         "status": "completed",
         "rating": 5
       }
@@ -3160,7 +3186,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2011-01-01",
         "status": "completed",
         "rating": 5
       }
@@ -3207,7 +3233,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2010-02-01",
         "status": "completed",
         "rating": 5
       }
@@ -3253,7 +3279,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2009-01-01",
         "status": "completed",
         "rating": 5
       }
@@ -3337,7 +3363,7 @@
     "externalUrl": "https://www.audible.com/pd/1984-Audiobook/B002V19RO6",
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2019-04-08",
         "status": "completed",
         "rating": 5
       }
@@ -3362,7 +3388,7 @@
     ],
     "entries": [
       {
-        "dateCompleted": "2023-01-01",
+        "dateCompleted": "2018-10-01",
         "status": "completed",
         "rating": 4
       }
@@ -4238,7 +4264,8 @@
     "entries": [
       {
         "status": "dnf",
-        "rating": 4
+        "rating": 4,
+        "dateCompleted": "2019-10-10"
       }
     ]
   },
@@ -4281,7 +4308,8 @@
     "entries": [
       {
         "status": "dnf",
-        "rating": 4
+        "rating": 4,
+        "dateCompleted": "2022-09-09"
       }
     ]
   },
@@ -4428,7 +4456,8 @@
     "entries": [
       {
         "status": "dnf",
-        "rating": 4
+        "rating": 4,
+        "dateCompleted": "2025-05-05"
       }
     ]
   },
@@ -7645,7 +7674,8 @@
     "coverImage": "/resources/images/library/item-z8cbbo-1779880524868.jpg",
     "entries": [
       {
-        "status": "completed"
+        "status": "completed",
+        "dateCompleted": "2017-01-01"
       }
     ]
   },
@@ -7664,7 +7694,8 @@
     "coverImage": "/resources/images/library/item-j1h0qc-1779880538759.jpg",
     "entries": [
       {
-        "status": "completed"
+        "status": "completed",
+        "dateCompleted": "2017-01-01"
       }
     ]
   },
@@ -7683,7 +7714,8 @@
     "coverImage": "/resources/images/library/item-tpva-1779880556124.jpg",
     "entries": [
       {
-        "status": "completed"
+        "status": "completed",
+        "dateCompleted": "2018-01-01"
       }
     ]
   },
@@ -7702,7 +7734,8 @@
     "coverImage": "/resources/images/library/deception-point-1779880570319.jpg",
     "entries": [
       {
-        "status": "completed"
+        "status": "completed",
+        "dateCompleted": "2015-05-05"
       }
     ]
   },
@@ -7824,7 +7857,8 @@
     "coverImage": "/resources/images/library/the-little-prince-1779880135722.jpg",
     "entries": [
       {
-        "status": "completed"
+        "status": "completed",
+        "dateCompleted": "2011-01-01"
       }
     ]
   },
@@ -8614,7 +8648,8 @@
     "coverImage": "/resources/images/library/pokemon-detective-pikachu.jpg",
     "entries": [
       {
-        "status": "completed"
+        "status": "completed",
+        "dateCompleted": "2019-06-07"
       }
     ]
   },
@@ -8850,7 +8885,8 @@
     "coverImage": "/resources/images/library/and-then-there-were-none-1779880080366.jpg",
     "entries": [
       {
-        "status": "completed"
+        "status": "completed",
+        "dateCompleted": "2017-04-01"
       }
     ]
   },
@@ -8869,7 +8905,8 @@
     "coverImage": "/resources/images/library/murder-on-the-orient-express-the-graphic-novel-poirot-1779880065056.jpg",
     "entries": [
       {
-        "status": "completed"
+        "status": "completed",
+        "dateCompleted": "2015-01-04"
       }
     ]
   },
@@ -8888,7 +8925,8 @@
     "coverImage": "/resources/images/library/death-on-the-nile-1779880042123.png",
     "entries": [
       {
-        "status": "completed"
+        "status": "completed",
+        "dateCompleted": "2015-05-04"
       }
     ]
   },
