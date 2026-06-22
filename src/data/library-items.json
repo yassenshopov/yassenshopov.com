@@ -8998,5 +8998,29 @@
         "status": "completed"
       }
     ]
+  },
+  {
+    "id": "329",
+    "title": "It Will Never Happen to Me!",
+    "type": "book",
+    "genre": [
+      "Self-Help",
+      "Psychology",
+      "Nonfiction"
+    ],
+    "description": "Claudia Black's classic guide explores the experiences of children of alcoholics as youngsters, adolescents, and adults, examining the roles they adopt to survive and how those patterns shape their lives.",
+    "year": 1981,
+    "externalUrl": "https://www.goodreads.com/en/book/show/1348353.It_Will_Never_Happen_to_Me_",
+    "author": "Claudia Black",
+    "links": {
+      "goodreads": "https://www.goodreads.com/en/book/show/1348353.It_Will_Never_Happen_to_Me_"
+    },
+    "coverImage": "/resources/images/library/it-will-never-happen-to-me.png",
+    "entries": [
+      {
+        "dateStarted": "2026-06-22",
+        "status": "in-progress"
+      }
+    ]
   }
 ]
