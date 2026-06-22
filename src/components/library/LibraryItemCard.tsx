@@ -69,27 +69,67 @@ export default function LibraryItemCard({
   isLatestEntry = true,
 }: LibraryItemCardProps) {
   const creator = getCreatorLabel(item);
-  const verb = item.type === 'book' ? 'read' : 'watched';
-  // Show a chip only when this work has been engaged with more than once —
-  // first reading shouldn't be flagged on a one-and-done item.
-  const showEntryBadge = totalEntries > 1 && entryYear != null;
-  const entryBadgeLabel = isLatestEntry
-    ? totalEntries === 2
-      ? `Re-${verb}`
-      : `${verb.charAt(0).toUpperCase() + verb.slice(1)} ×${totalEntries}`
-    : `First ${verb}`;
   const [isDragOver, setIsDragOver] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   // Tracks the cover URL we want to show right now. Defaults to the prop value
   // and gets updated optimistically after a successful upload. The effect keeps
   // it in sync when the prop changes (e.g. HMR after the JSON write lands).
   const [coverImage, setCoverImage] = useState(item.coverImage);
+  // Average color sampled from the cover, used as the letterbox background so
+  // it blends with the artwork instead of a flat muted/black bar.
+  const [coverColor, setCoverColor] = useState<string | null>(null);
   // dragenter/dragleave fire for every child element, so track depth.
   const dragDepth = useRef(0);
 
   useEffect(() => {
     setCoverImage(item.coverImage);
   }, [item.coverImage]);
+
+  useEffect(() => {
+    if (!coverImage) {
+      setCoverColor(null);
+      return;
+    }
+    let cancelled = false;
+    const img = new window.Image();
+    img.crossOrigin = 'anonymous';
+    img.src = coverImage;
+    img.onload = () => {
+      if (cancelled) return;
+      try {
+        const w = 16;
+        const h = 16;
+        const canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+        if (!ctx) return;
+        ctx.drawImage(img, 0, 0, w, h);
+        const { data } = ctx.getImageData(0, 0, w, h);
+        let r = 0;
+        let g = 0;
+        let b = 0;
+        let count = 0;
+        for (let i = 0; i < data.length; i += 4) {
+          const alpha = data[i + 3];
+          if (alpha < 16) continue;
+          r += data[i];
+          g += data[i + 1];
+          b += data[i + 2];
+          count += 1;
+        }
+        if (count === 0) return;
+        setCoverColor(
+          `rgba(${Math.round(r / count)}, ${Math.round(g / count)}, ${Math.round(b / count)}, 0.75)`,
+        );
+      } catch {
+        // Canvas can taint on cross-origin sources; fall back to default bg.
+      }
+    };
+    return () => {
+      cancelled = true;
+    };
+  }, [coverImage]);
 
   async function uploadFile(file: File) {
     if (!file.type.startsWith('image/')) {
@@ -170,9 +210,10 @@ export default function LibraryItemCard({
       className="group text-left flex flex-col gap-3 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-opacity"
     >
       <div
-        className={`relative aspect-video w-full overflow-hidden rounded-md bg-muted dark:bg-black transition-shadow ${
-          isDragOver ? 'ring-2 ring-primary ring-offset-2 ring-offset-background' : ''
-        }`}
+        style={coverColor ? { backgroundColor: coverColor } : undefined}
+        className={`relative aspect-video w-full overflow-hidden rounded-md transition-colors duration-500 ${
+          coverColor ? '' : 'bg-muted dark:bg-black'
+        } ${isDragOver ? 'ring-2 ring-primary ring-offset-2 ring-offset-background' : ''}`}
       >
         {coverImage ? (
           <Image
@@ -202,15 +243,6 @@ export default function LibraryItemCard({
               </>
             )}
           </div>
-        )}
-
-        {showEntryBadge && (
-          <span
-            className="absolute top-2 left-2 inline-flex items-center gap-1 rounded-full bg-background/90 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-foreground shadow-sm ring-1 ring-border backdrop-blur-sm"
-            aria-label={`${entryBadgeLabel} in ${entryYear}`}
-          >
-            {entryBadgeLabel}
-          </span>
         )}
       </div>
 
