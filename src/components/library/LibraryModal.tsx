@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useId, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   X,
@@ -12,20 +12,37 @@ import {
   BookOpen,
   Clapperboard,
   Monitor,
+  Loader2,
+  Save,
+  Undo2,
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { LibraryItem, LibraryEntry, getLatestEntry } from '@/data/library';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  LibraryItem,
+  LibraryEntry,
+  ReadingStatus,
+  getLatestEntry,
+} from '@/data/library';
 import { formatDate } from '@/lib/format-date';
-import LibraryEntryEditor from './LibraryEntryEditor';
 import TierBadge from './TierBadge';
 
-// Temporary: dev-only inline entry editor. Remove this flag (and the editor
-// section below) when the library data is locked down — same lifecycle as the
-// cover-upload drag-and-drop in LibraryItemCard.
+// Temporary: dev-only inline editing of the displayed entry fields. Remove this
+// flag (and the editable controls below) when the library data is locked down —
+// same lifecycle as the cover-upload drag-and-drop in LibraryItemCard.
 const ENTRY_EDIT_ENABLED = process.env.NODE_ENV === 'development';
+
+const STATUS_OPTIONS: ReadingStatus[] = [
+  'completed',
+  'in-progress',
+  'on-pause',
+  'dnf',
+];
 
 interface LibraryModalProps {
   selectedItem: LibraryItem | null;
@@ -70,7 +87,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Boost a "r,g,b" string's saturation and lightness for a more vivid gradient
+// Boost a "r,g,b" string's saturation and lightness for a more vivid tint.
 function boostColor(rgb: string, satBoost = 1.3, lightBoost = 1.15) {
   let [r, g, b] = rgb.split(',').map(Number);
   r /= 255;
@@ -115,7 +132,79 @@ function boostColor(rgb: string, satBoost = 1.3, lightBoost = 1.15) {
   return `${rr},${gg},${bb}`;
 }
 
-export default function LibraryModal({
+// ---- Dev-only inline editing helpers -------------------------------------
+
+interface DraftEntry {
+  status: ReadingStatus;
+  dateStarted: string;
+  dateCompleted: string;
+  rating: number | null;
+  notes: string;
+}
+
+// Seed an editable draft from the item's latest entry (the values the modal
+// actually displays). Falls back to the item-level fields for safety.
+function seedDraft(item: LibraryItem): DraftEntry {
+  const latest = item.entries ? getLatestEntry(item.entries) : undefined;
+  return {
+    status: (latest?.status ?? (item.status as ReadingStatus)) ?? 'completed',
+    dateStarted: latest?.dateStarted ?? item.dateStarted ?? '',
+    dateCompleted: latest?.dateCompleted ?? item.dateCompleted ?? '',
+    rating: latest?.rating ?? item.rating ?? null,
+    notes: latest?.notes ?? item.notes ?? '',
+  };
+}
+
+function draftsEqual(a: DraftEntry, b: DraftEntry): boolean {
+  return (
+    a.status === b.status &&
+    a.dateStarted === b.dateStarted &&
+    a.dateCompleted === b.dateCompleted &&
+    a.rating === b.rating &&
+    a.notes === b.notes
+  );
+}
+
+function buildEntryPatch(
+  draft: DraftEntry,
+  original: DraftEntry,
+): Record<string, string | number | null> {
+  const patch: Record<string, string | number | null> = {};
+  if (draft.status !== original.status) patch.status = draft.status;
+  if (draft.dateStarted !== original.dateStarted) {
+    patch.dateStarted = draft.dateStarted === '' ? null : draft.dateStarted;
+  }
+  if (draft.dateCompleted !== original.dateCompleted) {
+    patch.dateCompleted = draft.dateCompleted === '' ? null : draft.dateCompleted;
+  }
+  if (draft.rating !== original.rating) patch.rating = draft.rating;
+  if (draft.notes !== original.notes) {
+    patch.notes = draft.notes === '' ? null : draft.notes;
+  }
+  return patch;
+}
+
+const FIELD_LABEL =
+  'text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground';
+
+export default function LibraryModal({ selectedItem, ...rest }: LibraryModalProps) {
+  // Keep AnimatePresence mounted in the parent and toggle the content here so
+  // the exit transition can actually run when an item is deselected. (Returning
+  // null directly would unmount instantly and skip the exit animation.)
+  return (
+    <AnimatePresence>
+      {selectedItem && (
+        <ModalContent key="library-modal" selectedItem={selectedItem} {...rest} />
+      )}
+    </AnimatePresence>
+  );
+}
+
+type ModalContentProps = Omit<LibraryModalProps, 'selectedItem'> & {
+  selectedItem: LibraryItem;
+};
+
+function ModalContent({
   selectedItem,
   onClose,
   onNavigate,
@@ -127,34 +216,62 @@ export default function LibraryModal({
   getSeriesInfo,
   getRelationshipLabel,
   onSelectItem,
-}: LibraryModalProps) {
+}: ModalContentProps) {
+  const titleId = useId();
+  const panelRef = useRef<HTMLDivElement>(null);
   const [dominantColors, setDominantColors] = useState<string[]>([]);
-  const [colorCache, setColorCache] = useState<{ [key: string]: string[] }>({});
+  // Cache extracted palettes in a ref so repeat covers skip the canvas work
+  // without forcing a re-render or re-running the extraction effect.
+  const colorCacheRef = useRef<{ [key: string]: string[] }>({});
   // Dev-only overrides: after a successful save we mirror the new entries / id
   // here so the modal updates without waiting for HMR to pick up the JSON
-  // write. Both reset whenever the selection changes.
-  const [entriesOverride, setEntriesOverride] = useState<LibraryEntry[] | null>(null);
+  // write. All reset whenever the selection changes.
+  const [entriesOverride, setEntriesOverride] = useState<LibraryEntry[] | null>(
+    null,
+  );
   const [idOverride, setIdOverride] = useState<string | null>(null);
+  // Inline edit draft (latest entry) + id, seeded from the current selection.
+  const [draft, setDraft] = useState<DraftEntry>(() => seedDraft(selectedItem));
+  const [draftId, setDraftId] = useState(selectedItem.id);
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     setEntriesOverride(null);
     setIdOverride(null);
-  }, [selectedItem?.id]);
+    setDraft(seedDraft(selectedItem));
+    setDraftId(selectedItem.id);
+  }, [selectedItem]);
+
+  // Lock body scroll while the modal is open and restore focus to whatever was
+  // focused before it opened once it closes.
+  useEffect(() => {
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    panelRef.current?.focus();
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      previouslyFocused?.focus?.();
+    };
+  }, []);
 
   // Extract dominant colors from cover image (off-screen canvas, no DOM node)
   useEffect(() => {
-    if (!selectedItem?.coverImage) {
+    const imgSrc = selectedItem.coverImage;
+    if (!imgSrc) {
       setDominantColors([]);
       return;
     }
-    if (colorCache[selectedItem.coverImage]) {
-      setDominantColors(colorCache[selectedItem.coverImage]);
+    const cached = colorCacheRef.current[imgSrc];
+    if (cached) {
+      setDominantColors(cached);
       return;
     }
-    const imgSrc = selectedItem.coverImage;
+    let cancelled = false;
     const img = new window.Image();
     img.crossOrigin = 'anonymous';
     img.onload = () => {
+      if (cancelled) return;
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
@@ -178,13 +295,14 @@ export default function LibraryModal({
         .sort(([, a], [, b]) => b - a)
         .slice(0, 4)
         .map(([c]) => c);
-      setColorCache((prev) => ({ ...prev, [imgSrc]: top }));
+      colorCacheRef.current[imgSrc] = top;
       setDominantColors(top);
     };
     img.src = imgSrc;
-  }, [selectedItem, colorCache]);
-
-  if (!selectedItem) return null;
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedItem.coverImage]);
 
   // When the dev editor has saved a new entry or renamed the id, re-project
   // the latest-entry values (and the new id) on top of the original item so
@@ -211,241 +329,313 @@ export default function LibraryModal({
     };
   })();
 
-  const boosted = dominantColors.map((c) => boostColor(c));
+  // Header tint built from the cover's dominant color — a soft, semi-transparent
+  // wash that fades down into the body (no animation, header only).
+  const headerTint = useMemo(() => {
+    if (dominantColors.length === 0) return null;
+    const c = boostColor(dominantColors[0]);
+    return `linear-gradient(to bottom, rgba(${c}, 0.55) 0%, rgba(${c}, 0.18) 55%, transparent 100%)`;
+  }, [dominantColors]);
 
-  // Decorative blobs that drift around the top-right of the header. Using
-  // pixel-based circles (not percentage ellipses) keeps each blob perfectly
-  // round regardless of the header's aspect ratio, and a soft mid-stop gives
-  // each one a spherical falloff instead of a flat wash. Every blob follows
-  // its own orbit-like path so the composition never feels static.
-  const BLOBS = [
-    {
-      color: boosted[0],
-      alpha: 0.95,
-      frames: [
-        { x: 86, y: 18, size: 380 },
-        { x: 92, y: 14, size: 390 },
-        { x: 90, y: 24, size: 370 },
-        { x: 84, y: 20, size: 385 },
-        { x: 88, y: 16, size: 380 },
-      ],
-    },
-    {
-      color: boosted[1] || boosted[0],
-      alpha: 0.75,
-      frames: [
-        { x: 92, y: 10, size: 280 },
-        { x: 88, y: 16, size: 285 },
-        { x: 96, y: 14, size: 275 },
-        { x: 90, y: 22, size: 285 },
-        { x: 86, y: 12, size: 280 },
-      ],
-    },
-    {
-      color: boosted[2] || boosted[0],
-      alpha: 0.7,
-      frames: [
-        { x: 82, y: 28, size: 320 },
-        { x: 90, y: 32, size: 325 },
-        { x: 80, y: 24, size: 315 },
-        { x: 92, y: 28, size: 325 },
-        { x: 88, y: 30, size: 320 },
-      ],
-    },
-    {
-      color: boosted[3] || boosted[0],
-      alpha: 0.55,
-      frames: [
-        { x: 96, y: 26, size: 240 },
-        { x: 88, y: 18, size: 245 },
-        { x: 100, y: 32, size: 235 },
-        { x: 92, y: 30, size: 245 },
-        { x: 86, y: 22, size: 240 },
-      ],
-    },
-  ];
-
-  const FRAME_COUNT = 5;
-  const gradientFrames = Array.from({ length: FRAME_COUNT }, (_, i) =>
-    BLOBS.map(({ color, alpha, frames }) => {
-      const { x, y, size } = frames[i];
-      const mid = (alpha * 0.5).toFixed(2);
-      return `radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(${color}, ${alpha}) 0%, rgba(${color}, ${mid}) 22%, transparent 62%)`;
-    }).join(', '),
-  );
   const creatorLabel = getCreatorLabel(displayItem);
   const seriesInfo = displayItem.series ? getSeriesInfo(displayItem) : null;
   const relatedItems = getRelatedItems(displayItem, 6);
   const hasNav = sortedItems.length > 1;
+  const currentIndex = sortedItems.findIndex((i) => i.id === selectedItem.id);
+
+  // Inline editing only applies to items that already have entries (the API
+  // patches an existing entry); wishlist items stay read-only.
+  const canEdit = ENTRY_EDIT_ENABLED && (displayItem.entries?.length ?? 0) > 0;
+  const original = useMemo(() => seedDraft(displayItem), [displayItem]);
+  const isDirty =
+    canEdit &&
+    (!draftsEqual(draft, original) || draftId.trim() !== displayItem.id);
+
+  function resetDraft() {
+    setDraft(seedDraft(displayItem));
+    setDraftId(displayItem.id);
+  }
+
+  async function handleSave() {
+    if (!isDirty || isSaving) return;
+    const entryPatch = buildEntryPatch(draft, original);
+    const nextId = draftId.trim();
+    const idDirty = nextId !== '' && nextId !== displayItem.id;
+    if (Object.keys(entryPatch).length === 0 && !idDirty) return;
+
+    setIsSaving(true);
+    const toastId = toast.loading('Saving…');
+    try {
+      // Patch the entry first (using the current id), then rename — otherwise a
+      // rename would invalidate the id the entry update relies on.
+      if (Object.keys(entryPatch).length > 0) {
+        const res = await fetch('/api/library/update-entry', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ id: displayItem.id, patch: entryPatch }),
+        });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(body?.error || `HTTP ${res.status}`);
+        const savedEntry = body.entry as LibraryEntry;
+        const savedIndex = body.entryIndex as number;
+        const baseEntries = displayItem.entries ?? [];
+        setEntriesOverride(
+          baseEntries.map((e, i) => (i === savedIndex ? savedEntry : e)),
+        );
+      }
+
+      if (idDirty) {
+        const res = await fetch('/api/library/update-item', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ id: displayItem.id, patch: { id: nextId } }),
+        });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(body?.error || `HTTP ${res.status}`);
+        const persistedId = typeof body.id === 'string' ? body.id : nextId;
+        setIdOverride(persistedId);
+        setDraftId(persistedId);
+      }
+
+      toast.success('Saved.', { id: toastId });
+    } catch (err) {
+      toast.error(`Save failed: ${(err as Error).message}`, { id: toastId });
+    } finally {
+      setIsSaving(false);
+    }
+  }
 
   return (
-    <AnimatePresence>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-2 sm:p-4"
+      onClick={onClose}
+    >
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-2 sm:p-4"
-        onClick={onClose}
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        tabIndex={-1}
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.95, opacity: 0 }}
+        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+        className="relative w-full max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-6xl min-h-[30rem] sm:min-h-[34rem] md:min-h-[38rem] max-h-[95vh] overflow-hidden bg-background rounded-2xl flex flex-col outline-none"
+        onClick={(e) => e.stopPropagation()}
       >
-        <motion.div
-          initial={{ scale: 0.95, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.95, opacity: 0 }}
-          transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-6xl min-h-[30rem] sm:min-h-[34rem] md:min-h-[38rem] max-h-[95vh] overflow-hidden bg-background rounded-2xl flex flex-col"
-          onClick={(e) => e.stopPropagation()}
+        {/* Close */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute top-3 right-3 z-20 rounded-full w-9 h-9 p-0 bg-background/80 backdrop-blur-sm hover:bg-background/90"
         >
-          {/* Close */}
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onClose}
-            aria-label="Close"
-            className="absolute top-3 right-3 z-20 rounded-full w-9 h-9 p-0 bg-background/80 backdrop-blur-sm hover:bg-background/90"
-          >
-            <X className="w-5 h-5" />
-          </Button>
+          <X className="w-5 h-5" />
+        </Button>
 
-          {/* Prev / Next */}
-          {hasNav && (
-            <>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => onNavigate('prev')}
-                disabled={isTransitioning}
-                aria-label="Previous item"
-                className="absolute top-1/2 left-2 sm:left-3 -translate-y-1/2 z-20 rounded-full w-9 h-9 p-0 bg-background/80 backdrop-blur-sm hover:bg-background/90 disabled:opacity-40 transition-opacity"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => onNavigate('next')}
-                disabled={isTransitioning}
-                aria-label="Next item"
-                className="absolute top-1/2 right-2 sm:right-3 -translate-y-1/2 z-20 rounded-full w-9 h-9 p-0 bg-background/80 backdrop-blur-sm hover:bg-background/90 disabled:opacity-40 transition-opacity"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </Button>
-            </>
-          )}
-
-          <div className="flex-1 min-h-0 overflow-y-auto">
-            {/* Header with cover + meta over animated gradient */}
-            <div className="relative overflow-hidden">
-              {/* Animated dominant-color gradient (focal accent in top-right) */}
-              <div className="absolute inset-0 opacity-70 dark:opacity-60">
-                {dominantColors.length > 0 ? (
-                  <motion.div
-                    className="absolute inset-0"
-                    style={{ background: gradientFrames[0] }}
-                    animate={{ background: gradientFrames }}
-                    transition={{
-                      duration: 22,
-                      repeat: Infinity,
-                      repeatType: 'reverse',
-                      ease: 'easeInOut',
-                    }}
-                  />
-                ) : (
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        'radial-gradient(ellipse 55% 65% at 95% 10%, color-mix(in oklch, var(--muted-foreground) 30%, transparent) 0%, transparent 70%)',
-                    }}
-                  />
-                )}
-              </div>
-
-              {/* Grain / noise texture over the gradient */}
+        <div className="flex-1 min-h-0 overflow-y-auto">
+          {/* Header with cover + meta over a dominant-color tint */}
+          <div className="relative overflow-hidden">
+            {/* Dominant-color tint (header only, fades into the body) */}
+            <div className="absolute inset-0 opacity-80 dark:opacity-60">
               <div
-                aria-hidden
-                className="absolute inset-0 pointer-events-none mix-blend-soft-light opacity-55 dark:opacity-25 dark:mix-blend-overlay [.olive_&]:opacity-25 [.olive_&]:mix-blend-overlay"
+                className="absolute inset-0"
                 style={{
-                  backgroundImage:
-                    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3' intercept='-1'/%3E%3CfeFuncG type='linear' slope='3' intercept='-1'/%3E%3CfeFuncB type='linear' slope='3' intercept='-1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-                  backgroundSize: '220px 220px',
+                  background:
+                    headerTint ??
+                    'linear-gradient(to bottom, color-mix(in oklch, var(--muted-foreground) 22%, transparent) 0%, transparent 70%)',
                 }}
               />
+            </div>
 
-              <motion.div
-                key={selectedItem.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{
-                  opacity: isTransitioning ? 0.4 : 1,
-                  y: isTransitioning ? 5 : 0,
-                }}
-                transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
-                className="relative z-10 flex flex-col md:flex-row items-start gap-5 md:gap-8 p-5 sm:p-8 md:p-10 pt-12 sm:pt-10"
-              >
-                {/* Cover */}
-                <div className="flex-shrink-0 mx-auto md:mx-0">
-                  <div className="w-32 h-48 sm:w-40 sm:h-60 relative bg-muted dark:bg-black rounded-lg overflow-hidden ring-1 ring-black/5">
-                    {displayItem.coverImage ? (
-                      <Image
-                        src={displayItem.coverImage}
-                        alt={displayItem.title}
-                        fill
-                        sizes="160px"
-                        className="object-contain"
-                      />
-                    ) : (
-                      <div className="flex items-center justify-center h-full text-muted-foreground">
-                        {getTypeIcon(displayItem.type)}
-                      </div>
+            {/* Grain / noise texture over the tint */}
+            <div
+              aria-hidden
+              className="absolute inset-0 pointer-events-none mix-blend-soft-light opacity-55 dark:opacity-25 dark:mix-blend-overlay [.olive_&]:opacity-25 [.olive_&]:mix-blend-overlay"
+              style={{
+                backgroundImage:
+                  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3' intercept='-1'/%3E%3CfeFuncG type='linear' slope='3' intercept='-1'/%3E%3CfeFuncB type='linear' slope='3' intercept='-1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+                backgroundSize: '220px 220px',
+              }}
+            />
+
+            <motion.div
+              key={selectedItem.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{
+                opacity: isTransitioning ? 0.4 : 1,
+                y: isTransitioning ? 5 : 0,
+              }}
+              transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
+              className="relative z-10 flex flex-col md:flex-row items-start gap-5 md:gap-8 p-5 sm:p-8 md:p-10 pt-12 sm:pt-10"
+            >
+              {/* Cover */}
+              <div className="flex-shrink-0 mx-auto md:mx-0">
+                <div
+                  className={`w-32 h-48 sm:w-40 sm:h-60 relative rounded-lg overflow-hidden ${
+                    displayItem.coverImage
+                      ? ''
+                      : 'bg-muted dark:bg-black ring-1 ring-black/5'
+                  }`}
+                >
+                  {displayItem.coverImage ? (
+                    <Image
+                      src={displayItem.coverImage}
+                      alt={displayItem.title}
+                      fill
+                      sizes="160px"
+                      className="object-contain"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full text-muted-foreground">
+                      {getTypeIcon(displayItem.type)}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Meta */}
+              <div className="flex-1 min-w-0 space-y-3 text-center md:text-left">
+                <div>
+                  <div className="flex flex-wrap items-start justify-center md:justify-start gap-2 mb-1">
+                    <h1
+                      id={titleId}
+                      className="text-2xl md:text-3xl font-bold tracking-tight leading-tight"
+                    >
+                      {displayItem.title}
+                    </h1>
+                    {displayItem.series && displayItem.seriesOrder != null && (
+                      <Badge
+                        variant="outline"
+                        className="bg-primary/10 text-primary border-primary/30 px-2 py-0.5 mt-1.5 self-start"
+                      >
+                        <span className="text-xs font-medium">
+                          {displayItem.series} #{displayItem.seriesOrder}
+                        </span>
+                      </Badge>
                     )}
                   </div>
+                  {creatorLabel && (
+                    <p className="text-muted-foreground">by {creatorLabel}</p>
+                  )}
+                  {seriesInfo && (
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Part {seriesInfo.currentIndex + 1} of {seriesInfo.totalItems}{' '}
+                      in the {displayItem.series} series
+                    </p>
+                  )}
+                  {canEdit && (
+                    <div className="flex items-center justify-center md:justify-start gap-2 mt-2">
+                      <span className={FIELD_LABEL}>id</span>
+                      <input
+                        value={draftId}
+                        onChange={(e) => setDraftId(e.target.value)}
+                        spellCheck={false}
+                        autoComplete="off"
+                        aria-label="Item id"
+                        className="h-7 w-48 max-w-full rounded-md border border-input bg-background/70 px-2 font-mono text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      />
+                    </div>
+                  )}
                 </div>
 
-                {/* Meta */}
-                <div className="flex-1 min-w-0 space-y-3 text-center md:text-left">
-                  <div>
-                    <div className="flex flex-wrap items-start justify-center md:justify-start gap-2 mb-1">
-                      <h1 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight">
-                        {displayItem.title}
-                      </h1>
-                      {displayItem.series && displayItem.seriesOrder != null && (
-                        <Badge
-                          variant="outline"
-                          className="bg-primary/10 text-primary border-primary/30 px-2 py-0.5 mt-1.5 self-start"
-                        >
-                          <span className="text-xs font-medium">
-                            {displayItem.series} #{displayItem.seriesOrder}
-                          </span>
-                        </Badge>
-                      )}
-                    </div>
-                    {creatorLabel && (
-                      <p className="text-muted-foreground">by {creatorLabel}</p>
-                    )}
-                    {seriesInfo && (
-                      <p className="text-xs text-muted-foreground mt-1">
-                        Part {seriesInfo.currentIndex + 1} of {seriesInfo.totalItems} in the{' '}
-                        {displayItem.series} series
-                      </p>
-                    )}
-                  </div>
-
-                  <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
-                    <TierBadge itemId={displayItem.id} size="md" />
-                    <Badge
-                      className={`${getStatusColor(displayItem.status)} text-xs px-2 py-0.5`}
-                    >
-                      {formatStatus(displayItem.status)}
-                    </Badge>
-                  </div>
-
-                  <div className="flex flex-wrap justify-center md:justify-start gap-1.5">
-                    {displayItem.genre.map((g) => (
-                      <Badge key={g} variant="secondary" className="text-xs">
-                        {g}
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
+                  <TierBadge itemId={displayItem.id} size="md" />
+                  {canEdit ? (
+                    <>
+                      <select
+                        value={draft.status}
+                        onChange={(e) =>
+                          setDraft((d) => ({
+                            ...d,
+                            status: e.target.value as ReadingStatus,
+                          }))
+                        }
+                        aria-label="Status"
+                        className="h-8 rounded-md border border-input bg-background px-2 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      >
+                        {STATUS_OPTIONS.map((s) => (
+                          <option key={s} value={s}>
+                            {formatStatus(s)}
+                          </option>
+                        ))}
+                      </select>
+                      <label className="flex items-center gap-1.5">
+                        <span className={FIELD_LABEL}>Rating</span>
+                        <input
+                          type="number"
+                          min={0}
+                          max={5}
+                          step={1}
+                          value={draft.rating ?? ''}
+                          onChange={(e) => {
+                            const v = e.target.value;
+                            setDraft((d) => ({
+                              ...d,
+                              rating:
+                                v === ''
+                                  ? null
+                                  : Math.max(0, Math.min(5, Math.round(Number(v)))),
+                            }));
+                          }}
+                          className="h-8 w-14 rounded-md border border-input bg-background px-2 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        />
+                      </label>
+                    </>
+                  ) : (
+                    // The "Completed" status is redundant with the completion
+                    // date shown below, so only badge other statuses.
+                    displayItem.status !== 'completed' && (
+                      <Badge
+                        className={`${getStatusColor(displayItem.status)} text-xs px-2 py-0.5`}
+                      >
+                        {formatStatus(displayItem.status)}
                       </Badge>
-                    ))}
-                  </div>
+                    )
+                  )}
+                </div>
 
+                <div className="flex flex-wrap justify-center md:justify-start gap-1.5">
+                  {displayItem.genre.map((g) => (
+                    <Badge key={g} variant="secondary" className="text-xs">
+                      {g}
+                    </Badge>
+                  ))}
+                </div>
+
+                {canEdit ? (
+                  <div className="flex flex-wrap justify-center md:justify-start gap-3">
+                    <label className="flex flex-col items-start gap-1">
+                      <span className={FIELD_LABEL}>Started</span>
+                      <Input
+                        type="date"
+                        value={draft.dateStarted}
+                        onChange={(e) =>
+                          setDraft((d) => ({ ...d, dateStarted: e.target.value }))
+                        }
+                        className="h-8 w-auto text-xs"
+                      />
+                    </label>
+                    <label className="flex flex-col items-start gap-1">
+                      <span className={FIELD_LABEL}>Completed</span>
+                      <Input
+                        type="date"
+                        value={draft.dateCompleted}
+                        onChange={(e) =>
+                          setDraft((d) => ({
+                            ...d,
+                            dateCompleted: e.target.value,
+                          }))
+                        }
+                        className="h-8 w-auto text-xs"
+                      />
+                    </label>
+                  </div>
+                ) : (
                   <div className="flex flex-wrap justify-center md:justify-start gap-x-5 gap-y-1 text-sm text-muted-foreground">
                     {displayItem.dateCompleted && (
                       <div className="flex items-center gap-1.5">
@@ -453,141 +643,211 @@ export default function LibraryModal({
                         <span>Completed {formatDate(displayItem.dateCompleted)}</span>
                       </div>
                     )}
-                    {displayItem.dateStarted && displayItem.status === 'in-progress' && (
-                      <div className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5" />
-                        <span>Started {formatDate(displayItem.dateStarted)}</span>
-                      </div>
-                    )}
+                    {displayItem.dateStarted &&
+                      displayItem.status === 'in-progress' && (
+                        <div className="flex items-center gap-1.5">
+                          <Clock className="w-3.5 h-3.5" />
+                          <span>Started {formatDate(displayItem.dateStarted)}</span>
+                        </div>
+                      )}
                   </div>
-                </div>
-              </motion.div>
-            </div>
+                )}
+              </div>
+            </motion.div>
+          </div>
 
-            {/* Body */}
-            <motion.div
-              key={`content-${selectedItem.id}`}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{
-                opacity: isTransitioning ? 0.4 : 1,
-                y: isTransitioning ? 5 : 0,
-              }}
-              transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1], delay: 0.03 }}
-              className="px-5 sm:px-8 md:px-10 pb-10 pt-8 md:pt-10 space-y-8"
-            >
-              {/* Lede description */}
-              <p className="text-base md:text-lg leading-relaxed text-foreground/90 max-w-3xl">
-                {displayItem.description}
-              </p>
+          {/* Body */}
+          <motion.div
+            key={`content-${selectedItem.id}`}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{
+              opacity: isTransitioning ? 0.4 : 1,
+              y: isTransitioning ? 5 : 0,
+            }}
+            transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1], delay: 0.03 }}
+            className="px-5 sm:px-8 md:px-10 pb-10 pt-8 md:pt-10 space-y-8"
+          >
+            {/* Lede description */}
+            <p className="text-base md:text-lg leading-relaxed text-foreground/90 max-w-3xl">
+              {displayItem.description}
+            </p>
 
-              {/* Notes */}
-              {displayItem.notes && (
+            {/* Notes */}
+            {canEdit ? (
+              <section>
+                <SectionLabel>Notes</SectionLabel>
+                <Textarea
+                  value={draft.notes}
+                  onChange={(e) =>
+                    setDraft((d) => ({ ...d, notes: e.target.value }))
+                  }
+                  rows={4}
+                  placeholder="Optional thoughts about this read/watch…"
+                  className="text-sm"
+                />
+              </section>
+            ) : (
+              displayItem.notes && (
                 <section>
                   <SectionLabel>Notes</SectionLabel>
                   <div className="border-l-2 border-primary/60 pl-4 py-1">
-                    <p className="text-foreground/90 leading-relaxed">{displayItem.notes}</p>
+                    <p className="text-foreground/90 leading-relaxed">
+                      {displayItem.notes}
+                    </p>
                   </div>
                 </section>
-              )}
+              )
+            )}
 
-              {/* Dev-only entry editor — see note at top of file. The key
-                  ensures the editor remounts (and resets its draft state)
-                  whenever the user navigates to a different item, but stays
-                  put across in-place edits like a rename. */}
-              {ENTRY_EDIT_ENABLED && (
-                <LibraryEntryEditor
-                  key={selectedItem.id}
-                  item={displayItem}
-                  onSaved={(nextEntries) => setEntriesOverride(nextEntries)}
-                  onIdSaved={(nextId) => setIdOverride(nextId)}
-                />
-              )}
+            {/* Links */}
+            {displayItem.links && Object.keys(displayItem.links).length > 0 && (
+              <section>
+                <SectionLabel>Links</SectionLabel>
+                <div className="flex flex-wrap gap-2">
+                  {Object.entries(displayItem.links).map(([platform, url]) =>
+                    url ? (
+                      <Link
+                        key={platform}
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-muted hover:bg-muted/70 text-sm transition-colors"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5 text-muted-foreground" />
+                        <span className="font-medium">
+                          {platform.charAt(0).toUpperCase() + platform.slice(1)}
+                        </span>
+                      </Link>
+                    ) : null,
+                  )}
+                </div>
+              </section>
+            )}
 
-              {/* Links */}
-              {displayItem.links && Object.keys(displayItem.links).length > 0 && (
-                <section>
-                  <SectionLabel>Links</SectionLabel>
-                  <div className="flex flex-wrap gap-2">
-                    {Object.entries(displayItem.links).map(([platform, url]) =>
-                      url ? (
-                        <Link
-                          key={platform}
-                          href={url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-muted hover:bg-muted/70 text-sm transition-colors"
-                        >
-                          <ExternalLink className="w-3.5 h-3.5 text-muted-foreground" />
-                          <span className="font-medium">
-                            {platform.charAt(0).toUpperCase() + platform.slice(1)}
-                          </span>
-                        </Link>
-                      ) : null,
-                    )}
-                  </div>
-                </section>
-              )}
-
-              {/* Related */}
-              {relatedItems.length > 0 && (
-                <section>
-                  <SectionLabel>Related</SectionLabel>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
-                    {relatedItems.map((related) => {
-                      const relCreator = getCreatorLabel(related);
-                      return (
-                        <button
-                          key={related.id}
-                          type="button"
-                          onClick={() => onSelectItem(related)}
-                          className="group flex gap-3 py-2 -mx-2 px-2 rounded-md text-left hover:bg-muted/50 transition-colors"
-                        >
-                          <div className="w-14 h-20 relative bg-muted dark:bg-black rounded-md overflow-hidden flex-shrink-0">
-                            {related.coverImage ? (
-                              <Image
-                                src={related.coverImage}
-                                alt={related.title}
-                                fill
-                                sizes="56px"
-                                className="object-contain group-hover:scale-105 transition-transform"
-                              />
-                            ) : (
-                              <div className="flex items-center justify-center h-full text-muted-foreground">
-                                {getTypeIcon(related.type, 'sm')}
-                              </div>
-                            )}
-                          </div>
-                          <div className="flex-1 min-w-0 flex flex-col gap-0.5">
-                            <div className="flex items-start justify-between gap-2">
-                              <h3 className="font-medium text-sm group-hover:text-primary transition-colors line-clamp-2">
-                                {related.title}
-                              </h3>
-                              <span className="text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground whitespace-nowrap shrink-0 mt-0.5">
-                                {getRelationshipLabel(selectedItem, related)}
-                              </span>
+            {/* Related */}
+            {relatedItems.length > 0 && (
+              <section>
+                <SectionLabel>Related</SectionLabel>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
+                  {relatedItems.map((related) => {
+                    const relCreator = getCreatorLabel(related);
+                    return (
+                      <button
+                        key={related.id}
+                        type="button"
+                        onClick={() => onSelectItem(related)}
+                        className="group flex gap-3 py-2 -mx-2 px-2 rounded-md text-left hover:bg-muted/50 transition-colors"
+                      >
+                        <div className="w-14 h-20 relative bg-muted dark:bg-black rounded-md overflow-hidden flex-shrink-0">
+                          {related.coverImage ? (
+                            <Image
+                              src={related.coverImage}
+                              alt={related.title}
+                              fill
+                              sizes="56px"
+                              className="object-contain group-hover:scale-105 transition-transform"
+                            />
+                          ) : (
+                            <div className="flex items-center justify-center h-full text-muted-foreground">
+                              {getTypeIcon(related.type, 'sm')}
                             </div>
-                            {relCreator && (
-                              <p className="text-xs text-muted-foreground line-clamp-1">
-                                by {relCreator}
-                              </p>
-                            )}
-                            {related.series && (
-                              <p className="text-xs text-primary">
-                                {related.series} #{related.seriesOrder}
-                              </p>
-                            )}
-                            <TierBadge itemId={related.id} />
+                          )}
+                        </div>
+                        <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+                          <div className="flex items-start justify-between gap-2">
+                            <h3 className="font-medium text-sm group-hover:text-primary transition-colors line-clamp-2">
+                              {related.title}
+                            </h3>
+                            <span className="text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground whitespace-nowrap shrink-0 mt-0.5">
+                              {getRelationshipLabel(selectedItem, related)}
+                            </span>
                           </div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </section>
+                          {relCreator && (
+                            <p className="text-xs text-muted-foreground line-clamp-1">
+                              by {relCreator}
+                            </p>
+                          )}
+                          {related.series && (
+                            <p className="text-xs text-primary">
+                              {related.series} #{related.seriesOrder}
+                            </p>
+                          )}
+                          <TierBadge itemId={related.id} />
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </section>
+            )}
+          </motion.div>
+        </div>
+
+        {/* Dev-only save bar — appears when an inline field is dirty */}
+        {canEdit && isDirty && (
+          <div className="flex items-center justify-end gap-2 border-t border-amber-500/40 bg-amber-500/5 px-4 py-2.5">
+            <span className="mr-auto text-[11px] font-medium uppercase tracking-[0.16em] text-amber-700 dark:text-amber-400">
+              Unsaved changes
+            </span>
+            <Button
+              type="button"
+              size="sm"
+              variant="ghost"
+              onClick={resetDraft}
+              disabled={isSaving}
+              className="h-8 px-2 text-xs"
+            >
+              <Undo2 className="w-3.5 h-3.5 mr-1" />
+              Reset
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              onClick={handleSave}
+              disabled={isSaving}
+              className="h-8 px-3 text-xs"
+            >
+              {isSaving ? (
+                <Loader2 className="w-3.5 h-3.5 mr-1 animate-spin" />
+              ) : (
+                <Save className="w-3.5 h-3.5 mr-1" />
               )}
-            </motion.div>
+              Save changes
+            </Button>
           </div>
-        </motion.div>
+        )}
+
+        {/* Prev / Next nav — a footer bar so it never overlaps body content */}
+        {hasNav && (
+          <div className="flex items-center justify-between gap-3 border-t border-border/60 bg-background/80 px-4 py-2.5 backdrop-blur-sm">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => onNavigate('prev')}
+              disabled={isTransitioning}
+              className="gap-1.5 disabled:opacity-40"
+            >
+              <ChevronLeft className="w-4 h-4" />
+              <span className="hidden sm:inline">Previous</span>
+            </Button>
+            {currentIndex >= 0 && (
+              <span className="text-xs text-muted-foreground tabular-nums">
+                {currentIndex + 1} / {sortedItems.length}
+              </span>
+            )}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => onNavigate('next')}
+              disabled={isTransitioning}
+              className="gap-1.5 disabled:opacity-40"
+            >
+              <span className="hidden sm:inline">Next</span>
+              <ChevronRight className="w-4 h-4" />
+            </Button>
+          </div>
+        )}
       </motion.div>
-    </AnimatePresence>
+    </motion.div>
   );
 }
