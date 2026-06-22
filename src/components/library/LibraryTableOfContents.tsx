@@ -93,7 +93,7 @@ export default function LibraryTableOfContents({
   return (
     <div className="fixed top-24 right-4 lg:right-8 z-40 hidden md:block group">
       {/* Minimal lines (default) */}
-      <div className="absolute right-0 top-0 group-hover:opacity-0 group-hover:invisible transition-[opacity,visibility] duration-300 bg-card/80 backdrop-blur-sm rounded-lg p-2 shadow-xl">
+      <div className="absolute right-0 top-0 group-hover:opacity-0 group-hover:invisible transition-[opacity,visibility] duration-300 bg-card/80 backdrop-blur-sm rounded-lg p-2 shadow-xl max-h-[calc(100vh-8rem)] overflow-y-auto">
         <nav className="space-y-3" aria-label="Library sections">
           {sections.map((section) => {
             const isActive = activeKey === section.key;
@@ -118,11 +118,14 @@ export default function LibraryTableOfContents({
       </div>
 
       {/* Expanded panel (hover) */}
-      <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-[opacity,visibility] duration-300 bg-card rounded-lg p-4 shadow-xl min-w-[200px]">
+      <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-[opacity,visibility] duration-300 bg-card rounded-lg p-4 shadow-xl min-w-[200px] flex max-h-[calc(100vh-8rem)] flex-col">
         <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground mb-3">
           On this page
         </h3>
-        <nav className="space-y-1" aria-label="Library sections">
+        <nav
+          className="space-y-1 overflow-y-auto"
+          aria-label="Library sections"
+        >
           {sections.map((section) => {
             const isActive = activeKey === section.key;
             return (
