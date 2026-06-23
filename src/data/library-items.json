@@ -9057,7 +9057,8 @@
     "entries": [
       {
         "dateStarted": "2026-06-22",
-        "status": "in-progress"
+        "dateCompleted": "2026-06-23",
+        "status": "completed"
       }
     ]
   }
