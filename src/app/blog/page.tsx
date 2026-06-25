@@ -56,7 +56,7 @@ export default function BlogPage() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
                 {postsByYear[year].map((post) => (
                   <Link key={post.slug} href={`/blog/${post.slug}`}>
-                    <Card className="overflow-hidden group shadow-none hover:border-primary/40 transition-colors duration-300 h-full flex flex-col">
+                    <Card className="overflow-hidden group border-0 shadow-none transition-colors duration-300 h-full flex flex-col">
                       <div className="relative aspect-video">
                         <Image
                           src={post.coverImage || '/resources/images/blog/default-cover.webp'}
@@ -68,16 +68,6 @@ export default function BlogPage() {
                         />
                       </div>
                       <div className="p-6 flex flex-col flex-grow">
-                        <div className="flex items-center gap-2 mb-4">
-                          {post.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="px-2 py-1 text-xs bg-secondary text-secondary-foreground rounded-md"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
                         <h3 className="text-2xl font-bold tracking-tight mb-2 text-foreground group-hover:text-primary transition-colors">
                           {post.title}
                         </h3>
