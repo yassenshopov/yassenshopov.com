@@ -5165,8 +5165,6 @@
     "id": "104",
     "title": "Annihilation",
     "type": "book",
-    "rating": null,
-    "status": "want-to-read",
     "genre": [],
     "description": "",
     "year": 2014,
@@ -5175,7 +5173,13 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/17934530-annihilation"
     },
-    "coverImage": "/resources/images/library/annihilation-1779878168211.jpg"
+    "coverImage": "/resources/images/library/annihilation-1779878168211.jpg",
+    "entries": [
+      {
+        "dateStarted": "2026-06-25",
+        "status": "in-progress"
+      }
+    ]
   },
   {
     "id": "105",
@@ -5772,6 +5776,8 @@
     "id": "140",
     "title": "Neuromancer",
     "type": "book",
+    "rating": null,
+    "status": "want-to-read",
     "genre": [],
     "description": "",
     "year": 1984,
@@ -5780,13 +5786,7 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/10505660-death-bringer"
     },
-    "coverImage": "/resources/images/library/neuromancer-1779880780238.jpg",
-    "entries": [
-      {
-        "dateStarted": "2026-06-10",
-        "status": "in-progress"
-      }
-    ]
+    "coverImage": "/resources/images/library/neuromancer-1779880780238.jpg"
   },
   {
     "id": "141",
