@@ -12,4 +12,4 @@ export interface BlogPost {
 
 export interface BlogData {
   posts: BlogPost[];
-} 
+}
