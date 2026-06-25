@@ -52,8 +52,7 @@ const VALIDATORS: Record<string, (v: unknown) => boolean> = {
   dateStarted: (v) => isEmptyDelete(v) || isDateString(v),
   dateCompleted: (v) => isEmptyDelete(v) || isDateString(v),
   rating: (v) =>
-    isEmptyDelete(v) ||
-    (typeof v === 'number' && Number.isInteger(v) && v >= 0 && v <= 5),
+    isEmptyDelete(v) || (typeof v === 'number' && Number.isInteger(v) && v >= 0 && v <= 5),
   notes: (v) => isEmptyDelete(v) || typeof v === 'string',
 };
 
@@ -77,10 +76,7 @@ function findLatestEntryIndex(entries: RawEntry[]): number {
 
 export async function POST(req: NextRequest) {
   if (process.env.NODE_ENV === 'production') {
-    return NextResponse.json(
-      { error: 'Entry editing is disabled in production' },
-      { status: 403 },
-    );
+    return NextResponse.json({ error: 'Entry editing is disabled in production' }, { status: 403 });
   }
 
   let body: { id?: unknown; entryIndex?: unknown; patch?: unknown };
@@ -122,7 +118,7 @@ export async function POST(req: NextRequest) {
   if (entries.length === 0) {
     return NextResponse.json(
       { error: 'item has no entries to update; add one to library-items.json first' },
-      { status: 400 },
+      { status: 400 }
     );
   }
 

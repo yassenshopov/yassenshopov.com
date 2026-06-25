@@ -1,29 +1,29 @@
-import blogData from "@/data/blog-posts.json";
-import { toRFC822 } from "@/lib/format-date";
+import blogData from '@/data/blog-posts.json';
+import { toRFC822 } from '@/lib/format-date';
 
-const SITE_URL = "https://yassenshopov.com";
+const SITE_URL = 'https://yassenshopov.com';
 
 function escapeXml(str: string): string {
   return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&apos;");
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
 }
 
 function stripMarkdown(md: string): string {
   return md
-    .replace(/!\[.*?\]\(.*?\)/g, "")
-    .replace(/\[([^\]]+)\]\(.*?\)/g, "$1")
-    .replace(/#{1,6}\s+/g, "")
-    .replace(/(\*{1,3}|_{1,3})(.*?)\1/g, "$2")
-    .replace(/`{1,3}[^`]*`{1,3}/g, "")
-    .replace(/^[-*+]\s+/gm, "")
-    .replace(/^\d+\.\s+/gm, "")
-    .replace(/^>\s+/gm, "")
-    .replace(/---+/g, "")
-    .replace(/\n{3,}/g, "\n\n")
+    .replace(/!\[.*?\]\(.*?\)/g, '')
+    .replace(/\[([^\]]+)\]\(.*?\)/g, '$1')
+    .replace(/#{1,6}\s+/g, '')
+    .replace(/(\*{1,3}|_{1,3})(.*?)\1/g, '$2')
+    .replace(/`{1,3}[^`]*`{1,3}/g, '')
+    .replace(/^[-*+]\s+/gm, '')
+    .replace(/^\d+\.\s+/gm, '')
+    .replace(/^>\s+/gm, '')
+    .replace(/---+/g, '')
+    .replace(/\n{3,}/g, '\n\n')
     .trim();
 }
 
@@ -40,9 +40,7 @@ export async function GET() {
     .map((post) => {
       const plainContent = stripMarkdown(post.content);
       const truncated =
-        plainContent.length > 2000
-          ? plainContent.slice(0, 2000) + "\u2026"
-          : plainContent;
+        plainContent.length > 2000 ? plainContent.slice(0, 2000) + '\u2026' : plainContent;
 
       return `    <item>
       <title>${escapeXml(post.title)}</title>
@@ -52,10 +50,10 @@ export async function GET() {
       <description>${escapeXml(post.description)}</description>
       <content:encoded><![CDATA[${truncated}]]></content:encoded>
       <author>yassenshopov00@gmail.com (Yassen Shopov)</author>
-${post.tags.map((tag: string) => `      <category>${escapeXml(tag)}</category>`).join("\n")}
+${post.tags.map((tag: string) => `      <category>${escapeXml(tag)}</category>`).join('\n')}
     </item>`;
     })
-    .join("\n");
+    .join('\n');
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"
@@ -80,8 +78,8 @@ ${items}
 
   return new Response(xml, {
     headers: {
-      "Content-Type": "application/rss+xml; charset=utf-8",
-      "Cache-Control": "public, max-age=3600, s-maxage=3600",
+      'Content-Type': 'application/rss+xml; charset=utf-8',
+      'Cache-Control': 'public, max-age=3600, s-maxage=3600',
     },
   });
 }

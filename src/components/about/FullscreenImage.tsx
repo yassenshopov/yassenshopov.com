@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { X } from "lucide-react";
-import { useEffect } from "react";
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { X } from 'lucide-react';
+import { useEffect } from 'react';
 
 interface FullscreenImageProps {
   src: string;
@@ -36,7 +36,7 @@ export default function FullscreenImage({ src, alt, caption, onClose }: Fullscre
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ type: "spring", damping: 20 }}
+        transition={{ type: 'spring', damping: 20 }}
         className="relative w-[90vw] h-[90vh] flex flex-col items-center justify-center backdrop-blur-sm"
         onClick={(e) => e.stopPropagation()}
       >
@@ -56,10 +56,8 @@ export default function FullscreenImage({ src, alt, caption, onClose }: Fullscre
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="mt-4 text-center text-white/80 text-sm max-w-2xl px-4">
-          {caption}
-        </div>
+        <div className="mt-4 text-center text-white/80 text-sm max-w-2xl px-4">{caption}</div>
       </motion.div>
     </motion.div>
   );
-} 
+}

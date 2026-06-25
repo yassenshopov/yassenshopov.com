@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import BlogCard from "@/components/BlogCard";
-import { SearchPosts } from "@/components/SearchPosts";
+import BlogCard from '@/components/BlogCard';
+import { SearchPosts } from '@/components/SearchPosts';
 import { type Post } from '@/data/blog-posts';
 
 interface BlogListProps {
@@ -11,7 +11,7 @@ interface BlogListProps {
 
 const BlogList = ({ initialPosts }: BlogListProps) => {
   const [searchQuery, setSearchQuery] = useState('');
-  
+
   const filteredPosts = initialPosts.filter((post: Post) => {
     const searchContent = `${post.title} ${post.description} ${post.tags.join(' ')}`.toLowerCase();
     return searchContent.includes(searchQuery.toLowerCase());
@@ -50,7 +50,7 @@ const BlogList = ({ initialPosts }: BlogListProps) => {
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {regularPosts.map(post => (
+          {regularPosts.map((post) => (
             <BlogCard
               key={post.slug}
               title={post.title}
@@ -69,10 +69,9 @@ const BlogList = ({ initialPosts }: BlogListProps) => {
             <p className="text-muted-foreground">No posts found matching your search criteria.</p>
           </div>
         )}
-
       </div>
     </div>
   );
 };
 
-export default BlogList; 
+export default BlogList;

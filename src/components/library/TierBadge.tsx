@@ -35,9 +35,7 @@ export default function TierBadge({ itemId, size = 'sm' }: TierBadgeProps) {
       >
         {tier.label}
       </span>
-      <span className={`font-bold uppercase tracking-wider text-foreground/80 ${label}`}>
-        Tier
-      </span>
+      <span className={`font-bold uppercase tracking-wider text-foreground/80 ${label}`}>Tier</span>
     </span>
   );
 }

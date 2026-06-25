@@ -20,13 +20,7 @@ export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
 const LIB_PATH = path.join(process.cwd(), 'src', 'data', 'library-items.json');
-const PUBLIC_DIR = path.join(
-  process.cwd(),
-  'public',
-  'resources',
-  'images',
-  'library',
-);
+const PUBLIC_DIR = path.join(process.cwd(), 'public', 'resources', 'images', 'library');
 
 const MIME_TO_EXT: Record<string, string> = {
   'image/jpeg': '.jpg',
@@ -67,10 +61,7 @@ function pickExtension(file: File): string {
 
 export async function POST(req: NextRequest) {
   if (process.env.NODE_ENV === 'production') {
-    return NextResponse.json(
-      { error: 'Cover upload is disabled in production' },
-      { status: 403 },
-    );
+    return NextResponse.json({ error: 'Cover upload is disabled in production' }, { status: 403 });
   }
 
   let form: FormData;
@@ -112,11 +103,7 @@ export async function POST(req: NextRequest) {
 
   // Best-effort cleanup of the previous file so we don't accumulate orphans.
   if (typeof item.coverImage === 'string') {
-    const oldFull = path.join(
-      process.cwd(),
-      'public',
-      item.coverImage.replace(/^\//, ''),
-    );
+    const oldFull = path.join(process.cwd(), 'public', item.coverImage.replace(/^\//, ''));
     try {
       await fs.unlink(oldFull);
     } catch {

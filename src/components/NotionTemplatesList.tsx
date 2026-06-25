@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, LayoutGrid, List, Sparkles } from 'lucide-react';
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 interface Template {
   id: string;
@@ -20,17 +20,16 @@ interface Template {
 }
 
 const categories = [
-  { value: "all", label: "All Templates" },
-  { value: "finances", label: "Finances" },
-  { value: "career", label: "Career" },
-  { value: "study", label: "Study" },
-  { value: "mindfulness", label: "Mindfulness" },
-  { value: "planners", label: "Planners" },
-  { value: "content-creation", label: "Content Creation" },
+  { value: 'all', label: 'All Templates' },
+  { value: 'finances', label: 'Finances' },
+  { value: 'career', label: 'Career' },
+  { value: 'study', label: 'Study' },
+  { value: 'mindfulness', label: 'Mindfulness' },
+  { value: 'planners', label: 'Planners' },
+  { value: 'content-creation', label: 'Content Creation' },
 ];
 
-const categoryLabel = (value: string) =>
-  categories.find((c) => c.value === value)?.label ?? value;
+const categoryLabel = (value: string) => categories.find((c) => c.value === value)?.label ?? value;
 
 // The single premium template — surfaced as a hero banner whenever it's part of
 // the active filter so it never competes with the free grid for attention.
@@ -45,23 +44,25 @@ export const templates: Template[] = [
   {
     id: 'ultimate-investing-dashboard',
     title: 'Ultimate Investing Dashboard',
-    description: 'Automate your investment portfolio tracking and market research with this beautiful Notion template. Automatically synced with Yahoo! Finances',
+    description:
+      'Automate your investment portfolio tracking and market research with this beautiful Notion template. Automatically synced with Yahoo! Finances',
     image: '/resources/images/notion/Ultimate_Investing_Dashboard.webp',
     unoptimized: true,
     categories: ['finances', 'planners'],
     price: '22$',
     gumroadLink: 'https://yassenshopov.gumroad.com/l/ultimate-investing-dashboard',
-    productHuntLink: 'https://www.producthunt.com/posts/ultimate-investing-dashboard-in-notion'
+    productHuntLink: 'https://www.producthunt.com/posts/ultimate-investing-dashboard-in-notion',
   },
   {
     id: 'resume-builder',
     title: 'Resume Builder',
-    description: 'Build a professional resume by simply adding your details in this minimalistic Notion template.',
+    description:
+      'Build a professional resume by simply adding your details in this minimalistic Notion template.',
     image: '/resources/images/notion/Resume_Builder_Thumbnail.webp',
     categories: ['career'],
     price: '0$',
     gumroadLink: 'https://yassenshopov.gumroad.com/l/resume-builder',
-    productHuntLink: 'https://www.producthunt.com/posts/resume-builder-notion-template'
+    productHuntLink: 'https://www.producthunt.com/posts/resume-builder-notion-template',
   },
   {
     id: 'flash-card-builder',
@@ -70,7 +71,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Flash_Card_Builder_Thumbnail.webp',
     categories: ['study'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/flash-card-builder'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/flash-card-builder',
   },
   {
     id: 'project-management-database',
@@ -79,12 +80,13 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Project_Management_Database.webp',
     categories: ['career', 'planners'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/projects-database'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/projects-database',
   },
   {
     id: '5-minute-daily-journal',
     title: '5-Minute Daily Journal',
-    description: 'Receive a fully-populated database for each date in 2022, where you are able to log your daily data and journal entries.',
+    description:
+      'Receive a fully-populated database for each date in 2022, where you are able to log your daily data and journal entries.',
     image: '/resources/images/notion/5-Minute_Daily_Journaling.webp',
     categories: ['mindfulness', 'planners'],
     price: '0$',
@@ -98,7 +100,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Travel_Planner.webp',
     categories: ['planners'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/travel-planning'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/travel-planning',
   },
   {
     id: 'uk-university-hq',
@@ -107,7 +109,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/UK_University_HQ.webp',
     categories: ['study'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/uk-university-hq'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/uk-university-hq',
   },
   {
     id: 'to-do-list-database',
@@ -116,7 +118,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/To-Do_List_Database.webp',
     categories: ['planners'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/todo-list-database'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/todo-list-database',
   },
   {
     id: 'social-media-production',
@@ -125,7 +127,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Social_Media_Production.webp',
     categories: ['content-creation'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/social-media-production'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/social-media-production',
   },
   {
     id: 'social-circle-management',
@@ -134,7 +136,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Social_Circle_Management.webp',
     categories: ['mindfulness'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/social-circle-management'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/social-circle-management',
   },
   {
     id: 'investments-tracker-database',
@@ -153,7 +155,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Job_Application_Tracker.webp',
     categories: ['career'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/job-application-tracker'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/job-application-tracker',
   },
   {
     id: 'interactive-media-hub',
@@ -162,7 +164,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Interactive_Media_Hub.webp',
     categories: ['content-creation'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/interactive-media-hub'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/interactive-media-hub',
   },
   {
     id: 'financial-goals-tracker',
@@ -171,7 +173,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Financial_Goals_Tracker.webp',
     categories: ['finances'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/financial-goal-planning'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/financial-goal-planning',
   },
   {
     id: 'family-tree-database',
@@ -180,7 +182,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Family_Tree_Database.webp',
     categories: ['planners'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/family-tree-database'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/family-tree-database',
   },
   {
     id: 'daily-tracking-2022',
@@ -189,7 +191,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Daily_Tracking_2022.webp',
     categories: ['planners'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/daily-tracking-2022'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/daily-tracking-2022',
   },
   {
     id: 'digital-art-commissions',
@@ -198,7 +200,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Digital_Art_Commissions.webp',
     categories: ['content-creation'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/digital-art-commissions'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/digital-art-commissions',
   },
   {
     id: 'blog-writing-management',
@@ -207,7 +209,7 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Blog_Writing_Management.webp',
     categories: ['content-creation'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/blog-management-database'
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/blog-management-database',
   },
   {
     id: 'assignment-tracking-for-uni',
@@ -216,8 +218,8 @@ export const templates: Template[] = [
     image: '/resources/images/notion/Assignment_Tracking_for_Uni.webp',
     categories: ['study'],
     price: '0$',
-    gumroadLink: 'https://yassenshopov.gumroad.com/l/university-assignment-tracking'
-  }
+    gumroadLink: 'https://yassenshopov.gumroad.com/l/university-assignment-tracking',
+  },
 ];
 
 function PriceBadge({ price, className = '' }: { price: string; className?: string }) {
@@ -225,9 +227,7 @@ function PriceBadge({ price, className = '' }: { price: string; className?: stri
   return (
     <span
       className={`px-2.5 py-1 rounded-full text-xs font-semibold flex-shrink-0 ${
-        free
-          ? 'bg-secondary text-secondary-foreground'
-          : 'bg-primary text-primary-foreground'
+        free ? 'bg-secondary text-secondary-foreground' : 'bg-primary text-primary-foreground'
       } ${className}`}
     >
       {formatPrice(price)}
@@ -297,13 +297,7 @@ function FeaturedTemplate({ template }: { template: Template }) {
   );
 }
 
-function TemplateCard({
-  template,
-  viewMode,
-}: {
-  template: Template;
-  viewMode: 'grid' | 'list';
-}) {
+function TemplateCard({ template, viewMode }: { template: Template; viewMode: 'grid' | 'list' }) {
   if (viewMode === 'list') {
     return (
       <Link
@@ -380,9 +374,7 @@ function TemplateCard({
             </h2>
             <PriceBadge price={template.price} />
           </div>
-          <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">
-            {template.description}
-          </p>
+          <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">{template.description}</p>
           <div className="mt-auto flex flex-wrap gap-2">
             {template.categories.map((category) => (
               <span
@@ -489,11 +481,7 @@ export default function NotionTemplatesList() {
                 }
               >
                 {gridTemplates.map((template) => (
-                  <TemplateCard
-                    key={template.id}
-                    template={template}
-                    viewMode={viewMode}
-                  />
+                  <TemplateCard key={template.id} template={template} viewMode={viewMode} />
                 ))}
               </div>
             ) : (

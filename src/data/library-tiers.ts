@@ -9,12 +9,7 @@ import type { LibraryItem } from './library';
  * that row. There is intentionally no link to an item's star rating — tiers are
  * a wholly separate, manually-curated ranking.
  */
-export type TierBoardId =
-  | 'fiction'
-  | 'nonfiction'
-  | 'movies'
-  | 'series'
-  | 'anime-manga';
+export type TierBoardId = 'fiction' | 'nonfiction' | 'movies' | 'series' | 'anime-manga';
 
 export const UNRANKED_TIER = 'unranked';
 
@@ -42,7 +37,7 @@ export const TIER_KEYS: string[] = [...TIERS.map((t) => t.id), UNRANKED_TIER];
 
 /** Quick lookup of a tier definition by its id. */
 export const TIER_BY_ID: Record<string, TierDefinition> = Object.fromEntries(
-  TIERS.map((t) => [t.id, t]),
+  TIERS.map((t) => [t.id, t])
 );
 
 export const TIER_BOARDS: Array<{ id: TierBoardId; label: string }> = [
@@ -60,10 +55,26 @@ export const TIER_BOARDS: Array<{ id: TierBoardId; label: string }> = [
  */
 export const ANIME_MANGA_IDS = new Set<string>([
   // Anime (series)
-  '88', '114', '115', '117', '118', '119', '120', '121', '122', '123',
-  '124', '125', '126', '127', '136',
+  '88',
+  '114',
+  '115',
+  '117',
+  '118',
+  '119',
+  '120',
+  '121',
+  '122',
+  '123',
+  '124',
+  '125',
+  '126',
+  '127',
+  '136',
   // Manga (books)
-  'choujin-x', 'ext-tokyo-ghoul-re', 'ext-tokyo-ghoul', 'goodnight-punpun',
+  'choujin-x',
+  'ext-tokyo-ghoul-re',
+  'ext-tokyo-ghoul',
+  'goodnight-punpun',
 ]);
 
 function emptyBoard(): BoardTiers {
@@ -73,7 +84,7 @@ function emptyBoard(): BoardTiers {
 const rawData = tiersData as Partial<Record<TierBoardId, Partial<BoardTiers>>>;
 
 export const tierData: TierData = Object.fromEntries(
-  TIER_BOARDS.map((b) => [b.id, { ...emptyBoard(), ...(rawData[b.id] ?? {}) }]),
+  TIER_BOARDS.map((b) => [b.id, { ...emptyBoard(), ...(rawData[b.id] ?? {}) }])
 ) as TierData;
 
 /**
@@ -118,10 +129,7 @@ export function getItemTier(itemId: string, data: TierData = tierData): string |
  * (filtered to items actually on the board), with any not-yet-placed items
  * appended to the unranked row so newly-added works always surface.
  */
-export function materializeBoard(
-  items: LibraryItem[],
-  saved: BoardTiers | undefined,
-): BoardTiers {
+export function materializeBoard(items: LibraryItem[], saved: BoardTiers | undefined): BoardTiers {
   const boardIds = new Set(items.map((i) => i.id));
   const result = emptyBoard();
   const placed = new Set<string>();

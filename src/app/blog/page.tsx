@@ -37,18 +37,14 @@ export default function BlogPage() {
           {years.map((year) => (
             <div key={year}>
               {/* Year heading */}
-              <div
-                className="flex items-end gap-6 mb-8"
-                aria-label={`Posts from ${year}`}
-              >
+              <div className="flex items-end gap-6 mb-8" aria-label={`Posts from ${year}`}>
                 <h2 className="text-5xl md:text-6xl font-bold tracking-tighter leading-none text-foreground">
                   {year}
                 </h2>
                 <div className="flex-1 pb-2 flex items-center gap-4">
                   <div className="flex-1 h-px bg-border" />
                   <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                    {postsByYear[year].length}{' '}
-                    {postsByYear[year].length === 1 ? 'post' : 'posts'}
+                    {postsByYear[year].length} {postsByYear[year].length === 1 ? 'post' : 'posts'}
                   </span>
                 </div>
               </div>
@@ -73,9 +69,7 @@ export default function BlogPage() {
                         </h3>
                         <p className="text-muted-foreground mb-4 flex-grow">{post.description}</p>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <time dateTime={post.date}>
-                            {formatDate(post.date)}
-                          </time>
+                          <time dateTime={post.date}>{formatDate(post.date)}</time>
                         </div>
                       </div>
                     </Card>

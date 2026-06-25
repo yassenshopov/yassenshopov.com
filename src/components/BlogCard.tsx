@@ -69,4 +69,4 @@ export function BlogCard({
   );
 }
 
-export default BlogCard; 
+export default BlogCard;

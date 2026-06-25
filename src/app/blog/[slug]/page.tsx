@@ -29,7 +29,7 @@ export async function generateMetadata({
     openGraph: {
       title: post.title,
       description: post.description,
-      type: "article",
+      type: 'article',
       publishedTime: post.date,
       authors: [post.author],
       tags: post.tags,
@@ -39,7 +39,7 @@ export async function generateMetadata({
       url: `/blog/${slug}`,
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title: post.title,
       description: post.description,
       images: post.coverImage ? [post.coverImage] : undefined,
@@ -47,15 +47,12 @@ export async function generateMetadata({
   };
 }
 
-export default async function BlogPost({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const currentIndex = blogData.posts.findIndex((post) => post.slug === resolvedParams.slug);
   const post = blogData.posts[currentIndex];
-  const prevPost = currentIndex < blogData.posts.length - 1 ? blogData.posts[currentIndex + 1] : null;
+  const prevPost =
+    currentIndex < blogData.posts.length - 1 ? blogData.posts[currentIndex + 1] : null;
   const nextPost = currentIndex > 0 ? blogData.posts[currentIndex - 1] : null;
 
   if (!post) {
@@ -71,14 +68,18 @@ export default async function BlogPost({
   const wordCount = post.content.trim().split(/\s+/).length;
 
   const postWithReadingTime = { ...post, readingTime: calculateReadingTime(post.content) };
-  const prevPostWithReadingTime = prevPost ? { ...prevPost, readingTime: calculateReadingTime(prevPost.content) } : null;
-  const nextPostWithReadingTime = nextPost ? { ...nextPost, readingTime: calculateReadingTime(nextPost.content) } : null;
+  const prevPostWithReadingTime = prevPost
+    ? { ...prevPost, readingTime: calculateReadingTime(prevPost.content) }
+    : null;
+  const nextPostWithReadingTime = nextPost
+    ? { ...nextPost, readingTime: calculateReadingTime(nextPost.content) }
+    : null;
 
   const jsonLd = [
     blogPostingJsonLd({ ...post, wordCount }),
     breadcrumbJsonLd([
-      { name: "Home", href: "/" },
-      { name: "Blog", href: "/blog" },
+      { name: 'Home', href: '/' },
+      { name: 'Blog', href: '/blog' },
       { name: post.title, href: `/blog/${post.slug}` },
     ]),
   ];

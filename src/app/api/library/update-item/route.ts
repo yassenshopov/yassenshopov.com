@@ -63,10 +63,7 @@ function rewriteRelationshipIds(items: RawItem[], oldId: string, newId: string) 
 
 export async function POST(req: NextRequest) {
   if (process.env.NODE_ENV === 'production') {
-    return NextResponse.json(
-      { error: 'Item editing is disabled in production' },
-      { status: 403 },
-    );
+    return NextResponse.json({ error: 'Item editing is disabled in production' }, { status: 403 });
   }
 
   let body: { id?: unknown; patch?: unknown };
@@ -103,7 +100,7 @@ export async function POST(req: NextRequest) {
   if (!ID_PATTERN.test(newId)) {
     return NextResponse.json(
       { error: 'id can only contain letters, digits, dot, underscore, and hyphen' },
-      { status: 400 },
+      { status: 400 }
     );
   }
 
@@ -119,10 +116,7 @@ export async function POST(req: NextRequest) {
   }
 
   if (items.some((i) => i.id === newId)) {
-    return NextResponse.json(
-      { error: `another item already uses id "${newId}"` },
-      { status: 409 },
-    );
+    return NextResponse.json({ error: `another item already uses id "${newId}"` }, { status: 409 });
   }
 
   item.id = newId;

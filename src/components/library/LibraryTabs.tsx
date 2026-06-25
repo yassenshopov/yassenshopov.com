@@ -62,10 +62,7 @@ export default function LibraryTabs({
               {counts[tab.countKey]}
             </span>
             {isActive && (
-              <span
-                aria-hidden
-                className="absolute inset-x-0 bottom-0 h-[2px] bg-foreground"
-              />
+              <span aria-hidden className="absolute inset-x-0 bottom-0 h-[2px] bg-foreground" />
             )}
           </button>
         );

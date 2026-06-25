@@ -1,10 +1,10 @@
-import { motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-import { ExternalLink } from "lucide-react";
-import { useState } from "react";
-import { Card } from "@/components/ui/card";
-import FullscreenImage from "./FullscreenImage";
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ExternalLink } from 'lucide-react';
+import { useState } from 'react';
+import { Card } from '@/components/ui/card';
+import FullscreenImage from './FullscreenImage';
 
 interface TimelineItemProps {
   year: string;
@@ -33,7 +33,11 @@ export default function TimelineItem({
   links,
   index,
 }: TimelineItemProps) {
-  const [fullscreenImage, setFullscreenImage] = useState<{ src: string; alt: string; caption: string } | null>(null);
+  const [fullscreenImage, setFullscreenImage] = useState<{
+    src: string;
+    alt: string;
+    caption: string;
+  } | null>(null);
 
   return (
     <motion.div
@@ -46,7 +50,7 @@ export default function TimelineItem({
     >
       {/* Mobile Timeline Dot */}
       <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-primary md:hidden" />
-      
+
       <div className="flex items-start gap-8">
         {index % 2 === 0 ? (
           <>
@@ -86,40 +90,33 @@ export default function TimelineItem({
             </div>
             {mainImg && (
               <div className="hidden md:block md:w-1/2">
-                <div className="relative aspect-video group/images"
-                     onClick={() => setFullscreenImage({ 
-                       src: mainImg, 
-                       alt: title,
-                       caption: mainImgCaption 
-                     })}
+                <div
+                  className="relative aspect-video group/images"
+                  onClick={() =>
+                    setFullscreenImage({
+                      src: mainImg,
+                      alt: title,
+                      caption: mainImgCaption,
+                    })
+                  }
                 >
                   <div className="relative aspect-video rounded-lg overflow-hidden transform transition-all duration-300 group-hover/images:scale-105 group-hover/images:-translate-y-2 group-hover/images:rotate-1 cursor-pointer">
-                    <Image
-                      src={mainImg}
-                      alt={title}
-                      fill
-                      className="object-contain"
-                    />
+                    <Image src={mainImg} alt={title} fill className="object-contain" />
                   </div>
                   {sideImg && (
-                    <div 
+                    <div
                       className="absolute -top-6 -right-6 w-24 h-24 transform rotate-3 transition-all duration-300 group-hover/images:rotate-12 group-hover/images:translate-x-2 group-hover/images:-translate-y-2 z-10 cursor-pointer backdrop-blur-sm"
                       style={{ transformOrigin: 'center center' }}
                       onClick={(e) => {
                         e.stopPropagation();
-                        setFullscreenImage({ 
-                          src: sideImg, 
+                        setFullscreenImage({
+                          src: sideImg,
                           alt: `${title} (detail)`,
-                          caption: sideImgCaption 
+                          caption: sideImgCaption,
                         });
                       }}
                     >
-                      <Image
-                        src={sideImg}
-                        alt={title}
-                        fill
-                        className="object-contain"
-                      />
+                      <Image src={sideImg} alt={title} fill className="object-contain" />
                     </div>
                   )}
                 </div>
@@ -130,40 +127,33 @@ export default function TimelineItem({
           <>
             {mainImg && (
               <div className="hidden md:block md:w-1/2">
-                <div className="relative aspect-video group/images"
-                     onClick={() => setFullscreenImage({ 
-                       src: mainImg, 
-                       alt: title,
-                       caption: mainImgCaption 
-                     })}
+                <div
+                  className="relative aspect-video group/images"
+                  onClick={() =>
+                    setFullscreenImage({
+                      src: mainImg,
+                      alt: title,
+                      caption: mainImgCaption,
+                    })
+                  }
                 >
                   <div className="relative aspect-video rounded-lg overflow-hidden transform transition-all duration-300 group-hover/images:scale-105 group-hover/images:-translate-y-2 group-hover/images:-rotate-1 cursor-pointer">
-                    <Image
-                      src={mainImg}
-                      alt={title}
-                      fill
-                      className="object-contain"
-                    />
+                    <Image src={mainImg} alt={title} fill className="object-contain" />
                   </div>
                   {sideImg && (
-                    <div 
+                    <div
                       className="absolute -top-6 -left-6 w-24 h-24 transform -rotate-3 transition-all duration-300 group-hover/images:-rotate-12 group-hover/images:-translate-x-2 group-hover/images:-translate-y-2 z-10 cursor-pointer backdrop-blur-sm"
                       style={{ transformOrigin: 'center center' }}
                       onClick={(e) => {
                         e.stopPropagation();
-                        setFullscreenImage({ 
-                          src: sideImg, 
+                        setFullscreenImage({
+                          src: sideImg,
                           alt: `${title} (detail)`,
-                          caption: sideImgCaption 
+                          caption: sideImgCaption,
                         });
                       }}
                     >
-                      <Image
-                        src={sideImg}
-                        alt={title}
-                        fill
-                        className="object-contain"
-                      />
+                      <Image src={sideImg} alt={title} fill className="object-contain" />
                     </div>
                   )}
                 </div>
@@ -217,4 +207,4 @@ export default function TimelineItem({
       )}
     </motion.div>
   );
-} 
+}

@@ -7,19 +7,19 @@ const nextConfig = {
   // public/resources/images (~260 MB) into the serverless function and trip
   // Vercel's 250 MB limit. Exclude that tree from the function's trace.
   outputFileTracingExcludes: {
-    "/api/library/upload-cover": [
-      "./public/resources/images/**/*",
-      "./public/**/*.png",
-      "./public/**/*.webp",
-      "./public/**/*.jpg",
-      "./public/**/*.jpeg",
+    '/api/library/upload-cover': [
+      './public/resources/images/**/*',
+      './public/**/*.png',
+      './public/**/*.webp',
+      './public/**/*.jpg',
+      './public/**/*.jpeg',
     ],
   },
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "yassenshopov.com",
+        protocol: 'https',
+        hostname: 'yassenshopov.com',
       },
     ],
   },

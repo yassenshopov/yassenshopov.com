@@ -177,13 +177,76 @@ function buildStarField(count: number, seed: number, maxSize: number) {
 // Sizes intentionally span a wide range (14 → 64px) for depth.
 const LEAVES = [
   { left: '8%', size: 58, duration: 15, delay: 0, x: '9vw', rot: 260, op: 0.95, color: '#9aad4e' },
-  { left: '20%', size: 20, duration: 18, delay: 2.5, x: '-5vw', rot: -220, op: 0.8, color: '#c2cf6a' },
-  { left: '34%', size: 44, duration: 12, delay: 5, x: '12vw', rot: 300, op: 0.92, color: '#7e9442' },
-  { left: '48%', size: 15, duration: 21, delay: 1.2, x: '-8vw', rot: 200, op: 0.7, color: '#b6c563' },
-  { left: '60%', size: 52, duration: 13, delay: 6.5, x: '8vw', rot: -280, op: 0.95, color: '#8ea34a' },
-  { left: '72%', size: 24, duration: 17, delay: 3.4, x: '-6vw', rot: 240, op: 0.82, color: '#cdd87f' },
-  { left: '85%', size: 64, duration: 11, delay: 8, x: '11vw', rot: -320, op: 0.96, color: '#7e9442' },
-  { left: '94%', size: 18, duration: 22, delay: 4.2, x: '-4vw', rot: 180, op: 0.72, color: '#b6c563' },
+  {
+    left: '20%',
+    size: 20,
+    duration: 18,
+    delay: 2.5,
+    x: '-5vw',
+    rot: -220,
+    op: 0.8,
+    color: '#c2cf6a',
+  },
+  {
+    left: '34%',
+    size: 44,
+    duration: 12,
+    delay: 5,
+    x: '12vw',
+    rot: 300,
+    op: 0.92,
+    color: '#7e9442',
+  },
+  {
+    left: '48%',
+    size: 15,
+    duration: 21,
+    delay: 1.2,
+    x: '-8vw',
+    rot: 200,
+    op: 0.7,
+    color: '#b6c563',
+  },
+  {
+    left: '60%',
+    size: 52,
+    duration: 13,
+    delay: 6.5,
+    x: '8vw',
+    rot: -280,
+    op: 0.95,
+    color: '#8ea34a',
+  },
+  {
+    left: '72%',
+    size: 24,
+    duration: 17,
+    delay: 3.4,
+    x: '-6vw',
+    rot: 240,
+    op: 0.82,
+    color: '#cdd87f',
+  },
+  {
+    left: '85%',
+    size: 64,
+    duration: 11,
+    delay: 8,
+    x: '11vw',
+    rot: -320,
+    op: 0.96,
+    color: '#7e9442',
+  },
+  {
+    left: '94%',
+    size: 18,
+    duration: 22,
+    delay: 4.2,
+    x: '-4vw',
+    rot: 180,
+    op: 0.72,
+    color: '#b6c563',
+  },
 ];
 
 export function HomeHeroSky() {
@@ -351,27 +414,31 @@ export function HomeHeroSky() {
         <div className="absolute inset-0" style={{ backgroundColor: '#0a0e1a' }} />
         <div
           className="hero-stars"
-          style={{
-            boxShadow: farStars,
-            animation: reduce
-              ? undefined
-              : 'hero-star-sway 90s ease-in-out infinite alternate, hero-twinkle 6s ease-in-out infinite',
-            '--sway': '-28px',
-            '--tw-min': 0.4,
-            '--tw-max': 0.9,
-          } as CSSProperties}
+          style={
+            {
+              boxShadow: farStars,
+              animation: reduce
+                ? undefined
+                : 'hero-star-sway 90s ease-in-out infinite alternate, hero-twinkle 6s ease-in-out infinite',
+              '--sway': '-28px',
+              '--tw-min': 0.4,
+              '--tw-max': 0.9,
+            } as CSSProperties
+          }
         />
         <div
           className="hero-stars"
-          style={{
-            boxShadow: nearStars,
-            animation: reduce
-              ? undefined
-              : 'hero-star-sway 70s ease-in-out infinite alternate-reverse, hero-twinkle 4.2s ease-in-out infinite',
-            '--sway': '34px',
-            '--tw-min': 0.55,
-            '--tw-max': 1,
-          } as CSSProperties}
+          style={
+            {
+              boxShadow: nearStars,
+              animation: reduce
+                ? undefined
+                : 'hero-star-sway 70s ease-in-out infinite alternate-reverse, hero-twinkle 4.2s ease-in-out infinite',
+              '--sway': '34px',
+              '--tw-min': 0.55,
+              '--tw-max': 1,
+            } as CSSProperties
+          }
         />
       </div>
 
@@ -391,23 +458,31 @@ export function HomeHeroSky() {
             <span
               key={`leaf-${i}`}
               className="absolute top-0"
-              style={{
-                left: leaf.left,
-                width: `${leaf.size}px`,
-                height: `${leaf.size}px`,
-                opacity: reduce ? leaf.op : undefined,
-                animation: reduce
-                  ? undefined
-                  : `hero-leaf-fall ${leaf.duration}s linear ${leaf.delay}s infinite`,
-                transform: reduce ? restTransform : undefined,
-                '--leaf-x': leaf.x,
-                '--leaf-rot': `${leaf.rot}deg`,
-                '--leaf-op': leaf.op,
-              } as CSSProperties}
+              style={
+                {
+                  left: leaf.left,
+                  width: `${leaf.size}px`,
+                  height: `${leaf.size}px`,
+                  opacity: reduce ? leaf.op : undefined,
+                  animation: reduce
+                    ? undefined
+                    : `hero-leaf-fall ${leaf.duration}s linear ${leaf.delay}s infinite`,
+                  transform: reduce ? restTransform : undefined,
+                  '--leaf-x': leaf.x,
+                  '--leaf-rot': `${leaf.rot}deg`,
+                  '--leaf-op': leaf.op,
+                } as CSSProperties
+              }
             >
               <svg viewBox="0 0 24 24" width={leaf.size} height={leaf.size} fill={leaf.color}>
                 <path d="M12 2C6.5 5.5 3.8 11 5.6 17.2c.5 1.7 1.6 3.3 3.4 4.3 0.2-4.2 1.4-8.2 4.3-11.2-2.1 3.2-3.1 7.1-3 11.2 4.1-1 7.2-4.2 8.1-9C23.2 8 21 4 16 2c-1.4-.6-2.7-.6-4 0z" />
-                <path d="M12 4c-1.5 4-2.2 8.6-2 13.5" stroke={leaf.color} strokeOpacity="0.35" strokeWidth="0.6" fill="none" />
+                <path
+                  d="M12 4c-1.5 4-2.2 8.6-2 13.5"
+                  stroke={leaf.color}
+                  strokeOpacity="0.35"
+                  strokeWidth="0.6"
+                  fill="none"
+                />
               </svg>
             </span>
           );

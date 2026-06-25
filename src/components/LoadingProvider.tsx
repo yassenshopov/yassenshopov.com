@@ -1,9 +1,9 @@
 'use client';
 
-import { usePathname, useSearchParams } from "next/navigation";
-import { createContext, useContext, useEffect, useState } from "react";
-import { AnimatePresence } from "framer-motion";
-import { LoadingOverlay } from "./LoadingOverlay";
+import { usePathname, useSearchParams } from 'next/navigation';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import { LoadingOverlay } from './LoadingOverlay';
 
 type LoadingContextType = {
   startLoading: () => void;
@@ -20,11 +20,7 @@ export const useLoading = () => {
   return context;
 };
 
-export function LoadingProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function LoadingProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(false);
 
   const startLoading = () => {
@@ -48,10 +44,8 @@ export function LoadingProvider({
 
   return (
     <LoadingContext.Provider value={{ startLoading, stopLoading }}>
-      <AnimatePresence mode="wait">
-        {isLoading && <LoadingOverlay />}
-      </AnimatePresence>
+      <AnimatePresence mode="wait">{isLoading && <LoadingOverlay />}</AnimatePresence>
       {children}
     </LoadingContext.Provider>
   );
-} 
+}

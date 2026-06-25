@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import type React from "react";
-import { useEffect, useRef, useState } from "react";
-import { cn } from "@/lib/utils";
+import type React from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { cn } from '@/lib/utils';
 
 type TiltCardProps = React.HTMLAttributes<HTMLDivElement> & {
   maxTilt?: number;
@@ -31,8 +31,8 @@ export default function TiltCard({
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    prefersReducedMotion.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (typeof window === 'undefined') return;
+    prefersReducedMotion.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }, []);
 
   const updateTransform = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -70,12 +70,12 @@ export default function TiltCard({
   return (
     <div
       ref={cardRef}
-      className={cn("will-change-transform", className)}
+      className={cn('will-change-transform', className)}
       style={{
         ...style,
         transform,
-        transformStyle: "preserve-3d",
-        transition: isHovering ? "transform 80ms ease-out" : "transform 200ms ease-out",
+        transformStyle: 'preserve-3d',
+        transition: isHovering ? 'transform 80ms ease-out' : 'transform 200ms ease-out',
       }}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}

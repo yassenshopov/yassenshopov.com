@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { Menu } from 'lucide-react';
+import { ChevronDown, LayoutTemplate, Library, Menu, Palette, type LucideIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useLoading } from './LoadingProvider';
 import {
@@ -14,10 +15,59 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
+
+type NavLink = {
+  href: string;
+  label: string;
+};
+
+type StudioLink = NavLink & {
+  icon: LucideIcon;
+  description: string;
+};
+
+// Primary links shown directly in the bar. The "Studio" group below collects
+// the more personal/creative corners so the bar stays focused on the core
+// professional path (about → blog → projects → contact).
+const primaryLinks: NavLink[] = [
+  { href: '/about', label: 'About me' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/projects', label: 'Projects' },
+];
+
+const studioLinks: StudioLink[] = [
+  {
+    href: '/art',
+    label: 'Art',
+    icon: Palette,
+    description: 'Digital illustration & commissions',
+  },
+  {
+    href: '/library',
+    label: 'Library',
+    icon: Library,
+    description: 'Books & media I rate and recommend',
+  },
+  {
+    href: '/notion',
+    label: 'Notion Templates',
+    icon: LayoutTemplate,
+    description: 'Productivity systems & dashboards',
+  },
+];
+
+const contactLink: NavLink = { href: '/contact-me', label: 'Contact me' };
 
 export function Navbar() {
   const { resolvedTheme } = useTheme();
+  const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   const { startLoading } = useLoading();
 
@@ -39,15 +89,8 @@ export function Navbar() {
   };
 
   const [isOpen, setIsOpen] = useState(false);
-  const links = [
-    { href: '/about', label: 'About me' },
-    { href: '/blog', label: 'Blog' },
-    { href: '/projects', label: 'Projects' },
-    { href: '/art', label: 'Art' },
-    { href: '/library', label: 'Library' },
-    { href: '/notion', label: 'Notion Templates' },
-    { href: '/contact-me', label: 'Contact me' },
-  ] as const;
+
+  const isStudioActive = studioLinks.some((link) => pathname?.startsWith(link.href));
 
   const handleLinkClick = (e: React.MouseEvent) => {
     if (e.metaKey || e.ctrlKey || e.button === 1) return;
@@ -75,8 +118,8 @@ export function Navbar() {
             )}
           </div>
         </Link>
-        <div className="hidden md:flex space-x-6">
-          {links.map((link) => (
+        <div className="hidden md:flex items-center space-x-6">
+          {primaryLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
@@ -86,6 +129,46 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
+
+          <DropdownMenu modal={false}>
+            <DropdownMenuTrigger
+              className={`group inline-flex items-center gap-1 outline-none transition-colors hover:text-foreground focus-visible:text-foreground ${
+                isStudioActive ? 'text-foreground' : 'text-foreground/60'
+              }`}
+            >
+              Studio
+              <ChevronDown
+                className="w-3.5 h-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180"
+                aria-hidden="true"
+              />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" sideOffset={12} className="w-72">
+              {studioLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <DropdownMenuItem key={link.href} asChild className="gap-3 p-2.5">
+                    <Link href={link.href} onClick={handleLinkClick}>
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-accent text-foreground">
+                        <Icon className="h-4 w-4" aria-hidden="true" />
+                      </span>
+                      <span className="flex flex-col">
+                        <span className="text-sm font-medium text-foreground">{link.label}</span>
+                        <span className="text-xs text-muted-foreground">{link.description}</span>
+                      </span>
+                    </Link>
+                  </DropdownMenuItem>
+                );
+              })}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <Link
+            href={contactLink.href}
+            className="text-foreground/60 hover:text-foreground transition-colors"
+            onClick={handleLinkClick}
+          >
+            {contactLink.label}
+          </Link>
         </div>
         <div className="flex items-center gap-4">
           <ThemeToggle />
@@ -128,7 +211,7 @@ export function Navbar() {
                 </div>
                 <nav className="flex-1 p-6" aria-label="Mobile navigation">
                   <div className="flex flex-col space-y-4">
-                    {links.map((link) => (
+                    {primaryLinks.map((link) => (
                       <Link
                         key={link.href}
                         href={link.href}
@@ -138,6 +221,36 @@ export function Navbar() {
                         {link.label}
                       </Link>
                     ))}
+
+                    <div className="pt-2">
+                      <span className="block px-4 pb-1 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                        Studio
+                      </span>
+                      <div className="flex flex-col space-y-1">
+                        {studioLinks.map((link) => {
+                          const Icon = link.icon;
+                          return (
+                            <Link
+                              key={link.href}
+                              href={link.href}
+                              className="flex items-center gap-3 text-foreground/60 hover:text-foreground transition-colors py-2 px-4 rounded-md hover:bg-accent/50"
+                              onClick={handleLinkClick}
+                            >
+                              <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                              {link.label}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <Link
+                      href={contactLink.href}
+                      className="text-foreground/60 hover:text-foreground transition-colors text-lg py-2 px-4 rounded-md hover:bg-accent/50"
+                      onClick={handleLinkClick}
+                    >
+                      {contactLink.label}
+                    </Link>
                   </div>
                 </nav>
                 <div className="border-t p-6">

@@ -9,10 +9,10 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
       attribute="class"
       defaultTheme="system"
       value={{
-        light: "light",
-        dark: "dark",
-        olive: "olive",
-        system: "light",
+        light: 'light',
+        dark: 'dark',
+        olive: 'olive',
+        system: 'light',
       }}
       themes={['light', 'dark', 'olive']}
       {...props}
@@ -20,4 +20,4 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
       {children}
     </NextThemesProvider>
   );
-} 
+}

@@ -19,4 +19,4 @@ export default function LibraryResults({ sortedItemsLength, searchQuery }: Libra
       )}
     </div>
   );
-} 
+}

@@ -19,13 +19,9 @@ export function HomeSelectedWork() {
             </h2>
             <div className="flex-1 pb-2 flex items-center gap-4">
               <div className="flex-1 h-px bg-border" />
-              <Link
-                href="/projects"
-                className="hidden sm:inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-primary"
-              >
-                All projects
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
+              <span className="hidden sm:inline-flex items-center text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                hand-picked
+              </span>
             </div>
           </div>
 

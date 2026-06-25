@@ -32,11 +32,13 @@ A modern personal website built with Next.js, showcasing my work, blog, and Noti
 ## 🏗️ Getting Started
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/yourusername/yassenshopov.com.git
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 # or
@@ -46,6 +48,7 @@ pnpm install
 ```
 
 3. Run the development server:
+
 ```bash
 npm run dev
 # or

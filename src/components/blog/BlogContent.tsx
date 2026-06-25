@@ -29,19 +29,8 @@ import {
   CalendarDays,
   Type,
 } from 'lucide-react';
-import {
-  Children,
-  isValidElement,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
-import {
-  InlineShareButtons,
-  ShareRail,
-  SharePopover,
-} from '@/components/blog/BlogShare';
+import { Children, isValidElement, useEffect, useMemo, useRef, useState } from 'react';
+import { InlineShareButtons, ShareRail, SharePopover } from '@/components/blog/BlogShare';
 import { ReadingProgress } from '@/components/blog/ReadingProgress';
 
 interface TocHeading {
@@ -68,9 +57,7 @@ function useArticleHeadings(articleRef: React.RefObject<HTMLElement | null>) {
     if (!article) return;
 
     const collect = () => {
-      const nodes = article.querySelectorAll<HTMLElement>(
-        'h1[id], h2[id], h3[id]'
-      );
+      const nodes = article.querySelectorAll<HTMLElement>('h1[id], h2[id], h3[id]');
       const fromArticle: TocHeading[] = Array.from(nodes)
         .map((node) => ({
           level: Number(node.tagName.substring(1)),
@@ -100,10 +87,7 @@ function useArticleHeadings(articleRef: React.RefObject<HTMLElement | null>) {
         if (
           prev.length === next.length &&
           prev.every(
-            (h, i) =>
-              h.id === next[i].id &&
-              h.text === next[i].text &&
-              h.level === next[i].level
+            (h, i) => h.id === next[i].id && h.text === next[i].text && h.level === next[i].level
           )
         ) {
           return prev;
@@ -132,10 +116,7 @@ function useArticleHeadings(articleRef: React.RefObject<HTMLElement | null>) {
       (entries) => {
         const visible = entries
           .filter((e) => e.isIntersecting)
-          .sort(
-            (a, b) =>
-              a.boundingClientRect.top - b.boundingClientRect.top
-          );
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
         if (visible[0]) setActiveId(visible[0].target.id);
       },
       { rootMargin: '-96px 0px -65% 0px', threshold: [0, 1] }
@@ -162,9 +143,7 @@ interface TocListProps {
 function TocList({ headings, activeId, onNavigate }: TocListProps) {
   if (headings.length === 0) {
     return (
-      <p className="text-sm text-muted-foreground">
-        Sections will appear here as you scroll.
-      </p>
+      <p className="text-sm text-muted-foreground">Sections will appear here as you scroll.</p>
     );
   }
 
@@ -181,10 +160,7 @@ function TocList({ headings, activeId, onNavigate }: TocListProps) {
   return (
     <nav aria-label="Table of contents" className="relative">
       {/* Vertical rail behind the list items */}
-      <span
-        aria-hidden
-        className="absolute left-0 top-0 bottom-0 w-px bg-border"
-      />
+      <span aria-hidden className="absolute left-0 top-0 bottom-0 w-px bg-border" />
       <ul className="space-y-0.5">
         {headings.map((heading) => {
           const isActive = activeId === heading.id;
@@ -224,13 +200,7 @@ function TocList({ headings, activeId, onNavigate }: TocListProps) {
  * Floating button (mobile + tablet) that opens a Sheet containing the TOC.
  * Hidden on lg+ since the sticky sidebar takes over.
  */
-function MobileTocSheet({
-  headings,
-  activeId,
-}: {
-  headings: TocHeading[];
-  activeId: string;
-}) {
+function MobileTocSheet({ headings, activeId }: { headings: TocHeading[]; activeId: string }) {
   const [open, setOpen] = useState(false);
 
   if (headings.length === 0) return null;
@@ -253,11 +223,7 @@ function MobileTocSheet({
           <SheetDescription>Jump to any section in this article.</SheetDescription>
         </SheetHeader>
         <div className="overflow-y-auto px-4 pb-6">
-          <TocList
-            headings={headings}
-            activeId={activeId}
-            onNavigate={() => setOpen(false)}
-          />
+          <TocList headings={headings} activeId={activeId} onNavigate={() => setOpen(false)} />
         </div>
       </SheetContent>
     </Sheet>
@@ -377,13 +343,9 @@ function SidebarNewsletterCard() {
       <div className="relative">
         <div className="inline-flex items-center gap-1.5 text-primary mb-2">
           <Mail className="w-3.5 h-3.5" />
-          <span className="text-[0.65rem] font-medium uppercase tracking-[0.18em]">
-            Newsletter
-          </span>
+          <span className="text-[0.65rem] font-medium uppercase tracking-[0.18em]">Newsletter</span>
         </div>
-        <h4 className="text-sm font-semibold mb-1.5 leading-snug">
-          Get Life Engineering&trade;
-        </h4>
+        <h4 className="text-sm font-semibold mb-1.5 leading-snug">Get Life Engineering&trade;</h4>
         <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
           Weekly letters on intentional living, building, and thinking.
         </p>
@@ -404,9 +366,7 @@ function SidebarNewsletterCard() {
  * the common URL shapes: youtube.com/watch?v=ID, youtu.be/ID, youtube.com/embed/ID,
  * youtube.com/shorts/ID. Returns null when the URL is not a YouTube video.
  */
-function parseYouTubeUrl(
-  href: string | undefined
-): { videoId: string; start?: number } | null {
+function parseYouTubeUrl(href: string | undefined): { videoId: string; start?: number } | null {
   if (!href) return null;
   let url: URL;
   try {
@@ -439,9 +399,7 @@ function parseYouTubeUrl(
  * localized `/intl-xx/` prefix Spotify sometimes adds. Returns null for any
  * non-Spotify or unrecognized URL.
  */
-function parseSpotifyUrl(
-  href: string | undefined
-): { type: string; id: string } | null {
+function parseSpotifyUrl(href: string | undefined): { type: string; id: string } | null {
   if (!href) return null;
   let url: URL;
   try {
@@ -466,15 +424,7 @@ function hastText(node: unknown): string {
   return '';
 }
 
-function SpotifyEmbed({
-  type,
-  id,
-  title,
-}: {
-  type: string;
-  id: string;
-  title?: string;
-}) {
+function SpotifyEmbed({ type, id, title }: { type: string; id: string; title?: string }) {
   // Tracks and episodes look best in the compact bar; larger collections get
   // the taller player so their artwork and track list have room to breathe.
   const compact = type === 'track' || type === 'episode';
@@ -546,8 +496,7 @@ function isYouTubeEmbedNode(node: unknown): boolean {
     children?: Array<{ type?: string; tagName?: string; value?: string }>;
   };
   if (n.type !== 'element' || n.tagName !== 'a') return false;
-  const href =
-    typeof n.properties?.href === 'string' ? n.properties.href : undefined;
+  const href = typeof n.properties?.href === 'string' ? n.properties.href : undefined;
   if (!parseYouTubeUrl(href)) return false;
   const significant = (n.children ?? []).filter(
     (c) => !(c.type === 'text' && /^\s*$/.test(c.value ?? ''))
@@ -572,8 +521,7 @@ function isSpotifyEmbedNode(node: unknown): boolean {
     properties?: { href?: unknown };
   };
   if (n.type !== 'element' || n.tagName !== 'a') return false;
-  const href =
-    typeof n.properties?.href === 'string' ? n.properties.href : undefined;
+  const href = typeof n.properties?.href === 'string' ? n.properties.href : undefined;
   return !!parseSpotifyUrl(href);
 }
 
@@ -597,13 +545,7 @@ interface ImgHastProperties {
  * Renders a block-level <figure> for a standalone markdown image, with the
  * markdown alt text doubling as a visible <figcaption>.
  */
-function MarkdownImageFigure({
-  src,
-  alt,
-}: {
-  src: string;
-  alt: string;
-}) {
+function MarkdownImageFigure({ src, alt }: { src: string; alt: string }) {
   const caption = alt.trim();
   return (
     <figure className="not-prose my-8">
@@ -657,10 +599,7 @@ const markdownComponents: Components = {
     // Standalone Spotify link: replace the <p> with a full-width player.
     if (kids.length === 1 && isSpotifyEmbedNode(kids[0])) {
       const aNode = kids[0] as { properties?: { href?: unknown } };
-      const href =
-        typeof aNode.properties?.href === 'string'
-          ? aNode.properties.href
-          : '';
+      const href = typeof aNode.properties?.href === 'string' ? aNode.properties.href : '';
       const sp = parseSpotifyUrl(href);
       if (sp) {
         const title = hastText(kids[0]).trim() || undefined;
@@ -674,14 +613,8 @@ const markdownComponents: Components = {
     // <img> without producing invalid <figure>-inside-<p> HTML.
     if (kids.length === 1 && isStandaloneImage(kids[0])) {
       const imgNode = kids[0] as { properties?: ImgHastProperties };
-      const src =
-        typeof imgNode.properties?.src === 'string'
-          ? imgNode.properties.src
-          : '';
-      const alt =
-        typeof imgNode.properties?.alt === 'string'
-          ? imgNode.properties.alt
-          : '';
+      const src = typeof imgNode.properties?.src === 'string' ? imgNode.properties.src : '';
+      const alt = typeof imgNode.properties?.alt === 'string' ? imgNode.properties.alt : '';
       if (src) {
         return <MarkdownImageFigure src={src} alt={alt} />;
       }
@@ -697,27 +630,19 @@ const markdownComponents: Components = {
       );
       const onlyChild = kids.length === 1 ? kids[0] : null;
       const wrapsImage =
-        onlyChild &&
-        isValidElement<{ alt?: string }>(onlyChild) &&
-        onlyChild.type === 'img';
+        onlyChild && isValidElement<{ alt?: string }>(onlyChild) && onlyChild.type === 'img';
       if (wrapsImage) {
         const alt =
-          (onlyChild as React.ReactElement<{ alt?: string }>).props.alt ||
-          'YouTube video';
-        return (
-          <YouTubeEmbed videoId={yt.videoId} start={yt.start} title={alt} />
-        );
+          (onlyChild as React.ReactElement<{ alt?: string }>).props.alt || 'YouTube video';
+        return <YouTubeEmbed videoId={yt.videoId} start={yt.start} title={alt} />;
       }
     }
     // External links open in a new tab; internal links stay in-place.
-    const isExternal =
-      typeof href === 'string' && /^https?:\/\//i.test(href);
+    const isExternal = typeof href === 'string' && /^https?:\/\//i.test(href);
     return (
       <a
         href={href}
-        {...(isExternal
-          ? { target: '_blank', rel: 'noopener noreferrer' }
-          : {})}
+        {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         {...rest}
       >
         {children}
@@ -750,12 +675,7 @@ interface BlogContentProps {
   wordCount: number;
 }
 
-export function BlogContent({
-  post,
-  prevPost,
-  nextPost,
-  wordCount,
-}: BlogContentProps) {
+export function BlogContent({ post, prevPost, nextPost, wordCount }: BlogContentProps) {
   const articleRef = useRef<HTMLElement>(null);
   const { headings, activeId } = useArticleHeadings(articleRef);
 
@@ -849,13 +769,9 @@ export function BlogContent({
                   />
                 </span>
                 <div className="leading-tight">
-                  <p className="text-sm font-medium text-foreground">
-                    {post.author}
-                  </p>
+                  <p className="text-sm font-medium text-foreground">{post.author}</p>
                   <p className="text-xs text-muted-foreground">
-                    <time dateTime={post.date}>
-                      {format(new Date(post.date), 'MMMM d, yyyy')}
-                    </time>
+                    <time dateTime={post.date}>{format(new Date(post.date), 'MMMM d, yyyy')}</time>
                     <span aria-hidden> · </span>
                     <span>
                       {formatDistanceToNow(new Date(post.date), {
@@ -877,10 +793,7 @@ export function BlogContent({
                   <Type className="h-3.5 w-3.5" />
                   {formattedWordCount} words
                 </span>
-                <SharePopover
-                  title={post.title}
-                  description={post.description}
-                />
+                <SharePopover title={post.title} description={post.description} />
               </div>
             </div>
           </div>
@@ -890,23 +803,14 @@ export function BlogContent({
       <div className="container mx-auto px-4">
         <div className="flex gap-8 xl:gap-12 py-12 md:py-16">
           {/* Floating share rail (desktop) */}
-          <aside
-            className="hidden xl:block w-12 shrink-0"
-            aria-label="Share this article"
-          >
+          <aside className="hidden xl:block w-12 shrink-0" aria-label="Share this article">
             <div className="sticky top-32">
-              <ShareRail
-                title={post.title}
-                description={post.description}
-              />
+              <ShareRail title={post.title} description={post.description} />
             </div>
           </aside>
 
           {/* Main Content */}
-          <article
-            ref={articleRef}
-            className="flex-1 max-w-3xl xl:mx-auto"
-          >
+          <article ref={articleRef} className="flex-1 max-w-3xl xl:mx-auto">
             <div
               className="
                 prose prose-lg dark:prose-invert max-w-none
@@ -922,10 +826,7 @@ export function BlogContent({
                 prose-hr:my-12
               "
             >
-              <ReactMarkdown
-                rehypePlugins={[rehypeSlug]}
-                components={markdownComponents}
-              >
+              <ReactMarkdown rehypePlugins={[rehypeSlug]} components={markdownComponents}>
                 {post.content}
               </ReactMarkdown>
             </div>
@@ -936,9 +837,7 @@ export function BlogContent({
               className="mx-auto mt-12 flex items-center gap-3 text-muted-foreground/60"
             >
               <span className="h-px flex-1 bg-border" />
-              <span className="text-xs uppercase tracking-[0.22em]">
-                End of article
-              </span>
+              <span className="text-xs uppercase tracking-[0.22em]">End of article</span>
               <span className="h-px flex-1 bg-border" />
             </div>
 
@@ -960,10 +859,7 @@ export function BlogContent({
                   <p className="text-[0.65rem] font-medium uppercase tracking-[0.18em] text-muted-foreground mb-1">
                     Written by
                   </p>
-                  <h3
-                    id="author-heading"
-                    className="text-lg md:text-xl font-bold mb-2"
-                  >
+                  <h3 id="author-heading" className="text-lg md:text-xl font-bold mb-2">
                     Yassen Shopov
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-4">
@@ -988,10 +884,7 @@ export function BlogContent({
           </article>
 
           {/* Sticky Sidebar: TOC + mini newsletter (desktop only) */}
-          <aside
-            className="hidden lg:block w-64 shrink-0"
-            aria-label="Article navigation"
-          >
+          <aside className="hidden lg:block w-64 shrink-0" aria-label="Article navigation">
             <div className="sticky top-24 space-y-6">
               <div className="rounded-xl border bg-card p-5">
                 <div className="mb-3 flex items-baseline justify-between">
@@ -1000,8 +893,7 @@ export function BlogContent({
                   </h3>
                   {headings.length > 0 && (
                     <span className="text-[0.65rem] text-muted-foreground tabular-nums">
-                      {headings.length}{' '}
-                      {headings.length === 1 ? 'section' : 'sections'}
+                      {headings.length} {headings.length === 1 ? 'section' : 'sections'}
                     </span>
                   )}
                 </div>
@@ -1021,20 +913,14 @@ export function BlogContent({
         >
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h2
-                id="share-heading"
-                className="text-base font-semibold tracking-tight"
-              >
+              <h2 id="share-heading" className="text-base font-semibold tracking-tight">
                 Found this useful? Pass it on.
               </h2>
               <p className="mt-1 text-sm text-muted-foreground">
                 Sharing helps the right people find these ideas.
               </p>
             </div>
-            <InlineShareButtons
-              title={post.title}
-              description={post.description}
-            />
+            <InlineShareButtons title={post.title} description={post.description} />
           </div>
         </section>
 
@@ -1042,10 +928,7 @@ export function BlogContent({
         <NewsletterCTA />
 
         {/* Previous/Next Navigation */}
-        <nav
-          className="max-w-3xl mx-auto border-t pt-8 pb-16"
-          aria-label="Adjacent articles"
-        >
+        <nav className="max-w-3xl mx-auto border-t pt-8 pb-16" aria-label="Adjacent articles">
           <p className="mb-5 text-[0.65rem] font-medium uppercase tracking-[0.18em] text-muted-foreground">
             Keep reading
           </p>
@@ -1057,10 +940,7 @@ export function BlogContent({
               >
                 <div className="relative w-24 sm:w-28 shrink-0 overflow-hidden bg-muted">
                   <Image
-                    src={
-                      prevPost.coverImage ||
-                      '/resources/images/blog/default-cover.webp'
-                    }
+                    src={prevPost.coverImage || '/resources/images/blog/default-cover.webp'}
                     alt=""
                     fill
                     sizes="(max-width: 640px) 96px, 112px"
@@ -1119,10 +999,7 @@ export function BlogContent({
                 </div>
                 <div className="relative w-24 sm:w-28 shrink-0 overflow-hidden bg-muted">
                   <Image
-                    src={
-                      nextPost.coverImage ||
-                      '/resources/images/blog/default-cover.webp'
-                    }
+                    src={nextPost.coverImage || '/resources/images/blog/default-cover.webp'}
                     alt=""
                     fill
                     sizes="(max-width: 640px) 96px, 112px"

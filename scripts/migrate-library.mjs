@@ -45,8 +45,7 @@ const noScrape = args.includes('--no-scrape');
 const force = args.includes('--force-rescrape');
 const maxScrape =
   Number(args.find((a) => a.startsWith('--max-scrape='))?.split('=')[1]) || Infinity;
-const concurrency =
-  Number(args.find((a) => a.startsWith('--concurrency='))?.split('=')[1]) || 3;
+const concurrency = Number(args.find((a) => a.startsWith('--concurrency='))?.split('=')[1]) || 3;
 
 const UA = 'yassenshopov.com-library-importer/1.0 (https://yassenshopov.com)';
 
@@ -151,8 +150,7 @@ function slugify(title) {
   if (ascii) return ascii;
   // Fall back to a hashed slug when the title has no ASCII letters (e.g. Cyrillic).
   let h = 0;
-  for (let i = 0; i < title.length; i++)
-    h = ((h << 5) - h + title.charCodeAt(i)) | 0;
+  for (let i = 0; i < title.length; i++) h = ((h << 5) - h + title.charCodeAt(i)) | 0;
   return `item-${Math.abs(h).toString(36)}`;
 }
 
@@ -247,7 +245,10 @@ const MONTH_MAP = {
 function parseFirstMonth(monthsField) {
   if (!monthsField) return undefined;
   const cleaned = stripNotionLinks(monthsField);
-  const parts = cleaned.split(',').map((s) => s.trim()).filter(Boolean);
+  const parts = cleaned
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
   const dates = parts
     .map((p) => {
       const m = p.match(/(\w+)\s+(\d{4})/);
@@ -466,7 +467,7 @@ async function main() {
   console.log(`Reading CSV:    ${CSV_PATH}`);
   console.log(`Library JSON:   ${LIB_JSON}`);
   console.log(
-    `Mode:           ${dryRun ? 'DRY RUN' : 'WRITE'} | scrape=${!noScrape} | force=${force} | max=${maxScrape} | concurrency=${concurrency}`,
+    `Mode:           ${dryRun ? 'DRY RUN' : 'WRITE'} | scrape=${!noScrape} | force=${force} | max=${maxScrape} | concurrency=${concurrency}`
   );
 
   const csvText = await fs.readFile(CSV_PATH, 'utf-8');
@@ -692,19 +693,17 @@ async function main() {
   }
 
   console.log(
-    `\nMerge result: ${newCount} new, ${enrichedCount} enriched, ${collapsedSeasons} per-season rows collapsed, ${skippedCategory} skipped (non-book/movie/series)`,
+    `\nMerge result: ${newCount} new, ${enrichedCount} enriched, ${collapsedSeasons} per-season rows collapsed, ${skippedCategory} skipped (non-book/movie/series)`
   );
 
   // Second pass: try to populate coverImage for items missing one.
   if (!noScrape) {
     const needCovers = existing.filter(
-      (it) =>
-        !it.coverImage &&
-        (it.type === 'book' || it.type === 'movie' || it.type === 'series'),
+      (it) => !it.coverImage && (it.type === 'book' || it.type === 'movie' || it.type === 'series')
     );
     const todo = needCovers.slice(0, maxScrape);
     console.log(
-      `\nCovers to fetch: ${todo.length} (of ${needCovers.length} missing; cap=${maxScrape})`,
+      `\nCovers to fetch: ${todo.length} (of ${needCovers.length} missing; cap=${maxScrape})`
     );
 
     let done = 0;

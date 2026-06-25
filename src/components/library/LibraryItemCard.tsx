@@ -120,7 +120,7 @@ export default function LibraryItemCard({
         }
         if (count === 0) return;
         setCoverColor(
-          `rgba(${Math.round(r / count)}, ${Math.round(g / count)}, ${Math.round(b / count)}, 0.75)`,
+          `rgba(${Math.round(r / count)}, ${Math.round(g / count)}, ${Math.round(b / count)}, 0.75)`
         );
       } catch {
         // Canvas can taint on cross-origin sources; fall back to default bg.
@@ -256,9 +256,7 @@ export default function LibraryItemCard({
               </span>
             )}
           </h3>
-          {creator && (
-            <p className="text-sm text-muted-foreground line-clamp-1">by {creator}</p>
-          )}
+          {creator && <p className="text-sm text-muted-foreground line-clamp-1">by {creator}</p>}
         </div>
         <div className="flex min-h-[1.5rem] items-center justify-between gap-2">
           <TierBadge itemId={item.id} />

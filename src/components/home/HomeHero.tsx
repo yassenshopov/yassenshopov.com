@@ -10,7 +10,7 @@ import { HomeHeroSky } from '@/components/home/HomeHeroSky';
 interface HomeHeroProps {
   projectCount: number;
   templateCount: number;
-  monthlyUsers: string;
+  monthlyVisits: string;
 }
 
 function scrollToId(id: string) {
@@ -20,7 +20,7 @@ function scrollToId(id: string) {
   }
 }
 
-export function HomeHero({ projectCount, templateCount, monthlyUsers }: HomeHeroProps) {
+export function HomeHero({ projectCount, templateCount, monthlyVisits }: HomeHeroProps) {
   const prefersReducedMotion = useReducedMotion();
   const { scrollY } = useScroll();
 
@@ -91,28 +91,16 @@ export function HomeHero({ projectCount, templateCount, monthlyUsers }: HomeHero
 
           <p className="text-sm md:text-base text-white/85 max-w-xl mx-auto mb-7 leading-relaxed">
             I&apos;m a front-end &amp; product engineer who turns ideas into fast, polished
-            interfaces &mdash; from side-projects with thousands of users to client MVPs and
-            startup platforms. I design it, build it, and ship it.
+            interfaces &mdash; from side-projects with thousands of users to client MVPs and startup
+            platforms. I design it, build it, and ship it.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-            <Button
-              asChild
-              size="lg"
-              className="group bg-white text-neutral-900 hover:bg-white/90"
-            >
+            <Button asChild size="lg" className="group bg-white text-neutral-900 hover:bg-white/90">
               <Link href="/projects">
                 See my work
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white"
-              onClick={() => scrollToId('what-i-do')}
-            >
-              What I do
             </Button>
           </div>
 
@@ -130,7 +118,7 @@ export function HomeHero({ projectCount, templateCount, monthlyUsers }: HomeHero
               &bull;
             </span>
             <span>
-              <span className="text-white font-semibold">{monthlyUsers}</span> Monthly users
+              <span className="text-white font-semibold">{monthlyVisits}</span> Monthly visits
             </span>
           </div>
         </div>

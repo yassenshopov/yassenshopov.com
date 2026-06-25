@@ -102,7 +102,11 @@ export function HomeStats() {
                     <Icon className="h-4 w-4 text-neutral-900/70" aria-hidden="true" />
                   </div>
                   <div className="relative mt-6 text-4xl md:text-5xl font-bold tracking-tighter">
-                    <AnimatedNumber end={stat.value} suffix={stat.suffix} decimals={stat.decimals} />
+                    <AnimatedNumber
+                      end={stat.value}
+                      suffix={stat.suffix}
+                      decimals={stat.decimals}
+                    />
                   </div>
                   <p className="relative mt-1 text-sm font-medium text-neutral-900/75">
                     {stat.label}

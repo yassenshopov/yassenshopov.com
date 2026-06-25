@@ -26,10 +26,7 @@ type TierData = Record<string, BoardTiers>;
 
 export async function POST(req: NextRequest) {
   if (process.env.NODE_ENV === 'production') {
-    return NextResponse.json(
-      { error: 'Tier editing is disabled in production' },
-      { status: 403 },
-    );
+    return NextResponse.json({ error: 'Tier editing is disabled in production' }, { status: 403 });
   }
 
   let body: { boardId?: string; tiers?: BoardTiers };

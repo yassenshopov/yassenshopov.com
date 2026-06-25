@@ -48,7 +48,7 @@ export function useLibrary() {
 
   // Filter to the active category (books vs movies+series)
   const itemsInCategory = libraryItems.filter((item) =>
-    category === 'books' ? item.type === 'book' : item.type === 'movie' || item.type === 'series',
+    category === 'books' ? item.type === 'book' : item.type === 'movie' || item.type === 'series'
   );
 
   // Filtering logic - search only
@@ -69,7 +69,7 @@ export function useLibrary() {
   // Sort by the latest entry across all engagements, newest first. A re-read
   // in 2026 of a book first read in 2022 sorts ahead of a 2025 first-read.
   const allSortedItems = [...filteredItems].sort(
-    (a, b) => latestEntryTimestamp(b) - latestEntryTimestamp(a),
+    (a, b) => latestEntryTimestamp(b) - latestEntryTimestamp(a)
   );
   const sortedItems = allSortedItems.slice(0, itemsToShow);
   const hasMoreItems = allSortedItems.length > itemsToShow;

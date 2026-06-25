@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Layout from '@/components/Layout';
 import NotionTemplatesList, { templates } from '@/components/NotionTemplatesList';

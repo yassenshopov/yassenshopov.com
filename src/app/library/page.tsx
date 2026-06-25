@@ -57,7 +57,7 @@ function toOccurrences(items: LibraryItem[]): LibraryOccurrence[] {
       ...entries.map((entry) => {
         const d = entry.dateCompleted || entry.dateStarted;
         return d ? new Date(d).getTime() : 0;
-      }),
+      })
     );
 
     const seen = new Set<string>();
@@ -81,7 +81,7 @@ function toOccurrences(items: LibraryItem[]): LibraryOccurrence[] {
 }
 
 function groupOccurrencesByYear(
-  occurrences: LibraryOccurrence[],
+  occurrences: LibraryOccurrence[]
 ): Record<string, LibraryOccurrence[]> {
   return occurrences.reduce<Record<string, LibraryOccurrence[]>>((acc, occ) => {
     (acc[occ.yearKey] ||= []).push(occ);
@@ -184,7 +184,7 @@ export default function LibraryPage() {
           showMoreItems();
         }
       },
-      { threshold: 0.1 },
+      { threshold: 0.1 }
     );
 
     observer.observe(node);
@@ -212,7 +212,7 @@ export default function LibraryPage() {
       if (event.key === '/') {
         event.preventDefault();
         const searchInput = document.querySelector(
-          'input[placeholder*="Search"]',
+          'input[placeholder*="Search"]'
         ) as HTMLInputElement | null;
         searchInput?.focus();
       }
@@ -227,10 +227,7 @@ export default function LibraryPage() {
       <LibraryHero stats={heroStats} covers={heroCovers} />
 
       {tocSections.length > 1 && (
-        <LibraryTableOfContents
-          sections={tocSections}
-          onJumpTo={revealItemsUpTo}
-        />
+        <LibraryTableOfContents sections={tocSections} onJumpTo={revealItemsUpTo} />
       )}
 
       <LibraryTabs
@@ -242,10 +239,7 @@ export default function LibraryPage() {
 
       <div className="container mx-auto px-4 py-6">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <LibraryResults
-            sortedItemsLength={allSortedItems.length}
-            searchQuery={searchQuery}
-          />
+          <LibraryResults sortedItemsLength={allSortedItems.length} searchQuery={searchQuery} />
 
           <div className="flex items-center gap-4">
             <Link
@@ -287,7 +281,6 @@ export default function LibraryPage() {
                 </Button>
               )}
             </div>
-
           </div>
         </div>
       </div>
@@ -305,9 +298,7 @@ export default function LibraryPage() {
               const occurrencesInYear = visibleByYear[yearKey];
               const isUndated = yearKey === UNDATED_KEY;
               const heading = labelForYear(yearKey);
-              const ariaLabel = isUndated
-                ? `${heading} items`
-                : `Items from ${yearKey}`;
+              const ariaLabel = isUndated ? `${heading} items` : `Items from ${yearKey}`;
 
               return (
                 <div key={yearKey} id={libraryTocSectionId(yearKey)} className="scroll-mt-24">
@@ -370,9 +361,7 @@ export default function LibraryPage() {
                 {searchQuery ? ` matching "${searchQuery}"` : ''}.
               </p>
               {searchQuery && (
-                <p className="text-muted-foreground text-sm mt-2">
-                  Try a different search term.
-                </p>
+                <p className="text-muted-foreground text-sm mt-2">Try a different search term.</p>
               )}
             </div>
           )}

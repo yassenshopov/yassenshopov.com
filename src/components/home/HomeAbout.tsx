@@ -58,7 +58,10 @@ export function HomeAbout() {
                 I studied Biomedical Engineering in Glasgow, fell for the web during lockdown, and
                 have been building in public ever since &mdash; Notion systems, side-projects with
                 real users, and a weekly newsletter called{' '}
-                <Link href="/blog" className="font-medium text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary">
+                <Link
+                  href="/blog"
+                  className="font-medium text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary"
+                >
                   Life Engineering
                 </Link>
                 .

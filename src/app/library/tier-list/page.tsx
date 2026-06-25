@@ -43,13 +43,11 @@ export default function LibraryTierListPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   // Full tier state lives here so drag edits survive board switches in a
   // session (the imported JSON is only re-seeded on a full reload).
-  const [tierState, setTierState] = useState<TierData>(() =>
-    JSON.parse(JSON.stringify(tierData)),
-  );
+  const [tierState, setTierState] = useState<TierData>(() => JSON.parse(JSON.stringify(tierData)));
 
   const items = useMemo(
     () => libraryItems.filter((item) => itemMatchesBoard(item, board)),
-    [board],
+    [board]
   );
 
   // Ordered display order in the visible tiers (used for modal prev/next).
@@ -68,16 +66,16 @@ export default function LibraryTierListPage() {
 
   const boardLayout = useMemo(
     () => materializeBoard(items, tierState[board]),
-    [items, tierState, board],
+    [items, tierState, board]
   );
 
   const getRelatedItems = useCallback(
     (item: LibraryItem, limit?: number) => getRelatedItemsUtil(item, libraryItems, limit),
-    [],
+    []
   );
   const getSeriesInfo = useCallback(
     (item: LibraryItem) => getSeriesInfoUtil(item, libraryItems),
-    [],
+    []
   );
 
   const handleMove = useCallback(
@@ -114,7 +112,7 @@ export default function LibraryTierListPage() {
         toast.error(`Couldn't save tier: ${(err as Error).message}`);
       }
     },
-    [board, items, tierState],
+    [board, items, tierState]
   );
 
   const navigateToItem = useCallback(
@@ -133,7 +131,7 @@ export default function LibraryTierListPage() {
       setIsTransitioning(true);
       requestAnimationFrame(() => setIsTransitioning(false));
     },
-    [orderedItems],
+    [orderedItems]
   );
 
   return (

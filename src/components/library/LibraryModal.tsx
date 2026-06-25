@@ -23,12 +23,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import {
-  LibraryItem,
-  LibraryEntry,
-  ReadingStatus,
-  getLatestEntry,
-} from '@/data/library';
+import { LibraryItem, LibraryEntry, ReadingStatus, getLatestEntry } from '@/data/library';
 import { formatDate } from '@/lib/format-date';
 import TierBadge from './TierBadge';
 
@@ -37,12 +32,7 @@ import TierBadge from './TierBadge';
 // same lifecycle as the cover-upload drag-and-drop in LibraryItemCard.
 const ENTRY_EDIT_ENABLED = process.env.NODE_ENV === 'development';
 
-const STATUS_OPTIONS: ReadingStatus[] = [
-  'completed',
-  'in-progress',
-  'on-pause',
-  'dnf',
-];
+const STATUS_OPTIONS: ReadingStatus[] = ['completed', 'in-progress', 'on-pause', 'dnf'];
 
 interface LibraryModalProps {
   selectedItem: LibraryItem | null;
@@ -147,7 +137,7 @@ interface DraftEntry {
 function seedDraft(item: LibraryItem): DraftEntry {
   const latest = item.entries ? getLatestEntry(item.entries) : undefined;
   return {
-    status: (latest?.status ?? (item.status as ReadingStatus)) ?? 'completed',
+    status: latest?.status ?? (item.status as ReadingStatus) ?? 'completed',
     dateStarted: latest?.dateStarted ?? item.dateStarted ?? '',
     dateCompleted: latest?.dateCompleted ?? item.dateCompleted ?? '',
     rating: latest?.rating ?? item.rating ?? null,
@@ -167,7 +157,7 @@ function draftsEqual(a: DraftEntry, b: DraftEntry): boolean {
 
 function buildEntryPatch(
   draft: DraftEntry,
-  original: DraftEntry,
+  original: DraftEntry
 ): Record<string, string | number | null> {
   const patch: Record<string, string | number | null> = {};
   if (draft.status !== original.status) patch.status = draft.status;
@@ -184,8 +174,7 @@ function buildEntryPatch(
   return patch;
 }
 
-const FIELD_LABEL =
-  'text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground';
+const FIELD_LABEL = 'text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground';
 
 export default function LibraryModal({ selectedItem, ...rest }: LibraryModalProps) {
   // Keep AnimatePresence mounted in the parent and toggle the content here so
@@ -193,9 +182,7 @@ export default function LibraryModal({ selectedItem, ...rest }: LibraryModalProp
   // null directly would unmount instantly and skip the exit animation.)
   return (
     <AnimatePresence>
-      {selectedItem && (
-        <ModalContent key="library-modal" selectedItem={selectedItem} {...rest} />
-      )}
+      {selectedItem && <ModalContent key="library-modal" selectedItem={selectedItem} {...rest} />}
     </AnimatePresence>
   );
 }
@@ -226,9 +213,7 @@ function ModalContent({
   // Dev-only overrides: after a successful save we mirror the new entries / id
   // here so the modal updates without waiting for HMR to pick up the JSON
   // write. All reset whenever the selection changes.
-  const [entriesOverride, setEntriesOverride] = useState<LibraryEntry[] | null>(
-    null,
-  );
+  const [entriesOverride, setEntriesOverride] = useState<LibraryEntry[] | null>(null);
   const [idOverride, setIdOverride] = useState<string | null>(null);
   // Inline edit draft (latest entry) + id, seeded from the current selection.
   const [draft, setDraft] = useState<DraftEntry>(() => seedDraft(selectedItem));
@@ -310,9 +295,7 @@ function ModalContent({
   const displayItem: LibraryItem = (() => {
     if (!entriesOverride && !idOverride) return selectedItem;
 
-    const base: LibraryItem = idOverride
-      ? { ...selectedItem, id: idOverride }
-      : selectedItem;
+    const base: LibraryItem = idOverride ? { ...selectedItem, id: idOverride } : selectedItem;
 
     if (!entriesOverride) return base;
 
@@ -347,9 +330,7 @@ function ModalContent({
   // patches an existing entry); wishlist items stay read-only.
   const canEdit = ENTRY_EDIT_ENABLED && (displayItem.entries?.length ?? 0) > 0;
   const original = useMemo(() => seedDraft(displayItem), [displayItem]);
-  const isDirty =
-    canEdit &&
-    (!draftsEqual(draft, original) || draftId.trim() !== displayItem.id);
+  const isDirty = canEdit && (!draftsEqual(draft, original) || draftId.trim() !== displayItem.id);
 
   function resetDraft() {
     setDraft(seedDraft(displayItem));
@@ -379,9 +360,7 @@ function ModalContent({
         const savedEntry = body.entry as LibraryEntry;
         const savedIndex = body.entryIndex as number;
         const baseEntries = displayItem.entries ?? [];
-        setEntriesOverride(
-          baseEntries.map((e, i) => (i === savedIndex ? savedEntry : e)),
-        );
+        setEntriesOverride(baseEntries.map((e, i) => (i === savedIndex ? savedEntry : e)));
       }
 
       if (idDirty) {
@@ -477,9 +456,7 @@ function ModalContent({
               <div className="flex-shrink-0 mx-auto md:mx-0">
                 <div
                   className={`w-32 h-48 sm:w-40 sm:h-60 relative rounded-lg overflow-hidden ${
-                    displayItem.coverImage
-                      ? ''
-                      : 'bg-muted dark:bg-black ring-1 ring-black/5'
+                    displayItem.coverImage ? '' : 'bg-muted dark:bg-black ring-1 ring-black/5'
                   }`}
                 >
                   {displayItem.coverImage ? (
@@ -519,13 +496,11 @@ function ModalContent({
                       </Badge>
                     )}
                   </div>
-                  {creatorLabel && (
-                    <p className="text-muted-foreground">by {creatorLabel}</p>
-                  )}
+                  {creatorLabel && <p className="text-muted-foreground">by {creatorLabel}</p>}
                   {seriesInfo && (
                     <p className="text-xs text-muted-foreground mt-1">
-                      Part {seriesInfo.currentIndex + 1} of {seriesInfo.totalItems}{' '}
-                      in the {displayItem.series} series
+                      Part {seriesInfo.currentIndex + 1} of {seriesInfo.totalItems} in the{' '}
+                      {displayItem.series} series
                     </p>
                   )}
                   {canEdit && (
@@ -577,9 +552,7 @@ function ModalContent({
                             setDraft((d) => ({
                               ...d,
                               rating:
-                                v === ''
-                                  ? null
-                                  : Math.max(0, Math.min(5, Math.round(Number(v)))),
+                                v === '' ? null : Math.max(0, Math.min(5, Math.round(Number(v)))),
                             }));
                           }}
                           className="h-8 w-14 rounded-md border border-input bg-background px-2 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -614,9 +587,7 @@ function ModalContent({
                       <Input
                         type="date"
                         value={draft.dateStarted}
-                        onChange={(e) =>
-                          setDraft((d) => ({ ...d, dateStarted: e.target.value }))
-                        }
+                        onChange={(e) => setDraft((d) => ({ ...d, dateStarted: e.target.value }))}
                         className="h-8 w-auto text-xs"
                       />
                     </label>
@@ -643,13 +614,12 @@ function ModalContent({
                         <span>Completed {formatDate(displayItem.dateCompleted)}</span>
                       </div>
                     )}
-                    {displayItem.dateStarted &&
-                      displayItem.status === 'in-progress' && (
-                        <div className="flex items-center gap-1.5">
-                          <Clock className="w-3.5 h-3.5" />
-                          <span>Started {formatDate(displayItem.dateStarted)}</span>
-                        </div>
-                      )}
+                    {displayItem.dateStarted && displayItem.status === 'in-progress' && (
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5" />
+                        <span>Started {formatDate(displayItem.dateStarted)}</span>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -678,9 +648,7 @@ function ModalContent({
                 <SectionLabel>Notes</SectionLabel>
                 <Textarea
                   value={draft.notes}
-                  onChange={(e) =>
-                    setDraft((d) => ({ ...d, notes: e.target.value }))
-                  }
+                  onChange={(e) => setDraft((d) => ({ ...d, notes: e.target.value }))}
                   rows={4}
                   placeholder="Optional thoughts about this read/watch…"
                   className="text-sm"
@@ -691,9 +659,7 @@ function ModalContent({
                 <section>
                   <SectionLabel>Notes</SectionLabel>
                   <div className="border-l-2 border-primary/60 pl-4 py-1">
-                    <p className="text-foreground/90 leading-relaxed">
-                      {displayItem.notes}
-                    </p>
+                    <p className="text-foreground/90 leading-relaxed">{displayItem.notes}</p>
                   </div>
                 </section>
               )
@@ -718,7 +684,7 @@ function ModalContent({
                           {platform.charAt(0).toUpperCase() + platform.slice(1)}
                         </span>
                       </Link>
-                    ) : null,
+                    ) : null
                   )}
                 </div>
               </section>

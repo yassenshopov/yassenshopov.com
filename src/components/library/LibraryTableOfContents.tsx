@@ -46,9 +46,7 @@ export default function LibraryTableOfContents({
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort(
-            (a, b) =>
-              a.target.getBoundingClientRect().top -
-              b.target.getBoundingClientRect().top,
+            (a, b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top
           );
         if (visible.length > 0) {
           const id = visible[0].target.id;
@@ -56,7 +54,7 @@ export default function LibraryTableOfContents({
           setActiveKey(key);
         }
       },
-      { rootMargin: '-40% 0px -55% 0px' },
+      { rootMargin: '-40% 0px -55% 0px' }
     );
 
     sections.forEach((section) => {
@@ -104,9 +102,7 @@ export default function LibraryTableOfContents({
                 onClick={() => handleJump(section)}
                 className="block h-[2px] rounded-full transition-all duration-300"
                 style={{
-                  backgroundColor: isActive
-                    ? 'var(--primary)'
-                    : 'var(--muted-foreground)',
+                  backgroundColor: isActive ? 'var(--primary)' : 'var(--muted-foreground)',
                   opacity: isActive ? 1 : 0.3,
                   width: isActive ? '20px' : '12px',
                 }}
@@ -122,10 +118,7 @@ export default function LibraryTableOfContents({
         <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground mb-3">
           On this page
         </h3>
-        <nav
-          className="space-y-1 overflow-y-auto"
-          aria-label="Library sections"
-        >
+        <nav className="space-y-1 overflow-y-auto" aria-label="Library sections">
           {sections.map((section) => {
             const isActive = activeKey === section.key;
             return (
@@ -141,13 +134,9 @@ export default function LibraryTableOfContents({
                 ].join(' ')}
               >
                 <ChevronRight
-                  className={`w-4 h-4 transition-transform ${
-                    isActive ? 'rotate-90' : ''
-                  }`}
+                  className={`w-4 h-4 transition-transform ${isActive ? 'rotate-90' : ''}`}
                 />
-                <span className="flex-1 text-left tabular-nums">
-                  {section.label}
-                </span>
+                <span className="flex-1 text-left tabular-nums">{section.label}</span>
                 <span
                   className={[
                     'text-[10px] font-semibold tabular-nums',

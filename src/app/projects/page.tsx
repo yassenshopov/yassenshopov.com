@@ -1,20 +1,23 @@
-"use client";
+'use client';
 
-import Layout from "@/components/Layout";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { Sparkles, ArrowRight, ChevronRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { AnimatedNumber } from "@/components/AnimatedNumber";
-import { useEffect, useState } from "react";
-import { getTechBadgeMeta, getTechColor, projects } from "@/components/ProjectsList";
-import { ProjectsHero } from "@/components/projects/ProjectsHero";
-import { ProjectsOverview } from "@/components/projects/ProjectsOverview";
+import Layout from '@/components/Layout';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { Sparkles, ArrowRight, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { AnimatedNumber } from '@/components/AnimatedNumber';
+import { useEffect, useState } from 'react';
+import { getTechBadgeMeta, getTechColor, projects } from '@/components/ProjectsList';
+import { ProjectsHero } from '@/components/projects/ProjectsHero';
+import { ProjectsOverview } from '@/components/projects/ProjectsOverview';
 
 export default function ProjectsPage() {
-  const [selectedPreview, setSelectedPreview] = useState<{ projectIndex: number; imageIndex: number } | null>(null);
+  const [selectedPreview, setSelectedPreview] = useState<{
+    projectIndex: number;
+    imageIndex: number;
+  } | null>(null);
 
   const heroThumbnails = projects.flatMap((project) => project.images);
   const techCount = new Set(projects.flatMap((project) => project.tags)).size;
@@ -32,13 +35,13 @@ export default function ProjectsPage() {
   };
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === 'undefined') return;
     const root = document.documentElement;
     const body = document.body;
     const prevRootBehavior = root.style.scrollBehavior;
     const prevBodyBehavior = body.style.scrollBehavior;
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const behavior = prefersReducedMotion ? "auto" : "smooth";
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const behavior = prefersReducedMotion ? 'auto' : 'smooth';
 
     root.style.scrollBehavior = behavior;
     body.style.scrollBehavior = behavior;
@@ -73,7 +76,7 @@ export default function ProjectsPage() {
               <div className="flex items-end gap-6 mb-3" aria-label={project.title}>
                 <h3 className="flex items-baseline gap-3 text-4xl md:text-5xl font-bold tracking-tighter leading-none text-foreground">
                   <span className="font-mono text-xl md:text-2xl text-primary">
-                    {String(index + 1).padStart(2, "0")}
+                    {String(index + 1).padStart(2, '0')}
                   </span>
                   {project.title}
                 </h3>
@@ -85,13 +88,13 @@ export default function ProjectsPage() {
 
               <div
                 className={`mt-6 grid gap-0 lg:grid-rows-2 ${
-                  index % 2 === 0 ? "lg:grid-cols-[2fr_1fr]" : "lg:grid-cols-[1fr_2fr]"
+                  index % 2 === 0 ? 'lg:grid-cols-[2fr_1fr]' : 'lg:grid-cols-[1fr_2fr]'
                 }`}
               >
                 <button
                   type="button"
                   className={`relative h-full overflow-hidden bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:row-span-2 lg:min-h-[420px] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
-                    index % 2 === 0 ? "lg:order-1" : "lg:order-2"
+                    index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'
                   }`}
                   onClick={() => project.images[0] && handleOpenImage(index, 0)}
                   disabled={!project.images[0]}
@@ -111,7 +114,7 @@ export default function ProjectsPage() {
                 <button
                   type="button"
                   className={`relative h-full overflow-hidden bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[200px] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
-                    index % 2 === 0 ? "lg:order-2" : "lg:order-1"
+                    index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'
                   }`}
                   onClick={() => project.images[1] && handleOpenImage(index, 1)}
                   disabled={!project.images[1]}
@@ -131,7 +134,7 @@ export default function ProjectsPage() {
                 <button
                   type="button"
                   className={`relative h-full overflow-hidden bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[200px] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
-                    index % 2 === 0 ? "lg:order-3" : "lg:order-2"
+                    index % 2 === 0 ? 'lg:order-3' : 'lg:order-2'
                   }`}
                   onClick={() => project.images[2] && handleOpenImage(index, 2)}
                   disabled={!project.images[2]}
@@ -159,7 +162,7 @@ export default function ProjectsPage() {
                         <TooltipTrigger asChild>
                           <span
                             className={`inline-flex items-center gap-2 rounded-full py-1 text-sm font-medium text-white ${
-                              techMeta.iconSrc ? "pl-1 pr-3.5" : "px-3.5 py-1.5"
+                              techMeta.iconSrc ? 'pl-1 pr-3.5' : 'px-3.5 py-1.5'
                             }`}
                             style={{ backgroundColor: getTechColor(tag) }}
                           >
@@ -178,16 +181,19 @@ export default function ProjectsPage() {
                           </span>
                         </TooltipTrigger>
                         {showTooltip && (
-                          <TooltipContent side="top" className="w-max text-center text-xs leading-relaxed">
+                          <TooltipContent
+                            side="top"
+                            className="w-max text-center text-xs leading-relaxed"
+                          >
                             <span className="inline-block">
-                              {techMeta.description}{" "}
+                              {techMeta.description}{' '}
                               <Link
                                 href={techMeta.linkHref!}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="underline underline-offset-2 hover:text-primary-foreground/80"
                               >
-                                {techMeta.linkLabel ?? "Learn more"}
+                                {techMeta.linkLabel ?? 'Learn more'}
                               </Link>
                             </span>
                           </TooltipContent>
@@ -208,9 +214,7 @@ export default function ProjectsPage() {
                   </Link>
                 </Button>
               </div>
-              <p className="mt-4 text-muted-foreground text-lg max-w-3xl">
-                {project.description}
-              </p>
+              <p className="mt-4 text-muted-foreground text-lg max-w-3xl">{project.description}</p>
               {project.stats.length > 0 && (
                 <div className="mt-8 flex flex-wrap gap-x-12 gap-y-5">
                   {project.stats.map((stat, statIndex) => {
@@ -218,7 +222,11 @@ export default function ProjectsPage() {
                     return (
                       <div key={`${project.title}-stat-${statIndex}`}>
                         <div className="text-2xl md:text-3xl font-bold text-foreground">
-                          <AnimatedNumber end={stat.value} suffix={stat.suffix} decimals={decimals} />
+                          <AnimatedNumber
+                            end={stat.value}
+                            suffix={stat.suffix}
+                            decimals={decimals}
+                          />
                         </div>
                         <p className="mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">
                           {stat.label}
@@ -277,35 +285,29 @@ export default function ProjectsPage() {
 
       <section id="contact" className="py-24 bg-muted scroll-mt-16">
         <div className="container mx-auto px-4">
-          <div className="space-y-10">
-            <div className="space-y-5 text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mx-auto">
-                <Sparkles className="w-4 h-4" />
-                <span>Let&apos;s build something</span>
-              </div>
-              <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
-                Want to work with me?
-              </h2>
-              <p className="text-base md:text-lg text-muted-foreground mx-auto max-w-2xl">
-                If you&apos;re building a product, refreshing a UI, or want a fast-moving partner, I&apos;m in. 
-                Tell me what you&apos;re aiming for and I&apos;ll send ideas, timelines, and a clear next step.
-              </p>
+          <div className="max-w-2xl mx-auto space-y-6 text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mx-auto">
+              <Sparkles className="w-4 h-4" />
+              <span>Let&apos;s build something</span>
             </div>
-            <iframe
-              title="Schedule time with Yassen"
-              src="https://cal.com/yassen-shopov-spd1ms?embed=1"
-              className="h-[720px] w-full rounded-2xl border border-border/60 bg-background"
-              loading="lazy"
-            />
-            <div className="space-y-3 text-center">
-              <Button size="lg" variant="outline" asChild>
-                <Link href="mailto:yassenshopov00@gmail.com">
-                  Email yassenshopov00@gmail.com
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
+              Want to work with me?
+            </h2>
+            <p className="text-base md:text-lg text-muted-foreground mx-auto max-w-2xl">
+              If you&apos;re building a product, refreshing a UI, or want a fast-moving partner,
+              I&apos;m in. Tell me what you&apos;re aiming for and I&apos;ll send ideas, timelines,
+              and a clear next step.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+              <Button size="lg" asChild className="group">
+                <Link href="/contact-me#book">
+                  Book a call
+                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
-              <p className="text-sm text-muted-foreground">
-                Prefer async? Send a quick overview and I&apos;ll reply within 1-2 days.
-              </p>
+              <Button size="lg" variant="outline" asChild>
+                <Link href="/contact-me">Send a message</Link>
+              </Button>
             </div>
           </div>
         </div>

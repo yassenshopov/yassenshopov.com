@@ -15,21 +15,24 @@ const disciplines: Discipline[] = [
   {
     icon: Code2,
     title: 'Build',
-    description: 'Web apps with Next.js, React, TypeScript & Tailwind — fast, accessible, type-safe.',
+    description:
+      'Web apps with Next.js, React, TypeScript & Tailwind — fast, accessible, type-safe.',
     color: '#8FCAD9',
     rotate: '-rotate-3',
   },
   {
     icon: Paintbrush,
     title: 'Design',
-    description: 'Interfaces and Notion systems people actually enjoy using, from layout to motion.',
+    description:
+      'Interfaces and Notion systems people actually enjoy using, from layout to motion.',
     color: '#F5C518',
     rotate: 'rotate-2',
   },
   {
     icon: Rocket,
     title: 'Ship',
-    description: 'Idea to live product — MVPs, dashboards and data-driven tools, out in real hands.',
+    description:
+      'Idea to live product — MVPs, dashboards and data-driven tools, out in real hands.',
     color: '#E8552D',
     rotate: '-rotate-2',
   },
@@ -52,14 +55,16 @@ export function HomeDisciplines() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section id="what-i-do" className="relative overflow-hidden bg-background py-20 md:py-28 scroll-mt-16">
+    <section
+      id="what-i-do"
+      className="relative overflow-hidden bg-background py-20 md:py-28 scroll-mt-16"
+    >
       <div aria-hidden className="absolute inset-0 -z-10 opacity-50" style={GRID_BG} />
       <div
         aria-hidden
         className="absolute inset-0 -z-10"
         style={{
-          background:
-            'radial-gradient(circle at 50% 40%, transparent 0%, var(--background) 78%)',
+          background: 'radial-gradient(circle at 50% 40%, transparent 0%, var(--background) 78%)',
         }}
       />
 

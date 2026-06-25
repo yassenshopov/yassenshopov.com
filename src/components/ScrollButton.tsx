@@ -20,11 +20,11 @@ export function ScrollButton() {
         className="group text-base"
       >
         Never miss an update
-        <FaArrowDown 
-          className="ml-2 h-4 w-4 group-hover:translate-y-0.5 transition-transform" 
+        <FaArrowDown
+          className="ml-2 h-4 w-4 group-hover:translate-y-0.5 transition-transform"
           aria-hidden="true"
         />
       </Button>
     </div>
   );
-} 
+}

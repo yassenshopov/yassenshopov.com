@@ -96,7 +96,7 @@ html {
     /* Font family variables */
     --font-heading: var(--font-outfit);
     --font-body: var(--font-inter);
-    
+
     --background: oklch(1 0 0);
     --foreground: oklch(0.129 0.042 264.695);
     --card: oklch(1 0 0);
@@ -123,7 +123,7 @@ html {
     --chart-3: oklch(0.398 0.07 227.392);
     --chart-4: oklch(0.828 0.189 84.429);
     --chart-5: oklch(0.769 0.188 70.08);
-    
+
     --sidebar: oklch(0.984 0.003 247.858);
     --sidebar-foreground: oklch(0.129 0.042 264.695);
     --sidebar-primary: oklch(0.208 0.042 265.755);
@@ -210,7 +210,7 @@ html {
     /* Charts — olive-led with green/sage falloff */
     --chart-1: oklch(0.82 0.135 125);
     --chart-2: oklch(0.72 0.115 135);
-    --chart-3: oklch(0.62 0.10 115);
+    --chart-3: oklch(0.62 0.1 115);
     --chart-4: oklch(0.55 0.09 140);
     --chart-5: oklch(0.45 0.06 125);
 
@@ -232,7 +232,12 @@ html {
   }
 
   /* Heading styles */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
     @apply font-bold tracking-tight;
   }
@@ -327,14 +332,12 @@ html {
 
 @keyframes theme-circle-reveal {
   from {
-    clip-path: circle(
-      0 at var(--theme-transition-x, 50%) var(--theme-transition-y, 50%)
-    );
+    clip-path: circle(0 at var(--theme-transition-x, 50%) var(--theme-transition-y, 50%));
   }
   to {
     clip-path: circle(
-      var(--theme-transition-r, 150vmax) at
-      var(--theme-transition-x, 50%) var(--theme-transition-y, 50%)
+      var(--theme-transition-r, 150vmax) at var(--theme-transition-x, 50%)
+        var(--theme-transition-y, 50%)
     );
   }
 }
@@ -438,4 +441,3 @@ html {
 .gallery-flush:focus-within .gallery-tile:not(:focus-within):not(:hover) img {
   filter: grayscale(1);
 }
-

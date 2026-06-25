@@ -38,7 +38,7 @@ export function HomeCTA() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Button asChild size="lg" className="group">
-              <Link href="/projects#contact">
+              <Link href="/contact-me#book">
                 Book a call
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>

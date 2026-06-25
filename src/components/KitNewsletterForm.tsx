@@ -24,7 +24,10 @@ function InlineSubscribeForm() {
 
     const formData = new FormData(event.currentTarget);
     // Honeypot: if a bot filled the hidden field, silently no-op.
-    if (typeof formData.get('website') === 'string' && (formData.get('website') as string).length > 0) {
+    if (
+      typeof formData.get('website') === 'string' &&
+      (formData.get('website') as string).length > 0
+    ) {
       setStatus('success');
       return;
     }
@@ -74,11 +77,7 @@ function InlineSubscribeForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      noValidate
-      className="mx-auto w-full max-w-md"
-    >
+    <form onSubmit={handleSubmit} noValidate className="mx-auto w-full max-w-md">
       <input
         type="text"
         name="website"

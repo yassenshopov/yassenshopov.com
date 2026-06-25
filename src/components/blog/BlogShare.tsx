@@ -2,25 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Check, Copy, Link2, Mail, Share2 } from 'lucide-react';
-import {
-  FaXTwitter,
-  FaLinkedinIn,
-  FaFacebookF,
-  FaRedditAlien,
-  FaWhatsapp,
-} from 'react-icons/fa6';
+import { FaXTwitter, FaLinkedinIn, FaFacebookF, FaRedditAlien, FaWhatsapp } from 'react-icons/fa6';
 import { toast } from 'sonner';
 
 type ShareTarget = {
@@ -45,16 +30,14 @@ const SHARE_TARGETS: ShareTarget[] = [
     id: 'linkedin',
     label: 'LinkedIn',
     icon: FaLinkedinIn,
-    buildUrl: (u) =>
-      `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(u)}`,
+    buildUrl: (u) => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(u)}`,
     brandClass: 'hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2]',
   },
   {
     id: 'facebook',
     label: 'Facebook',
     icon: FaFacebookF,
-    buildUrl: (u) =>
-      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(u)}`,
+    buildUrl: (u) => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(u)}`,
     brandClass: 'hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2]',
   },
   {
@@ -69,8 +52,7 @@ const SHARE_TARGETS: ShareTarget[] = [
     id: 'whatsapp',
     label: 'WhatsApp',
     icon: FaWhatsapp,
-    buildUrl: (u, t) =>
-      `https://wa.me/?text=${encodeURIComponent(`${t} ${u}`)}`,
+    buildUrl: (u, t) => `https://wa.me/?text=${encodeURIComponent(`${t} ${u}`)}`,
     brandClass: 'hover:bg-[#25D366] hover:text-white hover:border-[#25D366]',
   },
   {
@@ -79,10 +61,9 @@ const SHARE_TARGETS: ShareTarget[] = [
     icon: Mail,
     buildUrl: (u, t, d) =>
       `mailto:?subject=${encodeURIComponent(t)}&body=${encodeURIComponent(
-        `${d ? `${d}\n\n` : ''}${u}`,
+        `${d ? `${d}\n\n` : ''}${u}`
       )}`,
-    brandClass:
-      'hover:bg-foreground hover:text-background hover:border-foreground',
+    brandClass: 'hover:bg-foreground hover:text-background hover:border-foreground',
   },
 ];
 
@@ -102,10 +83,7 @@ function useCurrentUrl() {
   return url;
 }
 
-async function copyToClipboard(
-  url: string,
-  setCopied: (v: boolean) => void,
-): Promise<void> {
+async function copyToClipboard(url: string, setCopied: (v: boolean) => void): Promise<void> {
   if (!url) return;
   try {
     await navigator.clipboard.writeText(url);
@@ -147,11 +125,7 @@ export function ShareRail({ title, description }: ShareProps) {
                 <TooltipTrigger asChild>
                   <button
                     type="button"
-                    onClick={() =>
-                      openShareWindow(
-                        target.buildUrl(url, title, description),
-                      )
-                    }
+                    onClick={() => openShareWindow(target.buildUrl(url, title, description))}
                     aria-label={`Share on ${target.label}`}
                     className={`inline-flex h-9 w-9 items-center justify-center rounded-full border bg-card text-muted-foreground transition-[transform,color,border-color,box-shadow] duration-200 hover:scale-110 ${target.brandClass}`}
                   >
@@ -171,16 +145,10 @@ export function ShareRail({ title, description }: ShareProps) {
                 aria-label="Copy link"
                 className="inline-flex h-9 w-9 items-center justify-center rounded-full border bg-card text-muted-foreground transition-[transform,color,border-color,box-shadow] duration-200 hover:scale-110 hover:border-primary/60 hover:text-primary"
               >
-                {copied ? (
-                  <Check className="h-3.5 w-3.5" />
-                ) : (
-                  <Link2 className="h-3.5 w-3.5" />
-                )}
+                {copied ? <Check className="h-3.5 w-3.5" /> : <Link2 className="h-3.5 w-3.5" />}
               </button>
             </TooltipTrigger>
-            <TooltipContent side="right">
-              {copied ? 'Copied!' : 'Copy link'}
-            </TooltipContent>
+            <TooltipContent side="right">{copied ? 'Copied!' : 'Copy link'}</TooltipContent>
           </Tooltip>
         </div>
       </div>
@@ -202,9 +170,7 @@ export function SharePopover({
   const [canNativeShare, setCanNativeShare] = useState(false);
 
   useEffect(() => {
-    setCanNativeShare(
-      typeof navigator !== 'undefined' && typeof navigator.share === 'function',
-    );
+    setCanNativeShare(typeof navigator !== 'undefined' && typeof navigator.share === 'function');
   }, []);
 
   const handleNativeShare = async () => {
@@ -226,12 +192,8 @@ export function SharePopover({
       <PopoverContent align={align} className="w-80 p-4">
         <div className="space-y-4">
           <div>
-            <p className="text-sm font-medium leading-none">
-              Share this article
-            </p>
-            <p className="mt-1 text-xs text-muted-foreground">
-              Pick a platform or copy the link.
-            </p>
+            <p className="text-sm font-medium leading-none">Share this article</p>
+            <p className="mt-1 text-xs text-muted-foreground">Pick a platform or copy the link.</p>
           </div>
 
           <div className="grid grid-cols-3 gap-2">
@@ -241,9 +203,7 @@ export function SharePopover({
                 <button
                   key={target.id}
                   type="button"
-                  onClick={() =>
-                    openShareWindow(target.buildUrl(url, title, description))
-                  }
+                  onClick={() => openShareWindow(target.buildUrl(url, title, description))}
                   className={`flex flex-col items-center gap-1.5 rounded-md border bg-card p-2.5 text-[0.7rem] font-medium text-muted-foreground transition-[transform,color,border-color,box-shadow] duration-200 ${target.brandClass}`}
                 >
                   <Icon className="h-4 w-4" />
@@ -308,9 +268,7 @@ export function InlineShareButtons({ title, description }: ShareProps) {
               <TooltipTrigger asChild>
                 <button
                   type="button"
-                  onClick={() =>
-                    openShareWindow(target.buildUrl(url, title, description))
-                  }
+                  onClick={() => openShareWindow(target.buildUrl(url, title, description))}
                   aria-label={`Share on ${target.label}`}
                   disabled={!url}
                   className={`inline-flex h-10 w-10 items-center justify-center rounded-full border bg-card text-muted-foreground transition-[transform,color,border-color,box-shadow] duration-200 hover:scale-105 disabled:opacity-50 ${target.brandClass}`}
@@ -328,11 +286,7 @@ export function InlineShareButtons({ title, description }: ShareProps) {
           disabled={!url}
           className="inline-flex h-10 items-center gap-2 rounded-full border bg-card px-4 text-xs font-medium text-muted-foreground transition-[transform,color,border-color,box-shadow] duration-200 hover:border-primary/60 hover:text-primary disabled:opacity-50"
         >
-          {copied ? (
-            <Check className="h-3.5 w-3.5" />
-          ) : (
-            <Link2 className="h-3.5 w-3.5" />
-          )}
+          {copied ? <Check className="h-3.5 w-3.5" /> : <Link2 className="h-3.5 w-3.5" />}
           {copied ? 'Copied!' : 'Copy link'}
         </button>
       </div>

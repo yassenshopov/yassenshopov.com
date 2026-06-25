@@ -1,7 +1,7 @@
 'use client';
 
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { Input } from '@/components/ui/input';
+import { Search } from 'lucide-react';
 
 interface SearchPostsProps {
   onSearch: (query: string) => void;
@@ -19,4 +19,4 @@ export function SearchPosts({ onSearch }: SearchPostsProps) {
       />
     </div>
   );
-} 
+}

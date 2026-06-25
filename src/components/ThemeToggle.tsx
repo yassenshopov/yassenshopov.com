@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { Moon, Sun, Leaf } from "lucide-react";
-import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
+import { Moon, Sun, Leaf } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useState, useEffect, useCallback } from "react";
+} from '@/components/ui/dropdown-menu';
+import { useState, useEffect, useCallback } from 'react';
 
-type AppTheme = "light" | "dark" | "olive";
+type AppTheme = 'light' | 'dark' | 'olive';
 
 // Browsers that support startViewTransition (Chrome/Edge/Safari TP) animate the
 // theme swap via a circular clip-path that emanates from the click coordinates.
@@ -30,15 +30,15 @@ export function ThemeToggle() {
 
   const switchTheme = useCallback(
     (nextTheme: AppTheme, event: React.MouseEvent) => {
-      if (typeof document === "undefined") {
+      if (typeof document === 'undefined') {
         setTheme(nextTheme);
         return;
       }
 
       const doc = document as DocumentWithViewTransition;
       const prefersReducedMotion =
-        typeof window !== "undefined" &&
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        typeof window !== 'undefined' &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       if (!doc.startViewTransition || prefersReducedMotion) {
         setTheme(nextTheme);
@@ -53,9 +53,9 @@ export function ThemeToggle() {
 
       // Coordinates and target radius drive the @keyframes in globals.css.
       const root = document.documentElement;
-      root.style.setProperty("--theme-transition-x", `${x}px`);
-      root.style.setProperty("--theme-transition-y", `${y}px`);
-      root.style.setProperty("--theme-transition-r", `${endRadius}px`);
+      root.style.setProperty('--theme-transition-x', `${x}px`);
+      root.style.setProperty('--theme-transition-y', `${y}px`);
+      root.style.setProperty('--theme-transition-r', `${endRadius}px`);
 
       doc.startViewTransition(() => {
         setTheme(nextTheme);
@@ -74,9 +74,9 @@ export function ThemeToggle() {
 
   const getIcon = () => {
     switch (resolvedTheme) {
-      case "dark":
+      case 'dark':
         return <Moon className="h-5 w-5" />;
-      case "olive":
+      case 'olive':
         return <Leaf className="h-5 w-5" />;
       default:
         return <Sun className="h-5 w-5" />;
@@ -92,15 +92,15 @@ export function ThemeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={(e) => switchTheme("light", e)}>
+        <DropdownMenuItem onClick={(e) => switchTheme('light', e)}>
           <Sun className="mr-2 h-4 w-4" />
           <span>Light</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={(e) => switchTheme("dark", e)}>
+        <DropdownMenuItem onClick={(e) => switchTheme('dark', e)}>
           <Moon className="mr-2 h-4 w-4" />
           <span>Dark</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={(e) => switchTheme("olive", e)}>
+        <DropdownMenuItem onClick={(e) => switchTheme('olive', e)}>
           <Leaf className="mr-2 h-4 w-4" />
           <span>Olive</span>
         </DropdownMenuItem>

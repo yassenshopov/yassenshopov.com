@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import Layout from "@/components/Layout";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import Layout from '@/components/Layout';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import {
   ArrowRight,
   ChevronLeft,
@@ -15,10 +15,10 @@ import {
   Palette,
   Send,
   Sparkles,
-} from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+} from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useEffect, useMemo, useState } from 'react';
 
 const TOTAL_IMAGES = 24;
 
@@ -30,16 +30,16 @@ const artworks = Array.from({ length: TOTAL_IMAGES }, (_, i) => {
   };
 });
 
-const INSTAGRAM_URL = "https://www.instagram.com/kofiscrib/";
-const COMMISSION_EMAIL = "yassenshopov00@gmail.com";
+const INSTAGRAM_URL = 'https://www.instagram.com/kofiscrib/';
+const COMMISSION_EMAIL = 'yassenshopov00@gmail.com';
 
-type CommissionPieceType = "character" | "illustration" | "cover" | "other";
+type CommissionPieceType = 'character' | 'illustration' | 'cover' | 'other';
 
 const PIECE_OPTIONS: { value: CommissionPieceType; label: string }[] = [
-  { value: "character", label: "Character art" },
-  { value: "illustration", label: "Full illustration" },
-  { value: "cover", label: "Cover / banner" },
-  { value: "other", label: "Other" },
+  { value: 'character', label: 'Character art' },
+  { value: 'illustration', label: 'Full illustration' },
+  { value: 'cover', label: 'Cover / banner' },
+  { value: 'other', label: 'Other' },
 ];
 
 // Four floating hero thumbnails. Indices map to the `artworks` array; the
@@ -55,11 +55,11 @@ export default function ArtPage() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   // Commission form state
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [pieceType, setPieceType] = useState<CommissionPieceType>("character");
-  const [deadline, setDeadline] = useState("");
-  const [brief, setBrief] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [pieceType, setPieceType] = useState<CommissionPieceType>('character');
+  const [deadline, setDeadline] = useState('');
+  const [brief, setBrief] = useState('');
 
   const closeLightbox = () => setLightboxIndex(null);
 
@@ -73,33 +73,27 @@ export default function ArtPage() {
   useEffect(() => {
     if (lightboxIndex === null) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") {
-        setLightboxIndex((c) =>
-          c === null ? c : (c + 1) % artworks.length
-        );
-      } else if (e.key === "ArrowLeft") {
-        setLightboxIndex((c) =>
-          c === null ? c : (c - 1 + artworks.length) % artworks.length
-        );
+      if (e.key === 'ArrowRight') {
+        setLightboxIndex((c) => (c === null ? c : (c + 1) % artworks.length));
+      } else if (e.key === 'ArrowLeft') {
+        setLightboxIndex((c) => (c === null ? c : (c - 1 + artworks.length) % artworks.length));
       }
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
   }, [lightboxIndex]);
 
   // Enable smooth scrolling while on this page (e.g. for the in-page "Commission a piece"
   // anchor jump), but honour `prefers-reduced-motion` and restore the prior behaviour
   // on unmount so we don't leak the setting to other routes.
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === 'undefined') return;
     const root = document.documentElement;
     const body = document.body;
     const prevRootBehavior = root.style.scrollBehavior;
     const prevBodyBehavior = body.style.scrollBehavior;
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    const behavior = prefersReducedMotion ? "auto" : "smooth";
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const behavior = prefersReducedMotion ? 'auto' : 'smooth';
 
     root.style.scrollBehavior = behavior;
     body.style.scrollBehavior = behavior;
@@ -112,21 +106,19 @@ export default function ArtPage() {
 
   const mailtoHref = useMemo(() => {
     const subject = `Commission inquiry — ${
-      PIECE_OPTIONS.find((p) => p.value === pieceType)?.label ?? "Artwork"
+      PIECE_OPTIONS.find((p) => p.value === pieceType)?.label ?? 'Artwork'
     }`;
     const body = [
       `Hi Yassen,`,
       ``,
-      `Name: ${name || "(your name)"}`,
-      `Reply email: ${email || "(your email)"}`,
-      `Piece type: ${
-        PIECE_OPTIONS.find((p) => p.value === pieceType)?.label ?? pieceType
-      }`,
-      `Deadline / timing: ${deadline || "(flexible)"}`,
+      `Name: ${name || '(your name)'}`,
+      `Reply email: ${email || '(your email)'}`,
+      `Piece type: ${PIECE_OPTIONS.find((p) => p.value === pieceType)?.label ?? pieceType}`,
+      `Deadline / timing: ${deadline || '(flexible)'}`,
       ``,
       `Brief:`,
-      brief || "(describe the piece, reference images, vibe, size, usage…)",
-    ].join("\n");
+      brief || '(describe the piece, reference images, vibe, size, usage…)',
+    ].join('\n');
     return `mailto:${COMMISSION_EMAIL}?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
@@ -150,9 +142,8 @@ export default function ArtPage() {
                 Yassen Shopov
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl">
-                A growing archive of digital illustrations, character work, and
-                commissioned pieces — formerly homed at{" "}
-                <span className="line-through opacity-70">kofiscrib.com</span>,
+                A growing archive of digital illustrations, character work, and commissioned pieces
+                — formerly homed at <span className="line-through opacity-70">kofiscrib.com</span>,
                 now living here.
               </p>
               <div className="flex flex-wrap gap-3">
@@ -183,7 +174,7 @@ export default function ArtPage() {
                       key={idx}
                       className="relative overflow-hidden rounded-2xl border border-border/60"
                       style={{
-                        aspectRatio: "3 / 4",
+                        aspectRatio: '3 / 4',
                         transform: `translateY(${baseY}px)`,
                       }}
                     >
@@ -205,10 +196,7 @@ export default function ArtPage() {
       </section>
 
       {/* Gallery */}
-      <section
-        id="gallery"
-        className="py-16 md:py-24 bg-background scroll-mt-16"
-      >
+      <section id="gallery" className="py-16 md:py-24 bg-background scroll-mt-16">
         <div className="container mx-auto px-4">
           <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
             <div>
@@ -235,29 +223,29 @@ export default function ArtPage() {
         {/* CSS columns masonry — natural fit for mixed aspect ratios. The grid is */}
         {/* full-bleed (no container padding) for an edge-to-edge gallery wall. */}
         <div className="gallery-flush columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-2 [column-fill:_balance]">
-            {artworks.map((art, i) => {
-              return (
-                <button
-                  key={art.src}
-                  type="button"
-                  onClick={() => setLightboxIndex(i)}
-                  className="gallery-tile relative mb-2 block w-full overflow-hidden rounded-sm bg-card focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/60 group"
-                  aria-label={`Open ${art.alt}`}
-                >
-                  <Image
-                    src={art.src}
-                    alt={art.alt}
-                    width={800}
-                    height={1000}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                    className="block h-auto w-full transition-[transform,filter] duration-500 ease-out group-hover:scale-[1.03]"
-                    loading={i < 4 ? "eager" : "lazy"}
-                    priority={i < 4}
-                  />
-                </button>
-              );
-            })}
-          </div>
+          {artworks.map((art, i) => {
+            return (
+              <button
+                key={art.src}
+                type="button"
+                onClick={() => setLightboxIndex(i)}
+                className="gallery-tile relative mb-2 block w-full overflow-hidden rounded-sm bg-card focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/60 group"
+                aria-label={`Open ${art.alt}`}
+              >
+                <Image
+                  src={art.src}
+                  alt={art.alt}
+                  width={800}
+                  height={1000}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  className="block h-auto w-full transition-[transform,filter] duration-500 ease-out group-hover:scale-[1.03]"
+                  loading={i < 4 ? 'eager' : 'lazy'}
+                  priority={i < 4}
+                />
+              </button>
+            );
+          })}
+        </div>
       </section>
 
       {/* Follow band */}
@@ -273,8 +261,8 @@ export default function ArtPage() {
                   Follow along on Instagram
                 </h3>
                 <p className="text-muted-foreground text-sm md:text-base mt-1">
-                  Finished pieces, works-in-progress, and process timelapses —
-                  always the freshest feed.
+                  Finished pieces, works-in-progress, and process timelapses — always the freshest
+                  feed.
                 </p>
               </div>
             </div>
@@ -309,9 +297,8 @@ export default function ArtPage() {
                 something custom
               </h2>
               <p className="text-lg text-muted-foreground max-w-xl">
-                Character portraits, full illustrations, covers, banners — tell
-                me what you have in mind and I'll reply with availability,
-                pricing, and a clear timeline.
+                Character portraits, full illustrations, covers, banners — tell me what you have in
+                mind and I'll reply with availability, pricing, and a clear timeline.
               </p>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex items-start gap-3">
@@ -348,10 +335,7 @@ export default function ArtPage() {
               >
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label
-                      htmlFor="art-name"
-                      className="text-sm font-medium text-foreground"
-                    >
+                    <label htmlFor="art-name" className="text-sm font-medium text-foreground">
                       Your name
                     </label>
                     <Input
@@ -364,10 +348,7 @@ export default function ArtPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label
-                      htmlFor="art-email"
-                      className="text-sm font-medium text-foreground"
-                    >
+                    <label htmlFor="art-email" className="text-sm font-medium text-foreground">
                       Email
                     </label>
                     <Input
@@ -383,9 +364,7 @@ export default function ArtPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <span className="text-sm font-medium text-foreground">
-                    Type of piece
-                  </span>
+                  <span className="text-sm font-medium text-foreground">Type of piece</span>
                   <div className="flex flex-wrap gap-2">
                     {PIECE_OPTIONS.map((opt) => {
                       const selected = pieceType === opt.value;
@@ -396,8 +375,8 @@ export default function ArtPage() {
                           onClick={() => setPieceType(opt.value)}
                           className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
                             selected
-                              ? "bg-primary text-primary-foreground border-primary"
-                              : "bg-background text-muted-foreground border-border hover:text-foreground hover:bg-accent"
+                              ? 'bg-primary text-primary-foreground border-primary'
+                              : 'bg-background text-muted-foreground border-border hover:text-foreground hover:bg-accent'
                           }`}
                           aria-pressed={selected}
                         >
@@ -409,10 +388,7 @@ export default function ArtPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label
-                    htmlFor="art-deadline"
-                    className="text-sm font-medium text-foreground"
-                  >
+                  <label htmlFor="art-deadline" className="text-sm font-medium text-foreground">
                     Deadline (optional)
                   </label>
                   <Input
@@ -425,10 +401,7 @@ export default function ArtPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label
-                    htmlFor="art-brief"
-                    className="text-sm font-medium text-foreground"
-                  >
+                  <label htmlFor="art-brief" className="text-sm font-medium text-foreground">
                     Brief
                   </label>
                   <Textarea
@@ -446,8 +419,8 @@ export default function ArtPage() {
                   <Send className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Button>
                 <p className="text-xs text-muted-foreground text-center">
-                  Opens your email client with the brief pre-filled — no inbox
-                  needed on my side beyond what you send.
+                  Opens your email client with the brief pre-filled — no inbox needed on my side
+                  beyond what you send.
                 </p>
               </form>
             </Card>
@@ -456,10 +429,7 @@ export default function ArtPage() {
       </section>
 
       {/* Lightbox */}
-      <Dialog
-        open={lightboxIndex !== null}
-        onOpenChange={(open) => !open && closeLightbox()}
-      >
+      <Dialog open={lightboxIndex !== null} onOpenChange={(open) => !open && closeLightbox()}>
         <DialogContent className="flex h-screen w-screen max-w-none items-center justify-center border-none bg-transparent p-4 shadow-none">
           <DialogTitle className="sr-only">Artwork preview</DialogTitle>
           <div className="relative flex h-full w-full items-center justify-center">

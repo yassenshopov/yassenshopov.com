@@ -1,7 +1,7 @@
-import { Sparkles, ArrowRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Sparkles, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 export default function HeroSection() {
   return (
@@ -18,7 +18,8 @@ export default function HeroSection() {
               About Me
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl">
-              I'm Yassen Shopov, a digital creator and developer passionate about building tools that enhance productivity and well-being.
+              I'm Yassen Shopov, a digital creator and developer passionate about building tools
+              that enhance productivity and well-being.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button asChild size="lg" className="group">
@@ -46,4 +47,4 @@ export default function HeroSection() {
       </div>
     </section>
   );
-} 
+}

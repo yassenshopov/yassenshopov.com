@@ -5,12 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { BookOpen, Clapperboard, Monitor } from 'lucide-react';
 import type { LibraryItem } from '@/data/library';
-import {
-  TIERS,
-  UNRANKED_TIER,
-  type BoardTiers,
-  type TierBoardId,
-} from '@/data/library-tiers';
+import { TIERS, UNRANKED_TIER, type BoardTiers, type TierBoardId } from '@/data/library-tiers';
 
 function FallbackIcon({ type }: { type: LibraryItem['type'] }) {
   const className = 'w-6 h-6 text-muted-foreground';
@@ -222,11 +217,23 @@ export default function LibraryTierList({
   }
 
   const rows = [
-    ...TIERS.map((t) => ({ key: t.id, label: t.label, sublabel: undefined as string | undefined, colorClass: t.colorClass })),
+    ...TIERS.map((t) => ({
+      key: t.id,
+      label: t.label,
+      sublabel: undefined as string | undefined,
+      colorClass: t.colorClass,
+    })),
     // The unranked pool is a staging area for ranking — only surface it while
     // editing (dev). In production the board shows just the ranked tiers.
     ...(editable
-      ? [{ key: UNRANKED_TIER, label: '·', sublabel: 'Unranked', colorClass: 'bg-muted-foreground/30' }]
+      ? [
+          {
+            key: UNRANKED_TIER,
+            label: '·',
+            sublabel: 'Unranked',
+            colorClass: 'bg-muted-foreground/30',
+          },
+        ]
       : []),
   ];
 

@@ -1,9 +1,9 @@
 'use client';
 
-import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import { motion } from 'framer-motion';
+import { useTheme } from 'next-themes';
+import Image from 'next/image';
+import { useState, useEffect } from 'react';
 
 export function LoadingOverlay() {
   const { resolvedTheme } = useTheme();
@@ -15,7 +15,7 @@ export function LoadingOverlay() {
 
   const getLogo = () => {
     if (!mounted) return '/logo.png';
-    
+
     switch (resolvedTheme) {
       case 'dark':
         return '/logo-white.png';
@@ -37,29 +37,23 @@ export function LoadingOverlay() {
       <div className="flex flex-col items-center gap-8">
         <motion.div
           initial={{ scale: 0.5, opacity: 0 }}
-          animate={{ 
-            scale: 1, 
+          animate={{
+            scale: 1,
             opacity: 1,
             rotate: [0, 0, -10, 10, 0],
           }}
-          transition={{ 
+          transition={{
             duration: 0.5,
             rotate: {
               duration: 1,
               repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
-            }
+              repeatType: 'reverse',
+              ease: 'easeInOut',
+            },
           }}
           className="relative w-[100px] h-[100px]"
         >
-          <Image
-            src={getLogo()}
-            alt="Loading…"
-            fill
-            className="object-contain"
-            priority
-          />
+          <Image src={getLogo()} alt="Loading…" fill className="object-contain" priority />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -70,12 +64,12 @@ export function LoadingOverlay() {
           <div className="h-1 w-32 overflow-hidden rounded-full bg-muted">
             <motion.div
               className="h-full bg-primary"
-              initial={{ x: "-100%" }}
-              animate={{ x: "100%" }}
+              initial={{ x: '-100%' }}
+              animate={{ x: '100%' }}
               transition={{
                 repeat: Infinity,
                 duration: 0.8,
-                ease: "easeInOut",
+                ease: 'easeInOut',
               }}
             />
           </div>
@@ -83,4 +77,4 @@ export function LoadingOverlay() {
       </div>
     </motion.div>
   );
-} 
+}

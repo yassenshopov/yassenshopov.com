@@ -98,5 +98,5 @@ function projectLibraryItem(raw: Record<string, unknown>): LibraryItem {
 }
 
 export const libraryItems: LibraryItem[] = (itemsData as Record<string, unknown>[]).map(
-  projectLibraryItem,
+  projectLibraryItem
 );

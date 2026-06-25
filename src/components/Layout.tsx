@@ -16,4 +16,4 @@ export default function Layout({ children }: LayoutProps) {
       <Footer />
     </div>
   );
-} 
+}
