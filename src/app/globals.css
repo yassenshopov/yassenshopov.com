@@ -347,6 +347,86 @@ html {
 }
 
 /* -------------------------------------------------------------------------
+ * Home hero — theme-aware animated sky
+ *
+ * Light:  crisp blue sky with soft, fluffy clouds drifting across.
+ * Dark:   night sky with a twinkling, slowly drifting starfield + shooting stars.
+ * Olive:  warm canopy with leaves tumbling down.
+ *
+ * Layers toggle purely via theme classes (.dark / .olive) so there's no JS
+ * theme detection and no hydration flash. Movement is paused for users who
+ * prefer reduced motion (handled in the component by omitting the animation).
+ * ------------------------------------------------------------------------- */
+
+/* Clouds are generated pixel-by-pixel on a <canvas> (see HomeHeroSky). */
+
+/* Star layer: 1px anchor that paints the whole field via box-shadow. */
+.hero-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  border-radius: 9999px;
+  background: transparent;
+  will-change: transform, opacity;
+}
+
+@keyframes hero-twinkle {
+  0%,
+  100% {
+    opacity: var(--tw-min, 0.35);
+  }
+  50% {
+    opacity: var(--tw-max, 1);
+  }
+}
+
+@keyframes hero-star-sway {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(var(--sway, -36px), 0, 0);
+  }
+}
+
+@keyframes hero-shoot {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(20deg);
+    opacity: 0;
+  }
+  3% {
+    opacity: 1;
+  }
+  13% {
+    transform: translate3d(48vw, 27vh, 0) rotate(20deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(48vw, 27vh, 0) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes hero-leaf-fall {
+  0% {
+    transform: translate3d(0, -16vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--leaf-op, 0.85);
+  }
+  90% {
+    opacity: var(--leaf-op, 0.85);
+  }
+  100% {
+    transform: translate3d(var(--leaf-x, 6vw), 116vh, 0) rotate(var(--leaf-rot, 240deg));
+    opacity: 0;
+  }
+}
+
+/* -------------------------------------------------------------------------
  * Art-page gallery "spotlight" hover
  *
  * Tiles render in full color by default. When the gallery is hovered (or a
