@@ -1,6 +1,17 @@
-'use client';
-
-import { Palette, Sparkles, Users, Code, FileText, Mail, MapPin, Wrench, Globe2 } from "lucide-react";
+// Static data + pure helpers only — no hooks or components, so this module is
+// safe to import from both Server and Client Components (the homepage reads
+// `projects` on the server).
+import {
+  Palette,
+  Sparkles,
+  Users,
+  Code,
+  FileText,
+  Mail,
+  MapPin,
+  Wrench,
+  Globe2,
+} from 'lucide-react';
 
 type TechBadgeStyle = {
   bg: string;
@@ -19,120 +30,130 @@ export type TechBadgeMeta = {
 };
 
 const defaultTechBadgeStyle: TechBadgeStyle = {
-  bg: "bg-primary/15 dark:bg-primary/10",
-  text: "text-primary",
-  border: "border-primary/40 dark:border-primary/30",
-  hover: "hover:bg-primary/25 dark:hover:bg-primary/20"
+  bg: 'bg-primary/15 dark:bg-primary/10',
+  text: 'text-primary',
+  border: 'border-primary/40 dark:border-primary/30',
+  hover: 'hover:bg-primary/25 dark:hover:bg-primary/20',
 };
 
 export const techStack: Record<string, TechBadgeMeta> = {
-  "Nuxt3": {
-    label: "Nuxt3",
-    iconSrc: "/resources/images/tech/nuxt.svg",
+  Nuxt3: {
+    label: 'Nuxt3',
+    iconSrc: '/resources/images/tech/nuxt.svg',
     style: {
-      bg: "bg-[#00dc82]/15 dark:bg-[#00dc82]/10",
-      text: "text-[#0a7a53] dark:text-[#00dc82]",
-      border: "border-[#00dc82]/40 dark:border-[#00dc82]/30",
-      hover: "hover:bg-[#00dc82]/25 dark:hover:bg-[#00dc82]/20"
+      bg: 'bg-[#00dc82]/15 dark:bg-[#00dc82]/10',
+      text: 'text-[#0a7a53] dark:text-[#00dc82]',
+      border: 'border-[#00dc82]/40 dark:border-[#00dc82]/30',
+      hover: 'hover:bg-[#00dc82]/25 dark:hover:bg-[#00dc82]/20',
     },
-    description: "Vue framework for building full-stack web apps.",
-    linkHref: "https://nuxt.com/",
-    linkLabel: "Learn more"
+    description: 'Vue framework for building full-stack web apps.',
+    linkHref: 'https://nuxt.com/',
+    linkLabel: 'Learn more',
   },
-  "Vue": {
-    label: "Vue",
-    iconSrc: "/resources/images/tech/vue.svg",
+  Vue: {
+    label: 'Vue',
+    iconSrc: '/resources/images/tech/vue.svg',
     style: {
-      bg: "bg-[#42b883]/15 dark:bg-[#42b883]/10",
-      text: "text-[#2f8f66] dark:text-[#42b883]",
-      border: "border-[#42b883]/40 dark:border-[#42b883]/30",
-      hover: "hover:bg-[#42b883]/25 dark:hover:bg-[#42b883]/20"
+      bg: 'bg-[#42b883]/15 dark:bg-[#42b883]/10',
+      text: 'text-[#2f8f66] dark:text-[#42b883]',
+      border: 'border-[#42b883]/40 dark:border-[#42b883]/30',
+      hover: 'hover:bg-[#42b883]/25 dark:hover:bg-[#42b883]/20',
     },
-    description: "Progressive JavaScript framework for building UIs.",
-    linkHref: "https://vuejs.org/",
-    linkLabel: "Learn more"
+    description: 'Progressive JavaScript framework for building UIs.',
+    linkHref: 'https://vuejs.org/',
+    linkLabel: 'Learn more',
   },
-  "Next.js": {
-    label: "Next.js",
-    iconSrc: "/resources/images/tech/nextjs.svg",
-    style: { bg: "bg-black", text: "text-white", border: "border-neutral-800", hover: "hover:bg-neutral-800" },
-    description: "React framework for production-grade applications.",
-    linkHref: "https://nextjs.org/",
-    linkLabel: "Learn more"
-  },
-  "React": {
-    label: "React",
-    iconSrc: "/resources/images/tech/react.svg",
+  'Next.js': {
+    label: 'Next.js',
+    iconSrc: '/resources/images/tech/nextjs.svg',
     style: {
-      bg: "bg-[#61dafb]/15 dark:bg-[#61dafb]/10",
-      text: "text-[#0f7ba8] dark:text-[#61dafb]",
-      border: "border-[#61dafb]/40 dark:border-[#61dafb]/30",
-      hover: "hover:bg-[#61dafb]/25 dark:hover:bg-[#61dafb]/20"
+      bg: 'bg-black',
+      text: 'text-white',
+      border: 'border-neutral-800',
+      hover: 'hover:bg-neutral-800',
     },
-    description: "UI library for building component-driven interfaces.",
-    linkHref: "https://react.dev/",
-    linkLabel: "Learn more"
+    description: 'React framework for production-grade applications.',
+    linkHref: 'https://nextjs.org/',
+    linkLabel: 'Learn more',
   },
-  "TailwindCSS": {
-    label: "TailwindCSS",
-    iconSrc: "/resources/images/tech/tailwind.svg",
+  React: {
+    label: 'React',
+    iconSrc: '/resources/images/tech/react.svg',
     style: {
-      bg: "bg-[#38bdf8]/15 dark:bg-[#38bdf8]/10",
-      text: "text-[#0284c7] dark:text-[#38bdf8]",
-      border: "border-[#38bdf8]/40 dark:border-[#38bdf8]/30",
-      hover: "hover:bg-[#38bdf8]/25 dark:hover:bg-[#38bdf8]/20"
+      bg: 'bg-[#61dafb]/15 dark:bg-[#61dafb]/10',
+      text: 'text-[#0f7ba8] dark:text-[#61dafb]',
+      border: 'border-[#61dafb]/40 dark:border-[#61dafb]/30',
+      hover: 'hover:bg-[#61dafb]/25 dark:hover:bg-[#61dafb]/20',
     },
-    description: "Utility-first CSS framework for rapid UI styling.",
-    linkHref: "https://tailwindcss.com/",
-    linkLabel: "Learn more"
+    description: 'UI library for building component-driven interfaces.',
+    linkHref: 'https://react.dev/',
+    linkLabel: 'Learn more',
   },
-  "Supabase": {
-    label: "Supabase",
-    iconSrc: "/resources/images/tech/supabase.svg",
+  TailwindCSS: {
+    label: 'TailwindCSS',
+    iconSrc: '/resources/images/tech/tailwind.svg',
     style: {
-      bg: "bg-[#3ecf8e]/15 dark:bg-[#3ecf8e]/10",
-      text: "text-[#198f63] dark:text-[#3ecf8e]",
-      border: "border-[#3ecf8e]/40 dark:border-[#3ecf8e]/30",
-      hover: "hover:bg-[#3ecf8e]/25 dark:hover:bg-[#3ecf8e]/20"
+      bg: 'bg-[#38bdf8]/15 dark:bg-[#38bdf8]/10',
+      text: 'text-[#0284c7] dark:text-[#38bdf8]',
+      border: 'border-[#38bdf8]/40 dark:border-[#38bdf8]/30',
+      hover: 'hover:bg-[#38bdf8]/25 dark:hover:bg-[#38bdf8]/20',
     },
-    description: "Open-source backend with auth, database, and storage.",
-    linkHref: "https://supabase.com/",
-    linkLabel: "Learn more"
+    description: 'Utility-first CSS framework for rapid UI styling.',
+    linkHref: 'https://tailwindcss.com/',
+    linkLabel: 'Learn more',
   },
-  "Pokemon API": {
-    label: "PokeAPI",
-    iconSrc: "/resources/images/tech/pokeapi.png",
+  Supabase: {
+    label: 'Supabase',
+    iconSrc: '/resources/images/tech/supabase.svg',
     style: {
-      bg: "bg-[#facc15]/20 dark:bg-[#facc15]/15",
-      text: "text-[#a16207] dark:text-[#facc15]",
-      border: "border-[#facc15]/40",
-      hover: "hover:bg-[#facc15]/30 dark:hover:bg-[#facc15]/25"
+      bg: 'bg-[#3ecf8e]/15 dark:bg-[#3ecf8e]/10',
+      text: 'text-[#198f63] dark:text-[#3ecf8e]',
+      border: 'border-[#3ecf8e]/40 dark:border-[#3ecf8e]/30',
+      hover: 'hover:bg-[#3ecf8e]/25 dark:hover:bg-[#3ecf8e]/20',
     },
-    description: "Community Pokemon REST API for data and sprites.",
-    linkHref: "https://pokeapi.co/",
-    linkLabel: "Learn more"
+    description: 'Open-source backend with auth, database, and storage.',
+    linkHref: 'https://supabase.com/',
+    linkLabel: 'Learn more',
   },
-  "Notion API": {
-    label: "Notion API",
-    iconSrc: "/resources/images/tech/notion.svg",
-    style: { bg: "bg-[#000000]/10", text: "text-[#000000] dark:text-white", border: "border-[#000000]/30 dark:border-white/30", hover: "hover:bg-[#000000]/20 dark:hover:bg-white/20" },
-    description: "Official API for reading and writing Notion data.",
-    linkHref: "https://developers.notion.com/",
-    linkLabel: "Learn more"
-  },
-  "Clerk": {
-    label: "Clerk",
-    iconSrc: "/resources/images/tech/clerk.svg",
+  'Pokemon API': {
+    label: 'PokeAPI',
+    iconSrc: '/resources/images/tech/pokeapi.png',
     style: {
-      bg: "bg-[#6c47ff]/15 dark:bg-[#6c47ff]/10",
-      text: "text-[#4b2ed1] dark:text-[#6c47ff]",
-      border: "border-[#6c47ff]/40 dark:border-[#6c47ff]/30",
-      hover: "hover:bg-[#6c47ff]/25 dark:hover:bg-[#6c47ff]/20"
+      bg: 'bg-[#facc15]/20 dark:bg-[#facc15]/15',
+      text: 'text-[#a16207] dark:text-[#facc15]',
+      border: 'border-[#facc15]/40',
+      hover: 'hover:bg-[#facc15]/30 dark:hover:bg-[#facc15]/25',
     },
-    description: "Authentication and user management platform.",
-    linkHref: "https://clerk.com/",
-    linkLabel: "Learn more"
-  }
+    description: 'Community Pokemon REST API for data and sprites.',
+    linkHref: 'https://pokeapi.co/',
+    linkLabel: 'Learn more',
+  },
+  'Notion API': {
+    label: 'Notion API',
+    iconSrc: '/resources/images/tech/notion.svg',
+    style: {
+      bg: 'bg-[#000000]/10',
+      text: 'text-[#000000] dark:text-white',
+      border: 'border-[#000000]/30 dark:border-white/30',
+      hover: 'hover:bg-[#000000]/20 dark:hover:bg-white/20',
+    },
+    description: 'Official API for reading and writing Notion data.',
+    linkHref: 'https://developers.notion.com/',
+    linkLabel: 'Learn more',
+  },
+  Clerk: {
+    label: 'Clerk',
+    iconSrc: '/resources/images/tech/clerk.svg',
+    style: {
+      bg: 'bg-[#6c47ff]/15 dark:bg-[#6c47ff]/10',
+      text: 'text-[#4b2ed1] dark:text-[#6c47ff]',
+      border: 'border-[#6c47ff]/40 dark:border-[#6c47ff]/30',
+      hover: 'hover:bg-[#6c47ff]/25 dark:hover:bg-[#6c47ff]/20',
+    },
+    description: 'Authentication and user management platform.',
+    linkHref: 'https://clerk.com/',
+    linkLabel: 'Learn more',
+  },
 };
 
 export const getTechBadgeMeta = (tag: string): TechBadgeMeta => {
@@ -142,94 +163,101 @@ export const getTechBadgeMeta = (tag: string): TechBadgeMeta => {
 // Solid, white-text-legible brand color per technology. Used to render clean
 // single-color pills instead of the busier tinted/bordered badges.
 const techSolidColors: Record<string, string> = {
-  "Nuxt3": "#0a7a53",
-  "Vue": "#34495e",
-  "Next.js": "#000000",
-  "React": "#087ea4",
-  "TailwindCSS": "#0284c7",
-  "Supabase": "#198f63",
-  "Pokemon API": "#cc0000",
-  "Notion API": "#37352f",
-  "Clerk": "#6c47ff",
+  Nuxt3: '#0a7a53',
+  Vue: '#34495e',
+  'Next.js': '#000000',
+  React: '#087ea4',
+  TailwindCSS: '#0284c7',
+  Supabase: '#198f63',
+  'Pokemon API': '#cc0000',
+  'Notion API': '#37352f',
+  Clerk: '#6c47ff',
 };
 
-export const getTechColor = (tag: string): string => techSolidColors[tag] ?? "#3f3f46";
+export const getTechColor = (tag: string): string => techSolidColors[tag] ?? '#3f3f46';
 
 export const projects = [
   {
-    title: "PokemonPalette",
-    tagline: "Color inspiration from your favorite Pokemon",
-    description: "Transform the world of Pokemon into beautiful color palettes for your next design project. A unique tool that bridges nostalgia with modern design needs.",
+    title: 'PokemonPalette',
+    tagline: 'Color inspiration from your favorite Pokemon',
+    description:
+      'Transform the world of Pokemon into beautiful color palettes for your next design project. A unique tool that bridges nostalgia with modern design needs.',
     images: [
-      "/resources/images/projects/pokemonpalette1.png",
-      "/resources/images/projects/pokemonpalette2.png",
-      "/resources/images/projects/pokemonpalette3.png"
+      '/resources/images/projects/pokemonpalette1.png',
+      '/resources/images/projects/pokemonpalette2.png',
+      '/resources/images/projects/pokemonpalette3.png',
     ],
-    liveUrl: "https://pokemonpalette.com",
+    liveUrl: 'https://pokemonpalette.com',
     stats: [
-      { icon: Palette, value: 2200, suffix: "+", label: "Color Palettes" },
-      { icon: Users, value: 10000, suffix: "+", label: "Monthly Visits" },
-      { icon: Code, value: 3000, suffix: "+", label: "Monthly Users" }
+      { icon: Palette, value: 2200, suffix: '+', label: 'Color Palettes' },
+      { icon: Users, value: 10000, suffix: '+', label: 'Monthly Visits' },
+      { icon: Code, value: 3000, suffix: '+', label: 'Monthly Users' },
     ],
-    tags: ["Next.js", "React", "TailwindCSS", "Supabase", "Pokemon API", "Clerk"],
+    tags: ['Next.js', 'React', 'TailwindCSS', 'Supabase', 'Pokemon API', 'Clerk'],
     featured: true,
-    impact: "Helping designers and developers find unique color inspiration while celebrating the beloved Pokemon franchise."
+    impact:
+      'Helping designers and developers find unique color inspiration while celebrating the beloved Pokemon franchise.',
   },
   {
-    title: "TalentReports",
-    tagline: "Outreach analytics for recruiting teams",
-    description: "Reporting and analytics dashboards for outreach performance, giving teams visibility into response rates, funnels, and follow-up effectiveness.",
+    title: 'TalentReports',
+    tagline: 'Outreach analytics for recruiting teams',
+    description:
+      'Reporting and analytics dashboards for outreach performance, giving teams visibility into response rates, funnels, and follow-up effectiveness.',
     images: [
-      "/resources/images/projects/talentreports1.png",
-      "/resources/images/projects/talentreports2.png",
-      "/resources/images/projects/talentreports3.png"
+      '/resources/images/projects/talentreports1.png',
+      '/resources/images/projects/talentreports2.png',
+      '/resources/images/projects/talentreports3.png',
     ],
-    liveUrl: "https://reports.talsight.com",
+    liveUrl: 'https://reports.talsight.com',
     stats: [
-      { icon: Users, value: 150, suffix: "+", label: "Registered recruiters" },
-      { icon: FileText, value: 14000, suffix: "+", label: "Reports generated" },
-      { icon: Mail, value: 500, suffix: "+", label: "Report emails sent" }
+      { icon: Users, value: 150, suffix: '+', label: 'Registered recruiters' },
+      { icon: FileText, value: 14000, suffix: '+', label: 'Reports generated' },
+      { icon: Mail, value: 500, suffix: '+', label: 'Report emails sent' },
     ],
-    tags: ["Nuxt3", "Vue", "Supabase", "TailwindCSS", "Clerk"],
+    tags: ['Nuxt3', 'Vue', 'Supabase', 'TailwindCSS', 'Clerk'],
     featured: false,
-    impact: "Helping recruiting teams understand what works in outreach and improve conversion."
+    impact: 'Helping recruiting teams understand what works in outreach and improve conversion.',
   },
   {
-    title: "ecuLink",
-    tagline: "Remote diagnostics for heavy-duty trucks",
-    description: "Secure remote access to truck ECUs with full J1939 support, enabling real-time diagnostics over a low-latency VPN connection.",
+    title: 'ecuLink',
+    tagline: 'Remote diagnostics for heavy-duty trucks',
+    description:
+      'Secure remote access to truck ECUs with full J1939 support, enabling real-time diagnostics over a low-latency VPN connection.',
     images: [
-      "/resources/images/projects/eculink1.png",
-      "/resources/images/projects/eculink2.png",
-      "/resources/images/projects/eculink3.png"
+      '/resources/images/projects/eculink1.png',
+      '/resources/images/projects/eculink2.png',
+      '/resources/images/projects/eculink3.png',
     ],
-    liveUrl: "https://eculink.io",
+    liveUrl: 'https://eculink.io',
     stats: [
-      { icon: MapPin, value: 24, suffix: "/7", label: "Real-time GPS tracking" },
-      { icon: Wrench, value: 10, suffix: "+", label: "Diagnostic tools supported" },
-      { icon: Globe2, value: 50, suffix: " states", label: "Advanced fleet monitoring" }
+      { icon: MapPin, value: 24, suffix: '/7', label: 'Real-time GPS tracking' },
+      { icon: Wrench, value: 10, suffix: '+', label: 'Diagnostic tools supported' },
+      { icon: Globe2, value: 50, suffix: ' states', label: 'Advanced fleet monitoring' },
     ],
-    tags: ["Next.js", "React", "TailwindCSS", "Supabase", "Clerk"],
+    tags: ['Next.js', 'React', 'TailwindCSS', 'Supabase', 'Clerk'],
     featured: false,
-    impact: "Reducing fleet downtime by bringing OEM diagnostics online without moving the vehicle."
+    impact:
+      'Reducing fleet downtime by bringing OEM diagnostics online without moving the vehicle.',
   },
   {
-    title: "Frameworked.io",
-    tagline: "Supercharge your Notion workspace",
-    description: "A powerful platform that enhances Notion with beautiful dashboards, real-time data sync, and an optimized mobile experience. Keep Notion as your source of truth while unlocking its full potential.",
+    title: 'Frameworked.io',
+    tagline: 'Supercharge your Notion workspace',
+    description:
+      'A powerful platform that enhances Notion with beautiful dashboards, real-time data sync, and an optimized mobile experience. Keep Notion as your source of truth while unlocking its full potential.',
     images: [
-      "/resources/images/projects/frameworked1.png",
-      "/resources/images/projects/frameworked2.png",
-      "/resources/images/projects/frameworked3.png"
+      '/resources/images/projects/frameworked1.png',
+      '/resources/images/projects/frameworked2.png',
+      '/resources/images/projects/frameworked3.png',
     ],
-    liveUrl: "https://frameworked.io",
+    liveUrl: 'https://frameworked.io',
     stats: [
-      { icon: FileText, value: 500, suffix: "+", label: "Daily logs processed" },
-      { icon: Sparkles, value: 15, suffix: "+", label: "Custom modules" },
-      { icon: Code, value: 99.9, suffix: "%", label: "Uptime" }
+      { icon: FileText, value: 500, suffix: '+', label: 'Daily logs processed' },
+      { icon: Sparkles, value: 15, suffix: '+', label: 'Custom modules' },
+      { icon: Code, value: 99.9, suffix: '%', label: 'Uptime' },
     ],
-    tags: ["Next.js", "React", "TailwindCSS", "Supabase", "Notion API", "Clerk"],
+    tags: ['Next.js', 'React', 'TailwindCSS', 'Supabase', 'Notion API', 'Clerk'],
     featured: true,
-    impact: "Empowering professionals to create their perfect productivity system without leaving the Notion ecosystem."
-  }
-];  
+    impact:
+      'Empowering professionals to create their perfect productivity system without leaving the Notion ecosystem.',
+  },
+];
