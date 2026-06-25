@@ -29,7 +29,11 @@ module.exports = {
             a: {
               color: 'var(--primary)',
               '&:hover': {
-                color: 'var(--primary-foreground)',
+                // Nudge the link toward the foreground on hover so it stays
+                // legible against the page background in every theme. Using
+                // --primary-foreground here made hovered links match the bg
+                // (it's meant for text sitting *on* the primary color).
+                color: 'color-mix(in oklch, var(--primary), var(--foreground) 35%)',
               },
             },
             h1: {
