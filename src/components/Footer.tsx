@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { FaLinkedin, FaShoppingBag } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
+import { social } from '@/data/social';
 
 export function Footer() {
   return (
@@ -8,7 +9,7 @@ export function Footer() {
       <div className="container mx-auto">
         <div className="flex justify-center space-x-6 mb-6">
           <Link
-            href="https://linkedin.com/in/yassenshopov"
+            href={social.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="text-foreground/60 hover:text-foreground transition-colors"
@@ -17,7 +18,7 @@ export function Footer() {
             <FaLinkedin size={24} aria-hidden="true" />
           </Link>
           <Link
-            href="https://x.com/yassenshopov"
+            href={social.x}
             target="_blank"
             rel="noopener noreferrer"
             className="text-foreground/60 hover:text-foreground transition-colors"
@@ -26,7 +27,7 @@ export function Footer() {
             <FaXTwitter size={24} aria-hidden="true" />
           </Link>
           <Link
-            href="https://yassenshopov.gumroad.com"
+            href={social.gumroad}
             target="_blank"
             rel="noopener noreferrer"
             className="text-foreground/60 hover:text-foreground transition-colors"
@@ -36,15 +37,15 @@ export function Footer() {
           </Link>
         </div>
         <p className="text-center text-foreground/60">
-          Copyright &copy; {new Date().getFullYear()} &mdash; Designed and maintained by{" "}
+          Copyright &copy; {new Date().getFullYear()} &mdash; Designed and maintained by{' '}
           <Link
-            href="https://github.com/yassenshopov"
+            href={social.github}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:underline"
           >
             Yassen Shopov
-          </Link>{" "}
+          </Link>{' '}
           &bull; All rights reserved.
         </p>
       </div>
