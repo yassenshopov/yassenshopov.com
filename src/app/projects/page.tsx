@@ -290,9 +290,7 @@ export default function ProjectsPage() {
               <Sparkles className="w-4 h-4" />
               <span>Let&apos;s build something</span>
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
-              Want to work with me?
-            </h2>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight">Want to work with me?</h2>
             <p className="text-base md:text-lg text-muted-foreground mx-auto max-w-2xl">
               If you&apos;re building a product, refreshing a UI, or want a fast-moving partner,
               I&apos;m in. Tell me what you&apos;re aiming for and I&apos;ll send ideas, timelines,

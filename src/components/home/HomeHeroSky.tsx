@@ -411,7 +411,7 @@ export function HomeHeroSky() {
 
       {/* ----------------------------- DARK: flat night sky + stars ----------------------------- */}
       <div className="absolute inset-0 opacity-0 transition-opacity duration-700 dark:opacity-100">
-        <div className="absolute inset-0" style={{ backgroundColor: '#0a0e1a' }} />
+        <div className="absolute inset-0" style={{ backgroundColor: 'var(--background)' }} />
         <div
           className="hero-stars"
           style={

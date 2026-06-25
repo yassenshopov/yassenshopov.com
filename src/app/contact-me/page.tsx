@@ -366,8 +366,8 @@ export default function ContactPage() {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Book a call</h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Grab a slot that suits you — we&apos;ll talk through what you&apos;re building and
-              the clearest next step. No prep needed.
+              Grab a slot that suits you — we&apos;ll talk through what you&apos;re building and the
+              clearest next step. No prep needed.
             </p>
           </div>
           <iframe

@@ -8,19 +8,13 @@ import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useLoading } from './LoadingProvider';
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from '@/components/ui/dropdown-menu';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 type NavLink = {
@@ -255,7 +249,9 @@ export function Navbar() {
                 </nav>
                 <div className="border-t p-6">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} Yassen Shopov</span>
+                    <span className="text-sm text-muted-foreground">
+                      &copy; {new Date().getFullYear()} Yassen Shopov
+                    </span>
                     <ThemeToggle />
                   </div>
                 </div>
