@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import { NotionHeroMarquee } from '@/components/notion/NotionHeroMarquee';
+import { HeroMarquee } from '@/components/HeroMarquee';
 
 interface NotionHeroProps {
   templateCount: number;
@@ -46,7 +46,11 @@ export function NotionHero({
       id="notion-hero"
       className="relative isolate flex items-center overflow-hidden bg-gradient-to-b from-background via-background to-muted scroll-mt-16 min-h-[28rem] md:min-h-[34rem]"
     >
-      <NotionHeroMarquee thumbnails={thumbnails} />
+      <HeroMarquee
+        images={thumbnails}
+        tileClassName="aspect-video w-[20rem] sm:w-[24rem] md:w-[30rem] bg-card"
+        sizes="(min-width: 768px) 480px, (min-width: 640px) 384px, 320px"
+      />
 
       <motion.div
         aria-hidden

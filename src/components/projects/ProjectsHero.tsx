@@ -1,10 +1,11 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ProjectsHeroMarquee } from '@/components/projects/ProjectsHeroMarquee';
+import { HeroMarquee } from '@/components/HeroMarquee';
 
 interface ProjectsHeroProps {
   projectCount: number;
@@ -45,7 +46,12 @@ export function ProjectsHero({
       id="projects-hero"
       className="relative isolate flex items-center overflow-hidden bg-gradient-to-b from-background via-background to-muted scroll-mt-16 min-h-[30rem] md:min-h-[36rem]"
     >
-      <ProjectsHeroMarquee thumbnails={thumbnails} />
+      <HeroMarquee
+        images={thumbnails}
+        tileClassName="aspect-video w-[20rem] sm:w-[24rem] md:w-[30rem] bg-card"
+        sizes="(min-width: 768px) 480px, (min-width: 640px) 384px, 320px"
+        imageClassName="object-cover object-top"
+      />
 
       <motion.div
         aria-hidden
@@ -117,15 +123,13 @@ export function ProjectsHero({
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 mb-7">
-            <Button size="lg" className="group" onClick={() => scrollToId('contact')}>
-              Book a call
-              <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <Button size="lg" className="group" asChild>
+              <Link href="/contact-me#book">
+                Book a call
+                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={() => scrollToId('selected-work')}
-            >
+            <Button size="lg" variant="outline" onClick={() => scrollToId('selected-work')}>
               Browse the work
             </Button>
           </div>

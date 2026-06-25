@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { BookOpen, CalendarDays, ChevronDown } from 'lucide-react';
 import { KitNewsletterForm } from '@/components/KitNewsletterForm';
-import { BlogHeroMarquee } from '@/components/blog/BlogHeroMarquee';
+import { HeroMarquee } from '@/components/HeroMarquee';
 
 interface BlogHeroProps {
   thumbnails?: string[];
@@ -42,7 +42,12 @@ export function BlogHero({ thumbnails = [] }: BlogHeroProps) {
       className="relative isolate flex items-center overflow-hidden bg-gradient-to-b from-background via-background to-muted scroll-mt-16 min-h-[calc(100vh-4rem)]"
     >
       {/* Infinite marquee of blog thumbnails behind everything */}
-      <BlogHeroMarquee thumbnails={thumbnails} />
+      <HeroMarquee
+        images={thumbnails}
+        tileClassName="aspect-video w-[22rem] sm:w-[26rem] md:w-[32rem]"
+        sizes="(min-width: 768px) 512px, (min-width: 640px) 416px, 352px"
+        rowSpacerClassName="h-[12.375rem] sm:h-[14.625rem] md:h-[18rem]"
+      />
 
       {/* Soft brand glow accents with parallax */}
       <motion.div
@@ -148,7 +153,9 @@ export function BlogHero({ thumbnails = [] }: BlogHeroProps) {
         aria-label="Scroll to blog posts"
         className="group absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"
       >
-        <span className="text-[0.65rem] md:text-xs uppercase tracking-[0.22em]">Read the latest</span>
+        <span className="text-[0.65rem] md:text-xs uppercase tracking-[0.22em]">
+          Read the latest
+        </span>
         <motion.span
           animate={prefersReducedMotion ? undefined : { y: [0, 6, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}

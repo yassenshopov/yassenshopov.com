@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import { LibraryHeroMarquee } from '@/components/library/LibraryHeroMarquee';
+import { HeroMarquee } from '@/components/HeroMarquee';
 
 interface LibraryStats {
   books: number;
@@ -49,7 +49,17 @@ export default function LibraryHero({ stats, covers = [] }: LibraryHeroProps) {
       id="library-hero"
       className="relative isolate flex items-center overflow-hidden bg-gradient-to-b from-background via-background to-muted scroll-mt-16 min-h-[28rem] md:min-h-[34rem]"
     >
-      <LibraryHeroMarquee covers={covers} />
+      <HeroMarquee
+        images={covers}
+        tileClassName="aspect-[2/3] w-[6rem] sm:w-[7rem] md:w-[8.5rem] bg-black"
+        sizes="(min-width: 768px) 136px, (min-width: 640px) 112px, 96px"
+        secondRowOffsetDivisor={2}
+        durationStrategy={(count) => {
+          // Keep pixels/second roughly constant regardless of cover count.
+          const base = Math.min(600, Math.max(80, count * 3.2));
+          return [base, base * 1.125];
+        }}
+      />
 
       <motion.div
         aria-hidden
