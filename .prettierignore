@@ -1,0 +1,17 @@
+# Build output & deps
+.next/
+node_modules/
+out/
+
+# Large generated/data files — not worth reformatting (huge diffs)
+src/data/blog-posts.json
+src/data/library-items.json
+src/data/library-tiers.json
+
+# Static assets
+public/
+
+# Lockfiles
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
