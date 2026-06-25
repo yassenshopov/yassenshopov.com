@@ -1,17 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import gsap from 'gsap';
-import { LayoutGrid, List } from 'lucide-react';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { motion } from 'framer-motion';
+import { ArrowRight, LayoutGrid, List, Sparkles } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
 interface Template {
@@ -35,6 +28,18 @@ const categories = [
   { value: "planners", label: "Planners" },
   { value: "content-creation", label: "Content Creation" },
 ];
+
+const categoryLabel = (value: string) =>
+  categories.find((c) => c.value === value)?.label ?? value;
+
+// The single premium template — surfaced as a hero banner whenever it's part of
+// the active filter so it never competes with the free grid for attention.
+const FEATURED_ID = 'ultimate-investing-dashboard';
+
+const isFree = (price: string) => price === '0$' || price === '$0' || price === '0';
+
+const formatPrice = (price: string) =>
+  isFree(price) ? 'Free' : `$${price.replace(/\$/g, '').trim()}`;
 
 export const templates: Template[] = [
   {
@@ -215,208 +220,294 @@ export const templates: Template[] = [
   }
 ];
 
-export default function NotionTemplatesList() {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [isLoading, setIsLoading] = useState(false);
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const templateRefs = useRef<(HTMLElement | null)[]>([]);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const ctx = useRef<gsap.Context | null>(null);
+function PriceBadge({ price, className = '' }: { price: string; className?: string }) {
+  const free = isFree(price);
+  return (
+    <span
+      className={`px-2.5 py-1 rounded-full text-xs font-semibold flex-shrink-0 ${
+        free
+          ? 'bg-secondary text-secondary-foreground'
+          : 'bg-primary text-primary-foreground'
+      } ${className}`}
+    >
+      {formatPrice(price)}
+    </span>
+  );
+}
 
-  const filteredTemplates = selectedCategory === 'all' 
-    ? templates 
-    : templates.filter(template => template.categories.includes(selectedCategory));
+function FeaturedTemplate({ template }: { template: Template }) {
+  return (
+    <Link
+      href={template.gumroadLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block"
+    >
+      <article className="grid lg:grid-cols-2 overflow-hidden rounded-2xl border border-border bg-card transition-colors duration-300 hover:border-primary">
+        <div className="relative aspect-video lg:aspect-auto lg:min-h-[20rem] overflow-hidden">
+          <Image
+            src={template.image}
+            alt={template.title}
+            fill
+            unoptimized={template.unoptimized}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-card/60 via-transparent to-transparent lg:bg-gradient-to-r" />
+        </div>
 
-  useEffect(() => {
-    // Reset refs array when templates change
-    templateRefs.current = [];
-  }, [filteredTemplates]);
+        <div className="flex flex-col justify-center gap-5 p-6 md:p-10">
+          <div className="inline-flex w-fit items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-[0.18em]">
+            <Sparkles className="w-3.5 h-3.5" />
+            Flagship template
+          </div>
 
-  useEffect(() => {
-    // Cleanup previous animations
-    if (ctx.current) {
-      ctx.current.revert();
-    }
+          <div>
+            <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
+              {template.title}
+            </h2>
+            <p className="mt-3 text-muted-foreground md:text-lg leading-relaxed">
+              {template.description}
+            </p>
+          </div>
 
-    // Only animate if we have elements and they're not loading
-    if (!isLoading && templateRefs.current.length > 0) {
-      const elements = templateRefs.current.filter(Boolean);
-      if (elements.length > 0) {
-        ctx.current = gsap.context(() => {
-          gsap.from(elements, {
-            y: 30,
-            opacity: 0,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: "power3.out"
-          });
-        });
-      }
-    }
+          <div className="flex flex-wrap gap-2">
+            {template.categories.map((category) => (
+              <span
+                key={category}
+                className="px-2.5 py-1 text-xs font-semibold bg-secondary text-secondary-foreground rounded-md"
+              >
+                {categoryLabel(category)}
+              </span>
+            ))}
+          </div>
 
-    // Cleanup function
-    return () => {
-      if (ctx.current) {
-        ctx.current.revert();
-      }
-    };
-  }, [filteredTemplates, isLoading]);
+          <div className="flex flex-wrap items-center gap-4 pt-1">
+            <Button size="lg" className="pointer-events-none group/btn">
+              Get the template
+              <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+            <span className="text-2xl font-bold text-foreground">
+              {formatPrice(template.price)}
+            </span>
+          </div>
+        </div>
+      </article>
+    </Link>
+  );
+}
+
+function TemplateCard({
+  template,
+  viewMode,
+}: {
+  template: Template;
+  viewMode: 'grid' | 'list';
+}) {
+  if (viewMode === 'list') {
+    return (
+      <Link
+        href={template.gumroadLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group block"
+      >
+        <article className="flex flex-row items-center gap-4 rounded-xl border border-border bg-card p-3 transition-colors duration-300 hover:border-primary">
+          <div className="relative h-20 w-20 md:h-24 md:w-40 flex-shrink-0 overflow-hidden rounded-lg">
+            <Image
+              src={template.image}
+              alt={template.title}
+              fill
+              unoptimized={template.unoptimized}
+              sizes="160px"
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
+          <div className="flex flex-1 flex-col gap-1.5 min-w-0">
+            <div className="flex items-start justify-between gap-3">
+              <h2 className="text-base md:text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors line-clamp-1">
+                {template.title}
+              </h2>
+              <PriceBadge price={template.price} />
+            </div>
+            <p className="hidden md:line-clamp-2 md:block text-sm text-muted-foreground">
+              {template.description}
+            </p>
+            <div className="hidden md:flex flex-wrap gap-2">
+              {template.categories.map((category) => (
+                <span
+                  key={category}
+                  className="px-2 py-0.5 text-xs font-semibold bg-secondary text-secondary-foreground rounded-md"
+                >
+                  {categoryLabel(category)}
+                </span>
+              ))}
+            </div>
+          </div>
+        </article>
+      </Link>
+    );
+  }
 
   return (
-    <section className="py-20">
+    <Link
+      href={template.gumroadLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block h-full"
+    >
+      <article className="flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors duration-300 hover:border-primary">
+        <div className="relative aspect-video w-full overflow-hidden">
+          <Image
+            src={template.image}
+            alt={template.title}
+            fill
+            unoptimized={template.unoptimized}
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 flex items-end justify-start bg-gradient-to-t from-background/80 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <span className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground">
+              View template
+              <ArrowRight className="w-3.5 h-3.5" />
+            </span>
+          </div>
+        </div>
+        <div className="flex flex-1 flex-col p-5 md:p-6">
+          <div className="mb-3 flex items-start justify-between gap-3">
+            <h2 className="text-lg md:text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
+              {template.title}
+            </h2>
+            <PriceBadge price={template.price} />
+          </div>
+          <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">
+            {template.description}
+          </p>
+          <div className="mt-auto flex flex-wrap gap-2">
+            {template.categories.map((category) => (
+              <span
+                key={category}
+                className="px-2 py-1 text-xs font-semibold bg-secondary text-secondary-foreground rounded-md"
+              >
+                {categoryLabel(category)}
+              </span>
+            ))}
+          </div>
+        </div>
+      </article>
+    </Link>
+  );
+}
+
+export default function NotionTemplatesList() {
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+
+  const filteredTemplates =
+    selectedCategory === 'all'
+      ? templates
+      : templates.filter((template) => template.categories.includes(selectedCategory));
+
+  const featured = filteredTemplates.find((t) => t.id === FEATURED_ID);
+  const gridTemplates = filteredTemplates.filter((t) => t.id !== FEATURED_ID);
+
+  return (
+    <section id="templates" className="py-16 md:py-20 scroll-mt-16">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center mb-12">
-            <div className="w-[280px]">
-              <Select
-                value={selectedCategory}
-                onValueChange={(value) => {
-                  setIsLoading(true);
-                  if (timeoutRef.current) {
-                    clearTimeout(timeoutRef.current);
-                  }
-                  timeoutRef.current = setTimeout(() => {
-                    setSelectedCategory(value);
-                    setIsLoading(false);
-                  }, 300);
-                }}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select category" />
-                </SelectTrigger>
-                <SelectContent>
-                  {categories.map((category) => (
-                    <SelectItem key={category.value} value={category.value}>
+          {/* Filter bar — category pills + view toggle */}
+          <div className="sticky top-16 z-30 -mx-4 mb-10 border-y border-border bg-background/80 px-4 py-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+              <div className="flex flex-wrap gap-2">
+                {categories.map((category) => {
+                  const active = selectedCategory === category.value;
+                  return (
+                    <button
+                      key={category.value}
+                      type="button"
+                      onClick={() => setSelectedCategory(category.value)}
+                      aria-pressed={active}
+                      className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
+                        active
+                          ? 'border-primary bg-primary text-primary-foreground'
+                          : 'border-border bg-background text-muted-foreground hover:bg-accent hover:text-foreground'
+                      }`}
+                    >
                       {category.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="flex gap-2">
-              <Button
-                variant={viewMode === 'grid' ? 'default' : 'ghost'}
-                size="icon"
-                onClick={() => setViewMode('grid')}
-              >
-                <LayoutGrid className="h-4 w-4" />
-              </Button>
-              <Button
-                variant={viewMode === 'list' ? 'default' : 'ghost'}
-                size="icon"
-                onClick={() => setViewMode('list')}
-              >
-                <List className="h-4 w-4" />
-              </Button>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="flex items-center gap-2 self-start lg:self-auto">
+                <span className="hidden text-sm text-muted-foreground sm:inline">
+                  {filteredTemplates.length}{' '}
+                  {filteredTemplates.length === 1 ? 'template' : 'templates'}
+                </span>
+                <div className="flex gap-1 rounded-lg border border-border p-1">
+                  <Button
+                    variant={viewMode === 'grid' ? 'default' : 'ghost'}
+                    size="icon"
+                    className="h-8 w-8"
+                    onClick={() => setViewMode('grid')}
+                    aria-label="Grid view"
+                  >
+                    <LayoutGrid className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant={viewMode === 'list' ? 'default' : 'ghost'}
+                    size="icon"
+                    className="h-8 w-8"
+                    onClick={() => setViewMode('list')}
+                    aria-label="List view"
+                  >
+                    <List className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className={`relative min-h-[200px] ${
-            viewMode === 'grid' 
-              ? 'grid sm:grid-cols-2 lg:grid-cols-3 gap-8' 
-              : 'flex flex-col gap-4'
-          }`}>
-            {isLoading ? (
-              <div className="absolute inset-0 flex items-center justify-center bg-background/50 backdrop-blur-sm">
-                <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+          <motion.div
+            key={`${selectedCategory}-${viewMode}`}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
+          >
+            {featured && (
+              <div className="mb-10">
+                <FeaturedTemplate template={featured} />
+              </div>
+            )}
+
+            {gridTemplates.length > 0 ? (
+              <div
+                className={
+                  viewMode === 'grid'
+                    ? 'grid gap-6 sm:grid-cols-2 lg:grid-cols-3'
+                    : 'flex flex-col gap-3'
+                }
+              >
+                {gridTemplates.map((template) => (
+                  <TemplateCard
+                    key={template.id}
+                    template={template}
+                    viewMode={viewMode}
+                  />
+                ))}
               </div>
             ) : (
-              filteredTemplates.map((template, index) => (
-                <div key={template.id} className="flex flex-col">
-                  <Link
-                    href={template.gumroadLink}
-                    target="_blank"
-                    className="group flex-1"
-                    ref={(el) => {
-                      if (el) templateRefs.current[index] = el;
-                    }}
-                  >
-                    <article className={`bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-[border-color,box-shadow] duration-300 h-full ${
-                      viewMode === 'list'
-                        ? 'flex flex-row items-center md:items-stretch gap-3 p-3 md:p-0 md:gap-0'
-                        : 'flex flex-col'
-                    }`}>
-                      {/* Image container */}
-                      <div className={`relative ${
-                        viewMode === 'list'
-                          ? 'w-20 h-20 md:aspect-auto md:w-[200px] md:h-auto flex-shrink-0'
-                          : 'aspect-video w-full'
-                      } overflow-hidden rounded-md md:rounded-none`}>
-                        <Image
-                          src={template.image}
-                          alt={template.title}
-                          fill
-                          unoptimized={template.unoptimized}
-                          className={`object-cover transition-transform duration-300 ${viewMode === 'list' ? 'group-hover:scale-102' : 'group-hover:scale-105'}`}
-                        />
-                        {viewMode !== 'list' && (
-                          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-4">
-                            <span className="text-sm font-medium text-foreground">View Template →</span>
-                          </div>
-                        )}
-                      </div>
-                      {/* Content container */}
-                      <div className={`flex flex-col flex-1 ${
-                        viewMode === 'list' 
-                          ? 'py-0 md:p-6' 
-                          : 'p-6'
-                      }`}>
-                        <div className={`flex ${viewMode === 'list' ? 'flex-col md:flex-row' : 'flex-row'} items-start justify-between gap-2 md:gap-4 mb-2 md:mb-4`}>
-                          <h2 className={`font-bold tracking-tight text-foreground group-hover:text-primary transition-colors duration-300 ${
-                            viewMode === 'list' 
-                              ? 'text-base md:text-2xl line-clamp-1' 
-                              : 'text-xl md:text-2xl'
-                          }`}>
-                            {template.title}
-                          </h2>
-                          <span className={`px-2 py-1 rounded-full text-sm font-medium bg-secondary text-secondary-foreground flex-shrink-0`}>
-                            {template.price === '0$' ? 'Free' : template.price}
-                          </span>
-                        </div>
-                        <p className={`text-muted-foreground ${
-                          viewMode === 'list' 
-                            ? 'hidden md:block md:mb-4 md:line-clamp-2' 
-                            : 'mb-4 line-clamp-2'
-                        }`}>
-                          {template.description}
-                        </p>
-                        <div className={`flex flex-wrap gap-2 ${viewMode === 'list' ? 'mt-0 md:mt-auto' : 'mt-auto'}`}>
-                          {template.categories.map(category => (
-                            <span
-                              key={category}
-                              className={`px-2 py-1 text-xs font-semibold bg-secondary text-secondary-foreground rounded-md ${
-                                viewMode === 'list' ? 'hidden md:inline-block' : ''
-                              }`}
-                            >
-                              {categories.find(c => c.value === category)?.label || category}
-                            </span>
-                          ))}
-                        </div>
-                        {template.productHuntLink && viewMode !== 'list' && (
-                          <div className="mt-4 flex justify-end">
-                            <img
-                              src={`https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=${template.id}&theme=dark`}
-                              alt={`${template.title} on Product Hunt`}
-                              height="32"
-                              width="190"
-                              style={{ height: '32px', width: 'auto'}}
-                              className="cursor-pointer"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                window.open(template.productHuntLink, '_blank');
-                              }}
-                            />
-                          </div>
-                        )}
-                      </div>
-                    </article>
-                  </Link>
+              !featured && (
+                <div className="py-16 text-center">
+                  <p className="text-lg text-muted-foreground">
+                    No templates in this category yet.
+                  </p>
                 </div>
-              ))
+              )
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
-} 
+}
