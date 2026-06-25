@@ -139,7 +139,21 @@ export const getTechBadgeMeta = (tag: string): TechBadgeMeta => {
   return techStack[tag] ?? { label: tag, style: defaultTechBadgeStyle };
 };
 
-export const projectTagPaddingXClass = "px-6";
+// Solid, white-text-legible brand color per technology. Used to render clean
+// single-color pills instead of the busier tinted/bordered badges.
+const techSolidColors: Record<string, string> = {
+  "Nuxt3": "#0a7a53",
+  "Vue": "#34495e",
+  "Next.js": "#000000",
+  "React": "#087ea4",
+  "TailwindCSS": "#0284c7",
+  "Supabase": "#198f63",
+  "Pokemon API": "#cc0000",
+  "Notion API": "#37352f",
+  "Clerk": "#6c47ff",
+};
+
+export const getTechColor = (tag: string): string => techSolidColors[tag] ?? "#3f3f46";
 
 export const projects = [
   {
