@@ -57,6 +57,7 @@ const studioLinks: StudioLink[] = [
   },
 ];
 
+const workLink: NavLink = { href: '/work-with-me', label: 'Work with me' };
 const contactLink: NavLink = { href: '/contact-me', label: 'Contact me' };
 
 export function Navbar() {
@@ -163,6 +164,14 @@ export function Navbar() {
           >
             {contactLink.label}
           </Link>
+
+          <Link
+            href={workLink.href}
+            className="inline-flex items-center rounded-full bg-primary px-4 py-1.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            onClick={handleLinkClick}
+          >
+            {workLink.label}
+          </Link>
         </div>
         <div className="flex items-center gap-4">
           <ThemeToggle />
@@ -244,6 +253,14 @@ export function Navbar() {
                       onClick={handleLinkClick}
                     >
                       {contactLink.label}
+                    </Link>
+
+                    <Link
+                      href={workLink.href}
+                      className="mt-2 inline-flex items-center justify-center rounded-full bg-primary px-4 py-3 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+                      onClick={handleLinkClick}
+                    >
+                      {workLink.label}
                     </Link>
                   </div>
                 </nav>

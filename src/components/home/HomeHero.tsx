@@ -69,29 +69,36 @@ export function HomeHero() {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.95] text-white mb-4">
-            I build &amp; ship
+            I design &amp; build
             <br />
-            digital products.
+            web products that ship.
           </h1>
 
           <p className="text-base md:text-xl text-white/80 font-medium mb-5">
-            [web apps &middot; dashboards &middot; notion systems]
+            [mvps &middot; web apps &middot; dashboards]
           </p>
 
           <div className="mx-auto h-px w-full max-w-md bg-white/30 mb-5" />
 
           <p className="text-sm md:text-base text-white/85 max-w-xl mx-auto mb-7 leading-relaxed">
-            I&apos;m a front-end &amp; product engineer who turns ideas into fast, polished
-            interfaces &mdash; from side-projects with thousands of users to client MVPs and startup
-            platforms. I design it, build it, and ship it.
+            One person, end to end &mdash; I design it, build it, and ship it. Founders and teams
+            hire me to turn ideas into fast, polished products people actually use.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
             <Button asChild size="lg" className="group bg-white text-neutral-900 hover:bg-white/90">
-              <Link href="/projects">
-                See my work
+              <Link href="/contact-me#book">
+                Book a call
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white"
+            >
+              <Link href="/projects">See my work</Link>
             </Button>
           </div>
 

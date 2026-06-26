@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Sparkles, ArrowRight, Mail } from 'lucide-react';
+import { Sparkles, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const GRID_BG: React.CSSProperties = {
@@ -44,10 +44,7 @@ export function HomeCTA() {
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href="mailto:yassenshopov00@gmail.com">
-                <Mail className="mr-2 h-4 w-4" aria-hidden="true" />
-                Email me
-              </Link>
+              <Link href="/work-with-me">See how I work</Link>
             </Button>
           </div>
         </div>

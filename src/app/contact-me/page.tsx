@@ -8,10 +8,12 @@ import { Textarea } from '@/components/ui/textarea';
 import { KitNewsletterForm } from '@/components/KitNewsletterForm';
 import {
   ArrowRight,
+  CheckCircle2,
   Clock,
   Github,
   Instagram,
   Linkedin,
+  Loader2,
   Mail,
   MessageSquare,
   Send,
@@ -20,8 +22,10 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { CONTACT_EMAIL, social } from '@/data/social';
+
+type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
 type Topic = 'collab' | 'templates' | 'commission' | 'hi';
 
@@ -60,7 +64,7 @@ const NOW_ROWS: { label: string; value: string }[] = [
   },
   {
     label: 'Open for',
-    value: 'Collab ideas, art commissions, advice calls.',
+    value: 'New product builds, client projects, art commissions.',
   },
   {
     label: 'Heads up',
@@ -80,27 +84,39 @@ export default function ContactPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  // Honeypot — hidden from real users; bots that fill it get silently dropped.
+  const [company, setCompany] = useState('');
+  const [status, setStatus] = useState<FormStatus>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const selectedTopic = TOPIC_OPTIONS.find((t) => t.value === topic) ?? TOPIC_OPTIONS[0];
 
-  // mailto pre-fill — same pattern as /art#commissions. Nothing leaves the
-  // browser until the user hits send in their own mail client, so we don't
-  // need a backend or worry about spam.
-  const mailtoHref = useMemo(() => {
-    const subject = `${selectedTopic.subject}${name ? ` — ${name}` : ''}`;
-    const body = [
-      `Hi Yassen,`,
-      ``,
-      `Name: ${name || '(your name)'}`,
-      `Reply to: ${email || '(your email)'}`,
-      `Topic: ${selectedTopic.label}`,
-      ``,
-      message || "(a few lines about what's on your mind…)",
-    ].join('\n');
-    return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-  }, [selectedTopic, name, email, message]);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (status === 'submitting') return;
+    setStatus('submitting');
+    setErrorMsg('');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message, topic, company }),
+      });
+
+      if (!res.ok) {
+        const data = (await res.json().catch(() => null)) as { error?: string } | null;
+        setErrorMsg(data?.error || 'Could not send your message. Please try again.');
+        setStatus('error');
+        return;
+      }
+
+      setStatus('success');
+    } catch {
+      setErrorMsg('Network error — please try again, or email me directly.');
+      setStatus('error');
+    }
+  };
 
   return (
     <Layout>
@@ -181,13 +197,27 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-start">
             {/* Form */}
             <Card className="p-6 md:p-8 backdrop-blur-xl bg-card/60">
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  window.location.href = mailtoHref;
-                }}
-                className="space-y-6"
-              >
+              {status === 'success' ? (
+                <div className="flex flex-col items-center text-center py-8">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <CheckCircle2 className="h-7 w-7" aria-hidden="true" />
+                  </span>
+                  <h2 className="mt-5 text-2xl font-bold tracking-tight">Message sent</h2>
+                  <p className="mt-2 max-w-sm text-muted-foreground">
+                    Thanks{name ? `, ${name}` : ''} — it&apos;s landed in my inbox. I read every
+                    message and usually reply within a few days.
+                  </p>
+                  <div className="mt-6">
+                    <Button asChild variant="outline">
+                      <Link href="#book">
+                        Book a call instead
+                        <ArrowRight className="ml-2 w-4 h-4" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Topic pills */}
                 <div className="space-y-2">
                   <span className="text-sm font-medium text-foreground">What’s this about?</span>
@@ -275,15 +305,58 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full group">
-                  Send via email
-                  <Send className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                {/* Honeypot — off-screen, not focusable; real users never fill it. */}
+                <div
+                  aria-hidden
+                  className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden"
+                >
+                  <label htmlFor="contact-company">Company (leave this empty)</label>
+                  <input
+                    id="contact-company"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                  />
+                </div>
+
+                {status === 'error' && (
+                  <p className="text-sm text-destructive text-center" role="alert">
+                    {errorMsg}{' '}
+                    <Link
+                      href={`mailto:${CONTACT_EMAIL}`}
+                      className="underline underline-offset-2"
+                    >
+                      Email me directly
+                    </Link>
+                    .
+                  </p>
+                )}
+
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full group"
+                  disabled={status === 'submitting'}
+                >
+                  {status === 'submitting' ? (
+                    <>
+                      Sending&hellip;
+                      <Loader2 className="ml-2 w-4 h-4 animate-spin" aria-hidden="true" />
+                    </>
+                  ) : (
+                    <>
+                      Send message
+                      <Send className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </>
+                  )}
                 </Button>
                 <p className="text-xs text-muted-foreground text-center">
-                  Opens your email client with the message pre-filled — nothing leaves the browser
-                  until you hit send there.
+                  Goes straight to my inbox — I read every message and reply to real ones.
                 </p>
               </form>
+              )}
             </Card>
 
             {/* Sidebar */}
