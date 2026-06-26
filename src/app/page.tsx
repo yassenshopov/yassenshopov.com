@@ -12,9 +12,9 @@ export default function Home() {
     <Layout>
       <HomeHero />
       <HomeDisciplines />
-      <HomeTechStack />
       <HomeStats />
       <HomeSelectedWork />
+      <HomeTechStack />
       <HomeAbout />
       <HomeCTA />
     </Layout>

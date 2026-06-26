@@ -75,15 +75,10 @@ export function HomeHero() {
           </h1>
 
           <p className="text-base md:text-xl text-white/80 font-medium mb-5">
-            [mvps &middot; web apps &middot; dashboards]
+            MVPs, web apps &amp; dashboards &mdash; shipped, not stuck in Figma.
           </p>
 
-          <div className="mx-auto h-px w-full max-w-md bg-white/30 mb-5" />
-
-          <p className="text-sm md:text-base text-white/85 max-w-xl mx-auto mb-7 leading-relaxed">
-            One person, end to end &mdash; I design it, build it, and ship it. Founders and teams
-            hire me to turn ideas into fast, polished products people actually use.
-          </p>
+          <div className="mx-auto h-px w-full max-w-md bg-white/30 mb-7" />
 
           <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
             <Button asChild size="lg" className="group bg-white text-neutral-900 hover:bg-white/90">

@@ -29,22 +29,21 @@ export function HomeCTA() {
             <span className="text-sm font-medium">Open to new projects</span>
           </div>
           <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-[0.95] text-foreground">
-            Got something to build?
+            Curious how we&apos;d work together?
           </h2>
           <p className="mx-auto max-w-xl text-base md:text-lg text-muted-foreground">
-            Whether it&apos;s a product, a refresh, or a half-formed idea you want to ship &mdash;
-            tell me what you&apos;re aiming for and I&apos;ll send back ideas, a timeline, and a
-            clear next step.
+            From the first call to launch day, here&apos;s exactly what building with me looks like
+            &mdash; the kind of work I take on, how I scope it, and the next step.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Button asChild size="lg" className="group">
-              <Link href="/contact-me#book">
-                Book a call
+              <Link href="/work-with-me">
+                See how I work
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href="/work-with-me">See how I work</Link>
+              <Link href="/contact-me#book">Book a call</Link>
             </Button>
           </div>
         </div>
