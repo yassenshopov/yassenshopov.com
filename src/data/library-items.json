@@ -6263,7 +6263,8 @@
       },
       {
         "dateStarted": "2026-06-01",
-        "status": "in-progress"
+        "dateCompleted": "2026-06-26",
+        "status": "completed"
       }
     ]
   },
