@@ -25,13 +25,14 @@ const studioLinks: FooterLink[] = [
   { href: '/notion', label: 'Notion Templates' },
 ];
 
-const socialLinks: { href: string; label: string; icon: ComponentType<{ className?: string }> }[] = [
-  { href: social.github, label: 'GitHub', icon: FaGithub },
-  { href: social.linkedin, label: 'LinkedIn', icon: FaLinkedinIn },
-  { href: social.x, label: 'X (Twitter)', icon: FaXTwitter },
-  { href: social.instagram, label: 'Instagram', icon: FaInstagram },
-  { href: social.gumroad, label: 'Gumroad Shop', icon: FaShoppingBag },
-];
+const socialLinks: { href: string; label: string; icon: ComponentType<{ className?: string }> }[] =
+  [
+    { href: social.github, label: 'GitHub', icon: FaGithub },
+    { href: social.linkedin, label: 'LinkedIn', icon: FaLinkedinIn },
+    { href: social.x, label: 'X (Twitter)', icon: FaXTwitter },
+    { href: social.instagram, label: 'Instagram', icon: FaInstagram },
+    { href: social.gumroad, label: 'Gumroad Shop', icon: FaShoppingBag },
+  ];
 
 export function Footer() {
   const year = new Date().getFullYear();
