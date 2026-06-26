@@ -7,12 +7,6 @@ import { ArrowRight, ChevronDown, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { HomeHeroSky } from '@/components/home/HomeHeroSky';
 
-interface HomeHeroProps {
-  projectCount: number;
-  templateCount: number;
-  monthlyVisits: string;
-}
-
 function scrollToId(id: string) {
   const target = document.getElementById(id);
   if (target) {
@@ -20,7 +14,7 @@ function scrollToId(id: string) {
   }
 }
 
-export function HomeHero({ projectCount, templateCount, monthlyVisits }: HomeHeroProps) {
+export function HomeHero() {
   const prefersReducedMotion = useReducedMotion();
   const { scrollY } = useScroll();
 
@@ -42,10 +36,7 @@ export function HomeHero({ projectCount, templateCount, monthlyVisits }: HomeHer
         style={{ y: safeContentY, opacity: safeContentOpacity }}
         className="container mx-auto px-4 py-16 md:py-20 will-change-transform"
       >
-        <div
-          className="max-w-3xl mx-auto text-center"
-          style={{ textShadow: '0 1px 12px rgba(0,0,0,0.22)' }}
-        >
+        <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm ring-1 ring-white/25 text-white mb-5">
             <span className="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium">
               <span className="relative w-5 h-5 rounded-full overflow-hidden shrink-0">
@@ -106,20 +97,18 @@ export function HomeHero({ projectCount, templateCount, monthlyVisits }: HomeHer
 
           <div className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[0.7rem] md:text-xs text-white/70 uppercase tracking-[0.18em]">
             <span>
-              <span className="text-white font-semibold">{projectCount}</span> Products shipped
+              <span className="text-white font-semibold">6+</span> Years of exp
             </span>
             <span aria-hidden className="text-white/30">
               &bull;
             </span>
             <span>
-              <span className="text-white font-semibold">{templateCount}</span> Notion templates
+              <span className="text-white font-semibold">20+</span> Projects
             </span>
             <span aria-hidden className="text-white/30">
               &bull;
             </span>
-            <span>
-              <span className="text-white font-semibold">{monthlyVisits}</span> Monthly visits
-            </span>
+            <span>Worked in startups and enterprise</span>
           </div>
         </div>
       </motion.div>

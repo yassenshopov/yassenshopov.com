@@ -76,9 +76,6 @@ export function HomeDisciplines() {
             </h2>
             <div className="flex-1 pb-2 flex items-center gap-4">
               <div className="flex-1 h-px bg-border" />
-              <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                one person, full stack
-              </span>
             </div>
           </div>
 
