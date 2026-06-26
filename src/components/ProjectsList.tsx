@@ -12,6 +12,17 @@ import {
   Wrench,
   Globe2,
 } from 'lucide-react';
+import { type IconType } from 'react-icons';
+import {
+  SiNextdotjs,
+  SiReact,
+  SiTailwindcss,
+  SiSupabase,
+  SiClerk,
+  SiNuxtdotjs,
+  SiVuedotjs,
+  SiNotion,
+} from 'react-icons/si';
 
 type TechBadgeStyle = {
   bg: string;
@@ -22,6 +33,12 @@ type TechBadgeStyle = {
 
 export type TechBadgeMeta = {
   label: string;
+  /**
+   * Simple Icons logo component (matches the homepage marquee). Preferred over
+   * `iconSrc` so badges stay visually consistent with the landing-page stack.
+   */
+  icon?: IconType;
+  /** Fallback raster/SVG logo for tech without a Simple Icons mark (e.g. PokeAPI). */
   iconSrc?: string;
   style: TechBadgeStyle;
   description?: string;
@@ -39,7 +56,7 @@ const defaultTechBadgeStyle: TechBadgeStyle = {
 export const techStack: Record<string, TechBadgeMeta> = {
   Nuxt3: {
     label: 'Nuxt3',
-    iconSrc: '/resources/images/tech/nuxt.svg',
+    icon: SiNuxtdotjs,
     style: {
       bg: 'bg-[#00dc82]/15 dark:bg-[#00dc82]/10',
       text: 'text-[#0a7a53] dark:text-[#00dc82]',
@@ -52,7 +69,7 @@ export const techStack: Record<string, TechBadgeMeta> = {
   },
   Vue: {
     label: 'Vue',
-    iconSrc: '/resources/images/tech/vue.svg',
+    icon: SiVuedotjs,
     style: {
       bg: 'bg-[#42b883]/15 dark:bg-[#42b883]/10',
       text: 'text-[#2f8f66] dark:text-[#42b883]',
@@ -65,7 +82,7 @@ export const techStack: Record<string, TechBadgeMeta> = {
   },
   'Next.js': {
     label: 'Next.js',
-    iconSrc: '/resources/images/tech/nextjs.svg',
+    icon: SiNextdotjs,
     style: {
       bg: 'bg-black',
       text: 'text-white',
@@ -78,7 +95,7 @@ export const techStack: Record<string, TechBadgeMeta> = {
   },
   React: {
     label: 'React',
-    iconSrc: '/resources/images/tech/react.svg',
+    icon: SiReact,
     style: {
       bg: 'bg-[#61dafb]/15 dark:bg-[#61dafb]/10',
       text: 'text-[#0f7ba8] dark:text-[#61dafb]',
@@ -91,7 +108,7 @@ export const techStack: Record<string, TechBadgeMeta> = {
   },
   TailwindCSS: {
     label: 'TailwindCSS',
-    iconSrc: '/resources/images/tech/tailwind.svg',
+    icon: SiTailwindcss,
     style: {
       bg: 'bg-[#38bdf8]/15 dark:bg-[#38bdf8]/10',
       text: 'text-[#0284c7] dark:text-[#38bdf8]',
@@ -104,7 +121,7 @@ export const techStack: Record<string, TechBadgeMeta> = {
   },
   Supabase: {
     label: 'Supabase',
-    iconSrc: '/resources/images/tech/supabase.svg',
+    icon: SiSupabase,
     style: {
       bg: 'bg-[#3ecf8e]/15 dark:bg-[#3ecf8e]/10',
       text: 'text-[#198f63] dark:text-[#3ecf8e]',
@@ -130,7 +147,7 @@ export const techStack: Record<string, TechBadgeMeta> = {
   },
   'Notion API': {
     label: 'Notion API',
-    iconSrc: '/resources/images/tech/notion.svg',
+    icon: SiNotion,
     style: {
       bg: 'bg-[#000000]/10',
       text: 'text-[#000000] dark:text-white',
@@ -143,7 +160,7 @@ export const techStack: Record<string, TechBadgeMeta> = {
   },
   Clerk: {
     label: 'Clerk',
-    iconSrc: '/resources/images/tech/clerk.svg',
+    icon: SiClerk,
     style: {
       bg: 'bg-[#6c47ff]/15 dark:bg-[#6c47ff]/10',
       text: 'text-[#4b2ed1] dark:text-[#6c47ff]',

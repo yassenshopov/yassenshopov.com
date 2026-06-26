@@ -64,23 +64,33 @@ export function HomeSelectedWork() {
                   <div className="mt-4 flex flex-wrap gap-1.5">
                     {project.tags.map((tag) => {
                       const meta = getTechBadgeMeta(tag);
+                      const TechIcon = meta.icon;
+                      const hasLogo = Boolean(TechIcon || meta.iconSrc);
                       return (
                         <span
                           key={tag}
                           className={`inline-flex items-center gap-1.5 rounded-full py-1 text-xs font-medium text-white ${
-                            meta.iconSrc ? 'pl-1 pr-2.5' : 'px-2.5'
+                            hasLogo ? 'pl-1 pr-2.5' : 'px-2.5'
                           }`}
                           style={{ backgroundColor: getTechColor(tag) }}
                         >
-                          {meta.iconSrc && (
+                          {hasLogo && (
                             <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white">
-                              <Image
-                                src={meta.iconSrc}
-                                alt=""
-                                width={12}
-                                height={12}
-                                className="h-3 w-3 object-contain"
-                              />
+                              {TechIcon ? (
+                                <TechIcon
+                                  className="h-3 w-3"
+                                  style={{ color: getTechColor(tag) }}
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <Image
+                                  src={meta.iconSrc!}
+                                  alt=""
+                                  width={12}
+                                  height={12}
+                                  className="h-3 w-3 object-contain"
+                                />
+                              )}
                             </span>
                           )}
                           {meta.label}
