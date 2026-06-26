@@ -218,144 +218,150 @@ export default function ContactPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Topic pills */}
-                <div className="space-y-2">
-                  <span className="text-sm font-medium text-foreground">What’s this about?</span>
-                  <div className="flex flex-wrap gap-2">
-                    {TOPIC_OPTIONS.map((opt) => {
-                      const selected = topic === opt.value;
-                      return (
-                        <button
-                          key={opt.value}
-                          type="button"
-                          onClick={() => setTopic(opt.value)}
-                          className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
-                            selected
-                              ? 'bg-primary text-primary-foreground border-primary'
-                              : 'bg-background text-muted-foreground border-border hover:text-foreground hover:bg-accent'
-                          }`}
-                          aria-pressed={selected}
-                        >
-                          {opt.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Topic-specific nudge (currently only the commissions topic) */}
-                {selectedTopic.redirect && (
-                  <div className="rounded-lg border border-primary/20 bg-primary/5 p-4">
-                    <p className="text-sm text-muted-foreground mb-3">
-                      {selectedTopic.redirect.note}
-                    </p>
-                    <Button asChild variant="outline" size="sm" className="group">
-                      <Link href={selectedTopic.redirect.href}>
-                        {selectedTopic.redirect.cta}
-                        <ArrowRight className="ml-2 w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                      </Link>
-                    </Button>
-                  </div>
-                )}
-
-                <div className="grid sm:grid-cols-2 gap-4">
+                  {/* Topic pills */}
                   <div className="space-y-2">
-                    <label htmlFor="contact-name" className="text-sm font-medium text-foreground">
-                      Your name
-                    </label>
-                    <Input
-                      id="contact-name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Alex Doe"
-                      autoComplete="name"
-                      className="bg-background/60"
-                    />
+                    <span className="text-sm font-medium text-foreground">What’s this about?</span>
+                    <div className="flex flex-wrap gap-2">
+                      {TOPIC_OPTIONS.map((opt) => {
+                        const selected = topic === opt.value;
+                        return (
+                          <button
+                            key={opt.value}
+                            type="button"
+                            onClick={() => setTopic(opt.value)}
+                            className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
+                              selected
+                                ? 'bg-primary text-primary-foreground border-primary'
+                                : 'bg-background text-muted-foreground border-border hover:text-foreground hover:bg-accent'
+                            }`}
+                            aria-pressed={selected}
+                          >
+                            {opt.label}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    <label htmlFor="contact-email" className="text-sm font-medium text-foreground">
-                      Reply email
-                    </label>
-                    <Input
-                      id="contact-email"
-                      type="email"
-                      inputMode="email"
-                      autoComplete="email"
-                      spellCheck={false}
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="you@example.com"
-                      required
-                      className="bg-background/60"
-                    />
-                  </div>
-                </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="contact-message" className="text-sm font-medium text-foreground">
-                    Message
-                  </label>
-                  <Textarea
-                    id="contact-message"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder="A few lines about what's on your mind — context, links, what 'done' looks like…"
-                    required
-                    className="min-h-[170px] bg-background/60"
-                  />
-                </div>
-
-                {/* Honeypot — off-screen, not focusable; real users never fill it. */}
-                <div
-                  aria-hidden
-                  className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden"
-                >
-                  <label htmlFor="contact-company">Company (leave this empty)</label>
-                  <input
-                    id="contact-company"
-                    type="text"
-                    tabIndex={-1}
-                    autoComplete="off"
-                    value={company}
-                    onChange={(e) => setCompany(e.target.value)}
-                  />
-                </div>
-
-                {status === 'error' && (
-                  <p className="text-sm text-destructive text-center" role="alert">
-                    {errorMsg}{' '}
-                    <Link
-                      href={`mailto:${CONTACT_EMAIL}`}
-                      className="underline underline-offset-2"
-                    >
-                      Email me directly
-                    </Link>
-                    .
-                  </p>
-                )}
-
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full group"
-                  disabled={status === 'submitting'}
-                >
-                  {status === 'submitting' ? (
-                    <>
-                      Sending&hellip;
-                      <Loader2 className="ml-2 w-4 h-4 animate-spin" aria-hidden="true" />
-                    </>
-                  ) : (
-                    <>
-                      Send message
-                      <Send className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                    </>
+                  {/* Topic-specific nudge (currently only the commissions topic) */}
+                  {selectedTopic.redirect && (
+                    <div className="rounded-lg border border-primary/20 bg-primary/5 p-4">
+                      <p className="text-sm text-muted-foreground mb-3">
+                        {selectedTopic.redirect.note}
+                      </p>
+                      <Button asChild variant="outline" size="sm" className="group">
+                        <Link href={selectedTopic.redirect.href}>
+                          {selectedTopic.redirect.cta}
+                          <ArrowRight className="ml-2 w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                        </Link>
+                      </Button>
+                    </div>
                   )}
-                </Button>
-                <p className="text-xs text-muted-foreground text-center">
-                  Goes straight to my inbox — I read every message and reply to real ones.
-                </p>
-              </form>
+
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label htmlFor="contact-name" className="text-sm font-medium text-foreground">
+                        Your name
+                      </label>
+                      <Input
+                        id="contact-name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Alex Doe"
+                        autoComplete="name"
+                        className="bg-background/60"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="contact-email"
+                        className="text-sm font-medium text-foreground"
+                      >
+                        Reply email
+                      </label>
+                      <Input
+                        id="contact-email"
+                        type="email"
+                        inputMode="email"
+                        autoComplete="email"
+                        spellCheck={false}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="you@example.com"
+                        required
+                        className="bg-background/60"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="contact-message"
+                      className="text-sm font-medium text-foreground"
+                    >
+                      Message
+                    </label>
+                    <Textarea
+                      id="contact-message"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      placeholder="A few lines about what's on your mind — context, links, what 'done' looks like…"
+                      required
+                      className="min-h-[170px] bg-background/60"
+                    />
+                  </div>
+
+                  {/* Honeypot — off-screen, not focusable; real users never fill it. */}
+                  <div
+                    aria-hidden
+                    className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden"
+                  >
+                    <label htmlFor="contact-company">Company (leave this empty)</label>
+                    <input
+                      id="contact-company"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={company}
+                      onChange={(e) => setCompany(e.target.value)}
+                    />
+                  </div>
+
+                  {status === 'error' && (
+                    <p className="text-sm text-destructive text-center" role="alert">
+                      {errorMsg}{' '}
+                      <Link
+                        href={`mailto:${CONTACT_EMAIL}`}
+                        className="underline underline-offset-2"
+                      >
+                        Email me directly
+                      </Link>
+                      .
+                    </p>
+                  )}
+
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full group"
+                    disabled={status === 'submitting'}
+                  >
+                    {status === 'submitting' ? (
+                      <>
+                        Sending&hellip;
+                        <Loader2 className="ml-2 w-4 h-4 animate-spin" aria-hidden="true" />
+                      </>
+                    ) : (
+                      <>
+                        Send message
+                        <Send className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      </>
+                    )}
+                  </Button>
+                  <p className="text-xs text-muted-foreground text-center">
+                    Goes straight to my inbox — I read every message and reply to real ones.
+                  </p>
+                </form>
               )}
             </Card>
 

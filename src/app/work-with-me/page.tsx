@@ -397,7 +397,13 @@ export default function WorkWithMePage() {
                     <div className="mt-6 flex items-center gap-3">
                       {t.avatar && (
                         <span className="relative h-10 w-10 overflow-hidden rounded-full ring-1 ring-border">
-                          <Image src={t.avatar} alt={t.name} fill sizes="40px" className="object-cover" />
+                          <Image
+                            src={t.avatar}
+                            alt={t.name}
+                            fill
+                            sizes="40px"
+                            className="object-cover"
+                          />
                         </span>
                       )}
                       <span className="flex flex-col">
