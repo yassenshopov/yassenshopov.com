@@ -9,7 +9,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatedNumber } from '@/components/AnimatedNumber';
 import { useEffect, useState } from 'react';
-import { getTechBadgeMeta, getTechColor, projects } from '@/components/ProjectsList';
+import { getTechBadgeMeta, projects } from '@/components/ProjectsList';
+import { TechBadge } from '@/components/TechBadge';
 import { ProjectsHero } from '@/components/projects/ProjectsHero';
 import { ProjectsOverview } from '@/components/projects/ProjectsOverview';
 
@@ -156,39 +157,11 @@ export default function ProjectsPage() {
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag, tagIndex) => {
                     const techMeta = getTechBadgeMeta(tag);
-                    const TechIcon = techMeta.icon;
-                    const hasLogo = Boolean(TechIcon || techMeta.iconSrc);
                     const showTooltip = Boolean(techMeta.description && techMeta.linkHref);
                     return (
                       <Tooltip key={tagIndex}>
                         <TooltipTrigger asChild>
-                          <span
-                            className={`inline-flex items-center gap-2 rounded-full py-1 text-sm font-medium text-white ${
-                              hasLogo ? 'pl-1 pr-3.5' : 'px-3.5 py-1.5'
-                            }`}
-                            style={{ backgroundColor: getTechColor(tag) }}
-                          >
-                            {hasLogo && (
-                              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white">
-                                {TechIcon ? (
-                                  <TechIcon
-                                    className="h-4 w-4"
-                                    style={{ color: getTechColor(tag) }}
-                                    aria-hidden="true"
-                                  />
-                                ) : (
-                                  <Image
-                                    src={techMeta.iconSrc!}
-                                    alt=""
-                                    width={16}
-                                    height={16}
-                                    className="h-4 w-4 object-contain"
-                                  />
-                                )}
-                              </span>
-                            )}
-                            {techMeta.label}
-                          </span>
+                          <TechBadge tag={tag} size="md" className="cursor-default" />
                         </TooltipTrigger>
                         {showTooltip && (
                           <TooltipContent

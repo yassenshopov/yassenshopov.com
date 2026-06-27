@@ -4,7 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
-import { getTechBadgeMeta, getTechColor, projects } from '@/components/ProjectsList';
+import { projects } from '@/components/ProjectsList';
+import { TechBadge } from '@/components/TechBadge';
 
 function jumpToProject(title: string) {
   const el = document.getElementById(title.toLowerCase());
@@ -72,41 +73,9 @@ export function ProjectsOverview() {
                     <p className="mt-1 text-sm text-muted-foreground">{project.tagline}</p>
 
                     <div className="mt-4 flex flex-wrap gap-1.5">
-                      {project.tags.map((tag) => {
-                        const meta = getTechBadgeMeta(tag);
-                        const TechIcon = meta.icon;
-                        const hasLogo = Boolean(TechIcon || meta.iconSrc);
-                        return (
-                          <span
-                            key={tag}
-                            className={`inline-flex items-center gap-1.5 rounded-full py-1 text-xs font-medium text-white ${
-                              hasLogo ? 'pl-1 pr-2.5' : 'px-2.5'
-                            }`}
-                            style={{ backgroundColor: getTechColor(tag) }}
-                          >
-                            {hasLogo && (
-                              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white">
-                                {TechIcon ? (
-                                  <TechIcon
-                                    className="h-3 w-3"
-                                    style={{ color: getTechColor(tag) }}
-                                    aria-hidden="true"
-                                  />
-                                ) : (
-                                  <Image
-                                    src={meta.iconSrc!}
-                                    alt=""
-                                    width={12}
-                                    height={12}
-                                    className="h-3 w-3 object-contain"
-                                  />
-                                )}
-                              </span>
-                            )}
-                            {meta.label}
-                          </span>
-                        );
-                      })}
+                      {project.tags.map((tag) => (
+                        <TechBadge key={tag} tag={tag} />
+                      ))}
                     </div>
 
                     <div className="mt-5 flex items-center justify-between gap-3 pt-1">
