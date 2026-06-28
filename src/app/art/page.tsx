@@ -340,6 +340,8 @@ export default function ArtPage() {
                     </label>
                     <Input
                       id="art-name"
+                      name="name"
+                      autoComplete="name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Alex Doe"
@@ -354,6 +356,9 @@ export default function ArtPage() {
                     <Input
                       id="art-email"
                       type="email"
+                      name="email"
+                      autoComplete="email"
+                      inputMode="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@example.com"
@@ -434,6 +439,10 @@ export default function ArtPage() {
           <DialogTitle className="sr-only">Artwork preview</DialogTitle>
           <div className="relative flex h-full w-full items-center justify-center">
             {lightboxIndex !== null && (
+              // Full-screen lightbox sizes to the image's natural aspect ratio
+              // (w-auto + object-contain), which next/image's fixed/fill modes
+              // can't express cleanly. Plain <img> is correct here.
+              // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={artworks[lightboxIndex].src}
                 alt={artworks[lightboxIndex].alt}

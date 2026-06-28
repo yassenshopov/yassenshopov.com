@@ -17,7 +17,11 @@ const eslintConfig = [
   {
     rules: {
       'react/no-unescaped-entities': 'off',
-      '@next/next/no-img-element': 'off',
+      // `next/image` is used everywhere except for markdown-rendered images,
+      // whose dimensions aren't known ahead of time (see BlogContent.tsx).
+      // Keep the rule on so accidental <img> in new code is flagged; the two
+      // legitimate cases opt out with a local eslint-disable.
+      '@next/next/no-img-element': 'warn',
     },
   },
 ];

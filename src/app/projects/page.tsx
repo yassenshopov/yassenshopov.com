@@ -232,6 +232,10 @@ export default function ProjectsPage() {
           <DialogTitle className="sr-only">Project image preview</DialogTitle>
           <div className="relative flex h-full w-full items-center justify-center">
             {selectedPreview && projects[selectedPreview.projectIndex]?.images?.length > 0 && (
+              // Full-screen lightbox sizes to the image's natural aspect ratio
+              // (w-auto + object-contain); next/image's fill/fixed modes can't
+              // express that cleanly. Plain <img> is correct here.
+              // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={projects[selectedPreview.projectIndex].images[selectedPreview.imageIndex]}
                 alt={`${projects[selectedPreview.projectIndex].title} image ${
