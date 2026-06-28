@@ -1,7 +1,9 @@
 'use client';
 
-import { useCallback, useMemo, useState } from 'react';
+import { Suspense, useCallback, useEffect, useMemo, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ArrowLeft, BookOpen, Clapperboard, Monitor, Sparkles } from 'lucide-react';
 import { toast } from 'sonner';
@@ -12,6 +14,7 @@ import { libraryItems, type LibraryItem } from '@/data/library';
 import {
   TIER_BOARDS,
   TIER_KEYS,
+  TIERS,
   itemMatchesBoard,
   materializeBoard,
   tierData,
@@ -37,18 +40,71 @@ const BOARD_ICONS: Record<TierBoardId, typeof BookOpen> = {
   'anime-manga': Sparkles,
 };
 
+const BOARD_IDS = new Set<string>(TIER_BOARDS.map((b) => b.id));
+
+function isBoardId(value: string | null | undefined): value is TierBoardId {
+  return Boolean(value) && BOARD_IDS.has(value as string);
+}
+
 export default function LibraryTierListPage() {
-  const [board, setBoard] = useState<TierBoardId>('fiction');
+  return (
+    <Suspense fallback={<Layout>{null}</Layout>}>
+      <LibraryTierListContent />
+    </Suspense>
+  );
+}
+
+function LibraryTierListContent() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const boardParam = searchParams.get('board');
+
+  const [board, setBoard] = useState<TierBoardId>(() =>
+    isBoardId(boardParam) ? boardParam : 'fiction'
+  );
   const [selectedItem, setSelectedItem] = useState<LibraryItem | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
   // Full tier state lives here so drag edits survive board switches in a
   // session (the imported JSON is only re-seeded on a full reload).
   const [tierState, setTierState] = useState<TierData>(() => JSON.parse(JSON.stringify(tierData)));
 
+  // Keep the active board in sync with the URL so a board is shareable and
+  // survives back/forward navigation. The query param is the source of truth.
+  useEffect(() => {
+    if (isBoardId(boardParam) && boardParam !== board) setBoard(boardParam);
+  }, [boardParam, board]);
+
+  const selectBoard = useCallback(
+    (next: TierBoardId) => {
+      // Drive the switch from local state for an instant swap, then reflect it
+      // in the URL via the History API. Unlike router.replace this does *not*
+      // kick off a soft navigation, so there's no flash on every tab click —
+      // Next still keeps useSearchParams in sync for back/forward + sharing.
+      setBoard(next);
+      const params = new URLSearchParams(searchParams.toString());
+      params.set('board', next);
+      window.history.replaceState(null, '', `${pathname}?${params.toString()}`);
+    },
+    [pathname, searchParams]
+  );
+
   const items = useMemo(
     () => libraryItems.filter((item) => itemMatchesBoard(item, board)),
     [board]
   );
+
+  // Number of *ranked* items on each board (excludes the unranked pool) so the
+  // tab badges convey how filled-out each board is, not just the shared pool.
+  const rankedCounts = useMemo(() => {
+    const counts = {} as Record<TierBoardId, number>;
+    for (const b of TIER_BOARDS) {
+      const layout = tierState[b.id];
+      let total = 0;
+      for (const t of TIERS) total += layout?.[t.id]?.length ?? 0;
+      counts[b.id] = total;
+    }
+    return counts;
+  }, [tierState]);
 
   // Ordered display order in the visible tiers (used for modal prev/next).
   const orderedItems = useMemo(() => {
@@ -136,68 +192,123 @@ export default function LibraryTierListPage() {
 
   return (
     <Layout>
-      <section className="container mx-auto px-4 pt-24 pb-16">
-        <Link
-          href="/library"
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to Library
-        </Link>
+      <section className="relative isolate overflow-hidden border-b border-border bg-gradient-to-b from-background via-background to-muted/40 scroll-mt-16">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10 opacity-40"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle at 12% 18%, color-mix(in oklch, var(--primary) 16%, transparent) 0%, transparent 42%), radial-gradient(circle at 88% 82%, color-mix(in oklch, var(--primary) 12%, transparent) 0%, transparent 42%)',
+          }}
+        />
 
-        <div className="mt-4 flex flex-col gap-2">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground">
-            Tier List
-          </h1>
-          <p className="max-w-2xl text-muted-foreground">
-            My books, movies, and series ranked into tiers — one board per category.
-            {TIER_EDIT_ENABLED && ' Drag the covers between tiers, or within a row to reorder.'}
-          </p>
+        <div className="container mx-auto px-4 pb-12 pt-24">
+          <Link
+            href="/library"
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Library
+          </Link>
+
+          <div className="mt-6 flex flex-col gap-5">
+            <div className="inline-flex w-fit items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-primary">
+              <span className="inline-flex items-center gap-1.5 text-xs font-medium md:text-sm">
+                Ranked by
+                <span className="relative h-5 w-5 shrink-0 overflow-hidden rounded-full">
+                  <Image
+                    src="/resources/images/main_page/YassenShopov.jpg"
+                    alt="Yassen Shopov"
+                    fill
+                    sizes="20px"
+                    className="object-cover"
+                  />
+                </span>
+                Yassen Shopov
+              </span>
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <h1 className="text-4xl font-bold leading-[0.95] tracking-tighter text-foreground md:text-6xl">
+                Tier List
+              </h1>
+              <div className="flex items-center gap-1.5" aria-hidden>
+                {TIERS.map((t) => (
+                  <span
+                    key={t.id}
+                    className={`flex h-7 w-7 items-center justify-center rounded-[4px] text-sm font-black leading-none text-black/85 ${t.colorClass}`}
+                  >
+                    {t.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <p className="max-w-2xl leading-relaxed text-muted-foreground">
+              My books, movies, and series ranked from S to D &mdash; one board per category.
+            </p>
+          </div>
         </div>
 
         <div
           role="tablist"
           aria-label="Tier list board"
-          className="mt-8 flex gap-1 overflow-x-auto rounded-xl border border-border bg-muted/40 p-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:inline-flex sm:overflow-visible"
+          className="w-full overflow-x-auto border-t border-border bg-background/60 backdrop-blur-sm [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {TIER_BOARDS.map((b) => {
-            const Icon = BOARD_ICONS[b.id];
-            const isActive = board === b.id;
-            return (
-              <button
-                key={b.id}
-                role="tab"
-                aria-selected={isActive}
-                onClick={() => setBoard(b.id)}
-                className={[
-                  'relative flex shrink-0 items-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring',
-                  isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground',
-                ].join(' ')}
-              >
-                {isActive && (
-                  <motion.span
-                    layoutId="tier-board-pill"
-                    transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-                    className="absolute inset-0 -z-10 rounded-lg bg-background shadow-sm ring-1 ring-border"
-                  />
-                )}
-                <Icon className="h-4 w-4" />
-                <span className="whitespace-nowrap">{b.label}</span>
-              </button>
-            );
-          })}
+          <div className="flex">
+            {TIER_BOARDS.map((b) => {
+              const Icon = BOARD_ICONS[b.id];
+              const isActive = board === b.id;
+              const count = rankedCounts[b.id];
+              return (
+                <button
+                  key={b.id}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => selectBoard(b.id)}
+                  className={[
+                    'relative flex flex-1 items-center justify-center gap-2.5 whitespace-nowrap px-5 py-4 text-xs font-bold uppercase tracking-[0.16em] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:py-5 sm:text-sm',
+                    isActive
+                      ? 'text-foreground'
+                      : 'text-muted-foreground hover:bg-muted/40 hover:text-foreground',
+                  ].join(' ')}
+                >
+                  <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
+                  <span>{b.label}</span>
+                  {count > 0 && (
+                    <span
+                      className={[
+                        'text-[10px] font-semibold tracking-normal tabular-nums sm:text-xs',
+                        isActive ? 'text-primary' : 'text-muted-foreground/70',
+                      ].join(' ')}
+                    >
+                      {count}
+                    </span>
+                  )}
+                  {isActive && (
+                    <motion.span
+                      layoutId="tier-board-underline"
+                      transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                      aria-hidden
+                      className="absolute inset-x-0 bottom-0 h-[2px] bg-foreground"
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
         </div>
+      </section>
 
-        <div className="mt-8">
-          <LibraryTierList
-            boardId={board}
-            items={items}
-            board={boardLayout}
-            onItemClick={setSelectedItem}
-            onMove={handleMove}
-            editable={TIER_EDIT_ENABLED}
-          />
-        </div>
+      <section className="container mx-auto px-4 py-10">
+        <LibraryTierList
+          boardId={board}
+          items={items}
+          board={boardLayout}
+          onItemClick={setSelectedItem}
+          onMove={handleMove}
+          editable={TIER_EDIT_ENABLED}
+        />
       </section>
 
       <LibraryModal

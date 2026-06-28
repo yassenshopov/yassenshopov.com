@@ -139,7 +139,7 @@ function TierRow({
   return (
     <div className="flex min-h-[6rem]">
       <div
-        className={`flex w-16 sm:w-24 shrink-0 flex-col items-center justify-center gap-0.5 ${colorClass} p-2 text-center`}
+        className={`flex w-14 sm:w-24 shrink-0 flex-col items-center justify-center gap-0.5 ${colorClass} p-2 text-center`}
       >
         <span className="text-2xl sm:text-3xl font-black leading-none tracking-tight text-black/85">
           {label}
@@ -214,6 +214,27 @@ export default function LibraryTierList({
     if (!draggingId) return;
     if (beforeId !== draggingId) onMove?.(draggingId, toTier, beforeId);
     setDraggingId(null);
+  }
+
+  const rankedCount = TIERS.reduce((sum, t) => sum + (board[t.id]?.length ?? 0), 0);
+
+  // In production an unranked board would otherwise render five empty rows that
+  // read as broken. Show a single intentional placeholder instead.
+  if (!editable && rankedCount === 0) {
+    return (
+      <motion.div
+        key={boardId}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="flex flex-col items-center justify-center gap-2 border border-dashed border-border bg-card/50 px-6 py-16 text-center"
+      >
+        <span className="text-sm font-medium text-foreground">Nothing ranked here yet</span>
+        <span className="max-w-sm text-xs text-muted-foreground">
+          This board hasn&apos;t been tiered yet — check back soon or explore another category.
+        </span>
+      </motion.div>
+    );
   }
 
   const rows = [
