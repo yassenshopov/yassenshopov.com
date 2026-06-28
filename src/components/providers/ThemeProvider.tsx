@@ -2,6 +2,7 @@
 
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import type { ThemeProviderProps } from 'next-themes/dist/types';
+import { MotionConfig } from 'framer-motion';
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   return (
@@ -17,7 +18,9 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
       themes={['light', 'dark', 'olive']}
       {...props}
     >
-      {children}
+      {/* Honour the OS "reduce motion" setting globally: framer-motion will
+          drop transform/layout animations for users who ask for it. */}
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </NextThemesProvider>
   );
 }
