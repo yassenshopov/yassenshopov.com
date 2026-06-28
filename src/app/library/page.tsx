@@ -9,7 +9,9 @@ import { TIERS } from '@/data/library-tiers';
 import LibraryHero from '@/components/library/LibraryHero';
 import LibraryTabs from '@/components/library/LibraryTabs';
 import LibraryItemCard from '@/components/library/LibraryItemCard';
-import LibraryModal from '@/components/library/LibraryModal';
+import dynamic from 'next/dynamic';
+
+const LibraryModal = dynamic(() => import('@/components/library/LibraryModal'), { ssr: false });
 import LibraryResults from '@/components/library/LibraryResults';
 import LibraryItemSkeleton from '@/components/library/LibraryItemSkeleton';
 import LibraryTableOfContents, {

@@ -18,19 +18,15 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { LibraryItem, LibraryEntry, ReadingStatus, getLatestEntry } from '@/data/library';
+import { LibraryItem, ReadingStatus } from '@/data/library';
 import { formatDate } from '@/lib/format-date';
+import { boostColor } from '@/lib/color-utils';
+import { useLibraryEntryEditor } from '@/hooks/useLibraryEntryEditor';
 import TierBadge from './TierBadge';
-
-// Temporary: dev-only inline editing of the displayed entry fields. Remove this
-// flag (and the editable controls below) when the library data is locked down —
-// same lifecycle as the cover-upload drag-and-drop in LibraryItemCard.
-const ENTRY_EDIT_ENABLED = process.env.NODE_ENV === 'development';
 
 const STATUS_OPTIONS: ReadingStatus[] = ['completed', 'in-progress', 'on-pause', 'dnf'];
 
@@ -77,109 +73,9 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Boost a "r,g,b" string's saturation and lightness for a more vivid tint.
-function boostColor(rgb: string, satBoost = 1.3, lightBoost = 1.15) {
-  let [r, g, b] = rgb.split(',').map(Number);
-  r /= 255;
-  g /= 255;
-  b /= 255;
-  const max = Math.max(r, g, b);
-  const min = Math.min(r, g, b);
-  let h = 0;
-  let s = 0;
-  const l = (max + min) / 2;
-  if (max !== min) {
-    const d = max - min;
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-    switch (max) {
-      case r:
-        h = (g - b) / d + (g < b ? 6 : 0);
-        break;
-      case g:
-        h = (b - r) / d + 2;
-        break;
-      case b:
-        h = (r - g) / d + 4;
-        break;
-    }
-    h /= 6;
-  }
-  s = Math.min(s * satBoost, 1);
-  const lBoosted = Math.min(l * lightBoost, 1);
-  const q = lBoosted < 0.5 ? lBoosted * (1 + s) : lBoosted + s - lBoosted * s;
-  const p = 2 * lBoosted - q;
-  function hue2rgb(p: number, q: number, t: number): number {
-    if (t < 0) t += 1;
-    if (t > 1) t -= 1;
-    if (t < 1 / 6) return p + (q - p) * 6 * t;
-    if (t < 1 / 2) return q;
-    if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-    return p;
-  }
-  const rr = Math.round(hue2rgb(p, q, h + 1 / 3) * 255);
-  const gg = Math.round(hue2rgb(p, q, h) * 255);
-  const bb = Math.round(hue2rgb(p, q, h - 1 / 3) * 255);
-  return `${rr},${gg},${bb}`;
-}
-
-// ---- Dev-only inline editing helpers -------------------------------------
-
-interface DraftEntry {
-  status: ReadingStatus;
-  dateStarted: string;
-  dateCompleted: string;
-  rating: number | null;
-  notes: string;
-}
-
-// Seed an editable draft from the item's latest entry (the values the modal
-// actually displays). Falls back to the item-level fields for safety.
-function seedDraft(item: LibraryItem): DraftEntry {
-  const latest = item.entries ? getLatestEntry(item.entries) : undefined;
-  return {
-    status: latest?.status ?? (item.status as ReadingStatus) ?? 'completed',
-    dateStarted: latest?.dateStarted ?? item.dateStarted ?? '',
-    dateCompleted: latest?.dateCompleted ?? item.dateCompleted ?? '',
-    rating: latest?.rating ?? item.rating ?? null,
-    notes: latest?.notes ?? item.notes ?? '',
-  };
-}
-
-function draftsEqual(a: DraftEntry, b: DraftEntry): boolean {
-  return (
-    a.status === b.status &&
-    a.dateStarted === b.dateStarted &&
-    a.dateCompleted === b.dateCompleted &&
-    a.rating === b.rating &&
-    a.notes === b.notes
-  );
-}
-
-function buildEntryPatch(
-  draft: DraftEntry,
-  original: DraftEntry
-): Record<string, string | number | null> {
-  const patch: Record<string, string | number | null> = {};
-  if (draft.status !== original.status) patch.status = draft.status;
-  if (draft.dateStarted !== original.dateStarted) {
-    patch.dateStarted = draft.dateStarted === '' ? null : draft.dateStarted;
-  }
-  if (draft.dateCompleted !== original.dateCompleted) {
-    patch.dateCompleted = draft.dateCompleted === '' ? null : draft.dateCompleted;
-  }
-  if (draft.rating !== original.rating) patch.rating = draft.rating;
-  if (draft.notes !== original.notes) {
-    patch.notes = draft.notes === '' ? null : draft.notes;
-  }
-  return patch;
-}
-
 const FIELD_LABEL = 'text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground';
 
 export default function LibraryModal({ selectedItem, ...rest }: LibraryModalProps) {
-  // Keep AnimatePresence mounted in the parent and toggle the content here so
-  // the exit transition can actually run when an item is deselected. (Returning
-  // null directly would unmount instantly and skip the exit animation.)
   return (
     <AnimatePresence>
       {selectedItem && <ModalContent key="library-modal" selectedItem={selectedItem} {...rest} />}
@@ -207,28 +103,21 @@ function ModalContent({
   const titleId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
   const [dominantColors, setDominantColors] = useState<string[]>([]);
-  // Cache extracted palettes in a ref so repeat covers skip the canvas work
-  // without forcing a re-render or re-running the extraction effect.
   const colorCacheRef = useRef<{ [key: string]: string[] }>({});
-  // Dev-only overrides: after a successful save we mirror the new entries / id
-  // here so the modal updates without waiting for HMR to pick up the JSON
-  // write. All reset whenever the selection changes.
-  const [entriesOverride, setEntriesOverride] = useState<LibraryEntry[] | null>(null);
-  const [idOverride, setIdOverride] = useState<string | null>(null);
-  // Inline edit draft (latest entry) + id, seeded from the current selection.
-  const [draft, setDraft] = useState<DraftEntry>(() => seedDraft(selectedItem));
-  const [draftId, setDraftId] = useState(selectedItem.id);
-  const [isSaving, setIsSaving] = useState(false);
 
-  useEffect(() => {
-    setEntriesOverride(null);
-    setIdOverride(null);
-    setDraft(seedDraft(selectedItem));
-    setDraftId(selectedItem.id);
-  }, [selectedItem]);
+  const {
+    displayItem,
+    draft,
+    setDraft,
+    draftId,
+    setDraftId,
+    isSaving,
+    canEdit,
+    isDirty,
+    resetDraft,
+    handleSave,
+  } = useLibraryEntryEditor(selectedItem);
 
-  // Lock body scroll while the modal is open and restore focus to whatever was
-  // focused before it opened once it closes.
   useEffect(() => {
     const previouslyFocused = document.activeElement as HTMLElement | null;
     const originalOverflow = document.body.style.overflow;
@@ -240,7 +129,6 @@ function ModalContent({
     };
   }, []);
 
-  // Extract dominant colors from cover image (off-screen canvas, no DOM node)
   useEffect(() => {
     const imgSrc = selectedItem.coverImage;
     if (!imgSrc) {
@@ -289,31 +177,6 @@ function ModalContent({
     };
   }, [selectedItem.coverImage]);
 
-  // When the dev editor has saved a new entry or renamed the id, re-project
-  // the latest-entry values (and the new id) on top of the original item so
-  // the modal reflects the change immediately.
-  const displayItem: LibraryItem = (() => {
-    if (!entriesOverride && !idOverride) return selectedItem;
-
-    const base: LibraryItem = idOverride ? { ...selectedItem, id: idOverride } : selectedItem;
-
-    if (!entriesOverride) return base;
-
-    const latest = getLatestEntry(entriesOverride);
-    if (!latest) return { ...base, entries: entriesOverride };
-    return {
-      ...base,
-      entries: entriesOverride,
-      status: latest.status,
-      rating: latest.rating ?? null,
-      dateCompleted: latest.dateCompleted,
-      dateStarted: latest.dateStarted,
-      notes: latest.notes,
-    };
-  })();
-
-  // Header tint built from the cover's dominant color — a soft, semi-transparent
-  // wash that fades down into the body (no animation, header only).
   const headerTint = useMemo(() => {
     if (dominantColors.length === 0) return null;
     const c = boostColor(dominantColors[0]);
@@ -325,64 +188,6 @@ function ModalContent({
   const relatedItems = getRelatedItems(displayItem, 6);
   const hasNav = sortedItems.length > 1;
   const currentIndex = sortedItems.findIndex((i) => i.id === selectedItem.id);
-
-  // Inline editing only applies to items that already have entries (the API
-  // patches an existing entry); wishlist items stay read-only.
-  const canEdit = ENTRY_EDIT_ENABLED && (displayItem.entries?.length ?? 0) > 0;
-  const original = useMemo(() => seedDraft(displayItem), [displayItem]);
-  const isDirty = canEdit && (!draftsEqual(draft, original) || draftId.trim() !== displayItem.id);
-
-  function resetDraft() {
-    setDraft(seedDraft(displayItem));
-    setDraftId(displayItem.id);
-  }
-
-  async function handleSave() {
-    if (!isDirty || isSaving) return;
-    const entryPatch = buildEntryPatch(draft, original);
-    const nextId = draftId.trim();
-    const idDirty = nextId !== '' && nextId !== displayItem.id;
-    if (Object.keys(entryPatch).length === 0 && !idDirty) return;
-
-    setIsSaving(true);
-    const toastId = toast.loading('Saving…');
-    try {
-      // Patch the entry first (using the current id), then rename — otherwise a
-      // rename would invalidate the id the entry update relies on.
-      if (Object.keys(entryPatch).length > 0) {
-        const res = await fetch('/api/library/update-entry', {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ id: displayItem.id, patch: entryPatch }),
-        });
-        const body = await res.json().catch(() => ({}));
-        if (!res.ok) throw new Error(body?.error || `HTTP ${res.status}`);
-        const savedEntry = body.entry as LibraryEntry;
-        const savedIndex = body.entryIndex as number;
-        const baseEntries = displayItem.entries ?? [];
-        setEntriesOverride(baseEntries.map((e, i) => (i === savedIndex ? savedEntry : e)));
-      }
-
-      if (idDirty) {
-        const res = await fetch('/api/library/update-item', {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ id: displayItem.id, patch: { id: nextId } }),
-        });
-        const body = await res.json().catch(() => ({}));
-        if (!res.ok) throw new Error(body?.error || `HTTP ${res.status}`);
-        const persistedId = typeof body.id === 'string' ? body.id : nextId;
-        setIdOverride(persistedId);
-        setDraftId(persistedId);
-      }
-
-      toast.success('Saved.', { id: toastId });
-    } catch (err) {
-      toast.error(`Save failed: ${(err as Error).message}`, { id: toastId });
-    } finally {
-      setIsSaving(false);
-    }
-  }
 
   return (
     <motion.div
@@ -405,7 +210,6 @@ function ModalContent({
         className="relative w-full max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-6xl min-h-[30rem] sm:min-h-[34rem] md:min-h-[38rem] max-h-[95vh] overflow-hidden bg-background rounded-2xl flex flex-col outline-none"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close */}
         <Button
           variant="ghost"
           size="sm"
@@ -417,9 +221,8 @@ function ModalContent({
         </Button>
 
         <div className="flex-1 min-h-0 overflow-y-auto">
-          {/* Header with cover + meta over a dominant-color tint */}
+          {/* Header with cover + meta */}
           <div className="relative overflow-hidden">
-            {/* Dominant-color tint (header only, fades into the body) */}
             <div className="absolute inset-0 opacity-80 dark:opacity-60">
               <div
                 className="absolute inset-0"
@@ -431,7 +234,6 @@ function ModalContent({
               />
             </div>
 
-            {/* Grain / noise texture over the tint */}
             <div
               aria-hidden
               className="absolute inset-0 pointer-events-none mix-blend-soft-light opacity-55 dark:opacity-25 dark:mix-blend-overlay [.olive_&]:opacity-25 [.olive_&]:mix-blend-overlay"
@@ -560,8 +362,6 @@ function ModalContent({
                       </label>
                     </>
                   ) : (
-                    // The "Completed" status is redundant with the completion
-                    // date shown below, so only badge other statuses.
                     displayItem.status !== 'completed' && (
                       <Badge
                         className={`${getStatusColor(displayItem.status)} text-xs px-2 py-0.5`}
@@ -637,12 +437,10 @@ function ModalContent({
             transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1], delay: 0.03 }}
             className="px-5 sm:px-8 md:px-10 pb-10 pt-8 md:pt-10 space-y-8"
           >
-            {/* Lede description */}
             <p className="text-base md:text-lg leading-relaxed text-foreground/90 max-w-3xl">
               {displayItem.description}
             </p>
 
-            {/* Notes */}
             {canEdit ? (
               <section>
                 <SectionLabel>Notes</SectionLabel>
@@ -650,7 +448,7 @@ function ModalContent({
                   value={draft.notes}
                   onChange={(e) => setDraft((d) => ({ ...d, notes: e.target.value }))}
                   rows={4}
-                  placeholder="Optional thoughts about this read/watch…"
+                  placeholder="Optional thoughts about this read/watch\u2026"
                   className="text-sm"
                 />
               </section>
@@ -665,7 +463,6 @@ function ModalContent({
               )
             )}
 
-            {/* Links */}
             {displayItem.links && Object.keys(displayItem.links).length > 0 && (
               <section>
                 <SectionLabel>Links</SectionLabel>
@@ -690,7 +487,6 @@ function ModalContent({
               </section>
             )}
 
-            {/* Related */}
             {relatedItems.length > 0 && (
               <section>
                 <SectionLabel>Related</SectionLabel>
@@ -749,7 +545,7 @@ function ModalContent({
           </motion.div>
         </div>
 
-        {/* Dev-only save bar — appears when an inline field is dirty */}
+        {/* Dev-only save bar */}
         {canEdit && isDirty && (
           <div className="flex items-center justify-end gap-2 border-t border-amber-500/40 bg-amber-500/5 px-4 py-2.5">
             <span className="mr-auto text-[11px] font-medium uppercase tracking-[0.16em] text-amber-700 dark:text-amber-400">
@@ -783,7 +579,7 @@ function ModalContent({
           </div>
         )}
 
-        {/* Prev / Next nav — a footer bar so it never overlaps body content */}
+        {/* Prev / Next nav */}
         {hasNav && (
           <div className="flex items-center justify-between gap-3 border-t border-border/60 bg-background/80 px-4 py-2.5 backdrop-blur-sm">
             <Button

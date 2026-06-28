@@ -15,11 +15,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {
+  productionGuard,
+  readLibraryItems,
+  writeLibraryItems,
+  jsonError,
+} from '@/lib/library-admin';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
-const LIB_PATH = path.join(process.cwd(), 'src', 'data', 'library-items.json');
 const PUBLIC_DIR = path.join(process.cwd(), 'public', 'resources', 'images', 'library');
 
 const MIME_TO_EXT: Record<string, string> = {
@@ -48,7 +53,7 @@ function slugify(s: string): string {
 
 function slugFromCoverImage(coverImage: string): string | null {
   const m = coverImage.match(/\/library\/([^/.]+)\./);
-  return m ? m[1].replace(/-\d{10,}$/, '') : null; // strip prior timestamp suffix
+  return m ? m[1].replace(/-\d{10,}$/, '') : null;
 }
 
 function pickExtension(file: File): string {
@@ -60,48 +65,43 @@ function pickExtension(file: File): string {
 }
 
 export async function POST(req: NextRequest) {
-  if (process.env.NODE_ENV === 'production') {
-    return NextResponse.json({ error: 'Cover upload is disabled in production' }, { status: 403 });
-  }
+  const guard = productionGuard('Cover upload');
+  if (guard) return guard;
 
   let form: FormData;
   try {
     form = await req.formData();
   } catch {
-    return NextResponse.json({ error: 'invalid multipart body' }, { status: 400 });
+    return jsonError('invalid multipart body', 400);
   }
 
   const id = String(form.get('id') ?? '').trim();
   const file = form.get('file');
 
   if (!id || !(file instanceof File)) {
-    return NextResponse.json({ error: 'id and file are required' }, { status: 400 });
+    return jsonError('id and file are required', 400);
   }
   if (!file.type.startsWith('image/')) {
-    return NextResponse.json({ error: 'file must be an image' }, { status: 400 });
+    return jsonError('file must be an image', 400);
   }
-  // 10 MB cap — these are cover images.
   if (file.size > 10 * 1024 * 1024) {
-    return NextResponse.json({ error: 'file too large (max 10 MB)' }, { status: 413 });
+    return jsonError('file too large (max 10 MB)', 413);
   }
 
-  const raw = await fs.readFile(LIB_PATH, 'utf-8');
-  const items = JSON.parse(raw) as Array<Record<string, unknown> & { id: string }>;
+  const items = await readLibraryItems<Record<string, unknown> & { id: string }>();
   const item = items.find((i) => i.id === id);
   if (!item) {
-    return NextResponse.json({ error: 'item not found' }, { status: 404 });
+    return jsonError('item not found', 404);
   }
 
   const slug =
     (typeof item.coverImage === 'string' && slugFromCoverImage(item.coverImage)) ||
     slugify(String(item.title ?? ''));
   const ext = pickExtension(file);
-  // Timestamp suffix so the URL always changes, dodging next/image's cache.
   const fileName = `${slug}-${Date.now()}${ext}`;
   const fullPath = path.join(PUBLIC_DIR, fileName);
   const publicPath = `/resources/images/library/${fileName}`;
 
-  // Best-effort cleanup of the previous file so we don't accumulate orphans.
   if (typeof item.coverImage === 'string') {
     const oldFull = path.join(process.cwd(), 'public', item.coverImage.replace(/^\//, ''));
     try {
@@ -115,7 +115,7 @@ export async function POST(req: NextRequest) {
   await fs.writeFile(fullPath, Buffer.from(await file.arrayBuffer()));
 
   item.coverImage = publicPath;
-  await fs.writeFile(LIB_PATH, JSON.stringify(items, null, 2) + '\n');
+  await writeLibraryItems(items);
 
   return NextResponse.json({ ok: true, coverImage: publicPath });
 }

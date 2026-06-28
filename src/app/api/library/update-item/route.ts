@@ -14,15 +14,16 @@
  * update-entry routes when the library data is locked down.
  */
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'node:fs/promises';
-import path from 'node:path';
+import {
+  productionGuard,
+  readLibraryItems,
+  writeLibraryItems,
+  jsonError,
+} from '@/lib/library-admin';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
-const LIB_PATH = path.join(process.cwd(), 'src', 'data', 'library-items.json');
-
-// Mirrors the keys on LibraryItem.relationships. Keep in sync if that shape grows.
 const SCALAR_REL_KEYS = ['prequel', 'sequel'] as const;
 const ARRAY_REL_KEYS = ['related', 'sameUniverse', 'adaptations', 'basedOn'] as const;
 
@@ -62,15 +63,14 @@ function rewriteRelationshipIds(items: RawItem[], oldId: string, newId: string) 
 }
 
 export async function POST(req: NextRequest) {
-  if (process.env.NODE_ENV === 'production') {
-    return NextResponse.json({ error: 'Item editing is disabled in production' }, { status: 403 });
-  }
+  const guard = productionGuard('Item editing');
+  if (guard) return guard;
 
   let body: { id?: unknown; patch?: unknown };
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json({ error: 'invalid JSON body' }, { status: 400 });
+    return jsonError('invalid JSON body', 400);
   }
 
   const id = typeof body.id === 'string' ? body.id.trim() : '';
@@ -78,37 +78,31 @@ export async function POST(req: NextRequest) {
     body.patch && typeof body.patch === 'object' ? (body.patch as Record<string, unknown>) : null;
 
   if (!id || !patch) {
-    return NextResponse.json({ error: 'id and patch are required' }, { status: 400 });
+    return jsonError('id and patch are required', 400);
   }
 
-  // Only `id` is supported today. Reject anything else explicitly so silent
-  // typos don't get swallowed.
   const knownKeys = new Set(['id']);
   for (const key of Object.keys(patch)) {
     if (!knownKeys.has(key)) {
-      return NextResponse.json({ error: `unsupported field "${key}"` }, { status: 400 });
+      return jsonError(`unsupported field "${key}"`, 400);
     }
   }
 
   const newId = typeof patch.id === 'string' ? patch.id.trim() : undefined;
   if (newId === undefined) {
-    return NextResponse.json({ error: 'nothing to update' }, { status: 400 });
+    return jsonError('nothing to update', 400);
   }
   if (newId === '') {
-    return NextResponse.json({ error: 'id cannot be empty' }, { status: 400 });
+    return jsonError('id cannot be empty', 400);
   }
   if (!ID_PATTERN.test(newId)) {
-    return NextResponse.json(
-      { error: 'id can only contain letters, digits, dot, underscore, and hyphen' },
-      { status: 400 }
-    );
+    return jsonError('id can only contain letters, digits, dot, underscore, and hyphen', 400);
   }
 
-  const raw = await fs.readFile(LIB_PATH, 'utf-8');
-  const items = JSON.parse(raw) as RawItem[];
+  const items = await readLibraryItems<RawItem>();
   const item = items.find((i) => i.id === id);
   if (!item) {
-    return NextResponse.json({ error: 'item not found' }, { status: 404 });
+    return jsonError('item not found', 404);
   }
 
   if (newId === id) {
@@ -116,13 +110,13 @@ export async function POST(req: NextRequest) {
   }
 
   if (items.some((i) => i.id === newId)) {
-    return NextResponse.json({ error: `another item already uses id "${newId}"` }, { status: 409 });
+    return jsonError(`another item already uses id "${newId}"`, 409);
   }
 
   item.id = newId;
   rewriteRelationshipIds(items, id, newId);
 
-  await fs.writeFile(LIB_PATH, JSON.stringify(items, null, 2) + '\n');
+  await writeLibraryItems(items);
 
   return NextResponse.json({ ok: true, id: newId });
 }

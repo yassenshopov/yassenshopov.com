@@ -9,7 +9,9 @@ import { ArrowLeft, BookOpen, Clapperboard, Monitor, Sparkles } from 'lucide-rea
 import { toast } from 'sonner';
 import Layout from '@/components/Layout';
 import LibraryTierList from '@/components/library/LibraryTierList';
-import LibraryModal from '@/components/library/LibraryModal';
+import dynamic from 'next/dynamic';
+
+const LibraryModal = dynamic(() => import('@/components/library/LibraryModal'), { ssr: false });
 import { libraryItems, type LibraryItem } from '@/data/library';
 import {
   TIER_BOARDS,

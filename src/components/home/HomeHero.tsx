@@ -5,7 +5,11 @@ import Link from 'next/link';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ChevronDown, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { HomeHeroSky } from '@/components/home/HomeHeroSky';
+import dynamic from 'next/dynamic';
+
+const HomeHeroSky = dynamic(() =>
+  import('@/components/home/HomeHeroSky').then((mod) => mod.HomeHeroSky)
+);
 
 function scrollToId(id: string) {
   const target = document.getElementById(id);

@@ -10,7 +10,7 @@
         "http://localhost:3000/library",
         "http://localhost:3000/about"
       ],
-      "numberOfRuns": 1,
+      "numberOfRuns": 3,
       "settings": { "preset": "desktop" }
     },
     "assert": {

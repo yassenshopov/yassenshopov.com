@@ -2,7 +2,11 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Layout from '@/components/Layout';
 import { getAllPosts, getPostBySlug } from '@/lib/blog';
-import { BlogContent } from '@/components/blog/BlogContent';
+import dynamic from 'next/dynamic';
+
+const BlogContent = dynamic(() =>
+  import('@/components/blog/BlogContent').then((mod) => mod.BlogContent)
+);
 import { blogPostingJsonLd, breadcrumbJsonLd } from '@/lib/structured-data';
 
 export function generateStaticParams() {

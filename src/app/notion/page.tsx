@@ -1,10 +1,9 @@
-'use client';
-
+import dynamic from 'next/dynamic';
 import Layout from '@/components/Layout';
-import NotionTemplatesList, { templates } from '@/components/NotionTemplatesList';
 import { NotionHero } from '@/components/notion/NotionHero';
+import { templates, isFree } from '@/data/notion-templates';
 
-const isFree = (price: string) => price === '0$' || price === '$0' || price === '0';
+const NotionTemplatesList = dynamic(() => import('@/components/NotionTemplatesList'));
 
 export default function NotionTemplatesPage() {
   const thumbnails = templates.map((t) => t.image);

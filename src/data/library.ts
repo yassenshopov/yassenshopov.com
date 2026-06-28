@@ -1,3 +1,4 @@
+import { z } from 'zod';
 import itemsData from './library-items.json';
 
 export type ReadingStatus = 'completed' | 'in-progress' | 'on-pause' | 'dnf';
@@ -24,9 +25,6 @@ export interface LibraryItem {
   director?: string;
   creator?: string;
   type: 'book' | 'movie' | 'series';
-  // The top-level status/dates/rating/notes mirror the *latest* entry when one
-  // exists; wishlist items (no entries) keep `want-to-read` / `want-to-watch`
-  // here. Treat these as a read-only view derived from `entries`.
   rating: number | null;
   status: LibraryStatus;
   dateCompleted?: string;
@@ -60,6 +58,51 @@ export interface LibraryItem {
   };
 }
 
+const libraryEntrySchema = z.object({
+  dateStarted: z.string().optional(),
+  dateCompleted: z.string().optional(),
+  status: z.enum(['completed', 'in-progress', 'on-pause', 'dnf']),
+  rating: z.number().nullable().optional(),
+  notes: z.string().optional(),
+});
+
+const libraryItemSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  author: z.string().optional(),
+  director: z.string().optional(),
+  creator: z.string().optional(),
+  type: z.enum(['book', 'movie', 'series']),
+  rating: z.number().nullable().optional().default(null),
+  status: z
+    .enum(['completed', 'in-progress', 'on-pause', 'dnf', 'want-to-read', 'want-to-watch'])
+    .optional()
+    .default('want-to-read'),
+  dateCompleted: z.string().optional(),
+  dateStarted: z.string().optional(),
+  notes: z.string().optional(),
+  entries: z.array(libraryEntrySchema).optional(),
+  year: z.number().optional(),
+  topics: z.array(z.string()).optional(),
+  externalUrl: z.string().optional(),
+  genre: z.array(z.string()).default([]),
+  description: z.string().default(''),
+  coverImage: z.string().optional(),
+  series: z.string().optional(),
+  seriesOrder: z.number().optional(),
+  relationships: z
+    .object({
+      adaptations: z.array(z.string()).optional(),
+      basedOn: z.array(z.string()).optional(),
+      sequel: z.string().optional(),
+      prequel: z.string().optional(),
+      related: z.array(z.string()).optional(),
+      sameUniverse: z.array(z.string()).optional(),
+    })
+    .optional(),
+  links: z.record(z.string().optional()).optional(),
+});
+
 function entryTimestamp(entry: LibraryEntry): number {
   const date = entry.dateCompleted || entry.dateStarted;
   return date ? new Date(date).getTime() : 0;
@@ -74,13 +117,13 @@ export function getLatestEntry(entries: LibraryEntry[]): LibraryEntry | undefine
   return [...entries].sort((a, b) => entryTimestamp(b) - entryTimestamp(a))[0];
 }
 
-function projectLibraryItem(raw: Record<string, unknown>): LibraryItem {
-  const entries = Array.isArray(raw.entries) ? (raw.entries as LibraryEntry[]) : undefined;
+function projectLibraryItem(raw: z.infer<typeof libraryItemSchema>): LibraryItem {
+  const entries = raw.entries;
   const latest = entries ? getLatestEntry(entries) : undefined;
 
   if (entries && latest) {
     return {
-      ...(raw as Omit<LibraryItem, 'rating' | 'status' | 'entries'>),
+      ...raw,
       entries,
       status: latest.status,
       rating: latest.rating ?? null,
@@ -90,13 +133,11 @@ function projectLibraryItem(raw: Record<string, unknown>): LibraryItem {
     };
   }
 
-  // Wishlist items (no entries): keep the raw top-level status/rating/etc.
   return {
-    ...(raw as Omit<LibraryItem, 'rating'>),
-    rating: (raw.rating as number | null | undefined) ?? null,
+    ...raw,
+    rating: raw.rating ?? null,
   };
 }
 
-export const libraryItems: LibraryItem[] = (itemsData as Record<string, unknown>[]).map(
-  projectLibraryItem
-);
+const parsed = z.array(libraryItemSchema).parse(itemsData);
+export const libraryItems: LibraryItem[] = parsed.map(projectLibraryItem);
