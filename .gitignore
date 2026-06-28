@@ -12,6 +12,15 @@
 
 # testing
 /coverage
+/playwright-report
+/test-results
+/.playwright
+
+# bundle analyzer output
+/.next/analyze
+
+# asset-offload manifest produced by scripts/migrate-images-to-blob.mjs
+/scripts/blob-manifest.json
 
 # next.js
 /.next/

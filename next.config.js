@@ -21,8 +21,19 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'yassenshopov.com',
       },
+      // Vercel Blob-hosted assets (see scripts/migrate-images-to-blob.mjs).
+      // The subdomain is account-specific, so we match any *.public.blob host.
+      {
+        protocol: 'https',
+        hostname: '*.public.blob.vercel-storage.com',
+      },
     ],
   },
 };
 
-module.exports = nextConfig;
+// Opt-in bundle analysis: `ANALYZE=true npm run build` opens treemap reports.
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+module.exports = withBundleAnalyzer(nextConfig);
