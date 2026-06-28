@@ -2,8 +2,22 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { CONTACT_EMAIL } from '@/data/social';
 import { contactSchema, TOPIC_LABELS } from '@/lib/contact-schema';
+import { clientIpFrom, rateLimit } from '@/lib/rate-limit';
+
+// Cap submissions per IP so the form can't be used to burn email quota.
+const RATE_LIMIT = 5;
+const RATE_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
 
 export async function POST(request: Request) {
+  const ip = clientIpFrom(request.headers);
+  const limit = rateLimit(`contact:${ip}`, RATE_LIMIT, RATE_WINDOW_MS);
+  if (!limit.success) {
+    return NextResponse.json(
+      { error: 'Too many messages. Please try again in a little while.' },
+      { status: 429, headers: { 'Retry-After': String(limit.retryAfterSeconds) } }
+    );
+  }
+
   let payload: unknown;
   try {
     payload = await request.json();

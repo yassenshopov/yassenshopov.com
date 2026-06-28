@@ -13,7 +13,7 @@
  * Disabled in production. Intended to be deleted alongside the cover-upload
  * endpoint once the library data is locked down.
  */
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import {
   VALIDATORS,
   isEmptyDelete,

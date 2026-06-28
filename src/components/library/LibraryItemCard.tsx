@@ -1,10 +1,10 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { BookOpen, Clapperboard, Monitor, Upload, Loader2 } from 'lucide-react';
+import { BookOpen, Clapperboard, Monitor, Upload, Loader2, Repeat } from 'lucide-react';
 import Image from 'next/image';
 import { toast } from 'sonner';
-import { LibraryItem } from '@/data/library';
+import { type LibraryItem } from '@/data/library';
 import TierBadge from './TierBadge';
 
 interface LibraryItemCardProps {
@@ -227,6 +227,21 @@ export default function LibraryItemCard({
           <div className="flex items-center justify-center h-full text-muted-foreground">
             {getFallbackIcon(item.type)}
           </div>
+        )}
+
+        {/* Re-read / re-watch badge: surfaced when a work has more than one
+            recorded engagement. The grid renders one card per year, so this
+            tells the reader the work recurs across the library. */}
+        {totalEntries > 1 && (
+          <span
+            className="absolute left-2 top-2 z-10 inline-flex items-center gap-1 rounded-full bg-background/85 px-2 py-0.5 text-[10px] font-semibold text-foreground shadow-sm ring-1 ring-border backdrop-blur-sm"
+            aria-label={`${isLatestEntry ? 'Most recent of' : 'One of'} ${totalEntries} ${
+              item.type === 'book' ? 'readings' : 'viewings'
+            }${entryYear ? ` (${entryYear})` : ''}`}
+          >
+            <Repeat className="h-3 w-3" aria-hidden="true" />
+            {totalEntries}&times;
+          </span>
         )}
 
         {COVER_EDIT_ENABLED && (isDragOver || isUploading) && (

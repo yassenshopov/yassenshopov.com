@@ -2,6 +2,13 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // Linting is a dedicated CI step (`npm run lint` → `eslint .` with the flat
+  // config) that runs before the build, so we skip Next's redundant build-time
+  // lint pass (which uses a different, legacy detection path and prints a
+  // spurious "plugin not detected" warning).
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   // The /api/library/upload-cover route is dev-only (returns 403 in production)
   // but its static file references cause Next.js's tracer to bundle all of
   // public/resources/images (~260 MB) into the serverless function and trip

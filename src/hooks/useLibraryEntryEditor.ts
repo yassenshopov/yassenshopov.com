@@ -2,7 +2,12 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { toast } from 'sonner';
-import { LibraryItem, LibraryEntry, ReadingStatus, getLatestEntry } from '@/data/library';
+import {
+  type LibraryItem,
+  type LibraryEntry,
+  type ReadingStatus,
+  getLatestEntry,
+} from '@/data/library';
 
 export interface DraftEntry {
   status: ReadingStatus;

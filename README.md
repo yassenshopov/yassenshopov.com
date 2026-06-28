@@ -1,82 +1,146 @@
-# Yassen Shopov - Personal Website
+# yassenshopov.com
 
-A modern personal website built with Next.js, showcasing my work, blog, and Notion templates. The site features a clean, responsive design with smooth animations and interactive elements.
+Personal website of Yassen Shopov — blog ("Life Engineering"), project showcase,
+Notion templates, a digital-art gallery, and a media **Library** (books, movies &
+series) with a drag-to-rank tier list.
 
-## 🚀 Features
+Built with the Next.js App Router, TypeScript (strict), and Tailwind CSS, and
+deployed on Vercel.
 
-- **Blog**: Share thoughts and insights on software development and technology
-- **Notion Templates**: Marketplace for Notion templates and productivity tools
-- **Projects**: Showcase of personal and professional projects
-- **Contact**: Interactive contact page for professional inquiries
-- **Responsive Design**: Optimized for all devices
-- **Dark/Light/Olive Mode**: Theme switching with persistent preferences
-- **Performance**: Built with Next.js for optimal performance and SEO
+## Tech stack
 
-## 🛠️ Tech Stack
+- **Framework:** Next.js 15 (App Router, React Server Components)
+- **Language:** TypeScript (strict)
+- **Styling:** Tailwind CSS + `tailwindcss-animate`, shadcn/ui-style primitives (Radix)
+- **Content:** local JSON (blog posts, library items, tier boards), validated with Zod
+- **Email:** Resend (contact form)
+- **Assets:** Vercel Blob for offloaded images
+- **Tooling:** ESLint (flat config), Prettier, Vitest, Playwright, Husky + lint-staged
+- **CI/CD:** GitHub Actions (lint · typecheck · test · build), Lighthouse CI, Dependabot
 
-<div align="left">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" height="40" width="52" alt="nextjs logo"  />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="40" width="52" alt="typescript logo"  />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original-wordmark.svg" height="40" width="52" alt="tailwindcss logo"  />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="40" width="52" alt="react logo"  />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" height="40" width="52" alt="vercel logo"  />
-</div>
-
-- **Framework**: Next.js 15 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **UI Components**: Custom components with shadcn/ui
-- **Fonts**: Inter, Space Grotesk, and Great Vibes
-- **Deployment**: Vercel
-
-## 🏗️ Getting Started
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/yassenshopov.com.git
-```
-
-2. Install dependencies:
+## Getting started
 
 ```bash
 npm install
-# or
-yarn install
-# or
-pnpm install
+npm run dev          # http://localhost:26
 ```
 
-3. Run the development server:
+Create a `.env.local` for the optional integrations:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+RESEND_API_KEY=...           # contact form email delivery (optional in dev)
+CONTACT_FROM_EMAIL=...        # verified Resend sender (falls back to onboarding@resend.dev)
+BLOB_READ_WRITE_TOKEN=...     # only needed to run scripts/migrate-images-to-blob.mjs
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+## Scripts
 
-## 📦 Building for Production
 
-```bash
-npm run build
-# or
-yarn build
-# or
-pnpm build
+| Command                           | Description                                     |
+| --------------------------------- | ----------------------------------------------- |
+| `npm run dev`                     | Start the dev server (Turbopack) on port 26     |
+| `npm run build`                   | Production build                                |
+| `npm run lint` / `lint:fix`       | ESLint over the app source                      |
+| `npm run typecheck`               | `tsc --noEmit`                                  |
+| `npm run format` / `format:check` | Prettier                                        |
+| `npm test` / `test:watch`         | Vitest unit tests                               |
+| `npm run e2e`                     | Playwright end-to-end tests                     |
+| `npm run analyze`                 | Build with the bundle analyzer (`ANALYZE=true`) |
+
+
+## Architecture
+
+```
+src/
+  app/                 # App Router routes (each section has page.tsx + layout.tsx)
+    api/               # Route handlers (contact + dev-only library admin)
+    error.tsx          # Route error boundary  ·  global-error.tsx  ·  not-found.tsx
+  components/          # UI — server components by default, 'use client' only where needed
+    home/ blog/ library/ projects/ about/ notion/ ui/
+    Reveal.tsx         # CSS scroll-reveal wrapper (replaces framer-motion fade-ins)
+  data/                # Content + typed access layer (see "Data layer" below)
+  hooks/               # Client hooks (useLibrary, useLibraryEntryEditor)
+  lib/                 # Pure helpers (blog, library-utils, rate-limit, format-date, …)
+  types/               # Shared types (blog)
 ```
 
-## 🚀 Deployment
+### Server vs client boundaries
 
-The site is deployed on Vercel. Any push to the main branch will automatically trigger a new deployment.
+The site favours **React Server Components**. Sections are only marked
+`'use client'` when they need state, effects, or event handlers. Presentational
+scroll-in animations use `components/Reveal.tsx` — a tiny client leaf backed by
+CSS in `globals.css` (with reduced-motion and no-JS fallbacks) — so the sections
+that use it stay on the server.
 
-## 📝 License
+### Data layer
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Content lives as local JSON with a typed, validated access layer:
 
-## 🤝 Contributing
+- **Blog** — `data/blog-posts.json` holds posts (markdown in a `content` field).
+`lib/blog.ts` is **server-only**: it Zod-validates the payload, sorts newest-first,
+and pre-computes reading time. Only the single post being viewed is sent to the
+client. The canonical type is `types/blog.ts` (`BlogPost`).
+- **Library** — `data/library-items.json` (~400 works). `data/library.ts` holds the
+**client-safe types + pure helpers**; `data/library.server.ts` is **server-only**
+and owns the JSON import + Zod validation. The `/library` and `/library/tier-list`
+routes are server components that load the validated catalogue and pass it into
+client islands (`components/library/LibraryView.tsx`, `LibraryTierListView.tsx`),
+keeping the big JSON and Zod out of the browser bundle.
+- **Tier list** — `data/library-tiers.json` stores ordered item ids per board/tier;
+`data/library-tiers.ts` normalizes it at the boundary (Zod-free so it stays
+client-safe for the `TierBadge`).
 
-While this is a personal website, I'm open to suggestions and improvements. Feel free to open an issue or submit a pull request.
+## Authoring content
+
+### Add a blog post
+
+Append an entry to the `posts` array in `src/data/blog-posts.json`:
+
+```jsonc
+{
+  "slug": "my-post", // URL: /blog/my-post (must be unique)
+  "title": "My Post",
+  "description": "One-line summary used in cards and metadata.",
+  "date": "2026-06-28", // ISO; drives ordering + prev/next
+  "coverImage": "/resources/images/blog/my-post.webp",
+  "tags": ["engineering"],
+  "author": "Yassen Shopov",
+  "content": "# Heading\n\nMarkdown body…",
+}
+```
+
+The schema is enforced at build time (`lib/blog.ts`) — a malformed post fails the
+build rather than rendering broken. Reading time is derived automatically.
+
+### Add a library item
+
+Append to `src/data/library-items.json` (validated by `data/library.server.ts`):
+
+```jsonc
+{
+  "id": "unique-id",
+  "title": "The Work",
+  "type": "book", // "book" | "movie" | "series"
+  "author": "Author Name", // or "director" / "creator"
+  "genre": ["Sci-Fi"],
+  "description": "Short blurb.",
+  "coverImage": "/resources/images/library/the-work.webp",
+  "entries": [
+    // one per reading/watch; supports re-reads
+    { "status": "completed", "rating": 5, "dateCompleted": "2026-01-15" },
+  ],
+}
+```
+
+In development you can also drag-and-drop a new cover onto a card, and edit
+ratings/dates inline from the item modal — these write back to the JSON via the
+dev-only routes under `app/api/library/` (disabled in production).
+
+## Deployment
+
+Pushes to `main` deploy automatically on Vercel. CI must pass first
+(`.github/workflows/ci.yml`): Prettier → ESLint → typecheck → unit tests → build.
+
+## License
+
+MIT — see [LICENSE](LICENSE).

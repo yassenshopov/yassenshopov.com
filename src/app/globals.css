@@ -441,3 +441,32 @@ html {
 .gallery-flush:focus-within .gallery-tile:not(:focus-within):not(:hover) img {
   filter: grayscale(1);
 }
+
+/* -------------------------------------------------------------------------
+ * Scroll reveal (see components/Reveal.tsx)
+ *
+ * Replaces framer-motion `whileInView` fade-ins with pure CSS so the sections
+ * using it can remain Server Components. Elements render hidden and are
+ * un-hidden once the IntersectionObserver sets `data-visible`.
+ *
+ * Progressive enhancement:
+ *  - Users who prefer reduced motion never get the offset/fade (content shows
+ *    immediately, see the media query below).
+ *  - Without JavaScript the observer never runs, so a <noscript> override in
+ *    the root layout forces everything visible.
+ * ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.5s ease-out,
+      transform 0.5s ease-out;
+    will-change: opacity, transform;
+  }
+
+  [data-reveal][data-visible] {
+    opacity: 1;
+    transform: none;
+  }
+}

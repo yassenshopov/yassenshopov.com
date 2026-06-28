@@ -9,7 +9,7 @@
  * Persists to src/data/library-tiers.json. Disabled in production — intended
  * to be removed (with the drag-and-drop UI) once the tiers are locked down.
  */
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import { productionGuard, readTierData, writeTierData, jsonError } from '@/lib/library-admin';
 
 export const dynamic = 'force-dynamic';

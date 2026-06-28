@@ -22,7 +22,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { LibraryItem, ReadingStatus } from '@/data/library';
+import { type LibraryItem, type ReadingStatus } from '@/data/library';
 import { formatDate } from '@/lib/format-date';
 import { boostColor } from '@/lib/color-utils';
 import { useLibraryEntryEditor } from '@/hooks/useLibraryEntryEditor';
@@ -39,7 +39,9 @@ interface LibraryModalProps {
   getCreatorLabel: (item: LibraryItem) => string;
   getStatusColor: (status: string) => string;
   getRelatedItems: (item: LibraryItem, limit?: number) => LibraryItem[];
-  getSeriesInfo: (item: LibraryItem) => any;
+  getSeriesInfo: (
+    item: LibraryItem
+  ) => { name: string; items: LibraryItem[]; currentIndex: number; totalItems: number } | null;
   getRelationshipLabel: (fromItem: LibraryItem, toItem: LibraryItem) => string;
   onSelectItem: (item: LibraryItem) => void;
 }

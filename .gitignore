@@ -51,3 +51,6 @@ next-env.d.ts
 
 # scrape cache used by scripts/migrate-library.mjs
 /.cache
+
+.vercel
+.env*.local

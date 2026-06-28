@@ -1,6 +1,5 @@
 'use client';
 
-import { usePathname, useSearchParams } from 'next/navigation';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { LoadingOverlay } from './LoadingOverlay';

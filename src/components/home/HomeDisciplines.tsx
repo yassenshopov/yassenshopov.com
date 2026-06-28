@@ -1,7 +1,5 @@
-'use client';
-
-import { motion, useReducedMotion } from 'framer-motion';
 import { Code2, Paintbrush, Rocket, PenLine, type LucideIcon } from 'lucide-react';
+import { Reveal } from '@/components/Reveal';
 
 interface Discipline {
   icon: LucideIcon;
@@ -52,8 +50,6 @@ const GRID_BG: React.CSSProperties = {
 };
 
 export function HomeDisciplines() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <section
       id="what-i-do"
@@ -83,14 +79,10 @@ export function HomeDisciplines() {
             {disciplines.map((discipline, index) => {
               const Icon = discipline.icon;
               return (
-                <motion.div
+                <Reveal
                   key={discipline.title}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.4, ease: 'easeOut', delay: index * 0.06 }}
-                  whileHover={prefersReducedMotion ? undefined : { y: -6, rotate: 0 }}
-                  className={`group relative rounded-2xl p-6 text-neutral-900 transition-transform ${discipline.rotate}`}
+                  delay={index * 60}
+                  className={`group relative rounded-2xl p-6 text-neutral-900 transition-transform duration-300 hover:-translate-y-1.5 hover:rotate-0 motion-reduce:hover:translate-y-0 ${discipline.rotate}`}
                   style={{ backgroundColor: discipline.color }}
                 >
                   <div
@@ -110,7 +102,7 @@ export function HomeDisciplines() {
                   <p className="relative mt-2 text-sm leading-relaxed text-neutral-900/75">
                     {discipline.description}
                   </p>
-                </motion.div>
+                </Reveal>
               );
             })}
           </div>

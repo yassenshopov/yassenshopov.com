@@ -129,6 +129,12 @@ export default function RootLayout({
             __html: JSON.stringify([personJsonLd(), webSiteJsonLd()]),
           }}
         />
+        {/* Scroll-reveal elements start hidden and are un-hidden by JS once
+            observed (see components/Reveal.tsx). Without JS the observer never
+            runs, so force everything visible. */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
       </head>
       <body className="font-sans" suppressHydrationWarning>
         <a

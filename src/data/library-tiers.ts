@@ -81,10 +81,30 @@ function emptyBoard(): BoardTiers {
   return Object.fromEntries(TIER_KEYS.map((k) => [k, []]));
 }
 
-const rawData = tiersData as Partial<Record<TierBoardId, Partial<BoardTiers>>>;
+/**
+ * Normalize one board's saved tiers from the raw JSON: keep only known tier
+ * keys, coerce each to an array, and drop any non-string ids. This is a
+ * deliberate, Zod-free boundary check — `library-tiers.ts` is imported by
+ * client components (e.g. `TierBadge`), so pulling in Zod here would re-bloat
+ * the bundle we just trimmed on the library routes.
+ */
+function normalizeBoard(raw: unknown): BoardTiers {
+  const board = emptyBoard();
+  if (!raw || typeof raw !== 'object') return board;
+  const source = raw as Record<string, unknown>;
+  for (const key of TIER_KEYS) {
+    const value = source[key];
+    if (Array.isArray(value)) {
+      board[key] = value.filter((id): id is string => typeof id === 'string');
+    }
+  }
+  return board;
+}
+
+const rawData = (tiersData ?? {}) as Record<string, unknown>;
 
 export const tierData: TierData = Object.fromEntries(
-  TIER_BOARDS.map((b) => [b.id, { ...emptyBoard(), ...(rawData[b.id] ?? {}) }])
+  TIER_BOARDS.map((b) => [b.id, normalizeBoard(rawData[b.id])])
 ) as TierData;
 
 /**

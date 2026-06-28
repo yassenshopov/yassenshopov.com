@@ -13,7 +13,7 @@
  * Disabled in production. Deleted alongside the cover-upload and
  * update-entry routes when the library data is locked down.
  */
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import {
   productionGuard,
   readLibraryItems,

@@ -1,8 +1,6 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { TrendingUp, Palette, FileText, Activity, type LucideIcon } from 'lucide-react';
 import { AnimatedNumber } from '@/components/AnimatedNumber';
+import { Reveal } from '@/components/Reveal';
 
 interface Stat {
   value: number;
@@ -77,14 +75,10 @@ export function HomeStats() {
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               return (
-                <motion.div
+                <Reveal
                   key={stat.label}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.4, ease: 'easeOut', delay: index * 0.06 }}
-                  whileHover={{ rotate: 0, y: -6 }}
-                  className={`group relative overflow-hidden rounded-2xl p-6 text-neutral-900 transition-transform ${stat.rotate}`}
+                  delay={index * 60}
+                  className={`group relative overflow-hidden rounded-2xl p-6 text-neutral-900 transition-transform duration-300 hover:-translate-y-1.5 hover:rotate-0 motion-reduce:hover:translate-y-0 ${stat.rotate}`}
                   style={{ backgroundColor: stat.color }}
                 >
                   <div
@@ -111,7 +105,7 @@ export function HomeStats() {
                   <p className="relative mt-1 text-sm font-medium text-neutral-900/75">
                     {stat.label}
                   </p>
-                </motion.div>
+                </Reveal>
               );
             })}
           </div>

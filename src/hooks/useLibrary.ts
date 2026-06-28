@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { libraryItems, LibraryItem, getLatestEntry } from '@/data/library';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { type LibraryItem, latestEntryTimestamp } from '@/data/library';
 import {
   getCreatorLabel as getCreatorLabelUtil,
   getStatusColor as getStatusColorUtil,
@@ -11,22 +11,16 @@ import {
   calculateStatistics,
 } from '@/lib/library-utils';
 
-/**
- * Most recent engagement timestamp for an item — the completion date of the
- * latest entry, falling back to its start date. Returns 0 for items with no
- * entries (wishlist/watchlist) so they sort to the bottom.
- */
-function latestEntryTimestamp(item: LibraryItem): number {
-  const latest = item.entries ? getLatestEntry(item.entries) : undefined;
-  const dateStr = latest?.dateCompleted || latest?.dateStarted;
-  return dateStr ? new Date(dateStr).getTime() : 0;
-}
-
 export type LibraryCategory = 'books' | 'watchables';
 
 const ITEMS_PER_PAGE = 12;
 
-export function useLibrary() {
+/**
+ * Drives the interactive library page. The full catalogue is loaded server-side
+ * (see `data/library.server.ts`) and passed in as `allItems`, so the heavy JSON
+ * and Zod never reach this client bundle.
+ */
+export function useLibrary(allItems: LibraryItem[]) {
   const [category, setCategory] = useState<LibraryCategory>('books');
   const [selectedItem, setSelectedItem] = useState<LibraryItem | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -47,42 +41,66 @@ export function useLibrary() {
   }, [category]);
 
   // Filter to the active category (books vs movies+series)
-  const itemsInCategory = libraryItems.filter((item) =>
-    category === 'books' ? item.type === 'book' : item.type === 'movie' || item.type === 'series'
+  const itemsInCategory = useMemo(
+    () =>
+      allItems.filter((item) =>
+        category === 'books'
+          ? item.type === 'book'
+          : item.type === 'movie' || item.type === 'series'
+      ),
+    [allItems, category]
   );
 
   // Filtering logic - search only
-  const filteredItems = itemsInCategory.filter((item) => {
-    if (searchQuery === '') return true;
+  const filteredItems = useMemo(() => {
+    if (searchQuery === '') return itemsInCategory;
     const q = searchQuery.toLowerCase();
-    return (
-      item.title.toLowerCase().includes(q) ||
-      (item.author && item.author.toLowerCase().includes(q)) ||
-      (item.director && item.director.toLowerCase().includes(q)) ||
-      (item.creator && item.creator.toLowerCase().includes(q)) ||
-      (item.series && item.series.toLowerCase().includes(q)) ||
-      item.genre.some((g) => g.toLowerCase().includes(q)) ||
-      item.description.toLowerCase().includes(q)
+    return itemsInCategory.filter(
+      (item) =>
+        item.title.toLowerCase().includes(q) ||
+        (item.author && item.author.toLowerCase().includes(q)) ||
+        (item.director && item.director.toLowerCase().includes(q)) ||
+        (item.creator && item.creator.toLowerCase().includes(q)) ||
+        (item.series && item.series.toLowerCase().includes(q)) ||
+        item.genre.some((g) => g.toLowerCase().includes(q)) ||
+        item.description.toLowerCase().includes(q)
     );
-  });
+  }, [itemsInCategory, searchQuery]);
 
   // Sort by the latest entry across all engagements, newest first. A re-read
   // in 2026 of a book first read in 2022 sorts ahead of a 2025 first-read.
-  const allSortedItems = [...filteredItems].sort(
-    (a, b) => latestEntryTimestamp(b) - latestEntryTimestamp(a)
+  // Timestamps are derived once per item here rather than re-parsed inside the
+  // O(n log n) comparator.
+  const allSortedItems = useMemo(() => {
+    const withTs = filteredItems.map((item) => ({ item, ts: latestEntryTimestamp(item) }));
+    withTs.sort((a, b) => b.ts - a.ts);
+    return withTs.map((entry) => entry.item);
+  }, [filteredItems]);
+
+  const sortedItems = useMemo(
+    () => allSortedItems.slice(0, itemsToShow),
+    [allSortedItems, itemsToShow]
   );
-  const sortedItems = allSortedItems.slice(0, itemsToShow);
   const hasMoreItems = allSortedItems.length > itemsToShow;
 
   const getCreatorLabel = getCreatorLabelUtil;
   const getStatusColor = getStatusColorUtil;
 
-  const getStatistics = (items?: LibraryItem[]) => calculateStatistics(items || libraryItems);
+  const getStatistics = useCallback(
+    (items?: LibraryItem[]) => calculateStatistics(items || allItems),
+    [allItems]
+  );
 
-  const getRelatedItems = (item: LibraryItem, limit: number = 4): LibraryItem[] =>
-    getRelatedItemsUtil(item, libraryItems, limit);
+  const getRelatedItems = useCallback(
+    (item: LibraryItem, limit: number = 4): LibraryItem[] =>
+      getRelatedItemsUtil(item, allItems, limit),
+    [allItems]
+  );
 
-  const getSeriesInfo = (item: LibraryItem) => getSeriesInfoUtil(item, libraryItems);
+  const getSeriesInfo = useCallback(
+    (item: LibraryItem) => getSeriesInfoUtil(item, allItems),
+    [allItems]
+  );
 
   const getRelationshipLabel = (fromItem: LibraryItem, toItem: LibraryItem): string =>
     getRelationshipLabelUtil(fromItem, toItem);
@@ -144,7 +162,7 @@ export function useLibrary() {
     sortedItems,
     allSortedItems,
     hasMoreItems,
-    allItems: libraryItems,
+    allItems,
 
     // Functions
     getCreatorLabel,

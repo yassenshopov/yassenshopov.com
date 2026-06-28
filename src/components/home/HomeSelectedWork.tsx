@@ -1,11 +1,9 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { projects } from '@/components/ProjectsList';
 import { TechBadge } from '@/components/TechBadge';
+import { Reveal } from '@/components/Reveal';
 
 export function HomeSelectedWork() {
   const featured = projects.slice(0, 4);
@@ -28,12 +26,10 @@ export function HomeSelectedWork() {
 
           <div className="grid gap-6 md:grid-cols-2">
             {featured.map((project, index) => (
-              <motion.article
+              <Reveal
+                as="article"
                 key={project.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.4, ease: 'easeOut', delay: index * 0.05 }}
+                delay={index * 50}
                 className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-colors duration-300 hover:border-primary"
               >
                 <Link
@@ -87,7 +83,7 @@ export function HomeSelectedWork() {
                     </Link>
                   </div>
                 </div>
-              </motion.article>
+              </Reveal>
             ))}
           </div>
 

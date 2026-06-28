@@ -3,6 +3,9 @@
 node_modules/
 out/
 
+# CI workflows — leave line endings/formatting to the YAML as authored
+.github/
+
 # Large generated/data files — not worth reformatting (huge diffs)
 src/data/blog-posts.json
 src/data/library-items.json

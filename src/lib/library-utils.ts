@@ -1,4 +1,4 @@
-import { LibraryItem, LibraryEntry, getLatestEntry } from '@/data/library';
+import { type LibraryItem, type LibraryEntry, getLatestEntry } from '@/data/library';
 
 /**
  * Years (descending) in which this item has a recorded reading/watch.
