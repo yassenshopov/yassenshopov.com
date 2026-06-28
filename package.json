@@ -33,7 +33,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
-    "date-fns": "^4.1.0",
+    "date-fns": "^4.4.0",
     "framer-motion": "^12.6.3",
     "lucide-react": "^0.359.0",
     "next": "15.2.8",
