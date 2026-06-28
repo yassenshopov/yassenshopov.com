@@ -16,63 +16,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {
+  VALIDATORS,
+  isEmptyDelete,
+  findLatestEntryIndex,
+  type RawEntry,
+} from '@/lib/library-entry-validation';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
 const LIB_PATH = path.join(process.cwd(), 'src', 'data', 'library-items.json');
 
-const READING_STATUSES = new Set(['completed', 'in-progress', 'on-pause', 'dnf']);
-
-type RawEntry = {
-  status?: string;
-  dateStarted?: string;
-  dateCompleted?: string;
-  rating?: number | null;
-  notes?: string;
-  [key: string]: unknown;
-};
-
 type RawItem = {
   id: string;
   entries?: RawEntry[];
   [key: string]: unknown;
 };
-
-function isDateString(v: unknown): v is string {
-  return typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v);
-}
-
-function isEmptyDelete(v: unknown): boolean {
-  return v === null || v === '';
-}
-
-const VALIDATORS: Record<string, (v: unknown) => boolean> = {
-  status: (v) => typeof v === 'string' && READING_STATUSES.has(v),
-  dateStarted: (v) => isEmptyDelete(v) || isDateString(v),
-  dateCompleted: (v) => isEmptyDelete(v) || isDateString(v),
-  rating: (v) =>
-    isEmptyDelete(v) || (typeof v === 'number' && Number.isInteger(v) && v >= 0 && v <= 5),
-  notes: (v) => isEmptyDelete(v) || typeof v === 'string',
-};
-
-function entryTimestamp(entry: RawEntry): number {
-  const d = entry.dateCompleted || entry.dateStarted;
-  return d ? new Date(d).getTime() : 0;
-}
-
-function findLatestEntryIndex(entries: RawEntry[]): number {
-  let bestIdx = 0;
-  let bestTs = entryTimestamp(entries[0]);
-  for (let i = 1; i < entries.length; i++) {
-    const ts = entryTimestamp(entries[i]);
-    if (ts > bestTs) {
-      bestTs = ts;
-      bestIdx = i;
-    }
-  }
-  return bestIdx;
-}
 
 export async function POST(req: NextRequest) {
   if (process.env.NODE_ENV === 'production') {

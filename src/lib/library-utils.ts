@@ -79,24 +79,26 @@ export const getSeriesInfo = (item: LibraryItem, allItems: LibraryItem[]) => {
 };
 
 export const getRelationshipLabel = (fromItem: LibraryItem, toItem: LibraryItem): string => {
-  if (!fromItem.relationships) return 'Related';
-
-  const { relationships } = fromItem;
-
-  if (relationships.adaptations?.includes(toItem.id)) {
-    return toItem.type === 'movie' ? 'Movie Adaptation' : 'TV Adaptation';
-  }
-  if (relationships.basedOn?.includes(toItem.id)) {
-    return 'Based on';
-  }
-  if (relationships.sequel === toItem.id) {
-    return 'Sequel';
-  }
-  if (relationships.prequel === toItem.id) {
-    return 'Prequel';
-  }
-  if (relationships.sameUniverse?.includes(toItem.id)) {
-    return 'Same Universe';
+  // Explicit relationships take priority, but an item without a `relationships`
+  // object can still be labelled by its series position — so we only guard the
+  // explicit checks here rather than returning early for the whole function.
+  const relationships = fromItem.relationships;
+  if (relationships) {
+    if (relationships.adaptations?.includes(toItem.id)) {
+      return toItem.type === 'movie' ? 'Movie Adaptation' : 'TV Adaptation';
+    }
+    if (relationships.basedOn?.includes(toItem.id)) {
+      return 'Based on';
+    }
+    if (relationships.sequel === toItem.id) {
+      return 'Sequel';
+    }
+    if (relationships.prequel === toItem.id) {
+      return 'Prequel';
+    }
+    if (relationships.sameUniverse?.includes(toItem.id)) {
+      return 'Same Universe';
+    }
   }
   if (fromItem.series && toItem.series === fromItem.series) {
     if ((toItem.seriesOrder || 0) > (fromItem.seriesOrder || 0)) {

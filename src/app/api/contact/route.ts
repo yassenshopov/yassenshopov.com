@@ -1,25 +1,7 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
-import { z } from 'zod';
 import { CONTACT_EMAIL } from '@/data/social';
-
-// Topic labels mirror the pills on the contact form so the subject line is
-// readable in the inbox.
-const TOPIC_LABELS: Record<string, string> = {
-  collab: 'Collab / project',
-  templates: 'Notion templates',
-  commission: 'Art commission',
-  hi: 'Just saying hi',
-};
-
-const contactSchema = z.object({
-  name: z.string().trim().max(120).optional().default(''),
-  email: z.string().trim().email('A valid email is required.'),
-  message: z.string().trim().min(10, 'Message is too short.').max(5000),
-  topic: z.string().trim().optional().default('collab'),
-  // Honeypot — real users never fill this in. Hidden field in the form.
-  company: z.string().optional().default(''),
-});
+import { contactSchema, TOPIC_LABELS } from '@/lib/contact-schema';
 
 export async function POST(request: Request) {
   let payload: unknown;
