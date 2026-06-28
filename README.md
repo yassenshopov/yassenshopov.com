@@ -35,7 +35,6 @@ BLOB_READ_WRITE_TOKEN=...     # only needed to run scripts/migrate-images-to-blo
 
 ## Scripts
 
-
 | Command                           | Description                                     |
 | --------------------------------- | ----------------------------------------------- |
 | `npm run dev`                     | Start the dev server (Turbopack) on port 26     |
@@ -46,7 +45,6 @@ BLOB_READ_WRITE_TOKEN=...     # only needed to run scripts/migrate-images-to-blo
 | `npm test` / `test:watch`         | Vitest unit tests                               |
 | `npm run e2e`                     | Playwright end-to-end tests                     |
 | `npm run analyze`                 | Build with the bundle analyzer (`ANALYZE=true`) |
-
 
 ## Architecture
 
@@ -77,18 +75,18 @@ that use it stay on the server.
 Content lives as local JSON with a typed, validated access layer:
 
 - **Blog** — `data/blog-posts.json` holds posts (markdown in a `content` field).
-`lib/blog.ts` is **server-only**: it Zod-validates the payload, sorts newest-first,
-and pre-computes reading time. Only the single post being viewed is sent to the
-client. The canonical type is `types/blog.ts` (`BlogPost`).
+  `lib/blog.ts` is **server-only**: it Zod-validates the payload, sorts newest-first,
+  and pre-computes reading time. Only the single post being viewed is sent to the
+  client. The canonical type is `types/blog.ts` (`BlogPost`).
 - **Library** — `data/library-items.json` (~400 works). `data/library.ts` holds the
-**client-safe types + pure helpers**; `data/library.server.ts` is **server-only**
-and owns the JSON import + Zod validation. The `/library` and `/library/tier-list`
-routes are server components that load the validated catalogue and pass it into
-client islands (`components/library/LibraryView.tsx`, `LibraryTierListView.tsx`),
-keeping the big JSON and Zod out of the browser bundle.
+  **client-safe types + pure helpers**; `data/library.server.ts` is **server-only**
+  and owns the JSON import + Zod validation. The `/library` and `/library/tier-list`
+  routes are server components that load the validated catalogue and pass it into
+  client islands (`components/library/LibraryView.tsx`, `LibraryTierListView.tsx`),
+  keeping the big JSON and Zod out of the browser bundle.
 - **Tier list** — `data/library-tiers.json` stores ordered item ids per board/tier;
-`data/library-tiers.ts` normalizes it at the boundary (Zod-free so it stays
-client-safe for the `TierBadge`).
+  `data/library-tiers.ts` normalizes it at the boundary (Zod-free so it stays
+  client-safe for the `TierBadge`).
 
 ## Authoring content
 
