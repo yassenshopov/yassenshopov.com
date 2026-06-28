@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Layout from '@/components/Layout';
-import blogData from '@/data/blog-posts.json';
+import { getAllPosts, getPostBySlug } from '@/lib/blog';
 import { BlogContent } from '@/components/blog/BlogContent';
 import { blogPostingJsonLd, breadcrumbJsonLd } from '@/lib/structured-data';
 
 export function generateStaticParams() {
-  return blogData.posts.map((post) => ({
+  return getAllPosts().map((post) => ({
     slug: post.slug,
   }));
 }
@@ -17,8 +17,9 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogData.posts.find((p) => p.slug === slug);
-  if (!post) return {};
+  const resolved = getPostBySlug(slug);
+  if (!resolved) return {};
+  const { post } = resolved;
 
   return {
     title: post.title.replace(/\s*[\u{1F300}-\u{1FAD6}\u{2600}-\u{27BF}]+\s*$/u, ''),
@@ -48,35 +49,17 @@ export async function generateMetadata({
 }
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = await params;
-  const currentIndex = blogData.posts.findIndex((post) => post.slug === resolvedParams.slug);
-  const post = blogData.posts[currentIndex];
-  const prevPost =
-    currentIndex < blogData.posts.length - 1 ? blogData.posts[currentIndex + 1] : null;
-  const nextPost = currentIndex > 0 ? blogData.posts[currentIndex - 1] : null;
+  const { slug } = await params;
+  const resolved = getPostBySlug(slug);
 
-  if (!post) {
+  if (!resolved) {
     notFound();
   }
 
-  const calculateReadingTime = (content: string) => {
-    const wordsPerMinute = 200;
-    const wordCount = content.trim().split(/\s+/).length;
-    return `${Math.max(1, Math.ceil(wordCount / wordsPerMinute))} min read`;
-  };
-
-  const wordCount = post.content.trim().split(/\s+/).length;
-
-  const postWithReadingTime = { ...post, readingTime: calculateReadingTime(post.content) };
-  const prevPostWithReadingTime = prevPost
-    ? { ...prevPost, readingTime: calculateReadingTime(prevPost.content) }
-    : null;
-  const nextPostWithReadingTime = nextPost
-    ? { ...nextPost, readingTime: calculateReadingTime(nextPost.content) }
-    : null;
+  const { post, prevPost, nextPost } = resolved;
 
   const jsonLd = [
-    blogPostingJsonLd({ ...post, wordCount }),
+    blogPostingJsonLd({ ...post, wordCount: post.wordCount }),
     breadcrumbJsonLd([
       { name: 'Home', href: '/' },
       { name: 'Blog', href: '/blog' },
@@ -90,12 +73,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <BlogContent
-        post={postWithReadingTime}
-        prevPost={prevPostWithReadingTime}
-        nextPost={nextPostWithReadingTime}
-        wordCount={wordCount}
-      />
+      <BlogContent post={post} prevPost={prevPost} nextPost={nextPost} wordCount={post.wordCount} />
     </Layout>
   );
 }

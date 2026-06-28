@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import blogData from '@/data/blog-posts.json';
+import { getAllPosts } from '@/lib/blog';
 
 const SITE_URL = 'https://yassenshopov.com';
 
@@ -61,7 +61,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const blogRoutes: MetadataRoute.Sitemap = blogData.posts.map((post) => ({
+  const blogRoutes: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: 'yearly' as const,

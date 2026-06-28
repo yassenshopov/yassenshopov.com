@@ -1,4 +1,4 @@
-import blogData from '@/data/blog-posts.json';
+import { getAllPosts } from '@/lib/blog';
 import { toRFC822 } from '@/lib/format-date';
 
 const SITE_URL = 'https://yassenshopov.com';
@@ -28,9 +28,7 @@ function stripMarkdown(md: string): string {
 }
 
 export async function GET() {
-  const sortedPosts = [...blogData.posts].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+  const sortedPosts = getAllPosts();
 
   const latestDate = sortedPosts[0]
     ? toRFC822(sortedPosts[0].date)

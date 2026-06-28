@@ -1,25 +1,22 @@
 import React from 'react';
-import { compareDesc } from 'date-fns';
 import { Card } from '@/components/ui/card';
 import Link from 'next/link';
 import Image from 'next/image';
 import Layout from '@/components/Layout';
-import blogData from '@/data/blog-posts.json';
-import type { BlogPost } from '@/types/blog';
+import { getAllPosts, type ResolvedPost } from '@/lib/blog';
 import { BlogHero } from '@/components/blog/BlogHero';
 import { formatDate } from '@/lib/format-date';
 
 export default function BlogPage() {
-  const posts = blogData.posts.sort((a: BlogPost, b: BlogPost) =>
-    compareDesc(new Date(a.date), new Date(b.date))
-  );
+  // Already sorted newest-first by the data module (no in-place mutation).
+  const posts = getAllPosts();
 
   const thumbnails = posts
-    .map((post: BlogPost) => post.coverImage)
+    .map((post) => post.coverImage)
     .filter((src): src is string => Boolean(src));
 
   // Group posts by year while preserving the date-desc order.
-  const postsByYear = posts.reduce<Record<string, BlogPost[]>>((acc, post) => {
+  const postsByYear = posts.reduce<Record<string, ResolvedPost[]>>((acc, post) => {
     const year = new Date(post.date).getFullYear().toString();
     (acc[year] ||= []).push(post);
     return acc;
