@@ -28,7 +28,7 @@ jobs:
         run: npm ci
 
       - name: Cache Next.js build
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ${{ github.workspace }}/.next/cache
           # Bust the cache when dependencies or source change.
