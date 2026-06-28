@@ -8003,8 +8003,6 @@
     "id": "273",
     "title": "Novocaine",
     "type": "movie",
-    "rating": null,
-    "status": "want-to-watch",
     "genre": [],
     "description": "When the girl of his dreams is kidnapped, a man incapable of feeling physical pain turns his rare condition into an unexpected advantage in the fight to rescue her.",
     "year": 2025,
@@ -8013,7 +8011,13 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt29603959/"
     },
-    "coverImage": "/resources/images/library/novocaine-1779881134914.jpg"
+    "coverImage": "/resources/images/library/novocaine-1779881134914.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2026-06-01",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "274",
