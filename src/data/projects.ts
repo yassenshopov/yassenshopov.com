@@ -11,6 +11,11 @@ import {
   MapPin,
   Wrench,
   Globe2,
+  Pill,
+  Layers,
+  Activity,
+  Swords,
+  Map,
 } from 'lucide-react';
 import { type IconType } from 'react-icons';
 import {
@@ -22,6 +27,9 @@ import {
   SiNuxt,
   SiVuedotjs,
   SiNotion,
+  SiTypescript,
+  SiZod,
+  SiGraphql,
 } from 'react-icons/si';
 
 type TechBadgeStyle = {
@@ -171,6 +179,45 @@ export const techStack: Record<string, TechBadgeMeta> = {
     linkHref: 'https://clerk.com/',
     linkLabel: 'Learn more',
   },
+  TypeScript: {
+    label: 'TypeScript',
+    icon: SiTypescript,
+    style: {
+      bg: 'bg-[#3178c6]/15 dark:bg-[#3178c6]/10',
+      text: 'text-[#235a97] dark:text-[#3178c6]',
+      border: 'border-[#3178c6]/40 dark:border-[#3178c6]/30',
+      hover: 'hover:bg-[#3178c6]/25 dark:hover:bg-[#3178c6]/20',
+    },
+    description: 'Typed superset of JavaScript for safer code.',
+    linkHref: 'https://www.typescriptlang.org/',
+    linkLabel: 'Learn more',
+  },
+  Zod: {
+    label: 'Zod',
+    icon: SiZod,
+    style: {
+      bg: 'bg-[#3068b7]/15 dark:bg-[#3068b7]/10',
+      text: 'text-[#274f8c] dark:text-[#5b8de0]',
+      border: 'border-[#3068b7]/40 dark:border-[#3068b7]/30',
+      hover: 'hover:bg-[#3068b7]/25 dark:hover:bg-[#3068b7]/20',
+    },
+    description: 'TypeScript-first schema validation with static type inference.',
+    linkHref: 'https://zod.dev/',
+    linkLabel: 'Learn more',
+  },
+  GraphQL: {
+    label: 'GraphQL',
+    icon: SiGraphql,
+    style: {
+      bg: 'bg-[#e10098]/15 dark:bg-[#e10098]/10',
+      text: 'text-[#b30078] dark:text-[#e10098]',
+      border: 'border-[#e10098]/40 dark:border-[#e10098]/30',
+      hover: 'hover:bg-[#e10098]/25 dark:hover:bg-[#e10098]/20',
+    },
+    description: 'Query language for APIs with a typed, field-selected schema.',
+    linkHref: 'https://graphql.org/',
+    linkLabel: 'Learn more',
+  },
 };
 
 export const getTechBadgeMeta = (tag: string): TechBadgeMeta => {
@@ -189,6 +236,9 @@ const techSolidColors: Record<string, string> = {
   'Pokemon API': '#cc0000',
   'Notion API': '#37352f',
   Clerk: '#6c47ff',
+  TypeScript: '#3178c6',
+  Zod: '#3068b7',
+  GraphQL: '#e10098',
 };
 
 export const getTechColor = (tag: string): string => techSolidColors[tag] ?? '#3f3f46';
@@ -276,5 +326,47 @@ export const projects = [
     featured: true,
     impact:
       'Empowering professionals to create their perfect productivity system without leaving the Notion ecosystem.',
+  },
+  {
+    title: 'pharmacopeia',
+    tagline: 'An open API for medications',
+    description:
+      'A developer-first reference layer for the world’s pharmacopeia — drugs, classes, interactions, indications, and 2D structures, structured and versioned. Available over REST, GraphQL, and first-party SDKs, with generated docs, typed clients, and an OpenAPI 3.1 document all produced from the same Zod schema.',
+    images: [
+      '/resources/images/projects/pharmacopeia1.png',
+      '/resources/images/projects/pharmacopeia2.png',
+      '/resources/images/projects/pharmacopeia3.png',
+    ],
+    liveUrl: 'https://pharmacopeia-api.vercel.app/',
+    stats: [
+      { icon: Pill, value: 2577, suffix: '+', label: 'Drugs indexed' },
+      { icon: Layers, value: 2208, suffix: '+', label: 'Pharmacological classes' },
+      { icon: Activity, value: 2522, suffix: '+', label: 'ICD-10 mapped indications' },
+    ],
+    tags: ['Next.js', 'TypeScript', 'Zod', 'GraphQL', 'Supabase', 'TailwindCSS'],
+    featured: false,
+    impact:
+      'Giving developers and LLMs a verifiable, citable data layer for medical reference, with a source URL and hash behind every field.',
+  },
+  {
+    title: 'HallownestAPI',
+    tagline: 'An open API for Hollow Knight & Silksong',
+    description:
+      'A fan-made, non-commercial data layer for Hollow Knight and Silksong — bosses, charms, areas, characters, and items, structured and versioned. Inspired by PokeAPI, with predictable URLs, JSON in and out, and a schema validated end-to-end with Zod.',
+    images: [
+      '/resources/images/projects/hallownest1.png',
+      '/resources/images/projects/hallownest2.png',
+      '/resources/images/projects/hallownest3.png',
+    ],
+    liveUrl: 'https://hallownest-api.vercel.app/',
+    stats: [
+      { icon: Swords, value: 47, suffix: '', label: 'Bosses cataloged' },
+      { icon: Users, value: 90, suffix: '+', label: 'Characters & enemies' },
+      { icon: Map, value: 53, suffix: '', label: 'Areas & sub-areas' },
+    ],
+    tags: ['Next.js', 'TypeScript', 'Zod', 'TailwindCSS'],
+    featured: false,
+    impact:
+      'Open, git-reviewed game data the community can build tools on top of, with every entity linking back to the wikis.',
   },
 ];
