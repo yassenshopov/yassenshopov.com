@@ -5177,7 +5177,8 @@
     "entries": [
       {
         "dateStarted": "2026-06-25",
-        "status": "in-progress"
+        "dateCompleted": "2026-06-29",
+        "status": "completed"
       }
     ]
   },
@@ -6675,8 +6676,6 @@
     "id": "193",
     "title": "A Short Stay in Hell",
     "type": "book",
-    "rating": null,
-    "status": "want-to-read",
     "genre": [],
     "description": "",
     "year": 2011,
@@ -6685,7 +6684,13 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/13456414-a-short-stay-in-hell"
     },
-    "coverImage": "/resources/images/library/a-short-stay-in-hell-1779880469388.jpg"
+    "coverImage": "/resources/images/library/a-short-stay-in-hell-1779880469388.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2026-06-29",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "194",
@@ -6976,8 +6981,6 @@
     "id": "211",
     "title": "Convenience Store Woman",
     "type": "book",
-    "rating": null,
-    "status": "want-to-read",
     "genre": [],
     "description": "",
     "year": 2016,
@@ -6986,7 +6989,13 @@
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/36739755-convenience-store-woman"
     },
-    "coverImage": "/resources/images/library/convenience-store-woman-1779880341773.webp"
+    "coverImage": "/resources/images/library/convenience-store-woman-1779880341773.webp",
+    "entries": [
+      {
+        "dateCompleted": "2026-06-29",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "212",
