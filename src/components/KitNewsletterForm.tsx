@@ -84,7 +84,7 @@ function InlineSubscribeForm() {
         tabIndex={-1}
         autoComplete="off"
         aria-hidden="true"
-        className="sr-only absolute -left-[9999px]"
+        className="sr-only absolute left-[-9999px]"
       />
 
       <div
@@ -111,7 +111,7 @@ function InlineSubscribeForm() {
           disabled={status === 'loading'}
           className={cn(
             'min-w-0 flex-1 rounded-full border border-border bg-background px-5 py-3 text-sm text-foreground placeholder:text-muted-foreground',
-            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40',
+            'focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/40',
             'sm:border-none sm:bg-transparent sm:py-2 sm:focus-visible:ring-0'
           )}
         />

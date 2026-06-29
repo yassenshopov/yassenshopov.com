@@ -68,7 +68,7 @@ function SpotifyEmbed({ type, id, title }: { type: string; id: string; title?: s
         loading="lazy"
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         allowFullScreen
-        className="w-full border-0 shadow-sm"
+        className="w-full border-0 shadow-xs"
         style={{ borderRadius: 12 }}
       />
     </figure>
@@ -88,7 +88,7 @@ function YouTubeEmbed({
   if (start) params.set('start', String(start));
   return (
     <figure className="not-prose my-10">
-      <div className="overflow-hidden rounded-xl border bg-black shadow-sm">
+      <div className="overflow-hidden rounded-xl border bg-black shadow-xs">
         <div className="relative w-full" style={{ aspectRatio: '16 / 9' }}>
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`}

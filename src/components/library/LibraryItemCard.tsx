@@ -1,16 +1,16 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { BookOpen, Clapperboard, Monitor, Upload, Loader2, Repeat } from 'lucide-react';
 import Image from 'next/image';
 import { toast } from 'sonner';
 import { type LibraryItem } from '@/data/library';
+import { getCreatorLabel } from '@/lib/library-utils';
 import TierBadge from './TierBadge';
 
 interface LibraryItemCardProps {
   item: LibraryItem;
   onItemClick: (item: LibraryItem) => void;
-  getCreatorLabel: (item: LibraryItem) => string;
   /**
    * Year this card occurrence represents (the year of the entry being shown).
    * Omitted for wishlist/watchlist items in the "undated" section.
@@ -60,10 +60,9 @@ function CurrentlyOnLine({ type }: { type: LibraryItem['type'] }) {
   );
 }
 
-export default function LibraryItemCard({
+function LibraryItemCard({
   item,
   onItemClick,
-  getCreatorLabel,
   entryYear,
   totalEntries = item.entries?.length ?? 0,
   isLatestEntry = true,
@@ -207,7 +206,7 @@ export default function LibraryItemCard({
         onItemClick(item);
       }}
       {...dragHandlers}
-      className="group text-left flex flex-col gap-3 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-opacity"
+      className="group text-left flex flex-col gap-3 rounded-lg outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-opacity"
     >
       <div
         style={coverColor ? { backgroundColor: coverColor } : undefined}
@@ -234,7 +233,7 @@ export default function LibraryItemCard({
             tells the reader the work recurs across the library. */}
         {totalEntries > 1 && (
           <span
-            className="absolute left-2 top-2 z-10 inline-flex items-center gap-1 rounded-full bg-background/85 px-2 py-0.5 text-[10px] font-semibold text-foreground shadow-sm ring-1 ring-border backdrop-blur-sm"
+            className="absolute left-2 top-2 z-10 inline-flex items-center gap-1 rounded-full bg-background/85 px-2 py-0.5 text-[10px] font-semibold text-foreground shadow-xs ring-1 ring-border backdrop-blur-xs"
             aria-label={`${isLatestEntry ? 'Most recent of' : 'One of'} ${totalEntries} ${
               item.type === 'book' ? 'readings' : 'viewings'
             }${entryYear ? ` (${entryYear})` : ''}`}
@@ -245,7 +244,7 @@ export default function LibraryItemCard({
         )}
 
         {COVER_EDIT_ENABLED && (isDragOver || isUploading) && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-background/85 text-foreground backdrop-blur-sm pointer-events-none">
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-background/85 text-foreground backdrop-blur-xs pointer-events-none">
             {isUploading ? (
               <>
                 <Loader2 className="w-6 h-6 animate-spin" />
@@ -262,7 +261,7 @@ export default function LibraryItemCard({
       </div>
 
       <div className="flex flex-col gap-1">
-        <div className="flex min-h-[4.25rem] flex-col gap-1">
+        <div className="flex min-h-17 flex-col gap-1">
           <h3 className="text-base font-semibold leading-snug text-foreground group-hover:text-primary transition-colors line-clamp-2">
             {item.title}
             {item.series && item.seriesOrder != null && (
@@ -273,7 +272,7 @@ export default function LibraryItemCard({
           </h3>
           {creator && <p className="text-sm text-muted-foreground line-clamp-1">by {creator}</p>}
         </div>
-        <div className="flex min-h-[1.5rem] items-center justify-between gap-2">
+        <div className="flex min-h-6 items-center justify-between gap-2">
           <TierBadge itemId={item.id} />
           {item.status === 'in-progress' && <CurrentlyOnLine type={item.type} />}
         </div>
@@ -281,3 +280,9 @@ export default function LibraryItemCard({
     </button>
   );
 }
+
+// Memoized: the library grid can mount dozens of cards, and a search keystroke
+// re-renders the list. Props are stable per occurrence (`onItemClick` is the
+// setState identity), so memo skips re-rendering unchanged cards — and avoids
+// re-running each card's cover color-sampling effect.
+export default memo(LibraryItemCard);

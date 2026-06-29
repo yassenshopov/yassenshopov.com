@@ -16,6 +16,8 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import {
   productionGuard,
+  sameOriginGuard,
+  withLibraryLock,
   readLibraryItems,
   writeLibraryItems,
   jsonError,
@@ -65,6 +67,8 @@ function rewriteRelationshipIds(items: RawItem[], oldId: string, newId: string) 
 export async function POST(req: NextRequest) {
   const guard = productionGuard('Item editing');
   if (guard) return guard;
+  const csrf = sameOriginGuard(req);
+  if (csrf) return csrf;
 
   let body: { id?: unknown; patch?: unknown };
   try {
@@ -99,24 +103,30 @@ export async function POST(req: NextRequest) {
     return jsonError('id can only contain letters, digits, dot, underscore, and hyphen', 400);
   }
 
-  const items = await readLibraryItems<RawItem>();
-  const item = items.find((i) => i.id === id);
-  if (!item) {
-    return jsonError('item not found', 404);
+  try {
+    return await withLibraryLock(async () => {
+      const items = await readLibraryItems<RawItem>();
+      const item = items.find((i) => i.id === id);
+      if (!item) {
+        return jsonError('item not found', 404);
+      }
+
+      if (newId === id) {
+        return NextResponse.json({ ok: true, id, unchanged: true });
+      }
+
+      if (items.some((i) => i.id === newId)) {
+        return jsonError(`another item already uses id "${newId}"`, 409);
+      }
+
+      item.id = newId;
+      rewriteRelationshipIds(items, id, newId);
+
+      await writeLibraryItems(items);
+
+      return NextResponse.json({ ok: true, id: newId });
+    });
+  } catch (err) {
+    return jsonError(err instanceof Error ? err.message : 'could not update item', 500);
   }
-
-  if (newId === id) {
-    return NextResponse.json({ ok: true, id, unchanged: true });
-  }
-
-  if (items.some((i) => i.id === newId)) {
-    return jsonError(`another item already uses id "${newId}"`, 409);
-  }
-
-  item.id = newId;
-  rewriteRelationshipIds(items, id, newId);
-
-  await writeLibraryItems(items);
-
-  return NextResponse.json({ ok: true, id: newId });
 }

@@ -12,7 +12,7 @@ export function BackToTop() {
     <button
       type="button"
       onClick={scrollToTop}
-      className="group inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm text-foreground/70 transition-colors hover:border-foreground/30 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+      className="group inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm text-foreground/70 transition-colors hover:border-foreground/30 hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/40"
     >
       Back to top
       <ArrowUp

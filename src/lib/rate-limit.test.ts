@@ -57,14 +57,23 @@ describe('rateLimit', () => {
 });
 
 describe('clientIpFrom', () => {
-  it('takes the first hop from x-forwarded-for', () => {
-    const headers = new Headers({ 'x-forwarded-for': '203.0.113.5, 10.0.0.1' });
+  it('prefers the platform-set x-real-ip (not client-spoofable)', () => {
+    const headers = new Headers({
+      'x-real-ip': '198.51.100.7',
+      'x-forwarded-for': '1.2.3.4, 198.51.100.7',
+    });
+    expect(clientIpFrom(headers)).toBe('198.51.100.7');
+  });
+
+  it('takes the trusted (last) hop from x-forwarded-for, not the spoofable first', () => {
+    // A client can prepend a fake hop; the trusted proxy appends the real IP.
+    const headers = new Headers({ 'x-forwarded-for': 'evil-spoof, 203.0.113.5' });
     expect(clientIpFrom(headers)).toBe('203.0.113.5');
   });
 
-  it('falls back to x-real-ip', () => {
-    const headers = new Headers({ 'x-real-ip': '198.51.100.7' });
-    expect(clientIpFrom(headers)).toBe('198.51.100.7');
+  it('handles a single x-forwarded-for hop', () => {
+    const headers = new Headers({ 'x-forwarded-for': '203.0.113.5' });
+    expect(clientIpFrom(headers)).toBe('203.0.113.5');
   });
 
   it('returns "unknown" when no proxy headers are present', () => {

@@ -41,7 +41,7 @@ export function HomeHero() {
         className="container mx-auto px-4 py-16 md:py-20 will-change-transform"
       >
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm ring-1 ring-white/25 text-white mb-5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-xs ring-1 ring-white/25 text-white mb-5">
             <span className="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium">
               <span className="relative w-5 h-5 rounded-full overflow-hidden shrink-0">
                 <Image
@@ -95,7 +95,7 @@ export function HomeHero() {
               asChild
               size="lg"
               variant="outline"
-              className="border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white"
+              className="border-white/40 bg-white/10 text-white backdrop-blur-xs hover:bg-white/20 hover:text-white"
             >
               <Link href="/projects">See my work</Link>
             </Button>
@@ -129,7 +129,7 @@ export function HomeHero() {
         <motion.span
           animate={prefersReducedMotion ? undefined : { y: [0, 6, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-          className="flex items-center justify-center w-9 h-9 rounded-full border border-white/40 bg-white/10 backdrop-blur-sm group-hover:border-white"
+          className="flex items-center justify-center w-9 h-9 rounded-full border border-white/40 bg-white/10 backdrop-blur-xs group-hover:border-white"
         >
           <ChevronDown className="w-4 h-4" />
         </motion.span>

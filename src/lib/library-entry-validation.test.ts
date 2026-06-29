@@ -82,4 +82,8 @@ describe('findLatestEntryIndex', () => {
     ];
     expect(findLatestEntryIndex(entries)).toBe(1);
   });
+
+  it('returns -1 for an empty list instead of reading entries[0]', () => {
+    expect(findLatestEntryIndex([])).toBe(-1);
+  });
 });

@@ -10,7 +10,14 @@
  * to be removed (with the drag-and-drop UI) once the tiers are locked down.
  */
 import { type NextRequest, NextResponse } from 'next/server';
-import { productionGuard, readTierData, writeTierData, jsonError } from '@/lib/library-admin';
+import {
+  productionGuard,
+  sameOriginGuard,
+  withLibraryLock,
+  readTierData,
+  writeTierData,
+  jsonError,
+} from '@/lib/library-admin';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -24,6 +31,8 @@ type TierData = Record<string, BoardTiers>;
 export async function POST(req: NextRequest) {
   const guard = productionGuard('Tier editing');
   if (guard) return guard;
+  const csrf = sameOriginGuard(req);
+  if (csrf) return csrf;
 
   let body: { boardId?: string; tiers?: BoardTiers };
   try {
@@ -48,9 +57,14 @@ export async function POST(req: NextRequest) {
     clean[key] = value.map((v) => String(v));
   }
 
-  const data = await readTierData<TierData>();
-  data[boardId] = clean;
-  await writeTierData(data);
-
-  return NextResponse.json({ ok: true });
+  try {
+    return await withLibraryLock(async () => {
+      const data = await readTierData<TierData>();
+      data[boardId] = clean;
+      await writeTierData(data);
+      return NextResponse.json({ ok: true });
+    });
+  } catch (err) {
+    return jsonError(err instanceof Error ? err.message : 'could not save tiers', 500);
+  }
 }

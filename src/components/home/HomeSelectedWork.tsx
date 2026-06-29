@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { projects } from '@/components/ProjectsList';
+import { projects } from '@/data/projects';
 import { TechBadge } from '@/components/TechBadge';
 import { Reveal } from '@/components/Reveal';
+import { SectionHeading } from '@/components/SectionHeading';
 
 export function HomeSelectedWork() {
   const featured = projects.slice(0, 4);
@@ -12,17 +13,12 @@ export function HomeSelectedWork() {
     <section id="selected-work" className="bg-muted py-20 md:py-28 scroll-mt-16">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-end gap-6 mb-10" aria-label="Selected work">
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-none text-foreground">
-              Selected work
-            </h2>
-            <div className="flex-1 pb-2 flex items-center gap-4">
-              <div className="flex-1 h-px bg-border" />
-              <span className="hidden sm:inline-flex items-center text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                hand-picked
-              </span>
-            </div>
-          </div>
+          <SectionHeading
+            title="Selected work"
+            label="Selected work"
+            aside="hand-picked"
+            asideClassName="hidden sm:inline-flex items-center"
+          />
 
           <div className="grid gap-6 md:grid-cols-2">
             {featured.map((project, index) => (
@@ -34,7 +30,7 @@ export function HomeSelectedWork() {
               >
                 <Link
                   href={`/projects#${project.title.toLowerCase()}`}
-                  className="relative aspect-[16/10] w-full overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/60"
+                  className="relative aspect-16/10 w-full overflow-hidden focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/60"
                   aria-label={`View ${project.title}`}
                 >
                   {project.images[0] ? (

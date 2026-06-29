@@ -166,7 +166,7 @@ export default function AboutPage() {
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-border hidden md:block" />
             <div className="space-y-24">
               {timeline.map((item, index) => (
-                <TimelineItem key={index} {...item} index={index} />
+                <TimelineItem key={`${item.year}-${item.title}`} {...item} index={index} />
               ))}
             </div>
           </div>
@@ -180,8 +180,8 @@ export default function AboutPage() {
             My Skills
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {skills.map((skill, index) => (
-              <SkillCard key={index} {...skill} />
+            {skills.map((skill) => (
+              <SkillCard key={skill.title} {...skill} />
             ))}
           </div>
         </div>

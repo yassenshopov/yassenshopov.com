@@ -4,8 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
-import { projects } from '@/components/ProjectsList';
+import { projects } from '@/data/projects';
 import { TechBadge } from '@/components/TechBadge';
+import { SectionHeading } from '@/components/SectionHeading';
 
 function jumpToProject(title: string) {
   const el = document.getElementById(title.toLowerCase());
@@ -17,18 +18,11 @@ export function ProjectsOverview() {
     <section id="selected-work" className="py-16 md:py-20 scroll-mt-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Section heading — matches the blog/library system */}
-          <div className="flex items-end gap-6 mb-10" aria-label="Selected work">
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-none text-foreground">
-              Selected work
-            </h2>
-            <div className="flex-1 pb-2 flex items-center gap-4">
-              <div className="flex-1 h-px bg-border" />
-              <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                {projects.length} {projects.length === 1 ? 'project' : 'projects'}
-              </span>
-            </div>
-          </div>
+          <SectionHeading
+            title="Selected work"
+            label="Selected work"
+            aside={`${projects.length} ${projects.length === 1 ? 'project' : 'projects'}`}
+          />
 
           <div className="grid gap-6 md:grid-cols-2">
             {projects.map((project, index) => {
@@ -44,7 +38,7 @@ export function ProjectsOverview() {
                   <button
                     type="button"
                     onClick={() => jumpToProject(project.title)}
-                    className="relative aspect-[16/10] w-full overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/60"
+                    className="relative aspect-16/10 w-full overflow-hidden text-left focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/60"
                     aria-label={`Jump to ${project.title} details`}
                   >
                     {project.images[0] ? (

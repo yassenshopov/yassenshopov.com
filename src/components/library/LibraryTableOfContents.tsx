@@ -91,7 +91,7 @@ export default function LibraryTableOfContents({
   return (
     <div className="fixed top-24 right-4 lg:right-8 z-40 hidden md:block group">
       {/* Minimal lines (default) */}
-      <div className="absolute right-0 top-0 group-hover:opacity-0 group-hover:invisible transition-[opacity,visibility] duration-300 bg-card/80 backdrop-blur-sm rounded-lg p-2 shadow-xl max-h-[calc(100vh-8rem)] overflow-y-auto">
+      <div className="absolute right-0 top-0 group-hover:opacity-0 group-hover:invisible transition-[opacity,visibility] duration-300 bg-card/80 backdrop-blur-xs rounded-lg p-2 shadow-xl max-h-[calc(100vh-8rem)] overflow-y-auto">
         <nav className="space-y-3" aria-label="Library sections">
           {sections.map((section) => {
             const isActive = activeKey === section.key;

@@ -1,13 +1,4 @@
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { FlatCompat } from '@eslint/eslintrc';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+import nextCoreWebVitals from 'eslint-config-next/core-web-vitals';
 
 const eslintConfig = [
   {
@@ -26,9 +17,10 @@ const eslintConfig = [
       '**/*.config.ts',
     ],
   },
-  // `next/core-web-vitals` brings the React, React Hooks, jsx-a11y, import, and
-  // @next/next plugins; `next/typescript` layers in the TypeScript rules.
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+  // `eslint-config-next/core-web-vitals` is a native flat config (Next 16) that
+  // bundles the React, React Hooks, jsx-a11y, import, @next/next, and TypeScript
+  // plugins along with the Core Web Vitals rule set.
+  ...nextCoreWebVitals,
   {
     rules: {
       'react/no-unescaped-entities': 'off',
@@ -43,6 +35,15 @@ const eslintConfig = [
         'warn',
         { prefer: 'type-imports', fixStyle: 'inline-type-imports' },
       ],
+      // react-hooks v7 (bundled with Next 16) ships React-Compiler-aligned rules
+      // that flag patterns we use deliberately and that are not bugs:
+      //  - set-state-in-effect fires on canonical hydration `mounted` guards
+      //    (next-themes pattern) and prop-sync effects.
+      //  - immutability false-positives on local running-totals inside useMemo
+      //    (e.g. `cumulative += count` in a map callback).
+      // Keep them as advisory warnings instead of build-breaking errors.
+      'react-hooks/set-state-in-effect': 'warn',
+      'react-hooks/immutability': 'warn',
     },
   },
 ];

@@ -69,7 +69,7 @@ function NewsletterCTA() {
     <section
       id="newsletter-section"
       aria-labelledby="newsletter-heading"
-      className="relative max-w-3xl mx-auto my-12 overflow-hidden rounded-2xl border bg-gradient-to-br from-primary/5 via-card to-primary/10 scroll-mt-24"
+      className="relative max-w-3xl mx-auto my-12 overflow-hidden rounded-2xl border bg-linear-to-br from-primary/5 via-card to-primary/10 scroll-mt-24"
     >
       <div
         aria-hidden
@@ -131,7 +131,7 @@ function SidebarNewsletterCard() {
   };
 
   return (
-    <div className="relative overflow-hidden rounded-lg border bg-gradient-to-br from-primary/5 to-primary/10 p-5">
+    <div className="relative overflow-hidden rounded-lg border bg-linear-to-br from-primary/5 to-primary/10 p-5">
       <div
         aria-hidden
         className="pointer-events-none absolute -top-10 -right-10 h-32 w-32 rounded-full bg-primary/15 blur-2xl"
@@ -180,7 +180,7 @@ export function BlogContent({ post, prevPost, nextPost, wordCount }: BlogContent
       {/* Hero Section */}
       <section
         aria-labelledby="article-title"
-        className="relative isolate overflow-hidden bg-gradient-to-b from-background to-muted/40 pt-8 md:pt-12"
+        className="relative isolate overflow-hidden bg-linear-to-b from-background to-muted/40 pt-8 md:pt-12"
       >
         {post.coverImage && (
           <div className="absolute inset-0 -z-10">
@@ -190,12 +190,12 @@ export function BlogContent({ post, prevPost, nextPost, wordCount }: BlogContent
               fill
               priority
               sizes="100vw"
-              className="object-cover opacity-15 dark:opacity-25 [.olive_&]:opacity-20"
+              className="object-cover opacity-15 dark:opacity-25 in-[.olive]:opacity-20"
               unoptimized
             />
             {/* Top-down fade so the navbar area stays clean, plus a strong
                 bottom fade so the article body emerges from the hero. */}
-            <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/70 to-background" />
+            <div className="absolute inset-0 bg-linear-to-b from-background/85 via-background/70 to-background" />
             {/* Soft brand glow to tie the hero to the blog index aesthetic */}
             <div
               aria-hidden
@@ -236,7 +236,7 @@ export function BlogContent({ post, prevPost, nextPost, wordCount }: BlogContent
 
             <h1
               id="article-title"
-              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1] text-foreground mb-5"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-none text-foreground mb-5"
             >
               {post.title}
             </h1>
@@ -307,7 +307,7 @@ export function BlogContent({ post, prevPost, nextPost, wordCount }: BlogContent
                 prose-h2:mt-12 prose-h2:mb-5 prose-h2:pb-2 prose-h2:border-b prose-h2:border-border
                 prose-h3:mt-10 prose-h3:mb-4
                 prose-p:leading-[1.75]
-                prose-a:font-medium prose-a:underline-offset-4 hover:prose-a:opacity-90
+                prose-a:font-medium prose-a:underline-offset-4 prose-a:hover:opacity-90
                 prose-blockquote:not-italic prose-blockquote:border-l-4 prose-blockquote:border-primary/50 prose-blockquote:bg-muted/40 prose-blockquote:rounded-r-md prose-blockquote:px-5 prose-blockquote:py-3
                 [&_blockquote_p:first-of-type::before]:content-none [&_blockquote_p:last-of-type::after]:content-none
                 prose-strong:text-foreground prose-strong:font-semibold
@@ -425,7 +425,7 @@ export function BlogContent({ post, prevPost, nextPost, wordCount }: BlogContent
             {prevPost ? (
               <Link
                 href={`/blog/${prevPost.slug}`}
-                className="group relative flex items-stretch overflow-hidden rounded-xl border bg-card transition-all duration-300 hover:border-primary/40 hover:shadow-sm"
+                className="group relative flex items-stretch overflow-hidden rounded-xl border bg-card transition-all duration-300 hover:border-primary/40 hover:shadow-xs"
               >
                 <div className="relative w-24 sm:w-28 shrink-0 overflow-hidden bg-muted">
                   <Image
@@ -464,7 +464,7 @@ export function BlogContent({ post, prevPost, nextPost, wordCount }: BlogContent
             {nextPost ? (
               <Link
                 href={`/blog/${nextPost.slug}`}
-                className="group relative flex items-stretch overflow-hidden rounded-xl border bg-card transition-all duration-300 hover:border-primary/40 hover:shadow-sm sm:col-start-2"
+                className="group relative flex items-stretch overflow-hidden rounded-xl border bg-card transition-all duration-300 hover:border-primary/40 hover:shadow-xs sm:col-start-2"
               >
                 <div className="flex-1 min-w-0 p-4 text-right">
                   <div className="mb-1.5 flex items-center justify-end gap-2 text-[0.65rem] font-medium text-muted-foreground uppercase tracking-[0.16em]">

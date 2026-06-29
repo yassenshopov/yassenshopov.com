@@ -194,7 +194,7 @@ function LibraryTierListContent({ allItems }: { allItems: LibraryItem[] }) {
 
   return (
     <Layout>
-      <section className="relative isolate overflow-hidden border-b border-border bg-gradient-to-b from-background via-background to-muted/40 scroll-mt-16">
+      <section className="relative isolate overflow-hidden border-b border-border bg-linear-to-b from-background via-background to-muted/40 scroll-mt-16">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10 opacity-40"
@@ -255,7 +255,7 @@ function LibraryTierListContent({ allItems }: { allItems: LibraryItem[] }) {
         <div
           role="tablist"
           aria-label="Tier list board"
-          className="w-full overflow-x-auto border-t border-border bg-background/60 backdrop-blur-sm [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="w-full overflow-x-auto border-t border-border bg-background/60 backdrop-blur-xs scrollbar-none [&::-webkit-scrollbar]:hidden"
         >
           <div className="flex">
             {TIER_BOARDS.map((b) => {
@@ -269,7 +269,7 @@ function LibraryTierListContent({ allItems }: { allItems: LibraryItem[] }) {
                   aria-selected={isActive}
                   onClick={() => selectBoard(b.id)}
                   className={[
-                    'relative flex flex-1 items-center justify-center gap-2.5 whitespace-nowrap px-5 py-4 text-xs font-bold uppercase tracking-[0.16em] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:py-5 sm:text-sm',
+                    'relative flex flex-1 items-center justify-center gap-2.5 whitespace-nowrap px-5 py-4 text-xs font-bold uppercase tracking-[0.16em] outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:py-5 sm:text-sm',
                     isActive
                       ? 'text-foreground'
                       : 'text-muted-foreground hover:bg-muted/40 hover:text-foreground',

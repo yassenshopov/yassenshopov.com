@@ -127,7 +127,7 @@ export function Navbar() {
 
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger
-              className={`group inline-flex items-center gap-1 outline-none transition-colors hover:text-foreground focus-visible:text-foreground ${
+              className={`group inline-flex items-center gap-1 outline-hidden transition-colors hover:text-foreground focus-visible:text-foreground ${
                 isStudioActive ? 'text-foreground' : 'text-foreground/60'
               }`}
             >

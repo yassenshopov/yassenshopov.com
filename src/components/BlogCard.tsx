@@ -28,7 +28,7 @@ export function BlogCard({
     <Link href={`/blog/${slug}`} className={`block group ${isFeatured ? 'md:col-span-2' : ''}`}>
       <Card className="overflow-hidden h-full transition-shadow hover:shadow-lg">
         {coverImage && (
-          <div className={`aspect-video relative ${isFeatured ? 'md:aspect-[2/1]' : ''}`}>
+          <div className={`aspect-video relative ${isFeatured ? 'md:aspect-2/1' : ''}`}>
             <Image
               src={coverImage}
               alt={title}

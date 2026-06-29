@@ -39,6 +39,7 @@ export function entryTimestamp(entry: RawEntry): number {
 }
 
 export function findLatestEntryIndex(entries: RawEntry[]): number {
+  if (entries.length === 0) return -1;
   let bestIdx = 0;
   let bestTs = entryTimestamp(entries[0]);
   for (let i = 1; i < entries.length; i++) {

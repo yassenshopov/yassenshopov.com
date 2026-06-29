@@ -102,28 +102,34 @@ export function useLibrary(allItems: LibraryItem[]) {
     [allItems]
   );
 
-  const getRelationshipLabel = (fromItem: LibraryItem, toItem: LibraryItem): string =>
-    getRelationshipLabelUtil(fromItem, toItem);
+  const getRelationshipLabel = useCallback(
+    (fromItem: LibraryItem, toItem: LibraryItem): string =>
+      getRelationshipLabelUtil(fromItem, toItem),
+    []
+  );
 
-  const navigateToItem = (direction: 'prev' | 'next') => {
-    if (!selectedItem || isTransitioning) return;
+  const navigateToItem = useCallback(
+    (direction: 'prev' | 'next') => {
+      if (!selectedItem || isTransitioning) return;
 
-    const currentIndex = sortedItems.findIndex((item) => item.id === selectedItem.id);
-    if (currentIndex === -1) return;
+      const currentIndex = sortedItems.findIndex((item) => item.id === selectedItem.id);
+      if (currentIndex === -1) return;
 
-    let newIndex: number;
-    if (direction === 'prev') {
-      newIndex = currentIndex > 0 ? currentIndex - 1 : sortedItems.length - 1;
-    } else {
-      newIndex = currentIndex < sortedItems.length - 1 ? currentIndex + 1 : 0;
-    }
+      let newIndex: number;
+      if (direction === 'prev') {
+        newIndex = currentIndex > 0 ? currentIndex - 1 : sortedItems.length - 1;
+      } else {
+        newIndex = currentIndex < sortedItems.length - 1 ? currentIndex + 1 : 0;
+      }
 
-    setIsTransitioning(true);
-    requestAnimationFrame(() => {
-      setSelectedItem(sortedItems[newIndex]);
-      requestAnimationFrame(() => setIsTransitioning(false));
-    });
-  };
+      setIsTransitioning(true);
+      requestAnimationFrame(() => {
+        setSelectedItem(sortedItems[newIndex]);
+        requestAnimationFrame(() => setIsTransitioning(false));
+      });
+    },
+    [selectedItem, isTransitioning, sortedItems]
+  );
 
   const showMoreItems = () => {
     setIsLoadingMore(true);

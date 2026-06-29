@@ -1,6 +1,6 @@
-// Static data + pure helpers only — no hooks or components, so this module is
-// safe to import from both Server and Client Components (the homepage reads
-// `projects` on the server).
+// Static project data + pure tech-badge helpers. No hooks or components, so
+// this module is safe to import from both Server and Client Components (the
+// homepage and work-with-me page read `projects` on the server).
 import {
   Palette,
   Sparkles,
@@ -19,7 +19,7 @@ import {
   SiTailwindcss,
   SiSupabase,
   SiClerk,
-  SiNuxtdotjs,
+  SiNuxt,
   SiVuedotjs,
   SiNotion,
 } from 'react-icons/si';
@@ -56,7 +56,7 @@ const defaultTechBadgeStyle: TechBadgeStyle = {
 export const techStack: Record<string, TechBadgeMeta> = {
   Nuxt3: {
     label: 'Nuxt3',
-    icon: SiNuxtdotjs,
+    icon: SiNuxt,
     style: {
       bg: 'bg-[#00dc82]/15 dark:bg-[#00dc82]/10',
       text: 'text-[#0a7a53] dark:text-[#00dc82]',

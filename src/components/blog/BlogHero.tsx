@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion
 import { BookOpen, CalendarDays, ChevronDown } from 'lucide-react';
 import { KitNewsletterForm } from '@/components/KitNewsletterForm';
 import { HeroMarquee } from '@/components/HeroMarquee';
+import { GrainOverlay } from '@/components/GrainOverlay';
 
 interface BlogHeroProps {
   thumbnails?: string[];
@@ -39,14 +40,14 @@ export function BlogHero({ thumbnails = [] }: BlogHeroProps) {
   return (
     <section
       id="newsletter"
-      className="relative isolate flex items-center overflow-hidden bg-gradient-to-b from-background via-background to-muted scroll-mt-16 min-h-[calc(100vh-4rem)]"
+      className="relative isolate flex items-center overflow-hidden bg-linear-to-b from-background via-background to-muted scroll-mt-16 min-h-[calc(100vh-4rem)]"
     >
       {/* Infinite marquee of blog thumbnails behind everything */}
       <HeroMarquee
         images={thumbnails}
-        tileClassName="aspect-video w-[22rem] sm:w-[26rem] md:w-[32rem]"
+        tileClassName="aspect-video w-88 sm:w-104 md:w-lg"
         sizes="(min-width: 768px) 512px, (min-width: 640px) 416px, 352px"
-        rowSpacerClassName="h-[12.375rem] sm:h-[14.625rem] md:h-[18rem]"
+        rowSpacerClassName="h-49.5 sm:h-58.5 md:h-72"
       />
 
       {/* Soft brand glow accents with parallax */}
@@ -75,15 +76,7 @@ export function BlogHero({ thumbnails = [] }: BlogHeroProps) {
       />
 
       {/* Grain / noise texture spread evenly across the hero */}
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 pointer-events-none mix-blend-hard-light opacity-95 dark:opacity-40 dark:mix-blend-overlay [.olive_&]:opacity-40 [.olive_&]:mix-blend-overlay"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3' intercept='-1'/%3E%3CfeFuncG type='linear' slope='3' intercept='-1'/%3E%3CfeFuncB type='linear' slope='3' intercept='-1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-          backgroundSize: '220px 220px',
-        }}
-      />
+      <GrainOverlay className="absolute inset-0 -z-10 pointer-events-none mix-blend-hard-light opacity-95 dark:opacity-40 dark:mix-blend-overlay in-[.olive]:opacity-40 in-[.olive]:mix-blend-overlay" />
 
       <motion.div
         style={{ y: safeContentY, opacity: safeContentOpacity }}
@@ -159,7 +152,7 @@ export function BlogHero({ thumbnails = [] }: BlogHeroProps) {
         <motion.span
           animate={prefersReducedMotion ? undefined : { y: [0, 6, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-          className="flex items-center justify-center w-9 h-9 rounded-full border border-border bg-background/60 backdrop-blur-sm group-hover:border-primary"
+          className="flex items-center justify-center w-9 h-9 rounded-full border border-border bg-background/60 backdrop-blur-xs group-hover:border-primary"
         >
           <ChevronDown className="w-4 h-4" />
         </motion.span>

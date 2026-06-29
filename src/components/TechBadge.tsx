@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { forwardRef } from 'react';
-import { getTechBadgeMeta, getTechColor } from '@/components/ProjectsList';
+import { getTechBadgeMeta, getTechColor } from '@/data/projects';
 
 type TechBadgeSize = 'sm' | 'md';
 

@@ -21,7 +21,7 @@ export function HomeAbout() {
               style={{ backgroundColor: '#E8552D' }}
             />
             <div className="relative overflow-hidden rounded-3xl border border-border bg-card">
-              <div className="relative aspect-[4/5]">
+              <div className="relative aspect-4/5">
                 <Image
                   src="/resources/images/main_page/YassenShopov.jpg"
                   alt="Yassen Shopov"

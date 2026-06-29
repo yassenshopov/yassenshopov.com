@@ -404,7 +404,7 @@ export function HomeHeroSky() {
   return (
     <div aria-hidden className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
       {/* ----------------------------- LIGHT: blue sky + procedural clouds ----------------------------- */}
-      <div className="absolute inset-0 transition-opacity duration-700 dark:opacity-0 [.olive_&]:opacity-0">
+      <div className="absolute inset-0 transition-opacity duration-700 dark:opacity-0 in-[.olive]:opacity-0">
         <div className="absolute inset-0" style={{ backgroundColor: '#11a1da' }} />
         <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
       </div>
@@ -443,7 +443,7 @@ export function HomeHeroSky() {
       </div>
 
       {/* ----------------------------- OLIVE: canopy + falling leaves ----------------------------- */}
-      <div className="absolute inset-0 opacity-0 transition-opacity duration-700 [.olive_&]:opacity-100">
+      <div className="absolute inset-0 opacity-0 transition-opacity duration-700 in-[.olive]:opacity-100">
         <div className="absolute inset-0" style={{ backgroundColor: 'oklch(0.17 0.02 130)' }} />
         <div
           className="absolute inset-0"

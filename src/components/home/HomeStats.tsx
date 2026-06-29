@@ -1,6 +1,8 @@
 import { TrendingUp, Palette, FileText, Activity, type LucideIcon } from 'lucide-react';
 import { AnimatedNumber } from '@/components/AnimatedNumber';
 import { Reveal } from '@/components/Reveal';
+import { GrainOverlay } from '@/components/GrainOverlay';
+import { SectionHeading } from '@/components/SectionHeading';
 
 interface Stat {
   value: number;
@@ -59,17 +61,7 @@ export function HomeStats() {
     <section className="bg-background py-20 md:py-28">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-end gap-6 mb-10" aria-label="Real-world impact">
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-none text-foreground">
-              In real hands
-            </h2>
-            <div className="flex-1 pb-2 flex items-center gap-4">
-              <div className="flex-1 h-px bg-border" />
-              <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                live numbers
-              </span>
-            </div>
-          </div>
+          <SectionHeading title="In real hands" label="Real-world impact" aside="live numbers" />
 
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((stat, index) => {
@@ -81,13 +73,9 @@ export function HomeStats() {
                   className={`group relative overflow-hidden rounded-2xl p-6 text-neutral-900 transition-transform duration-300 hover:-translate-y-1.5 hover:rotate-0 motion-reduce:hover:translate-y-0 ${stat.rotate}`}
                   style={{ backgroundColor: stat.color }}
                 >
-                  <div
-                    aria-hidden
+                  <GrainOverlay
+                    variant="card"
                     className="pointer-events-none absolute inset-0 opacity-[0.12] mix-blend-multiply"
-                    style={{
-                      backgroundImage:
-                        "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-                    }}
                   />
                   <div className="relative flex items-center justify-between">
                     <span className="text-[0.65rem] font-mono uppercase tracking-[0.14em] text-neutral-900/60">

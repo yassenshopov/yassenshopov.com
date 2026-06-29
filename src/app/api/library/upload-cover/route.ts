@@ -17,6 +17,8 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {
   productionGuard,
+  sameOriginGuard,
+  withLibraryLock,
   readLibraryItems,
   writeLibraryItems,
   jsonError,
@@ -96,6 +98,8 @@ function slugFromCoverImage(coverImage: string): string | null {
 export async function POST(req: NextRequest) {
   const guard = productionGuard('Cover upload');
   if (guard) return guard;
+  const csrf = sameOriginGuard(req);
+  if (csrf) return csrf;
 
   let form: FormData;
   try {
@@ -126,45 +130,51 @@ export async function POST(req: NextRequest) {
     return jsonError('file is not a supported image (jpeg, png, webp, gif, avif)', 400);
   }
 
-  const items = await readLibraryItems<Record<string, unknown> & { id: string }>();
-  const item = items.find((i) => i.id === id);
-  if (!item) {
-    return jsonError('item not found', 404);
-  }
-
-  const slug =
-    (typeof item.coverImage === 'string' && slugFromCoverImage(item.coverImage)) ||
-    slugify(String(item.title ?? ''));
-  const fileName = `${slug}-${Date.now()}${ext}`;
-  const publicPath = `/resources/images/library/${fileName}`;
-
-  // Both the destination and any old-cover deletion must stay inside the
-  // managed library image directory — never let a crafted slug/coverImage path
-  // escape it.
-  const fullPath = containedPath(PUBLIC_DIR, path.join(PUBLIC_DIR, fileName));
-  if (!fullPath) {
-    return jsonError('resolved file path is invalid', 400);
-  }
-
-  if (typeof item.coverImage === 'string') {
-    const oldFull = containedPath(
-      PUBLIC_DIR,
-      path.join(process.cwd(), 'public', item.coverImage.replace(/^\//, ''))
-    );
-    if (oldFull) {
-      try {
-        await fs.unlink(oldFull);
-      } catch {
-        // pre-existing missing file — fine
+  try {
+    return await withLibraryLock(async () => {
+      const items = await readLibraryItems<Record<string, unknown> & { id: string }>();
+      const item = items.find((i) => i.id === id);
+      if (!item) {
+        return jsonError('item not found', 404);
       }
-    }
+
+      const slug =
+        (typeof item.coverImage === 'string' && slugFromCoverImage(item.coverImage)) ||
+        slugify(String(item.title ?? ''));
+      const fileName = `${slug}-${Date.now()}${ext}`;
+      const publicPath = `/resources/images/library/${fileName}`;
+
+      // Both the destination and any old-cover deletion must stay inside the
+      // managed library image directory — never let a crafted slug/coverImage
+      // path escape it.
+      const fullPath = containedPath(PUBLIC_DIR, path.join(PUBLIC_DIR, fileName));
+      if (!fullPath) {
+        return jsonError('resolved file path is invalid', 400);
+      }
+
+      if (typeof item.coverImage === 'string') {
+        const oldFull = containedPath(
+          PUBLIC_DIR,
+          path.join(process.cwd(), 'public', item.coverImage.replace(/^\//, ''))
+        );
+        if (oldFull) {
+          try {
+            await fs.unlink(oldFull);
+          } catch {
+            // pre-existing missing file — fine
+          }
+        }
+      }
+
+      await fs.mkdir(PUBLIC_DIR, { recursive: true });
+      await fs.writeFile(fullPath, Buffer.from(bytes));
+
+      item.coverImage = publicPath;
+      await writeLibraryItems(items);
+
+      return NextResponse.json({ ok: true, coverImage: publicPath });
+    });
+  } catch (err) {
+    return jsonError(err instanceof Error ? err.message : 'could not upload cover', 500);
   }
-
-  await fs.mkdir(PUBLIC_DIR, { recursive: true });
-  await fs.writeFile(fullPath, Buffer.from(bytes));
-
-  item.coverImage = publicPath;
-  await writeLibraryItems(items);
-
-  return NextResponse.json({ ok: true, coverImage: publicPath });
 }

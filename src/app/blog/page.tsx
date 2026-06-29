@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Layout from '@/components/Layout';
 import { getAllPosts, type ResolvedPost } from '@/lib/blog';
 import { BlogHero } from '@/components/blog/BlogHero';
+import { SectionHeading } from '@/components/SectionHeading';
 import { formatDate } from '@/lib/format-date';
 
 export default function BlogPage() {
@@ -33,18 +34,15 @@ export default function BlogPage() {
         <div className="container mx-auto px-4 space-y-16">
           {years.map((year) => (
             <div key={year}>
-              {/* Year heading */}
-              <div className="flex items-end gap-6 mb-8" aria-label={`Posts from ${year}`}>
-                <h2 className="text-5xl md:text-6xl font-bold tracking-tighter leading-none text-foreground">
-                  {year}
-                </h2>
-                <div className="flex-1 pb-2 flex items-center gap-4">
-                  <div className="flex-1 h-px bg-border" />
-                  <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                    {postsByYear[year].length} {postsByYear[year].length === 1 ? 'post' : 'posts'}
-                  </span>
-                </div>
-              </div>
+              <SectionHeading
+                title={year}
+                label={`Posts from ${year}`}
+                className="mb-8"
+                headingClassName="text-5xl md:text-6xl"
+                aside={`${postsByYear[year].length} ${
+                  postsByYear[year].length === 1 ? 'post' : 'posts'
+                }`}
+              />
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
                 {postsByYear[year].map((post) => (
@@ -60,11 +58,11 @@ export default function BlogPage() {
                           unoptimized
                         />
                       </div>
-                      <div className="p-6 flex flex-col flex-grow">
+                      <div className="p-6 flex flex-col grow">
                         <h3 className="text-2xl font-bold tracking-tight mb-2 text-foreground group-hover:text-primary transition-colors">
                           {post.title}
                         </h3>
-                        <p className="text-muted-foreground mb-4 flex-grow">{post.description}</p>
+                        <p className="text-muted-foreground mb-4 grow">{post.description}</p>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <time dateTime={post.date}>{formatDate(post.date)}</time>
                         </div>

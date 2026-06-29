@@ -22,6 +22,8 @@ import {
 } from '@/lib/library-entry-validation';
 import {
   productionGuard,
+  sameOriginGuard,
+  withLibraryLock,
   readLibraryItems,
   writeLibraryItems,
   jsonError,
@@ -39,6 +41,8 @@ type RawItem = {
 export async function POST(req: NextRequest) {
   const guard = productionGuard('Entry editing');
   if (guard) return guard;
+  const csrf = sameOriginGuard(req);
+  if (csrf) return csrf;
 
   let body: { id?: unknown; entryIndex?: unknown; patch?: unknown };
   try {
@@ -67,38 +71,44 @@ export async function POST(req: NextRequest) {
     clean[key] = value;
   }
 
-  const items = await readLibraryItems<RawItem>();
-  const item = items.find((i) => i.id === id);
-  if (!item) {
-    return jsonError('item not found', 404);
-  }
+  try {
+    return await withLibraryLock(async () => {
+      const items = await readLibraryItems<RawItem>();
+      const item = items.find((i) => i.id === id);
+      if (!item) {
+        return jsonError('item not found', 404);
+      }
 
-  const entries = Array.isArray(item.entries) ? item.entries : [];
-  if (entries.length === 0) {
-    return jsonError('item has no entries to update; add one to library-items.json first', 400);
-  }
+      const entries = Array.isArray(item.entries) ? item.entries : [];
+      if (entries.length === 0) {
+        return jsonError('item has no entries to update; add one to library-items.json first', 400);
+      }
 
-  let entryIndex: number;
-  if (typeof body.entryIndex === 'number' && Number.isInteger(body.entryIndex)) {
-    entryIndex = body.entryIndex;
-  } else {
-    entryIndex = findLatestEntryIndex(entries);
-  }
-  if (entryIndex < 0 || entryIndex >= entries.length) {
-    return jsonError('entryIndex out of range', 400);
-  }
+      let entryIndex: number;
+      if (typeof body.entryIndex === 'number' && Number.isInteger(body.entryIndex)) {
+        entryIndex = body.entryIndex;
+      } else {
+        entryIndex = findLatestEntryIndex(entries);
+      }
+      if (entryIndex < 0 || entryIndex >= entries.length) {
+        return jsonError('entryIndex out of range', 400);
+      }
 
-  const entry = entries[entryIndex];
-  for (const [key, value] of Object.entries(clean)) {
-    if (isEmptyDelete(value)) {
-      delete entry[key];
-    } else {
-      entry[key] = value;
-    }
+      const entry = entries[entryIndex];
+      for (const [key, value] of Object.entries(clean)) {
+        if (isEmptyDelete(value)) {
+          delete entry[key];
+        } else {
+          entry[key] = value;
+        }
+      }
+      item.entries = entries;
+
+      await writeLibraryItems(items);
+
+      return NextResponse.json({ ok: true, entry, entryIndex });
+    });
+  } catch (err) {
+    return jsonError(err instanceof Error ? err.message : 'could not update entry', 500);
   }
-  item.entries = entries;
-
-  await writeLibraryItems(items);
-
-  return NextResponse.json({ ok: true, entry, entryIndex });
 }

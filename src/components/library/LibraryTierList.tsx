@@ -51,7 +51,7 @@ function TierThumbnail({
       onClick={() => onClick(item)}
       title={item.title}
       aria-label={item.title}
-      className={`group/tile relative aspect-[3/4] w-16 sm:w-20 shrink-0 overflow-hidden bg-muted outline-none transition-[transform,opacity] duration-200 hover:z-10 hover:scale-110 focus-visible:z-10 focus-visible:scale-110 ${
+      className={`group/tile relative aspect-3/4 w-16 sm:w-20 shrink-0 overflow-hidden bg-muted outline-hidden transition-[transform,opacity] duration-200 hover:z-10 hover:scale-110 focus-visible:z-10 focus-visible:scale-110 ${
         draggable ? 'cursor-grab active:cursor-grabbing' : ''
       } ${isDragging ? 'opacity-40' : ''}`}
     >
@@ -69,7 +69,7 @@ function TierThumbnail({
           <FallbackIcon type={item.type} />
         </div>
       )}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full bg-gradient-to-t from-black/90 to-transparent p-1 opacity-0 transition-all duration-200 group-hover/tile:translate-y-0 group-hover/tile:opacity-100 group-focus-visible/tile:translate-y-0 group-focus-visible/tile:opacity-100">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full bg-linear-to-t from-black/90 to-transparent p-1 opacity-0 transition-all duration-200 group-hover/tile:translate-y-0 group-hover/tile:opacity-100 group-focus-visible/tile:translate-y-0 group-focus-visible/tile:opacity-100">
         <span className="line-clamp-2 text-[9px] font-medium leading-tight text-white">
           {item.title}
         </span>
@@ -137,7 +137,7 @@ function TierRow({
     : {};
 
   return (
-    <div className="flex min-h-[6rem]">
+    <div className="flex min-h-24">
       <div
         className={`flex w-14 sm:w-24 shrink-0 flex-col items-center justify-center gap-0.5 ${colorClass} p-2 text-center`}
       >

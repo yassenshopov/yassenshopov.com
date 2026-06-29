@@ -1,11 +1,11 @@
-'use client';
-
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Reveal } from '@/components/Reveal';
+import { GrainOverlay } from '@/components/GrainOverlay';
+import { SectionHeading } from '@/components/SectionHeading';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowRight,
   Clock,
@@ -20,7 +20,7 @@ import {
   Sparkles,
   type LucideIcon,
 } from 'lucide-react';
-import { projects } from '@/components/ProjectsList';
+import { projects } from '@/data/projects';
 import { CONTACT_EMAIL } from '@/data/social';
 
 const GRID_BG: React.CSSProperties = {
@@ -110,13 +110,11 @@ type Testimonial = {
 const testimonials: Testimonial[] = [];
 
 export default function WorkWithMePage() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <Layout>
       {/* Hero */}
       <section className="relative isolate overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background to-muted" />
+        <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-background to-muted" />
         <div
           aria-hidden
           className="absolute inset-0 -z-10 opacity-60"
@@ -125,15 +123,7 @@ export default function WorkWithMePage() {
               'radial-gradient(circle at 18% 24%, color-mix(in oklch, var(--primary) 22%, transparent) 0%, transparent 45%), radial-gradient(circle at 82% 80%, color-mix(in oklch, var(--primary) 16%, transparent) 0%, transparent 48%)',
           }}
         />
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10 pointer-events-none mix-blend-hard-light opacity-90 dark:opacity-40 dark:mix-blend-overlay [.olive_&]:opacity-40 [.olive_&]:mix-blend-overlay"
-          style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3' intercept='-1'/%3E%3CfeFuncG type='linear' slope='3' intercept='-1'/%3E%3CfeFuncB type='linear' slope='3' intercept='-1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-            backgroundSize: '220px 220px',
-          }}
-        />
+        <GrainOverlay className="absolute inset-0 -z-10 pointer-events-none mix-blend-hard-light opacity-90 dark:opacity-40 dark:mix-blend-overlay in-[.olive]:opacity-40 in-[.olive]:mix-blend-overlay" />
 
         <div className="container mx-auto px-4 py-20 md:py-28">
           <div className="max-w-3xl">
@@ -197,14 +187,7 @@ export default function WorkWithMePage() {
         />
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="flex items-end gap-6 mb-10" aria-label="What I can help with">
-              <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-none text-foreground">
-                What I can help with
-              </h2>
-              <div className="flex-1 pb-2 flex items-center gap-4">
-                <div className="flex-1 h-px bg-border" />
-              </div>
-            </div>
+            <SectionHeading title="What I can help with" label="What I can help with" />
             <p className="text-lg text-muted-foreground max-w-2xl mb-12">
               Every project is scoped on a call, not pulled off a shelf — but most of what I take on
               falls into one of these.
@@ -214,23 +197,15 @@ export default function WorkWithMePage() {
               {services.map((service, index) => {
                 const Icon = service.icon;
                 return (
-                  <motion.div
+                  <Reveal
                     key={service.title}
-                    initial={{ opacity: 0, y: 18 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-60px' }}
-                    transition={{ duration: 0.4, ease: 'easeOut', delay: index * 0.06 }}
-                    whileHover={prefersReducedMotion ? undefined : { y: -6, rotate: 0 }}
-                    className={`group relative rounded-2xl p-6 text-neutral-900 transition-transform ${service.rotate}`}
+                    delay={index * 60}
+                    className={`group relative rounded-2xl p-6 text-neutral-900 transition-transform duration-300 hover:-translate-y-1.5 hover:rotate-0 motion-reduce:hover:translate-y-0 ${service.rotate}`}
                     style={{ backgroundColor: service.color }}
                   >
-                    <div
-                      aria-hidden
+                    <GrainOverlay
+                      variant="card"
                       className="pointer-events-none absolute inset-0 rounded-2xl opacity-[0.12] mix-blend-multiply"
-                      style={{
-                        backgroundImage:
-                          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-                      }}
                     />
                     <span className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-900/10 ring-1 ring-neutral-900/15">
                       <Icon className="h-6 w-6" aria-hidden="true" />
@@ -241,7 +216,7 @@ export default function WorkWithMePage() {
                     <p className="relative mt-2 text-sm leading-relaxed text-neutral-900/75">
                       {service.description}
                     </p>
-                  </motion.div>
+                  </Reveal>
                 );
               })}
             </div>
@@ -253,28 +228,20 @@ export default function WorkWithMePage() {
       <section className="bg-muted py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="flex items-end gap-6 mb-12" aria-label="How it works">
-              <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-none text-foreground">
-                How it works
-              </h2>
-              <div className="flex-1 pb-2 flex items-center gap-4">
-                <div className="flex-1 h-px bg-border" />
-                <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                  4 steps
-                </span>
-              </div>
-            </div>
+            <SectionHeading
+              title="How it works"
+              label="How it works"
+              aside="4 steps"
+              className="mb-12"
+            />
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {steps.map((step, index) => {
                 const Icon = step.icon;
                 return (
-                  <motion.div
+                  <Reveal
                     key={step.title}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-60px' }}
-                    transition={{ duration: 0.4, ease: 'easeOut', delay: index * 0.06 }}
+                    delay={index * 60}
                     className="relative rounded-2xl border border-border bg-card p-6"
                   >
                     <span className="font-mono text-sm text-primary">
@@ -289,7 +256,7 @@ export default function WorkWithMePage() {
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                       {step.description}
                     </p>
-                  </motion.div>
+                  </Reveal>
                 );
               })}
             </div>
@@ -301,14 +268,7 @@ export default function WorkWithMePage() {
       <section className="bg-background py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="flex items-end gap-6 mb-4" aria-label="Proof it ships">
-              <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-none text-foreground">
-                Proof it ships
-              </h2>
-              <div className="flex-1 pb-2 flex items-center gap-4">
-                <div className="flex-1 h-px bg-border" />
-              </div>
-            </div>
+            <SectionHeading title="Proof it ships" label="Proof it ships" className="mb-4" />
             <p className="text-lg text-muted-foreground max-w-2xl mb-12">
               Not mockups — real products, live right now, with real people using them.
             </p>
@@ -317,17 +277,15 @@ export default function WorkWithMePage() {
               {projects.map((project, index) => {
                 const headlineStat = project.stats[1] ?? project.stats[0];
                 return (
-                  <motion.article
+                  <Reveal
+                    as="article"
                     key={project.title}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-80px' }}
-                    transition={{ duration: 0.4, ease: 'easeOut', delay: index * 0.05 }}
+                    delay={index * 50}
                     className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-colors duration-300 hover:border-primary"
                   >
                     <Link
                       href={`/projects#${project.title.toLowerCase()}`}
-                      className="relative aspect-[16/10] w-full overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/60"
+                      className="relative aspect-16/10 w-full overflow-hidden focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/60"
                       aria-label={`See ${project.title} details`}
                     >
                       {project.images[0] ? (
@@ -357,7 +315,7 @@ export default function WorkWithMePage() {
                         </p>
                       )}
                     </div>
-                  </motion.article>
+                  </Reveal>
                 );
               })}
             </div>
@@ -379,14 +337,7 @@ export default function WorkWithMePage() {
         <section className="bg-muted py-20 md:py-28">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <div className="flex items-end gap-6 mb-12" aria-label="What people say">
-                <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-none text-foreground">
-                  In their words
-                </h2>
-                <div className="flex-1 pb-2 flex items-center gap-4">
-                  <div className="flex-1 h-px bg-border" />
-                </div>
-              </div>
+              <SectionHeading title="In their words" label="What people say" className="mb-12" />
               <div className="grid gap-6 md:grid-cols-2">
                 {testimonials.map((t) => (
                   <Card key={t.name} className="p-6 md:p-8 bg-card/60 backdrop-blur-xl">

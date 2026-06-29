@@ -1,52 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-/* Reserve scrollbar space natively so opening Radix overlays (DropdownMenu,
- * Dialog, Popover…) doesn't trigger horizontal layout shifts when their
- * scroll-lock library adds padding-right to compensate for a "missing"
- * scrollbar. `scrollbar-gutter: stable` keeps the gutter even when no
- * scrollbar is needed, so clientWidth and innerWidth stay in sync. */
-html {
-  scrollbar-gutter: stable;
-  scroll-behavior: smooth;
-  color-scheme: light dark;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* Optional: Style the scrollbar to be less intrusive */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--border);
-  border-radius: 4px;
-}
-
-/* For Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--border) transparent;
-}
+@config '../../tailwind.config.js';
 
 @custom-variant dark (&:is(.dark *));
 @custom-variant olive (&:is(.olive *));
@@ -89,6 +43,97 @@ html {
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility container {
+  /* Container */
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+@utility card-hover {
+  /* Card hover effects */
+  @apply transition-all duration-300 hover:shadow-lg hover:scale-[1.02];
+}
+
+@utility link-hover {
+  /* Link hover effects */
+  @apply transition-colors duration-200 hover:text-primary;
+}
+
+@utility btn-primary {
+  /* Button styles */
+  @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200;
+}
+
+@utility img-hover {
+  /* Image hover effects */
+  @apply transition-opacity duration-200 hover:opacity-90;
+}
+
+@layer utilities {
+  /* Reserve scrollbar space natively so opening Radix overlays (DropdownMenu,
+ * Dialog, Popover…) doesn't trigger horizontal layout shifts when their
+ * scroll-lock library adds padding-right to compensate for a "missing"
+ * scrollbar. `scrollbar-gutter: stable` keeps the gutter even when no
+ * scrollbar is needed, so clientWidth and innerWidth stay in sync. */
+  html {
+    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+    color-scheme: light dark;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Optional: Style the scrollbar to be less intrusive */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--border);
+    border-radius: 4px;
+  }
+
+  /* For Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
 }
 
 @layer base {
@@ -274,33 +319,6 @@ html {
 
   * {
     @apply border-border;
-  }
-}
-
-@layer components {
-  /* Container */
-  .container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
-
-  /* Card hover effects */
-  .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:scale-[1.02];
-  }
-
-  /* Link hover effects */
-  .link-hover {
-    @apply transition-colors duration-200 hover:text-primary;
-  }
-
-  /* Button styles */
-  .btn-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200;
-  }
-
-  /* Image hover effects */
-  .img-hover {
-    @apply transition-opacity duration-200 hover:opacity-90;
   }
 }
 

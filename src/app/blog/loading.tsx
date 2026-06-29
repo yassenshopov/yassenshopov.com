@@ -12,7 +12,7 @@ export default function BlogLoading() {
               key={`blog-skeleton-${i}`}
               className="overflow-hidden rounded-2xl border border-border"
             >
-              <div className="aspect-[16/10] w-full animate-pulse bg-muted" />
+              <div className="aspect-16/10 w-full animate-pulse bg-muted" />
               <div className="space-y-3 p-5">
                 <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
                 <div className="h-3 w-full animate-pulse rounded bg-muted" />

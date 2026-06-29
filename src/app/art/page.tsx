@@ -1,134 +1,20 @@
-'use client';
-
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import {
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Instagram,
-  Mail,
-  Palette,
-  Send,
-  Sparkles,
-} from 'lucide-react';
+import { ArtGallery } from '@/components/art/ArtGallery';
+import { CommissionForm } from '@/components/art/CommissionForm';
+import { ArrowRight, Mail, Palette, Sparkles } from 'lucide-react';
+import { FaInstagram } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useMemo, useState } from 'react';
-
-const TOTAL_IMAGES = 24;
-
-const artworks = Array.from({ length: TOTAL_IMAGES }, (_, i) => {
-  const n = i + 1;
-  return {
-    src: `/resources/images/art/img${n}.webp`,
-    alt: `Yassen Shopov digital artwork #${n}`,
-  };
-});
-
-const INSTAGRAM_URL = 'https://www.instagram.com/kofiscrib/';
-const COMMISSION_EMAIL = 'yassenshopov00@gmail.com';
-
-type CommissionPieceType = 'character' | 'illustration' | 'cover' | 'other';
-
-const PIECE_OPTIONS: { value: CommissionPieceType; label: string }[] = [
-  { value: 'character', label: 'Character art' },
-  { value: 'illustration', label: 'Full illustration' },
-  { value: 'cover', label: 'Cover / banner' },
-  { value: 'other', label: 'Other' },
-];
-
-// Four floating hero thumbnails. Indices map to the `artworks` array; the
-// staggered `baseY` offsets give the grid a gentle masonry-like stagger.
-const HERO_TILES: { idx: number; baseY: number }[] = [
-  { idx: 0, baseY: 24 },
-  { idx: 6, baseY: -8 },
-  { idx: 12, baseY: 24 },
-  { idx: 18, baseY: -8 },
-];
+import { artworks, TOTAL_IMAGES, INSTAGRAM_URL, COMMISSION_EMAIL, HERO_TILES } from '@/data/art';
 
 export default function ArtPage() {
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-
-  // Commission form state
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [pieceType, setPieceType] = useState<CommissionPieceType>('character');
-  const [deadline, setDeadline] = useState('');
-  const [brief, setBrief] = useState('');
-
-  const closeLightbox = () => setLightboxIndex(null);
-
-  const showImage = (offset: 1 | -1) => {
-    setLightboxIndex((current) => {
-      if (current === null) return current;
-      return (current + offset + artworks.length) % artworks.length;
-    });
-  };
-
-  useEffect(() => {
-    if (lightboxIndex === null) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight') {
-        setLightboxIndex((c) => (c === null ? c : (c + 1) % artworks.length));
-      } else if (e.key === 'ArrowLeft') {
-        setLightboxIndex((c) => (c === null ? c : (c - 1 + artworks.length) % artworks.length));
-      }
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [lightboxIndex]);
-
-  // Enable smooth scrolling while on this page (e.g. for the in-page "Commission a piece"
-  // anchor jump), but honour `prefers-reduced-motion` and restore the prior behaviour
-  // on unmount so we don't leak the setting to other routes.
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const root = document.documentElement;
-    const body = document.body;
-    const prevRootBehavior = root.style.scrollBehavior;
-    const prevBodyBehavior = body.style.scrollBehavior;
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const behavior = prefersReducedMotion ? 'auto' : 'smooth';
-
-    root.style.scrollBehavior = behavior;
-    body.style.scrollBehavior = behavior;
-
-    return () => {
-      root.style.scrollBehavior = prevRootBehavior;
-      body.style.scrollBehavior = prevBodyBehavior;
-    };
-  }, []);
-
-  const mailtoHref = useMemo(() => {
-    const subject = `Commission inquiry — ${
-      PIECE_OPTIONS.find((p) => p.value === pieceType)?.label ?? 'Artwork'
-    }`;
-    const body = [
-      `Hi Yassen,`,
-      ``,
-      `Name: ${name || '(your name)'}`,
-      `Reply email: ${email || '(your email)'}`,
-      `Piece type: ${PIECE_OPTIONS.find((p) => p.value === pieceType)?.label ?? pieceType}`,
-      `Deadline / timing: ${deadline || '(flexible)'}`,
-      ``,
-      `Brief:`,
-      brief || '(describe the piece, reference images, vibe, size, usage…)',
-    ].join('\n');
-    return `mailto:${COMMISSION_EMAIL}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-  }, [name, email, pieceType, deadline, brief]);
-
   return (
     <Layout>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/10 via-background to-background" />
+        <div className="absolute inset-0 -z-10 bg-linear-to-br from-primary/10 via-background to-background" />
         <div className="container mx-auto px-4 py-20 md:py-28">
           <div className="grid lg:grid-cols-[1.1fr_1fr] gap-12 items-center">
             <div className="space-y-6">
@@ -160,7 +46,7 @@ export default function ArtPage() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2"
                   >
-                    <Instagram className="w-4 h-4" />
+                    <FaInstagram className="w-4 h-4" />
                     Follow on Instagram
                   </Link>
                 </Button>
@@ -213,39 +99,14 @@ export default function ArtPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              <Instagram className="w-4 h-4" />
+              <FaInstagram className="w-4 h-4" />
               See latest work on Instagram
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
 
-        {/* CSS columns masonry — natural fit for mixed aspect ratios. The grid is */}
-        {/* full-bleed (no container padding) for an edge-to-edge gallery wall. */}
-        <div className="gallery-flush columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-2 [column-fill:_balance]">
-          {artworks.map((art, i) => {
-            return (
-              <button
-                key={art.src}
-                type="button"
-                onClick={() => setLightboxIndex(i)}
-                className="gallery-tile relative mb-2 block w-full overflow-hidden rounded-sm bg-card focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/60 group"
-                aria-label={`Open ${art.alt}`}
-              >
-                <Image
-                  src={art.src}
-                  alt={art.alt}
-                  width={800}
-                  height={1000}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                  className="block h-auto w-full transition-[transform,filter] duration-500 ease-out group-hover:scale-[1.03]"
-                  loading={i < 4 ? 'eager' : 'lazy'}
-                  priority={i < 4}
-                />
-              </button>
-            );
-          })}
-        </div>
+        <ArtGallery />
       </section>
 
       {/* Follow band */}
@@ -254,7 +115,7 @@ export default function ArtPage() {
           <Card className="p-6 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div className="flex items-start gap-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary shrink-0">
-                <Instagram className="w-6 h-6" />
+                <FaInstagram className="w-6 h-6" />
               </div>
               <div>
                 <h3 className="text-xl md:text-2xl font-semibold text-card-foreground">
@@ -273,7 +134,7 @@ export default function ArtPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2"
               >
-                <Instagram className="w-4 h-4" />
+                <FaInstagram className="w-4 h-4" />
                 @kofiscrib
                 <ArrowRight className="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
@@ -292,13 +153,13 @@ export default function ArtPage() {
                 <span>Commissions are open</span>
               </div>
               <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
-                Let's make
+                Let&apos;s make
                 <br />
                 something custom
               </h2>
               <p className="text-lg text-muted-foreground max-w-xl">
                 Character portraits, full illustrations, covers, banners — tell me what you have in
-                mind and I'll reply with availability, pricing, and a clear timeline.
+                mind and I&apos;ll reply with availability, pricing, and a clear timeline.
               </p>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex items-start gap-3">
@@ -326,155 +187,11 @@ export default function ArtPage() {
             </div>
 
             <Card className="p-6 md:p-8 backdrop-blur-xl bg-card/60">
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  window.location.href = mailtoHref;
-                }}
-                className="space-y-5"
-              >
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label htmlFor="art-name" className="text-sm font-medium text-foreground">
-                      Your name
-                    </label>
-                    <Input
-                      id="art-name"
-                      name="name"
-                      autoComplete="name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Alex Doe"
-                      required
-                      className="bg-background/60"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="art-email" className="text-sm font-medium text-foreground">
-                      Email
-                    </label>
-                    <Input
-                      id="art-email"
-                      type="email"
-                      name="email"
-                      autoComplete="email"
-                      inputMode="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="you@example.com"
-                      required
-                      className="bg-background/60"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <span className="text-sm font-medium text-foreground">Type of piece</span>
-                  <div className="flex flex-wrap gap-2">
-                    {PIECE_OPTIONS.map((opt) => {
-                      const selected = pieceType === opt.value;
-                      return (
-                        <button
-                          key={opt.value}
-                          type="button"
-                          onClick={() => setPieceType(opt.value)}
-                          className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
-                            selected
-                              ? 'bg-primary text-primary-foreground border-primary'
-                              : 'bg-background text-muted-foreground border-border hover:text-foreground hover:bg-accent'
-                          }`}
-                          aria-pressed={selected}
-                        >
-                          {opt.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="art-deadline" className="text-sm font-medium text-foreground">
-                    Deadline (optional)
-                  </label>
-                  <Input
-                    id="art-deadline"
-                    value={deadline}
-                    onChange={(e) => setDeadline(e.target.value)}
-                    placeholder="e.g. by end of June, or flexible"
-                    className="bg-background/60"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="art-brief" className="text-sm font-medium text-foreground">
-                    Brief
-                  </label>
-                  <Textarea
-                    id="art-brief"
-                    value={brief}
-                    onChange={(e) => setBrief(e.target.value)}
-                    placeholder="Describe the piece — characters, vibe, references, intended use, size…"
-                    required
-                    className="min-h-[160px] bg-background/60"
-                  />
-                </div>
-
-                <Button type="submit" size="lg" className="w-full group">
-                  Send via email
-                  <Send className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </Button>
-                <p className="text-xs text-muted-foreground text-center">
-                  Opens your email client with the brief pre-filled — no inbox needed on my side
-                  beyond what you send.
-                </p>
-              </form>
+              <CommissionForm />
             </Card>
           </div>
         </div>
       </section>
-
-      {/* Lightbox */}
-      <Dialog open={lightboxIndex !== null} onOpenChange={(open) => !open && closeLightbox()}>
-        <DialogContent className="flex h-screen w-screen max-w-none items-center justify-center border-none bg-transparent p-4 shadow-none">
-          <DialogTitle className="sr-only">Artwork preview</DialogTitle>
-          <div className="relative flex h-full w-full items-center justify-center">
-            {lightboxIndex !== null && (
-              // Full-screen lightbox sizes to the image's natural aspect ratio
-              // (w-auto + object-contain), which next/image's fixed/fill modes
-              // can't express cleanly. Plain <img> is correct here.
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={artworks[lightboxIndex].src}
-                alt={artworks[lightboxIndex].alt}
-                className="max-h-[88vh] w-auto max-w-[96vw] rounded-xl object-contain shadow-2xl"
-              />
-            )}
-            {lightboxIndex !== null && artworks.length > 1 && (
-              <>
-                <button
-                  type="button"
-                  onClick={() => showImage(-1)}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/60 text-white p-3 transition hover:bg-black/80"
-                  aria-label="Previous artwork"
-                >
-                  <ChevronLeft className="h-5 w-5" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => showImage(1)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/60 text-white p-3 transition hover:bg-black/80"
-                  aria-label="Next artwork"
-                >
-                  <ChevronRight className="h-5 w-5" />
-                </button>
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-3 py-1 text-xs text-white">
-                  {lightboxIndex + 1} / {artworks.length}
-                </div>
-              </>
-            )}
-          </div>
-        </DialogContent>
-      </Dialog>
     </Layout>
   );
 }

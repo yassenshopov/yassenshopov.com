@@ -55,7 +55,8 @@ const libraryItemSchema = z.object({
       sameUniverse: z.array(z.string()).optional(),
     })
     .optional(),
-  links: z.record(z.string().optional()).optional(),
+  // Zod 4 requires an explicit key schema for records.
+  links: z.record(z.string(), z.string().optional()).optional(),
 });
 
 function projectLibraryItem(raw: z.infer<typeof libraryItemSchema>): LibraryItem {

@@ -1,5 +1,7 @@
 import { Code2, Paintbrush, Rocket, PenLine, type LucideIcon } from 'lucide-react';
 import { Reveal } from '@/components/Reveal';
+import { GrainOverlay } from '@/components/GrainOverlay';
+import { SectionHeading } from '@/components/SectionHeading';
 
 interface Discipline {
   icon: LucideIcon;
@@ -66,14 +68,7 @@ export function HomeDisciplines() {
 
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-end gap-6 mb-10" aria-label="What I do">
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-none text-foreground">
-              What I do
-            </h2>
-            <div className="flex-1 pb-2 flex items-center gap-4">
-              <div className="flex-1 h-px bg-border" />
-            </div>
-          </div>
+          <SectionHeading title="What I do" label="What I do" />
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {disciplines.map((discipline, index) => {
@@ -85,13 +80,9 @@ export function HomeDisciplines() {
                   className={`group relative rounded-2xl p-6 text-neutral-900 transition-transform duration-300 hover:-translate-y-1.5 hover:rotate-0 motion-reduce:hover:translate-y-0 ${discipline.rotate}`}
                   style={{ backgroundColor: discipline.color }}
                 >
-                  <div
-                    aria-hidden
+                  <GrainOverlay
+                    variant="card"
                     className="pointer-events-none absolute inset-0 rounded-2xl opacity-[0.12] mix-blend-multiply"
-                    style={{
-                      backgroundImage:
-                        "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-                    }}
                   />
                   <span className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-900/10 ring-1 ring-neutral-900/15">
                     <Icon className="h-6 w-6" aria-hidden="true" />

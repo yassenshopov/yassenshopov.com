@@ -25,6 +25,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { type LibraryItem, type ReadingStatus } from '@/data/library';
 import { formatDate } from '@/lib/format-date';
 import { boostColor } from '@/lib/color-utils';
+import { GrainOverlay } from '@/components/GrainOverlay';
 import { useLibraryEntryEditor } from '@/hooks/useLibraryEntryEditor';
 import TierBadge from './TierBadge';
 
@@ -124,8 +125,38 @@ function ModalContent({
     const previouslyFocused = document.activeElement as HTMLElement | null;
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    panelRef.current?.focus();
+    const panel = panelRef.current;
+    panel?.focus();
+
+    // Trap Tab focus inside the dialog so it can't drift onto the page behind
+    // the `aria-modal` overlay. (Escape/arrow handling lives in the parent.)
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab' || !panel) return;
+      const focusable = Array.from(
+        panel.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((el) => !el.hasAttribute('disabled') && el.offsetParent !== null);
+      if (focusable.length === 0) {
+        e.preventDefault();
+        panel.focus();
+        return;
+      }
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+      if (e.shiftKey && (active === first || active === panel)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleTab);
     return () => {
+      document.removeEventListener('keydown', handleTab);
       document.body.style.overflow = originalOverflow;
       previouslyFocused?.focus?.();
     };
@@ -209,7 +240,7 @@ function ModalContent({
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.95, opacity: 0 }}
         transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-        className="relative w-full max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-6xl min-h-[30rem] sm:min-h-[34rem] md:min-h-[38rem] max-h-[95vh] overflow-hidden bg-background rounded-2xl flex flex-col outline-none"
+        className="relative w-full max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-6xl min-h-120 sm:min-h-136 md:min-h-152 max-h-[95vh] overflow-hidden bg-background rounded-2xl flex flex-col outline-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <Button
@@ -217,7 +248,7 @@ function ModalContent({
           size="sm"
           onClick={onClose}
           aria-label="Close"
-          className="absolute top-3 right-3 z-20 rounded-full w-9 h-9 p-0 bg-background/80 backdrop-blur-sm hover:bg-background/90"
+          className="absolute top-3 right-3 z-20 rounded-full w-9 h-9 p-0 bg-background/80 backdrop-blur-xs hover:bg-background/90"
         >
           <X className="w-5 h-5" />
         </Button>
@@ -236,15 +267,7 @@ function ModalContent({
               />
             </div>
 
-            <div
-              aria-hidden
-              className="absolute inset-0 pointer-events-none mix-blend-soft-light opacity-55 dark:opacity-25 dark:mix-blend-overlay [.olive_&]:opacity-25 [.olive_&]:mix-blend-overlay"
-              style={{
-                backgroundImage:
-                  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3' intercept='-1'/%3E%3CfeFuncG type='linear' slope='3' intercept='-1'/%3E%3CfeFuncB type='linear' slope='3' intercept='-1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-                backgroundSize: '220px 220px',
-              }}
-            />
+            <GrainOverlay className="absolute inset-0 pointer-events-none mix-blend-soft-light opacity-55 dark:opacity-25 dark:mix-blend-overlay in-[.olive]:opacity-25 in-[.olive]:mix-blend-overlay" />
 
             <motion.div
               key={selectedItem.id}
@@ -257,7 +280,7 @@ function ModalContent({
               className="relative z-10 flex flex-col md:flex-row items-start gap-5 md:gap-8 p-5 sm:p-8 md:p-10 pt-12 sm:pt-10"
             >
               {/* Cover */}
-              <div className="flex-shrink-0 mx-auto md:mx-0">
+              <div className="shrink-0 mx-auto md:mx-0">
                 <div
                   className={`w-32 h-48 sm:w-40 sm:h-60 relative rounded-lg overflow-hidden ${
                     displayItem.coverImage ? '' : 'bg-muted dark:bg-black ring-1 ring-black/5'
@@ -316,7 +339,7 @@ function ModalContent({
                         spellCheck={false}
                         autoComplete="off"
                         aria-label="Item id"
-                        className="h-7 w-48 max-w-full rounded-md border border-input bg-background/70 px-2 font-mono text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        className="h-7 w-48 max-w-full rounded-md border border-input bg-background/70 px-2 font-mono text-xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
                       />
                     </div>
                   )}
@@ -335,7 +358,7 @@ function ModalContent({
                           }))
                         }
                         aria-label="Status"
-                        className="h-8 rounded-md border border-input bg-background px-2 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        className="h-8 rounded-md border border-input bg-background px-2 text-xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
                       >
                         {STATUS_OPTIONS.map((s) => (
                           <option key={s} value={s}>
@@ -359,7 +382,7 @@ function ModalContent({
                                 v === '' ? null : Math.max(0, Math.min(5, Math.round(Number(v)))),
                             }));
                           }}
-                          className="h-8 w-14 rounded-md border border-input bg-background px-2 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                          className="h-8 w-14 rounded-md border border-input bg-background px-2 text-xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
                         />
                       </label>
                     </>
@@ -502,7 +525,7 @@ function ModalContent({
                         onClick={() => onSelectItem(related)}
                         className="group flex gap-3 py-2 -mx-2 px-2 rounded-md text-left hover:bg-muted/50 transition-colors"
                       >
-                        <div className="w-14 h-20 relative bg-muted dark:bg-black rounded-md overflow-hidden flex-shrink-0">
+                        <div className="w-14 h-20 relative bg-muted dark:bg-black rounded-md overflow-hidden shrink-0">
                           {related.coverImage ? (
                             <Image
                               src={related.coverImage}
@@ -583,7 +606,7 @@ function ModalContent({
 
         {/* Prev / Next nav */}
         {hasNav && (
-          <div className="flex items-center justify-between gap-3 border-t border-border/60 bg-background/80 px-4 py-2.5 backdrop-blur-sm">
+          <div className="flex items-center justify-between gap-3 border-t border-border/60 bg-background/80 px-4 py-2.5 backdrop-blur-xs">
             <Button
               variant="ghost"
               size="sm"

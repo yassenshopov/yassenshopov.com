@@ -51,6 +51,27 @@ describe('contactSchema', () => {
     expect(result.success).toBe(true);
     if (result.success) expect(result.data.company).toBe('definitely a bot');
   });
+
+  it('accepts every known topic', () => {
+    for (const topic of Object.keys(TOPIC_LABELS)) {
+      const result = contactSchema.safeParse({
+        email: 'a@b.com',
+        message: 'a perfectly valid message',
+        topic,
+      });
+      expect(result.success).toBe(true);
+      if (result.success) expect(result.data.topic).toBe(topic);
+    }
+  });
+
+  it('rejects an unknown topic rather than silently relabeling it', () => {
+    const result = contactSchema.safeParse({
+      email: 'a@b.com',
+      message: 'a perfectly valid message',
+      topic: 'definitely-not-a-real-topic',
+    });
+    expect(result.success).toBe(false);
+  });
 });
 
 describe('TOPIC_LABELS', () => {

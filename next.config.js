@@ -2,13 +2,6 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  // Linting is a dedicated CI step (`npm run lint` → `eslint .` with the flat
-  // config) that runs before the build, so we skip Next's redundant build-time
-  // lint pass (which uses a different, legacy detection path and prints a
-  // spurious "plugin not detected" warning).
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   // The /api/library/upload-cover route is dev-only (returns 403 in production)
   // but its static file references cause Next.js's tracer to bundle all of
   // public/resources/images (~260 MB) into the serverless function and trip
@@ -38,9 +31,13 @@ const nextConfig = {
   },
 };
 
-// Opt-in bundle analysis: `ANALYZE=true npm run build` opens treemap reports.
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
-
-module.exports = withBundleAnalyzer(nextConfig);
+// Opt-in bundle analysis: `npm run analyze` (ANALYZE=true + --webpack) opens
+// treemap reports. The analyzer plugin injects a webpack config, which would
+// otherwise conflict with Turbopack (the Next 16 default build engine), so we
+// only wrap the config when analysis is explicitly requested.
+if (process.env.ANALYZE === 'true') {
+  const withBundleAnalyzer = require('@next/bundle-analyzer')({ enabled: true });
+  module.exports = withBundleAnalyzer(nextConfig);
+} else {
+  module.exports = nextConfig;
+}

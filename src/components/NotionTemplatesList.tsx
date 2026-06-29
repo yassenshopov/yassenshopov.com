@@ -24,7 +24,7 @@ function PriceBadge({ price, className = '' }: { price: string; className?: stri
   const free = isFree(price);
   return (
     <span
-      className={`px-2.5 py-1 rounded-full text-xs font-semibold flex-shrink-0 ${
+      className={`px-2.5 py-1 rounded-full text-xs font-semibold shrink-0 ${
         free ? 'bg-secondary text-secondary-foreground' : 'bg-primary text-primary-foreground'
       } ${className}`}
     >
@@ -42,7 +42,7 @@ function FeaturedTemplate({ template }: { template: Template }) {
       className="group block"
     >
       <article className="grid lg:grid-cols-2 overflow-hidden rounded-2xl border border-border bg-card transition-colors duration-300 hover:border-primary">
-        <div className="relative aspect-video lg:aspect-auto lg:min-h-[20rem] overflow-hidden">
+        <div className="relative aspect-video lg:aspect-auto lg:min-h-80 overflow-hidden">
           <Image
             src={template.image}
             alt={template.title}
@@ -51,7 +51,7 @@ function FeaturedTemplate({ template }: { template: Template }) {
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-card/60 via-transparent to-transparent lg:bg-gradient-to-r" />
+          <div className="absolute inset-0 bg-linear-to-t from-card/60 via-transparent to-transparent lg:bg-linear-to-r" />
         </div>
 
         <div className="flex flex-col justify-center gap-5 p-6 md:p-10">
@@ -105,7 +105,7 @@ function TemplateCard({ template, viewMode }: { template: Template; viewMode: 'g
         className="group block"
       >
         <article className="flex flex-row items-center gap-4 rounded-xl border border-border bg-card p-3 transition-colors duration-300 hover:border-primary">
-          <div className="relative h-20 w-20 md:h-24 md:w-40 flex-shrink-0 overflow-hidden rounded-lg">
+          <div className="relative h-20 w-20 md:h-24 md:w-40 shrink-0 overflow-hidden rounded-lg">
             <Image
               src={template.image}
               alt={template.title}
@@ -158,7 +158,7 @@ function TemplateCard({ template, viewMode }: { template: Template; viewMode: 'g
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
-          <div className="absolute inset-0 flex items-end justify-start bg-gradient-to-t from-background/80 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <div className="absolute inset-0 flex items-end justify-start bg-linear-to-t from-background/80 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
             <span className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground">
               View template
               <ArrowRight className="w-3.5 h-3.5" />
@@ -206,7 +206,7 @@ export default function NotionTemplatesList() {
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Filter bar — category pills + view toggle */}
-          <div className="sticky top-16 z-30 -mx-4 mb-10 border-y border-border bg-background/80 px-4 py-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <div className="sticky top-16 z-30 -mx-4 mb-10 border-y border-border bg-background/80 px-4 py-4 backdrop-blur-sm supports-backdrop-filter:bg-background/60">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               <div className="flex flex-wrap gap-2">
                 {categories.map((category) => {

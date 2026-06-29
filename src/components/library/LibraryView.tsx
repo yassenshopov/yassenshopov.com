@@ -17,6 +17,7 @@ import LibraryTableOfContents, {
   libraryTocSectionId,
 } from '@/components/library/LibraryTableOfContents';
 import { Button } from '@/components/ui/button';
+import { SectionHeading } from '@/components/SectionHeading';
 import { useLibrary } from '@/hooks/useLibrary';
 import { Input } from '@/components/ui/input';
 import { entryTimestamp, type LibraryItem } from '@/data/library';
@@ -311,18 +312,15 @@ export function LibraryView({ items }: { items: LibraryItem[] }) {
 
               return (
                 <div key={yearKey} id={libraryTocSectionId(yearKey)} className="scroll-mt-24">
-                  <div className="flex items-end gap-6 mb-8" aria-label={ariaLabel}>
-                    <h2 className="text-5xl md:text-6xl font-bold tracking-tighter leading-none text-foreground">
-                      {heading}
-                    </h2>
-                    <div className="flex-1 pb-2 flex items-center gap-4">
-                      <div className="flex-1 h-px bg-border" />
-                      <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                        {occurrencesInYear.length}{' '}
-                        {occurrencesInYear.length === 1 ? 'item' : 'items'}
-                      </span>
-                    </div>
-                  </div>
+                  <SectionHeading
+                    title={heading}
+                    label={ariaLabel}
+                    className="mb-8"
+                    headingClassName="text-5xl md:text-6xl"
+                    aside={`${occurrencesInYear.length} ${
+                      occurrencesInYear.length === 1 ? 'item' : 'items'
+                    }`}
+                  />
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5">
                     {occurrencesInYear.map((occ) => (
@@ -330,7 +328,6 @@ export function LibraryView({ items }: { items: LibraryItem[] }) {
                         key={`${occ.item.id}-${occ.yearKey}`}
                         item={occ.item}
                         onItemClick={setSelectedItem}
-                        getCreatorLabel={getCreatorLabel}
                         entryYear={isUndated ? undefined : Number(occ.yearKey)}
                         totalEntries={occ.totalEntries}
                         isLatestEntry={occ.isLatestEntry}

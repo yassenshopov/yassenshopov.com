@@ -7,7 +7,7 @@ import {
   SiSupabase,
   SiClerk,
   SiVuedotjs,
-  SiNuxtdotjs,
+  SiNuxt,
   SiNotion,
   SiVercel,
   SiNodedotjs,
@@ -51,7 +51,7 @@ const techStack: Tech[] = [
   { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#38bdf8' },
   { name: 'shadcn/ui', icon: SiShadcnui },
   { name: 'Vue', icon: SiVuedotjs, color: '#42b883' },
-  { name: 'Nuxt', icon: SiNuxtdotjs, color: '#00dc82' },
+  { name: 'Nuxt', icon: SiNuxt, color: '#00dc82' },
   { name: 'Node.js', icon: SiNodedotjs, color: '#5fa04e' },
   { name: 'Supabase', icon: SiSupabase, color: '#3ecf8e' },
   { name: 'Clerk', icon: SiClerk, color: '#6c47ff' },
@@ -77,7 +77,7 @@ function TechItem({ tech }: { tech: Tech }) {
     >
       <Icon
         className={`h-7 w-7 transition-colors duration-300 ${
-          tech.color ? 'group-hover:text-[var(--brand)]' : ''
+          tech.color ? 'group-hover:text-(--brand)' : ''
         }`}
         aria-hidden="true"
       />

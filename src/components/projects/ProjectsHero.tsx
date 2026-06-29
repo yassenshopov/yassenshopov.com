@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { HeroMarquee } from '@/components/HeroMarquee';
+import { GrainOverlay } from '@/components/GrainOverlay';
 
 interface ProjectsHeroProps {
   projectCount: number;
@@ -44,11 +45,11 @@ export function ProjectsHero({
   return (
     <section
       id="projects-hero"
-      className="relative isolate flex items-center overflow-hidden bg-gradient-to-b from-background via-background to-muted scroll-mt-16 min-h-[30rem] md:min-h-[36rem]"
+      className="relative isolate flex items-center overflow-hidden bg-linear-to-b from-background via-background to-muted scroll-mt-16 min-h-120 md:min-h-144"
     >
       <HeroMarquee
         images={thumbnails}
-        tileClassName="aspect-video w-[20rem] sm:w-[24rem] md:w-[30rem] bg-card"
+        tileClassName="aspect-video w-[20rem] sm:w-[24rem] md:w-120 bg-card"
         sizes="(min-width: 768px) 480px, (min-width: 640px) 384px, 320px"
         imageClassName="object-cover object-top"
       />
@@ -76,15 +77,7 @@ export function ProjectsHero({
         }}
       />
 
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 pointer-events-none mix-blend-hard-light opacity-95 dark:opacity-40 dark:mix-blend-overlay [.olive_&]:opacity-40 [.olive_&]:mix-blend-overlay"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3' intercept='-1'/%3E%3CfeFuncG type='linear' slope='3' intercept='-1'/%3E%3CfeFuncB type='linear' slope='3' intercept='-1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-          backgroundSize: '220px 220px',
-        }}
-      />
+      <GrainOverlay className="absolute inset-0 -z-10 pointer-events-none mix-blend-hard-light opacity-95 dark:opacity-40 dark:mix-blend-overlay in-[.olive]:opacity-40 in-[.olive]:mix-blend-overlay" />
 
       <motion.div
         style={{ y: safeContentY, opacity: safeContentOpacity }}
@@ -164,7 +157,7 @@ export function ProjectsHero({
         <motion.span
           animate={prefersReducedMotion ? undefined : { y: [0, 6, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-          className="flex items-center justify-center w-9 h-9 rounded-full border border-border bg-background/60 backdrop-blur-sm group-hover:border-primary"
+          className="flex items-center justify-center w-9 h-9 rounded-full border border-border bg-background/60 backdrop-blur-xs group-hover:border-primary"
         >
           <ChevronDown className="w-4 h-4" />
         </motion.span>

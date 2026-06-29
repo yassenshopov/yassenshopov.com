@@ -67,15 +67,32 @@ export function rateLimit(key: string, limit: number, windowMs: number): RateLim
 }
 
 /**
- * Best-effort client IP from proxy headers. Vercel/most proxies set
- * `x-forwarded-for`; we take the first (client) hop. Falls back to a constant
- * so missing headers degrade to a shared bucket rather than throwing.
+ * Resolve a *trusted* client IP from proxy headers for use as a rate-limit key.
+ *
+ * Security note: `x-forwarded-for` is a comma-separated chain where the client
+ * can freely PREPEND fake hops; only the trusted edge proxy (Vercel) APPENDS
+ * the real connecting IP. Taking the leftmost hop is therefore spoofable — an
+ * attacker rotates a fake first hop to get a fresh bucket every request and
+ * bypass the limit entirely. We instead:
+ *   1. prefer `x-real-ip`, which the platform sets to the true client IP and
+ *      the client cannot override, then
+ *   2. fall back to the LAST (rightmost) `x-forwarded-for` hop — the one added
+ *      by the trusted proxy closest to us.
+ * Falls back to a constant so missing headers degrade to a shared bucket
+ * rather than throwing.
  */
 export function clientIpFrom(headers: Headers): string {
+  const realIp = headers.get('x-real-ip')?.trim();
+  if (realIp) return realIp;
+
   const forwarded = headers.get('x-forwarded-for');
   if (forwarded) {
-    const first = forwarded.split(',')[0]?.trim();
-    if (first) return first;
+    const hops = forwarded
+      .split(',')
+      .map((hop) => hop.trim())
+      .filter(Boolean);
+    const trusted = hops[hops.length - 1];
+    if (trusted) return trusted;
   }
-  return headers.get('x-real-ip')?.trim() || 'unknown';
+  return 'unknown';
 }

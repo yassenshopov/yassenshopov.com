@@ -33,7 +33,7 @@ export function ReadingProgress() {
           scaleX: prefersReducedMotion ? scrollYProgress : smoothed,
           transformOrigin: '0% 50%',
         }}
-        className="h-full w-full bg-gradient-to-r from-primary/70 via-primary to-primary/70"
+        className="h-full w-full bg-linear-to-r from-primary/70 via-primary to-primary/70"
       />
     </div>
   );

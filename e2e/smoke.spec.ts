@@ -72,4 +72,35 @@ test.describe('critical paths', () => {
       await expect(email).toHaveValue('not-an-email');
     }
   });
+
+  test('art gallery opens a piece in the lightbox and closes it', async ({ page }) => {
+    await page.goto('/art');
+    // Gallery tiles are buttons labelled "Open <alt>".
+    const firstTile = page.getByRole('button', { name: /^open /i }).first();
+    await expect(firstTile).toBeVisible();
+    await firstTile.click();
+
+    const dialog = page.getByRole('dialog');
+    await expect(dialog).toBeVisible();
+
+    await page.keyboard.press('Escape');
+    await expect(dialog).toBeHidden();
+  });
+
+  test('about timeline image opens an accessible fullscreen viewer', async ({ page }) => {
+    await page.goto('/about');
+    // The timeline image triggers are real buttons (keyboard-accessible), only
+    // shown at md+ — the default Playwright viewport (1280px) qualifies.
+    const imageButton = page.getByRole('button', { name: /view image for/i }).first();
+    await expect(imageButton).toBeVisible();
+    await imageButton.click();
+
+    const dialog = page.getByRole('dialog');
+    await expect(dialog).toBeVisible();
+    // The viewer exposes an explicit, labelled close control.
+    const close = page.getByRole('button', { name: /close image viewer/i });
+    await expect(close).toBeVisible();
+    await close.click();
+    await expect(dialog).toBeHidden();
+  });
 });

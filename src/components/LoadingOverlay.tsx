@@ -32,7 +32,7 @@ export function LoadingOverlay() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-background/80 backdrop-blur-lg"
+      className="fixed inset-0 z-9999 flex flex-col items-center justify-center bg-background/80 backdrop-blur-lg"
     >
       <div className="flex flex-col items-center gap-8">
         <motion.div

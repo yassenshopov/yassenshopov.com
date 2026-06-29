@@ -9,7 +9,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatedNumber } from '@/components/AnimatedNumber';
 import { useEffect, useState } from 'react';
-import { getTechBadgeMeta, projects } from '@/components/ProjectsList';
+import { getTechBadgeMeta, projects } from '@/data/projects';
 import { TechBadge } from '@/components/TechBadge';
 import { ProjectsHero } from '@/components/projects/ProjectsHero';
 import { ProjectsOverview } from '@/components/projects/ProjectsOverview';
@@ -67,7 +67,7 @@ export default function ProjectsPage() {
       {/* Projects deep dives */}
       {projects.map((project, index) => (
         <section
-          key={index}
+          key={project.title}
           id={project.title.toLowerCase()}
           className={`py-20 md:py-28 ${index % 2 === 0 ? 'bg-muted' : 'bg-background'} scroll-mt-16`}
         >
@@ -94,7 +94,7 @@ export default function ProjectsPage() {
               >
                 <button
                   type="button"
-                  className={`relative h-full overflow-hidden bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:row-span-2 lg:min-h-[420px] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                  className={`relative h-full overflow-hidden bg-card aspect-video sm:aspect-4/3 lg:aspect-auto lg:row-span-2 lg:min-h-[420px] transition focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/60 ${
                     index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'
                   }`}
                   onClick={() => project.images[0] && handleOpenImage(index, 0)}
@@ -109,12 +109,12 @@ export default function ProjectsPage() {
                       sizes="(max-width: 1024px) 100vw, 66vw"
                     />
                   ) : (
-                    <div className="aspect-[16/9] bg-muted" />
+                    <div className="aspect-video bg-muted" />
                   )}
                 </button>
                 <button
                   type="button"
-                  className={`relative h-full overflow-hidden bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[200px] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                  className={`relative h-full overflow-hidden bg-card aspect-video sm:aspect-4/3 lg:aspect-auto lg:min-h-[200px] transition focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/60 ${
                     index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'
                   }`}
                   onClick={() => project.images[1] && handleOpenImage(index, 1)}
@@ -129,12 +129,12 @@ export default function ProjectsPage() {
                       sizes="(max-width: 1024px) 100vw, 33vw"
                     />
                   ) : (
-                    <div className="aspect-[16/9] bg-muted" />
+                    <div className="aspect-video bg-muted" />
                   )}
                 </button>
                 <button
                   type="button"
-                  className={`relative h-full overflow-hidden bg-card aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[200px] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                  className={`relative h-full overflow-hidden bg-card aspect-video sm:aspect-4/3 lg:aspect-auto lg:min-h-[200px] transition focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/60 ${
                     index % 2 === 0 ? 'lg:order-3' : 'lg:order-2'
                   }`}
                   onClick={() => project.images[2] && handleOpenImage(index, 2)}
@@ -149,7 +149,7 @@ export default function ProjectsPage() {
                       sizes="(max-width: 1024px) 100vw, 33vw"
                     />
                   ) : (
-                    <div className="aspect-[16/9] bg-muted" />
+                    <div className="aspect-video bg-muted" />
                   )}
                 </button>
               </div>
