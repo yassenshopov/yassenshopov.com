@@ -5914,8 +5914,9 @@
     "status": "want-to-read",
     "genre": [],
     "description": "",
+    "year": 2012,
     "externalUrl": "https://www.goodreads.com/book/show/15956427",
-    "author": "Nassim Taleb",
+    "author": "Nassim Nicholas Taleb",
     "links": {
       "goodreads": "https://www.goodreads.com/book/show/15956427"
     },
@@ -6607,22 +6608,6 @@
       "goodreads": "https://www.goodreads.com/book/show/840.The_Design_of_Everyday_Things"
     },
     "coverImage": "/resources/images/library/the-design-of-everyday-things-1779880497973.jpg"
-  },
-  {
-    "id": "189",
-    "title": "Antifragile",
-    "type": "book",
-    "rating": null,
-    "status": "want-to-read",
-    "genre": [],
-    "description": "",
-    "year": 2012,
-    "externalUrl": "https://www.goodreads.com/book/show/13530973-antifragile",
-    "author": "Nassim Nicholas Taleb",
-    "links": {
-      "goodreads": "https://www.goodreads.com/book/show/13530973-antifragile"
-    },
-    "coverImage": "/resources/images/library/antifragile.png"
   },
   {
     "id": "190",
