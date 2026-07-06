@@ -5162,27 +5162,6 @@
     "coverImage": "/resources/images/library/tales-of-dunk-and-egg-1779878179372.jpg"
   },
   {
-    "id": "104",
-    "title": "Annihilation",
-    "type": "book",
-    "genre": [],
-    "description": "",
-    "year": 2014,
-    "externalUrl": "https://www.goodreads.com/book/show/17934530-annihilation",
-    "author": "Jeff VanderMeer",
-    "links": {
-      "goodreads": "https://www.goodreads.com/book/show/17934530-annihilation"
-    },
-    "coverImage": "/resources/images/library/annihilation-1779878168211.jpg",
-    "entries": [
-      {
-        "dateStarted": "2026-06-25",
-        "dateCompleted": "2026-06-29",
-        "status": "completed"
-      }
-    ]
-  },
-  {
     "id": "105",
     "title": "Children of Time",
     "type": "book",
@@ -6977,6 +6956,27 @@
     "coverImage": "/resources/images/library/convenience-store-woman-1779880341773.webp",
     "entries": [
       {
+        "dateCompleted": "2026-06-29",
+        "status": "completed"
+      }
+    ]
+  },
+  {
+    "id": "104",
+    "title": "Annihilation",
+    "type": "book",
+    "genre": [],
+    "description": "",
+    "year": 2014,
+    "externalUrl": "https://www.goodreads.com/book/show/17934530-annihilation",
+    "author": "Jeff VanderMeer",
+    "links": {
+      "goodreads": "https://www.goodreads.com/book/show/17934530-annihilation"
+    },
+    "coverImage": "/resources/images/library/annihilation-1779878168211.jpg",
+    "entries": [
+      {
+        "dateStarted": "2026-06-25",
         "dateCompleted": "2026-06-29",
         "status": "completed"
       }
