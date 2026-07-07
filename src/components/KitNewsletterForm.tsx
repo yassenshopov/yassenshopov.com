@@ -8,8 +8,13 @@ interface KitNewsletterFormProps {
   variant?: 'default' | 'inline';
 }
 
+// Hex uid of the Kit form, used only by the embedded (script-based) variant.
+// The inline variant subscribes through our own /api/subscribe route, which
+// calls Kit's API server-side — posting straight to Kit's public form
+// endpoint from fetch gets quarantined by their bot guard and silently
+// drops the subscriber.
 const KIT_FORM_ID = '7b89eac8f8';
-const KIT_FORM_ACTION = `https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`;
+const SUBSCRIBE_ENDPOINT = '/api/subscribe';
 
 type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
 
@@ -36,20 +41,15 @@ function InlineSubscribeForm() {
     setErrorMessage(null);
 
     try {
-      const body = new URLSearchParams();
-      body.set('email_address', email);
-
-      const response = await fetch(KIT_FORM_ACTION, {
+      const response = await fetch(SUBSCRIBE_ENDPOINT, {
         method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: body.toString(),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
       });
 
       if (!response.ok) {
-        throw new Error(`Subscription failed (${response.status})`);
+        const data = (await response.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(data?.error ?? `Subscription failed (${response.status})`);
       }
 
       setStatus('success');
