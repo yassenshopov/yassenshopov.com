@@ -25,6 +25,11 @@ import { InlineShareButtons, ShareRail, SharePopover } from '@/components/blog/B
 import { ReadingProgress } from '@/components/blog/ReadingProgress';
 import { useArticleHeadings, TocList, MobileTocSheet } from '@/components/blog/blog-toc';
 import { markdownComponents } from '@/components/blog/markdown-renderers';
+import {
+  TrackMiniPlayer,
+  TrackPlayerProvider,
+  extractTrackOfTheWeek,
+} from '@/components/blog/TrackMiniPlayer';
 
 /**
  * Floating "back to top" button that fades in once the reader has scrolled
@@ -173,8 +178,10 @@ export function BlogContent({ post, prevPost, nextPost, wordCount }: BlogContent
     [wordCount]
   );
 
+  const trackOfTheWeek = useMemo(() => extractTrackOfTheWeek(post.content), [post.content]);
+
   return (
-    <>
+    <TrackPlayerProvider track={trackOfTheWeek}>
       <ReadingProgress />
 
       {/* Hero Section */}
@@ -506,7 +513,8 @@ export function BlogContent({ post, prevPost, nextPost, wordCount }: BlogContent
 
       {/* Floating helpers */}
       <MobileTocSheet headings={headings} activeId={activeId} />
+      {trackOfTheWeek && <TrackMiniPlayer track={trackOfTheWeek} />}
       <BackToTopButton />
-    </>
+    </TrackPlayerProvider>
   );
 }

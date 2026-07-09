@@ -1,7 +1,8 @@
 'use client';
 
-import { Children, isValidElement } from 'react';
+import { Children, isValidElement, useEffect, useRef } from 'react';
 import type { Components } from 'react-markdown';
+import { useTrackPlayer } from '@/components/blog/TrackMiniPlayer';
 
 function parseYouTubeUrl(href: string | undefined): { videoId: string; start?: number } | null {
   if (!href) return null;
@@ -55,7 +56,30 @@ function hastText(node: unknown): string {
   return '';
 }
 
+/**
+ * Host for the Track of the Week player. The Spotify iFrame API replaces the
+ * inner div with the real embed; play/pause state is shared with the floating
+ * mini player through TrackPlayerProvider.
+ */
+function SyncedTrackEmbed({ register }: { register: (el: HTMLElement | null) => void }) {
+  const hostRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    register(hostRef.current);
+  }, [register]);
+  return (
+    <figure className="not-prose my-10">
+      <div className="min-h-[152px] [&_iframe]:block [&_iframe]:w-full [&_iframe]:rounded-xl [&_iframe]:border-0 [&_iframe]:shadow-xs">
+        <div ref={hostRef} />
+      </div>
+    </figure>
+  );
+}
+
 function SpotifyEmbed({ type, id, title }: { type: string; id: string; title?: string }) {
+  const player = useTrackPlayer();
+  if (player && type === 'track' && player.trackId === id) {
+    return <SyncedTrackEmbed register={player.registerHost} />;
+  }
   const compact = type === 'track' || type === 'episode';
   const height = compact ? 152 : 352;
   return (
