@@ -4482,6 +4482,29 @@
     ]
   },
   {
+    "id": "the-odyssey-2026",
+    "title": "The Odyssey",
+    "author": "Christopher Nolan",
+    "type": "movie",
+    "year": 2026,
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "description": "Christopher Nolan's epic adaptation of Homer's poem, following Odysseus's perilous journey home after the Trojan War.",
+    "coverImage": "/resources/images/library/the-odyssey-2026.jpg",
+    "links": {},
+    "externalUrl": "https://www.imdb.com/title/tt33764258/",
+    "director": "Christopher Nolan",
+    "entries": [
+      {
+        "dateCompleted": "2026-07-23",
+        "status": "completed"
+      }
+    ]
+  },
+  {
     "id": "the-personal-mba",
     "title": "The Personal MBA",
     "author": "Josh Kaufman",
