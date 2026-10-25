@@ -37,10 +37,7 @@ function getFallbackIcon(type: LibraryItem['type']) {
 function CurrentlyOnLine({ type }: { type: LibraryItem['type'] }) {
   const verb = type === 'book' ? 'Reading' : 'Watching';
   return (
-    <p
-      className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400"
-      aria-label={`Currently ${verb.toLowerCase()}`}
-    >
+    <p className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
       <span className="relative flex h-1.5 w-1.5" aria-hidden>
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
         <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />

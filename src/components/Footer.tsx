@@ -140,7 +140,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col-reverse items-start gap-4 border-t py-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-body text-sm text-foreground/50">
+          <p className="font-body text-sm text-muted-foreground">
             &copy; {year} Yassen Shopov. All rights reserved.
           </p>
           <BackToTop />

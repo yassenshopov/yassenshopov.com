@@ -89,32 +89,36 @@ export default function LibraryTableOfContents({
   if (sections.length === 0) return null;
 
   return (
-    <div className="fixed top-24 right-4 lg:right-8 z-40 hidden md:block group">
-      {/* Minimal lines (default) */}
-      <div className="absolute right-0 top-0 group-hover:opacity-0 group-hover:invisible transition-[opacity,visibility] duration-300 bg-card/80 backdrop-blur-xs rounded-lg border border-border p-2 max-h-[calc(100vh-8rem)] overflow-y-auto">
-        <nav className="space-y-3" aria-label="Library sections">
+    <div
+      className="fixed top-24 right-4 lg:right-8 z-40 hidden md:block group outline-none"
+      tabIndex={0}
+    >
+      {/* Decorative scroll rail (not interactive — avoids tiny touch targets in CI). */}
+      <div
+        aria-hidden
+        className="absolute right-0 top-0 pointer-events-none transition-[opacity,visibility] duration-300 group-hover:opacity-0 group-hover:invisible group-focus-within:opacity-0 group-focus-within:invisible bg-card/80 backdrop-blur-xs rounded-lg border border-border p-2 max-h-[calc(100vh-8rem)] overflow-y-auto"
+      >
+        <div className="flex flex-col items-end gap-0.5">
           {sections.map((section) => {
             const isActive = activeKey === section.key;
             return (
-              <button
-                key={section.key}
-                type="button"
-                onClick={() => handleJump(section)}
-                className="block h-[2px] rounded-full transition-all duration-300"
-                style={{
-                  backgroundColor: isActive ? 'var(--primary)' : 'var(--muted-foreground)',
-                  opacity: isActive ? 1 : 0.3,
-                  width: isActive ? '20px' : '12px',
-                }}
-                aria-label={`Jump to ${section.label}`}
-              />
+              <div key={section.key} className="flex h-11 w-11 items-center justify-center">
+                <span
+                  className="block h-0.5 rounded-full transition-all duration-300"
+                  style={{
+                    backgroundColor: isActive ? 'var(--primary)' : 'var(--muted-foreground)',
+                    opacity: isActive ? 1 : 0.45,
+                    width: isActive ? '20px' : '12px',
+                  }}
+                />
+              </div>
             );
           })}
-        </nav>
+        </div>
       </div>
 
-      {/* Expanded panel (hover) */}
-      <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-[opacity,visibility] duration-300 bg-card rounded-lg border border-border p-4 min-w-[200px] flex max-h-[calc(100vh-8rem)] flex-col">
+      {/* Interactive panel (hover or keyboard focus on wrapper). */}
+      <div className="hidden max-h-[calc(100vh-8rem)] min-w-[200px] flex-col rounded-lg border border-border bg-card p-4 group-hover:flex group-focus-within:flex">
         <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground mb-3">
           On this page
         </h3>
@@ -127,20 +131,21 @@ export default function LibraryTableOfContents({
                 type="button"
                 onClick={() => handleJump(section)}
                 className={[
-                  'flex items-center gap-2 w-full px-3 py-2 text-sm rounded-md transition-colors',
+                  'flex min-h-11 items-center gap-2 w-full px-3 py-2 text-sm rounded-md transition-colors',
                   isActive
                     ? 'bg-primary/10 text-primary'
                     : 'text-muted-foreground hover:text-foreground hover:bg-accent',
                 ].join(' ')}
               >
                 <ChevronRight
-                  className={`w-4 h-4 transition-transform ${isActive ? 'rotate-90' : ''}`}
+                  className={`w-4 h-4 shrink-0 transition-transform ${isActive ? 'rotate-90' : ''}`}
+                  aria-hidden
                 />
                 <span className="flex-1 text-left tabular-nums">{section.label}</span>
                 <span
                   className={[
-                    'text-[10px] font-semibold tabular-nums',
-                    isActive ? 'text-primary' : 'text-muted-foreground/70',
+                    'text-xs font-semibold tabular-nums',
+                    isActive ? 'text-primary' : 'text-muted-foreground',
                   ].join(' ')}
                 >
                   {section.count}
