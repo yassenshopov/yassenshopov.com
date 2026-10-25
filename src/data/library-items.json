@@ -77,12 +77,16 @@
       {
         "dateCompleted": "2023-02-01",
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "subtitle": "Season 1",
+        "coverImage": "/resources/images/library/the-last-of-us-season-1.png"
       },
       {
         "dateCompleted": "2025-05-01",
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "subtitle": "Season 2",
+        "coverImage": "/resources/images/library/the-last-of-us.webp"
       }
     ]
   },
@@ -128,7 +132,8 @@
         "status": "completed",
         "rating": 4
       }
-    ]
+    ],
+    "director": "Dimitar Dimitrov"
   },
   {
     "id": "6",
@@ -151,7 +156,16 @@
       {
         "dateCompleted": "2025-02-01",
         "status": "completed",
-        "rating": 5
+        "rating": 5,
+        "subtitle": "Seasons 1–6",
+        "coverImages": [
+          "/resources/images/library/peaky-blinders-season-1.png",
+          "/resources/images/library/peaky-blinders-season-2.png",
+          "/resources/images/library/peaky-blinders-season-3.png",
+          "/resources/images/library/peaky-blinders-season-4.jpg",
+          "/resources/images/library/peaky-blinders-season-5.png",
+          "/resources/images/library/peaky-blinders-season-6.jpg"
+        ]
       }
     ]
   },
@@ -1348,7 +1362,7 @@
       "Adaptation"
     ],
     "description": "Katniss Everdeen voluntarily takes her younger sister's place in the Hunger Games: a televised competition in which two teenagers from each district fight to the death.",
-    "coverImage": "/resources/images/library/hunger-games-movie.webp",
+    "coverImage": "/resources/images/library/hunger-games-movie-1792916250629.webp",
     "series": "The Hunger Games",
     "seriesOrder": 1,
     "relationships": {
@@ -4174,7 +4188,8 @@
       {
         "status": "completed"
       }
-    ]
+    ],
+    "director": "David Fincher"
   },
   {
     "id": "shoe-dog",
@@ -4479,7 +4494,8 @@
         "dateCompleted": "2023-07-01",
         "status": "completed"
       }
-    ]
+    ],
+    "director": "The Wachowskis"
   },
   {
     "id": "the-odyssey-2026",
@@ -4567,7 +4583,8 @@
         "dateCompleted": "2024-06-01",
         "status": "completed"
       }
-    ]
+    ],
+    "director": "David Fincher"
   },
   {
     "id": "tomorrow-and-tomorrow-and-tomorrow",
@@ -6268,13 +6285,22 @@
     "entries": [
       {
         "dateCompleted": "2025-12-01",
-        "status": "in-progress",
-        "rating": 5
+        "status": "completed",
+        "rating": 5,
+        "subtitle": "Seasons 1–4",
+        "coverImages": [
+          "/resources/images/library/the-bear-season-1.png",
+          "/resources/images/library/the-bear-season-2.png",
+          "/resources/images/library/the-bear-season-3.png",
+          "/resources/images/library/the-bear-season-4.png"
+        ]
       },
       {
         "dateStarted": "2026-06-01",
         "dateCompleted": "2026-06-26",
-        "status": "completed"
+        "status": "completed",
+        "subtitle": "Season 5",
+        "coverImage": "/resources/images/library/the-bear-season-5.png"
       }
     ]
   },
@@ -7832,7 +7858,8 @@
         "dateCompleted": "2026-06-01",
         "status": "completed"
       }
-    ]
+    ],
+    "creator": "Catherine Magee"
   },
   {
     "id": "263",
@@ -8971,7 +8998,8 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt27497448/"
     },
-    "coverImage": "/resources/images/library/a-knight-of-the-seven-kingdoms-1779881227677.jpg"
+    "coverImage": "/resources/images/library/a-knight-of-the-seven-kingdoms-1779881227677.jpg",
+    "creator": "George R. R. Martin, Ira Parker"
   },
   {
     "id": "325",
@@ -8986,7 +9014,8 @@
     "links": {
       "imdb": "https://www.imdb.com/title/tt1586680/"
     },
-    "coverImage": "/resources/images/library/shameless-1779881216948.jpg"
+    "coverImage": "/resources/images/library/shameless-1779881216948.jpg",
+    "creator": "Paul Abbott, John Wells"
   },
   {
     "id": "326",
@@ -9047,7 +9076,8 @@
         "dateCompleted": "2026-05-01",
         "status": "completed"
       }
-    ]
+    ],
+    "director": "Christopher Storer"
   },
   {
     "id": "329",

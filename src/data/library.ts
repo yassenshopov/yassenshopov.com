@@ -13,6 +13,14 @@ export interface LibraryEntry {
   status: ReadingStatus;
   rating?: number | null;
   notes?: string;
+  /** Overrides item title for this engagement (e.g. season-specific label). */
+  displayTitle?: string;
+  /** Short line under the title (e.g. "Season 5"). */
+  subtitle?: string;
+  /** Overrides item cover for this engagement. */
+  coverImage?: string;
+  /** Series (etc.): stacked poster deck on the grid card — fans out on hover. */
+  coverImages?: string[];
 }
 
 export interface LibraryItem {

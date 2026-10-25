@@ -1,29 +1,19 @@
 'use client';
 
 import { memo, useEffect, useRef, useState } from 'react';
-import { BookOpen, Clapperboard, Monitor, Upload, Loader2, Repeat } from 'lucide-react';
+import { BookOpen, Clapperboard, Monitor, Upload, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import { toast } from 'sonner';
-import { type LibraryItem } from '@/data/library';
-import { getCreatorLabel } from '@/lib/library-utils';
+import { type LibraryEntry, type LibraryItem } from '@/data/library';
+import { resolveEntryPresentation } from '@/lib/library-utils';
 import TierBadge from './TierBadge';
+import LibraryCoverDeck from './LibraryCoverDeck';
 
 interface LibraryItemCardProps {
   item: LibraryItem;
+  /** Entry for this grid occurrence; drives per-engagement title/cover overrides. */
+  entry?: LibraryEntry;
   onItemClick: (item: LibraryItem) => void;
-  /**
-   * Year this card occurrence represents (the year of the entry being shown).
-   * Omitted for wishlist/watchlist items in the "undated" section.
-   */
-  entryYear?: number;
-  /**
-   * Total number of reading/watch entries this item has across all years.
-   * When `> 1`, the card shows a re-read / first-read badge so users can see
-   * that the work has been engaged with multiple times.
-   */
-  totalEntries?: number;
-  /** True when this occurrence is the most recent entry for the item. */
-  isLatestEntry?: boolean;
 }
 
 // Temporary: drag-and-drop cover replacement, dev-only. Remove this block
@@ -60,20 +50,15 @@ function CurrentlyOnLine({ type }: { type: LibraryItem['type'] }) {
   );
 }
 
-function LibraryItemCard({
-  item,
-  onItemClick,
-  entryYear,
-  totalEntries = item.entries?.length ?? 0,
-  isLatestEntry = true,
-}: LibraryItemCardProps) {
-  const creator = getCreatorLabel(item);
+function LibraryItemCard({ item, entry, onItemClick }: LibraryItemCardProps) {
+  const presentation = resolveEntryPresentation(item, entry);
+  const showDeck = item.type === 'series' && (presentation.coverImages?.length ?? 0) >= 2;
   const [isDragOver, setIsDragOver] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   // Tracks the cover URL we want to show right now. Defaults to the prop value
   // and gets updated optimistically after a successful upload. The effect keeps
   // it in sync when the prop changes (e.g. HMR after the JSON write lands).
-  const [coverImage, setCoverImage] = useState(item.coverImage);
+  const [coverImage, setCoverImage] = useState(presentation.coverImage);
   // Average color sampled from the cover, used as the letterbox background so
   // it blends with the artwork instead of a flat muted/black bar.
   const [coverColor, setCoverColor] = useState<string | null>(null);
@@ -81,8 +66,8 @@ function LibraryItemCard({
   const dragDepth = useRef(0);
 
   useEffect(() => {
-    setCoverImage(item.coverImage);
-  }, [item.coverImage]);
+    setCoverImage(presentation.coverImage);
+  }, [presentation.coverImage]);
 
   useEffect(() => {
     if (!coverImage) {
@@ -206,18 +191,22 @@ function LibraryItemCard({
         onItemClick(item);
       }}
       {...dragHandlers}
-      className="group text-left flex flex-col gap-3 rounded-lg outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-opacity"
+      className="group cursor-pointer text-left flex flex-col gap-3 rounded-lg outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-opacity"
     >
       <div
         style={coverColor ? { backgroundColor: coverColor } : undefined}
-        className={`relative aspect-video w-full overflow-hidden rounded-md transition-colors duration-500 ${
-          coverColor ? '' : 'bg-muted dark:bg-black'
-        } ${isDragOver ? 'ring-2 ring-primary ring-offset-2 ring-offset-background' : ''}`}
+        className={`relative aspect-video w-full transition-colors duration-500 ${
+          showDeck ? 'overflow-visible rounded-none' : 'overflow-hidden rounded-md'
+        } ${coverColor ? '' : 'bg-muted dark:bg-black'} ${
+          isDragOver ? 'ring-2 ring-primary ring-offset-2 ring-offset-background' : ''
+        }`}
       >
-        {coverImage ? (
+        {showDeck && presentation.coverImages ? (
+          <LibraryCoverDeck images={presentation.coverImages} alt={presentation.title} />
+        ) : coverImage ? (
           <Image
             src={coverImage}
-            alt={item.title}
+            alt={presentation.title}
             fill
             sizes="(min-width: 1536px) 20vw, (min-width: 1280px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="object-contain transition-transform duration-300 group-hover:scale-[1.02]"
@@ -226,21 +215,6 @@ function LibraryItemCard({
           <div className="flex items-center justify-center h-full text-muted-foreground">
             {getFallbackIcon(item.type)}
           </div>
-        )}
-
-        {/* Re-read / re-watch badge: surfaced when a work has more than one
-            recorded engagement. The grid renders one card per year, so this
-            tells the reader the work recurs across the library. */}
-        {totalEntries > 1 && (
-          <span
-            className="absolute left-2 top-2 z-10 inline-flex items-center gap-1 rounded-full bg-background/85 px-2 py-0.5 text-[10px] font-semibold text-foreground shadow-xs ring-1 ring-border backdrop-blur-xs"
-            aria-label={`${isLatestEntry ? 'Most recent of' : 'One of'} ${totalEntries} ${
-              item.type === 'book' ? 'readings' : 'viewings'
-            }${entryYear ? ` (${entryYear})` : ''}`}
-          >
-            <Repeat className="h-3 w-3" aria-hidden="true" />
-            {totalEntries}&times;
-          </span>
         )}
 
         {COVER_EDIT_ENABLED && (isDragOver || isUploading) && (
@@ -262,14 +236,16 @@ function LibraryItemCard({
 
       <div className="flex flex-col gap-1">
         <h3 className="text-base font-semibold leading-snug text-foreground group-hover:text-primary transition-colors line-clamp-2">
-          {item.title}
+          {presentation.title}
           {item.series && item.seriesOrder != null && (
             <span className="ml-1.5 text-xs font-normal text-muted-foreground align-middle">
               · {item.series} #{item.seriesOrder}
             </span>
           )}
         </h3>
-        {creator && <p className="text-sm text-muted-foreground line-clamp-1">by {creator}</p>}
+        {presentation.byline && (
+          <p className="text-sm text-muted-foreground line-clamp-1">by {presentation.byline}</p>
+        )}
         <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
           <TierBadge itemId={item.id} />
           {item.status === 'in-progress' && <CurrentlyOnLine type={item.type} />}

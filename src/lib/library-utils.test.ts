@@ -7,6 +7,8 @@ import {
   getRelationshipLabel,
   getRelatedItems,
   getEntryYears,
+  getPrimaryEntryForYear,
+  resolveEntryPresentation,
   calculateStatistics,
 } from './library-utils';
 
@@ -163,5 +165,40 @@ describe('calculateStatistics', () => {
     expect(stats.totalCompleted).toBe(0);
     expect(stats.avgRating).toBe(0);
     expect(stats.topGenres).toEqual([]);
+  });
+});
+
+describe('getPrimaryEntryForYear', () => {
+  it('returns the latest-dated entry within the year', () => {
+    const item = makeItem({
+      id: 'bear',
+      type: 'series',
+      creator: 'CS',
+      entries: [
+        { status: 'completed', dateCompleted: '2025-12-01' },
+        { status: 'completed', dateStarted: '2026-06-01', dateCompleted: '2026-06-26' },
+        { status: 'completed', dateCompleted: '2026-01-15' },
+      ],
+    });
+    const hit = getPrimaryEntryForYear(item, 2026);
+    expect(hit?.index).toBe(1);
+    expect(hit?.entry.dateCompleted).toBe('2026-06-26');
+  });
+});
+
+describe('resolveEntryPresentation', () => {
+  it('merges per-entry overrides with item defaults', () => {
+    const item = makeItem({
+      id: 'x',
+      type: 'series',
+      title: 'The Bear',
+      creator: 'Christopher Storer',
+      coverImage: '/default.jpg',
+      entries: [{ status: 'completed', subtitle: 'Season 5', displayTitle: 'The Bear' }],
+    });
+    const view = resolveEntryPresentation(item, item.entries![0]);
+    expect(view.title).toBe('The Bear');
+    expect(view.coverImage).toBe('/default.jpg');
+    expect(view.byline).toBe('Christopher Storer · Season 5');
   });
 });

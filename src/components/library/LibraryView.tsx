@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, X, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
@@ -20,7 +20,8 @@ import { Button } from '@/components/ui/button';
 import { SectionHeading } from '@/components/SectionHeading';
 import { useLibrary } from '@/hooks/useLibrary';
 import { Input } from '@/components/ui/input';
-import { entryTimestamp, type LibraryItem } from '@/data/library';
+import { entryTimestamp, type LibraryEntry, type LibraryItem } from '@/data/library';
+import { getPrimaryEntryForYear } from '@/lib/library-utils';
 
 const LibraryModal = dynamic(() => import('@/components/library/LibraryModal'), { ssr: false });
 
@@ -29,6 +30,8 @@ const UNDATED_KEY = 'undated';
 interface LibraryOccurrence {
   item: LibraryItem;
   yearKey: string;
+  entry?: LibraryEntry;
+  entryIndex?: number;
   /**
    * Total entries across all years for this item. `> 1` means the card
    * represents a re-read / re-watch and the card should show a badge.
@@ -65,11 +68,16 @@ function toOccurrences(items: LibraryItem[]): LibraryOccurrence[] {
       // Multiple entries inside the same calendar year collapse to a single card.
       if (seen.has(yearKey)) continue;
       seen.add(yearKey);
+      const yearNum = yearKey === UNDATED_KEY ? NaN : Number(yearKey);
+      const primary = Number.isFinite(yearNum) ? getPrimaryEntryForYear(item, yearNum) : undefined;
+      const primaryEntry = primary?.entry ?? entry;
       out.push({
         item,
         yearKey,
+        entry: primaryEntry,
+        entryIndex: primary?.index,
         totalEntries,
-        isLatestEntry: entryTimestamp(entry) === latestTimestamp,
+        isLatestEntry: entryTimestamp(primaryEntry) === latestTimestamp,
       });
     }
   }
@@ -120,6 +128,8 @@ export function LibraryView({ items }: { items: LibraryItem[] }) {
     isTransitioning,
     revealItemsUpTo,
   } = useLibrary(items);
+
+  const [selectedEntryIndex, setSelectedEntryIndex] = useState<number | null>(null);
 
   const overallStats = useMemo(() => getStatistics(allItems), [getStatistics, allItems]);
 
@@ -327,10 +337,13 @@ export function LibraryView({ items }: { items: LibraryItem[] }) {
                       <LibraryItemCard
                         key={`${occ.item.id}-${occ.yearKey}`}
                         item={occ.item}
-                        onItemClick={setSelectedItem}
-                        entryYear={isUndated ? undefined : Number(occ.yearKey)}
-                        totalEntries={occ.totalEntries}
-                        isLatestEntry={occ.isLatestEntry}
+                        entry={occ.entry}
+                        onItemClick={(item) => {
+                          setSelectedItem(item);
+                          setSelectedEntryIndex(
+                            occ.entryIndex !== undefined ? occ.entryIndex : null
+                          );
+                        }}
                       />
                     ))}
                   </div>
@@ -376,7 +389,11 @@ export function LibraryView({ items }: { items: LibraryItem[] }) {
 
       <LibraryModal
         selectedItem={selectedItem}
-        onClose={() => setSelectedItem(null)}
+        selectedEntryIndex={selectedEntryIndex}
+        onClose={() => {
+          setSelectedItem(null);
+          setSelectedEntryIndex(null);
+        }}
         onNavigate={navigateToItem}
         isTransitioning={isTransitioning}
         sortedItems={sortedItems}
@@ -385,7 +402,10 @@ export function LibraryView({ items }: { items: LibraryItem[] }) {
         getRelatedItems={getRelatedItems}
         getSeriesInfo={getSeriesInfo}
         getRelationshipLabel={getRelationshipLabel}
-        onSelectItem={setSelectedItem}
+        onSelectItem={(item) => {
+          setSelectedItem(item);
+          setSelectedEntryIndex(null);
+        }}
       />
     </Layout>
   );

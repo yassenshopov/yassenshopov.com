@@ -1,4 +1,77 @@
-import { type LibraryItem, type LibraryEntry, getLatestEntry } from '@/data/library';
+import {
+  type LibraryItem,
+  type LibraryEntry,
+  entryTimestamp,
+  getLatestEntry,
+} from '@/data/library';
+
+export interface EntryPresentation {
+  title: string;
+  coverImage?: string;
+  /** When length ≥ 2, the grid card renders a hover-spread poster deck (series). */
+  coverImages?: string[];
+  subtitle?: string;
+  /** Creator line with optional subtitle suffix for cards/modal. */
+  byline: string;
+}
+
+export function resolveEntryPresentation(
+  item: LibraryItem,
+  entry?: LibraryEntry
+): EntryPresentation {
+  const title = entry?.displayTitle?.trim() || item.title;
+  const coverImages = entry?.coverImages?.filter((src) => src.length > 0);
+  const coverImage =
+    entry?.coverImage ||
+    (coverImages && coverImages.length > 0 ? coverImages[coverImages.length - 1] : undefined) ||
+    item.coverImage;
+  const subtitle = entry?.subtitle?.trim();
+  const creator = getCreatorLabel(item);
+  let byline = creator;
+  if (subtitle) {
+    byline = creator ? `${creator} · ${subtitle}` : subtitle;
+  }
+  return {
+    title,
+    coverImage,
+    coverImages: coverImages && coverImages.length >= 2 ? coverImages : undefined,
+    subtitle,
+    byline,
+  };
+}
+
+/** Poster URLs for modal carousel (deck entries or a single override / item cover). */
+export function entryPosterImages(item: LibraryItem, entry?: LibraryEntry): string[] {
+  const deck = entry?.coverImages?.filter((src) => src.length > 0);
+  if (deck && deck.length > 0) return deck;
+  const single = entry?.coverImage || item.coverImage;
+  return single ? [single] : [];
+}
+
+/**
+ * When an item has multiple entries in the same calendar year, returns the
+ * latest-dated one — used for grid cards and modal context.
+ */
+export function getPrimaryEntryForYear(
+  item: LibraryItem,
+  year: number
+): { entry: LibraryEntry; index: number } | undefined {
+  if (!item.entries?.length) return undefined;
+  let bestIndex = -1;
+  let bestTs = -1;
+  for (let i = 0; i < item.entries.length; i++) {
+    const entry = item.entries[i];
+    const date = entry.dateCompleted || entry.dateStarted;
+    if (!date || new Date(date).getFullYear() !== year) continue;
+    const ts = entryTimestamp(entry);
+    if (ts >= bestTs) {
+      bestTs = ts;
+      bestIndex = i;
+    }
+  }
+  if (bestIndex < 0) return undefined;
+  return { entry: item.entries[bestIndex], index: bestIndex };
+}
 
 /**
  * Years (descending) in which this item has a recorded reading/watch.
@@ -20,14 +93,8 @@ export const getEntryYears = (item: LibraryItem): number[] => {
  * Pulls the entry that corresponds to a given year, useful when an item is
  * rendered once per year it was engaged with.
  */
-export const getEntryForYear = (item: LibraryItem, year: number): LibraryEntry | undefined => {
-  if (!item.entries) return undefined;
-  return item.entries.find((entry) => {
-    const date = entry.dateCompleted || entry.dateStarted;
-    if (!date) return false;
-    return new Date(date).getFullYear() === year;
-  });
-};
+export const getEntryForYear = (item: LibraryItem, year: number): LibraryEntry | undefined =>
+  getPrimaryEntryForYear(item, year)?.entry;
 
 /** Re-exported so consumers don't need to reach into `@/data/library`. */
 export { getLatestEntry };

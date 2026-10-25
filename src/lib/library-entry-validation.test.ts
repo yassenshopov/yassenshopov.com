@@ -58,6 +58,17 @@ describe('VALIDATORS', () => {
     expect(VALIDATORS.notes(null)).toBe(true);
     expect(VALIDATORS.notes(123)).toBe(false);
   });
+
+  it('validates per-entry display overrides', () => {
+    expect(VALIDATORS.displayTitle('The Bear')).toBe(true);
+    expect(VALIDATORS.subtitle('Season 5')).toBe(true);
+    expect(VALIDATORS.coverImage('/resources/images/library/foo.jpg')).toBe(true);
+    expect(VALIDATORS.coverImage('https://example.com/x.jpg')).toBe(false);
+    expect(
+      VALIDATORS.coverImages(['/resources/images/library/a.png', '/resources/images/library/b.png'])
+    ).toBe(true);
+    expect(VALIDATORS.coverImages(['not-a-path'])).toBe(false);
+  });
 });
 
 describe('findLatestEntryIndex', () => {

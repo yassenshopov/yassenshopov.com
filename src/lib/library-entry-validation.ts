@@ -10,6 +10,10 @@ export type RawEntry = {
   dateCompleted?: string;
   rating?: number | null;
   notes?: string;
+  displayTitle?: string;
+  subtitle?: string;
+  coverImage?: string;
+  coverImages?: string[];
   [key: string]: unknown;
 };
 
@@ -31,6 +35,14 @@ export const VALIDATORS: Record<string, (v: unknown) => boolean> = {
   rating: (v) =>
     isEmptyDelete(v) || (typeof v === 'number' && Number.isInteger(v) && v >= 0 && v <= 5),
   notes: (v) => isEmptyDelete(v) || typeof v === 'string',
+  displayTitle: (v) => isEmptyDelete(v) || typeof v === 'string',
+  subtitle: (v) => isEmptyDelete(v) || typeof v === 'string',
+  coverImage: (v) => isEmptyDelete(v) || (typeof v === 'string' && (v === '' || v.startsWith('/'))),
+  coverImages: (v) => {
+    if (isEmptyDelete(v)) return true;
+    if (!Array.isArray(v)) return false;
+    return v.every((path) => typeof path === 'string' && path.startsWith('/'));
+  },
 };
 
 export function entryTimestamp(entry: RawEntry): number {

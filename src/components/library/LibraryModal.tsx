@@ -27,12 +27,16 @@ import { formatDate } from '@/lib/format-date';
 import { boostColor } from '@/lib/color-utils';
 import { GrainOverlay } from '@/components/GrainOverlay';
 import { useLibraryEntryEditor } from '@/hooks/useLibraryEntryEditor';
+import { entryPosterImages, resolveEntryPresentation } from '@/lib/library-utils';
 import TierBadge from './TierBadge';
+import LibraryModalCoverCarousel from './LibraryModalCoverCarousel';
 
 const STATUS_OPTIONS: ReadingStatus[] = ['completed', 'in-progress', 'on-pause', 'dnf'];
 
 interface LibraryModalProps {
   selectedItem: LibraryItem | null;
+  /** Grid occurrence entry index, when the modal was opened from a specific year card. */
+  selectedEntryIndex?: number | null;
   onClose: () => void;
   onNavigate: (direction: 'prev' | 'next') => void;
   isTransitioning: boolean;
@@ -92,6 +96,7 @@ type ModalContentProps = Omit<LibraryModalProps, 'selectedItem'> & {
 
 function ModalContent({
   selectedItem,
+  selectedEntryIndex = null,
   onClose,
   onNavigate,
   isTransitioning,
@@ -119,7 +124,26 @@ function ModalContent({
     isDirty,
     resetDraft,
     handleSave,
-  } = useLibraryEntryEditor(selectedItem);
+  } = useLibraryEntryEditor(selectedItem, selectedEntryIndex);
+
+  const activeEntry =
+    selectedEntryIndex !== null &&
+    selectedEntryIndex >= 0 &&
+    (displayItem.entries?.length ?? 0) > selectedEntryIndex
+      ? displayItem.entries![selectedEntryIndex]
+      : undefined;
+  const presentation = resolveEntryPresentation(displayItem, activeEntry);
+  const posterImages = useMemo(
+    () => entryPosterImages(displayItem, activeEntry),
+    [displayItem, activeEntry]
+  );
+  const [headerCoverSrc, setHeaderCoverSrc] = useState(
+    () => posterImages[0] ?? presentation.coverImage ?? ''
+  );
+
+  useEffect(() => {
+    setHeaderCoverSrc(posterImages[0] ?? presentation.coverImage ?? '');
+  }, [displayItem.id, selectedEntryIndex, posterImages, presentation.coverImage]);
 
   useEffect(() => {
     const previouslyFocused = document.activeElement as HTMLElement | null;
@@ -163,7 +187,7 @@ function ModalContent({
   }, []);
 
   useEffect(() => {
-    const imgSrc = selectedItem.coverImage;
+    const imgSrc = headerCoverSrc;
     if (!imgSrc) {
       setDominantColors([]);
       return;
@@ -208,7 +232,7 @@ function ModalContent({
     return () => {
       cancelled = true;
     };
-  }, [selectedItem.coverImage]);
+  }, [headerCoverSrc]);
 
   const headerTint = useMemo(() => {
     if (dominantColors.length === 0) return null;
@@ -216,7 +240,7 @@ function ModalContent({
     return `linear-gradient(to bottom, rgba(${c}, 0.55) 0%, rgba(${c}, 0.18) 55%, transparent 100%)`;
   }, [dominantColors]);
 
-  const creatorLabel = getCreatorLabel(displayItem);
+  const creatorLabel = presentation.byline ? presentation.byline : getCreatorLabel(displayItem);
   const seriesInfo = displayItem.series ? getSeriesInfo(displayItem) : null;
   const relatedItems = getRelatedItems(displayItem, 6);
   const hasNav = sortedItems.length > 1;
@@ -277,40 +301,26 @@ function ModalContent({
                 y: isTransitioning ? 5 : 0,
               }}
               transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
-              className="relative z-10 flex flex-col md:flex-row items-start gap-5 md:gap-8 p-5 sm:p-8 md:p-10 pt-12 sm:pt-10"
+              className="relative z-10 flex flex-col md:flex-row items-start gap-5 md:gap-10 overflow-visible p-5 sm:p-8 md:p-10 pt-12 sm:pt-10"
             >
-              {/* Cover */}
-              <div className="shrink-0 mx-auto md:mx-0">
-                <div
-                  className={`w-32 h-48 sm:w-40 sm:h-60 relative rounded-lg overflow-hidden ${
-                    displayItem.coverImage ? '' : 'bg-muted dark:bg-black ring-1 ring-black/5'
-                  }`}
-                >
-                  {displayItem.coverImage ? (
-                    <Image
-                      src={displayItem.coverImage}
-                      alt={displayItem.title}
-                      fill
-                      sizes="160px"
-                      className="object-contain"
-                    />
-                  ) : (
-                    <div className="flex items-center justify-center h-full text-muted-foreground">
-                      {getTypeIcon(displayItem.type)}
-                    </div>
-                  )}
-                </div>
+              <div className="shrink-0 self-start px-3 md:px-4">
+                <LibraryModalCoverCarousel
+                  images={posterImages}
+                  alt={presentation.title}
+                  onActiveImageChange={setHeaderCoverSrc}
+                  fallbackIcon={getTypeIcon(displayItem.type)}
+                />
               </div>
 
-              {/* Meta */}
-              <div className="flex-1 min-w-0 space-y-3 text-center md:text-left">
+              {/* Meta — top-aligned with poster */}
+              <div className="flex-1 min-w-0 space-y-3 text-left pt-0">
                 <div>
-                  <div className="flex flex-wrap items-start justify-center md:justify-start gap-2 mb-1">
+                  <div className="flex flex-wrap items-start justify-start gap-2 mb-1">
                     <h1
                       id={titleId}
                       className="text-2xl md:text-3xl font-bold tracking-tight leading-tight"
                     >
-                      {displayItem.title}
+                      {presentation.title}
                     </h1>
                     {displayItem.series && displayItem.seriesOrder != null && (
                       <Badge
@@ -331,7 +341,7 @@ function ModalContent({
                     </p>
                   )}
                   {canEdit && (
-                    <div className="flex items-center justify-center md:justify-start gap-2 mt-2">
+                    <div className="flex items-center justify-start gap-2 mt-2">
                       <span className={FIELD_LABEL}>id</span>
                       <input
                         value={draftId}
@@ -345,7 +355,7 @@ function ModalContent({
                   )}
                 </div>
 
-                <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
+                <div className="flex flex-wrap items-center justify-start gap-3">
                   <TierBadge itemId={displayItem.id} size="md" />
                   {canEdit ? (
                     <>
@@ -406,45 +416,86 @@ function ModalContent({
                 </div>
 
                 {canEdit ? (
-                  <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                    <label className="flex flex-col items-start gap-1">
-                      <span className={FIELD_LABEL}>Started</span>
+                  <div className="flex flex-col gap-3 w-full max-w-xl">
+                    <div className="flex flex-wrap justify-center md:justify-start gap-3">
+                      <label className="flex flex-col items-start gap-1 min-w-[10rem] flex-1">
+                        <span className={FIELD_LABEL}>Display title</span>
+                        <Input
+                          value={draft.displayTitle}
+                          onChange={(e) =>
+                            setDraft((d) => ({ ...d, displayTitle: e.target.value }))
+                          }
+                          placeholder={displayItem.title}
+                          className="h-8 text-xs"
+                        />
+                      </label>
+                      <label className="flex flex-col items-start gap-1 min-w-[8rem] flex-1">
+                        <span className={FIELD_LABEL}>Subtitle</span>
+                        <Input
+                          value={draft.subtitle}
+                          onChange={(e) => setDraft((d) => ({ ...d, subtitle: e.target.value }))}
+                          placeholder="Season 5"
+                          className="h-8 text-xs"
+                        />
+                      </label>
+                    </div>
+                    <label className="flex flex-col items-start gap-1 w-full">
+                      <span className={FIELD_LABEL}>Cover path</span>
                       <Input
-                        type="date"
-                        value={draft.dateStarted}
-                        onChange={(e) => setDraft((d) => ({ ...d, dateStarted: e.target.value }))}
-                        className="h-8 w-auto text-xs"
+                        value={draft.coverImage}
+                        onChange={(e) => setDraft((d) => ({ ...d, coverImage: e.target.value }))}
+                        placeholder={displayItem.coverImage ?? '/resources/images/library/…'}
+                        spellCheck={false}
+                        className="h-8 text-xs font-mono"
                       />
                     </label>
-                    <label className="flex flex-col items-start gap-1">
-                      <span className={FIELD_LABEL}>Completed</span>
-                      <Input
-                        type="date"
-                        value={draft.dateCompleted}
-                        onChange={(e) =>
-                          setDraft((d) => ({
-                            ...d,
-                            dateCompleted: e.target.value,
-                          }))
-                        }
-                        className="h-8 w-auto text-xs"
-                      />
-                    </label>
+                    <div className="flex flex-wrap justify-center md:justify-start gap-3">
+                      <label className="flex flex-col items-start gap-1">
+                        <span className={FIELD_LABEL}>Started</span>
+                        <Input
+                          type="date"
+                          value={draft.dateStarted}
+                          onChange={(e) => setDraft((d) => ({ ...d, dateStarted: e.target.value }))}
+                          className="h-8 w-auto text-xs"
+                        />
+                      </label>
+                      <label className="flex flex-col items-start gap-1">
+                        <span className={FIELD_LABEL}>Completed</span>
+                        <Input
+                          type="date"
+                          value={draft.dateCompleted}
+                          onChange={(e) =>
+                            setDraft((d) => ({
+                              ...d,
+                              dateCompleted: e.target.value,
+                            }))
+                          }
+                          className="h-8 w-auto text-xs"
+                        />
+                      </label>
+                    </div>
                   </div>
                 ) : (
                   <div className="flex flex-wrap justify-center md:justify-start gap-x-5 gap-y-1 text-sm text-muted-foreground">
-                    {displayItem.dateCompleted && (
+                    {(activeEntry?.dateCompleted ?? displayItem.dateCompleted) && (
                       <div className="flex items-center gap-1.5">
                         <Calendar className="w-3.5 h-3.5" />
-                        <span>Completed {formatDate(displayItem.dateCompleted)}</span>
+                        <span>
+                          Completed{' '}
+                          {formatDate(activeEntry?.dateCompleted ?? displayItem.dateCompleted!)}
+                        </span>
                       </div>
                     )}
-                    {displayItem.dateStarted && displayItem.status === 'in-progress' && (
-                      <div className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5" />
-                        <span>Started {formatDate(displayItem.dateStarted)}</span>
-                      </div>
-                    )}
+                    {(activeEntry?.dateStarted ?? displayItem.dateStarted) &&
+                      (activeEntry?.status ?? displayItem.status) === 'in-progress' && (
+                        <div className="flex items-center gap-1.5">
+                          <Clock className="w-3.5 h-3.5" />
+                          <span>
+                            Started{' '}
+                            {formatDate(activeEntry?.dateStarted ?? displayItem.dateStarted!)}
+                          </span>
+                        </div>
+                      )}
                   </div>
                 )}
               </div>

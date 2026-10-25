@@ -320,6 +320,22 @@
   * {
     @apply border-border;
   }
+
+  button,
+  input[type='button'],
+  input[type='submit'],
+  input[type='reset'],
+  [role='button']:not([aria-disabled='true']) {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  input[type='button']:disabled,
+  input[type='submit']:disabled,
+  input[type='reset']:disabled,
+  [role='button'][aria-disabled='true'] {
+    cursor: not-allowed;
+  }
 }
 
 /* -------------------------------------------------------------------------

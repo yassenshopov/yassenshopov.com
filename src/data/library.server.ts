@@ -19,6 +19,10 @@ const libraryEntrySchema = z.object({
   status: z.enum(['completed', 'in-progress', 'on-pause', 'dnf']),
   rating: z.number().nullable().optional(),
   notes: z.string().optional(),
+  displayTitle: z.string().optional(),
+  subtitle: z.string().optional(),
+  coverImage: z.string().optional(),
+  coverImages: z.array(z.string()).optional(),
 });
 
 const libraryItemSchema = z.object({

@@ -125,7 +125,18 @@ Append to `src/data/library-items.json` (validated by `data/library.server.ts`):
   "coverImage": "/resources/images/library/the-work.webp",
   "entries": [
     // one per reading/watch; supports re-reads
-    { "status": "completed", "rating": 5, "dateCompleted": "2026-01-15" },
+    {
+      "status": "completed",
+      "rating": 5,
+      "dateCompleted": "2026-01-15",
+      "displayTitle": "Optional title for this engagement",
+      "subtitle": "Season 5",
+      "coverImage": "/resources/images/library/custom-cover.webp",
+      "coverImages": [
+        "/resources/images/library/show-s1.webp",
+        "/resources/images/library/show-s2.webp",
+      ],
+    },
   ],
 }
 ```
