@@ -5595,12 +5595,18 @@
     "genre": [],
     "description": "",
     "year": 2021,
-    "externalUrl": "https://imdb.com/title/tt1160419/",
+    "externalUrl": "https://www.imdb.com/title/tt1160419/",
     "director": "Denis Villeneuve",
     "links": {
-      "imdb": "https://imdb.com/title/tt1160419/"
+      "imdb": "https://www.imdb.com/title/tt1160419/"
     },
-    "coverImage": "/resources/images/library/dune-part-one.jpg"
+    "coverImage": "/resources/images/library/dune-part-one.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2026-10-25",
+        "status": "completed"
+      }
+    ]
   },
   {
     "id": "130",
@@ -7228,22 +7234,6 @@
       "imdb": "https://www.imdb.com/title/tt1312221/?ref_=hm_tpks_i_26_pd_tp1_pbr_ic"
     },
     "coverImage": "/resources/images/library/frankenstein.jpg"
-  },
-  {
-    "id": "226",
-    "title": "The Odyssey",
-    "type": "movie",
-    "rating": null,
-    "status": "want-to-watch",
-    "genre": [],
-    "description": "",
-    "year": 2026,
-    "externalUrl": "https://www.imdb.com/title/tt33764258/?ref_=vp_ov_i",
-    "director": "Christopher Nolan",
-    "links": {
-      "imdb": "https://www.imdb.com/title/tt33764258/?ref_=vp_ov_i"
-    },
-    "coverImage": "/resources/images/library/the-odyssey.jpg"
   },
   {
     "id": "227",
@@ -9080,6 +9070,74 @@
       {
         "dateStarted": "2026-06-22",
         "dateCompleted": "2026-06-23",
+        "status": "completed"
+      }
+    ]
+  },
+  {
+    "id": "330",
+    "title": "Spider-Man: Brand New Day",
+    "director": "Destin Daniel Cretton",
+    "type": "movie",
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "description": "A forgotten Peter Parker lives alone as a full-time Spider-Man until mounting pressure triggers a dangerous change and a powerful new enemy emerges.",
+    "coverImage": "/resources/images/library/spider-man-brand-new-day.png",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt22084616/"
+    },
+    "year": 2026,
+    "externalUrl": "https://www.imdb.com/title/tt22084616/",
+    "entries": [
+      {
+        "dateCompleted": "2026-10-23",
+        "status": "completed"
+      }
+    ]
+  },
+  {
+    "id": "331",
+    "title": "72 Hours",
+    "director": "Tim Story",
+    "type": "movie",
+    "genre": [
+      "Comedy"
+    ],
+    "description": "A 40-year-old executive ends up at a three-day bachelor party with twenty-somethings after being mistakenly included in their chat group.",
+    "coverImage": "/resources/images/library/72-hours-2026.jpg",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt36304003/"
+    },
+    "year": 2026,
+    "externalUrl": "https://www.imdb.com/title/tt36304003/",
+    "entries": [
+      {
+        "dateCompleted": "2026-10-22",
+        "status": "completed"
+      }
+    ]
+  },
+  {
+    "id": "332",
+    "title": "Chronicles of the Inconvenient Truth",
+    "director": "Kaloian Nikolov",
+    "type": "movie",
+    "genre": [
+      "Documentary"
+    ],
+    "description": "In 1986 the Chernobyl disaster happened. This documentary tells the story of how the Bulgarian government hid the disaster consequences from the people, while ordering radiation-free food and water from abroad.",
+    "coverImage": "/resources/images/library/chronicles-of-the-inconvenient-truth.jpg",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt47819464/"
+    },
+    "year": 2026,
+    "externalUrl": "https://www.imdb.com/title/tt47819464/",
+    "entries": [
+      {
+        "dateCompleted": "2026-10-24",
         "status": "completed"
       }
     ]
