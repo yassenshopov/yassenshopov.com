@@ -45,12 +45,14 @@ export const VALIDATORS: Record<string, (v: unknown) => boolean> = {
   },
 };
 
-export function entryTimestamp(entry: RawEntry): number {
+type DatedEntry = Pick<RawEntry, 'dateStarted' | 'dateCompleted'>;
+
+export function entryTimestamp(entry: DatedEntry): number {
   const d = entry.dateCompleted || entry.dateStarted;
   return d ? new Date(d).getTime() : 0;
 }
 
-export function findLatestEntryIndex(entries: RawEntry[]): number {
+export function findLatestEntryIndex(entries: DatedEntry[]): number {
   if (entries.length === 0) return -1;
   let bestIdx = 0;
   let bestTs = entryTimestamp(entries[0]);
