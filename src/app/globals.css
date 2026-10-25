@@ -70,7 +70,7 @@
 
 @utility card-hover {
   /* Card hover effects */
-  @apply transition-all duration-300 hover:shadow-lg hover:scale-[1.02];
+  @apply transition-all duration-300 hover:scale-[1.02];
 }
 
 @utility link-hover {

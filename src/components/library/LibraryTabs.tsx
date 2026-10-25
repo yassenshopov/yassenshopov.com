@@ -55,8 +55,8 @@ export default function LibraryTabs({
             <span>{tab.label}</span>
             <span
               className={[
-                'ml-1 text-[10px] sm:text-xs font-semibold tracking-normal',
-                isActive ? 'text-primary' : 'text-muted-foreground/70',
+                'ml-1 text-xs font-semibold tracking-normal tabular-nums',
+                isActive ? 'text-primary' : 'text-muted-foreground',
               ].join(' ')}
             >
               {counts[tab.countKey]}

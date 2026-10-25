@@ -146,7 +146,7 @@ export default function LibraryHero({ stats, covers = [] }: LibraryHeroProps) {
       <motion.button
         onClick={handleScrollDown}
         style={{ opacity: arrowOpacity }}
-        aria-label="Scroll to the library"
+        type="button"
         className="group absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"
       >
         <span className="text-[0.65rem] md:text-xs uppercase tracking-[0.22em]">

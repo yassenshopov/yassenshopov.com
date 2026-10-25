@@ -100,7 +100,7 @@ export function ArtGallery() {
               <img
                 src={artworks[lightboxIndex].src}
                 alt={artworks[lightboxIndex].alt}
-                className="max-h-[88vh] w-auto max-w-[96vw] rounded-xl object-contain shadow-2xl"
+                className="max-h-[88vh] w-auto max-w-[96vw] rounded-xl object-contain"
               />
             )}
             {lightboxIndex !== null && artworks.length > 1 && (

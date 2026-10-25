@@ -26,7 +26,7 @@ export function BlogCard({
 }: BlogCardProps) {
   return (
     <Link href={`/blog/${slug}`} className={`block group ${isFeatured ? 'md:col-span-2' : ''}`}>
-      <Card className="overflow-hidden h-full transition-shadow hover:shadow-lg">
+      <Card className="overflow-hidden h-full transition-colors">
         {coverImage && (
           <div className={`aspect-video relative ${isFeatured ? 'md:aspect-2/1' : ''}`}>
             <Image

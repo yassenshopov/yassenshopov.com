@@ -152,7 +152,7 @@ function TierRow({
       </div>
       <div
         ref={containerRef}
-        className={`flex flex-1 flex-wrap content-start items-start bg-card transition-shadow ${
+        className={`flex flex-1 flex-wrap content-start items-start bg-card transition-[ring-color] ${
           isOver ? 'ring-2 ring-inset ring-primary' : ''
         }`}
         {...dropHandlers}

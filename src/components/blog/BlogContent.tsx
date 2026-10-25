@@ -58,7 +58,7 @@ function BackToTopButton() {
       onClick={handleClick}
       aria-label="Back to top"
       tabIndex={visible ? 0 : -1}
-      className={`fixed bottom-6 right-4 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full border bg-background/90 text-foreground shadow-lg backdrop-blur-md transition-all duration-300 hover:border-primary/40 hover:text-primary ${
+      className={`fixed bottom-6 right-4 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full border bg-background/90 text-foreground backdrop-blur-md transition-all duration-300 hover:border-primary/40 hover:text-primary ${
         visible
           ? 'opacity-100 translate-y-0 pointer-events-auto'
           : 'opacity-0 translate-y-2 pointer-events-none'
@@ -432,7 +432,7 @@ export function BlogContent({ post, prevPost, nextPost, wordCount }: BlogContent
             {prevPost ? (
               <Link
                 href={`/blog/${prevPost.slug}`}
-                className="group relative flex items-stretch overflow-hidden rounded-xl border bg-card transition-all duration-300 hover:border-primary/40 hover:shadow-xs"
+                className="group relative flex items-stretch overflow-hidden rounded-xl border bg-card transition-all duration-300 hover:border-primary/40"
               >
                 <div className="relative w-24 sm:w-28 shrink-0 overflow-hidden bg-muted">
                   <Image
@@ -471,7 +471,7 @@ export function BlogContent({ post, prevPost, nextPost, wordCount }: BlogContent
             {nextPost ? (
               <Link
                 href={`/blog/${nextPost.slug}`}
-                className="group relative flex items-stretch overflow-hidden rounded-xl border bg-card transition-all duration-300 hover:border-primary/40 hover:shadow-xs sm:col-start-2"
+                className="group relative flex items-stretch overflow-hidden rounded-xl border bg-card transition-all duration-300 hover:border-primary/40 sm:col-start-2"
               >
                 <div className="flex-1 min-w-0 p-4 text-right">
                   <div className="mb-1.5 flex items-center justify-end gap-2 text-[0.65rem] font-medium text-muted-foreground uppercase tracking-[0.16em]">

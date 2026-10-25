@@ -195,7 +195,7 @@ export function MobileTocSheet({
         <button
           type="button"
           aria-label="Open table of contents"
-          className="lg:hidden fixed bottom-6 left-4 z-40 inline-flex items-center gap-2 rounded-full border bg-background/90 px-4 py-2.5 text-xs font-medium shadow-lg backdrop-blur-md transition-colors hover:border-primary/40 hover:text-primary"
+          className="lg:hidden fixed bottom-6 left-4 z-40 inline-flex items-center gap-2 rounded-full border bg-background/90 px-4 py-2.5 text-xs font-medium backdrop-blur-md transition-colors hover:border-primary/40 hover:text-primary"
         >
           <ListOrdered className="h-4 w-4" />
           <span>Contents</span>

@@ -68,7 +68,7 @@ function SyncedTrackEmbed({ register }: { register: (el: HTMLElement | null) => 
   }, [register]);
   return (
     <figure className="not-prose my-10">
-      <div className="min-h-[152px] [&_iframe]:block [&_iframe]:w-full [&_iframe]:rounded-xl [&_iframe]:border-0 [&_iframe]:shadow-xs">
+      <div className="min-h-[152px] [&_iframe]:block [&_iframe]:w-full [&_iframe]:rounded-xl [&_iframe]:border-0">
         <div ref={hostRef} />
       </div>
     </figure>
@@ -92,7 +92,7 @@ function SpotifyEmbed({ type, id, title }: { type: string; id: string; title?: s
         loading="lazy"
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         allowFullScreen
-        className="w-full border-0 shadow-xs"
+        className="w-full border-0"
         style={{ borderRadius: 12 }}
       />
     </figure>
@@ -112,7 +112,7 @@ function YouTubeEmbed({
   if (start) params.set('start', String(start));
   return (
     <figure className="not-prose my-10">
-      <div className="overflow-hidden rounded-xl border bg-black shadow-xs">
+      <div className="overflow-hidden rounded-xl border bg-black">
         <div className="relative w-full" style={{ aspectRatio: '16 / 9' }}>
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`}

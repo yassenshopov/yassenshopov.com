@@ -241,7 +241,7 @@ export default function ProjectsPage() {
                 alt={`${projects[selectedPreview.projectIndex].title} image ${
                   selectedPreview.imageIndex + 1
                 }`}
-                className="max-h-[88vh] w-auto max-w-[96vw] rounded-xl object-contain shadow-2xl"
+                className="max-h-[88vh] w-auto max-w-[96vw] rounded-xl object-contain"
               />
             )}
             {selectedPreview && projects[selectedPreview.projectIndex]?.images?.length > 1 && (

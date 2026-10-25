@@ -264,7 +264,6 @@ export function LibraryView({ items }: { items: LibraryItem[] }) {
           <div className="flex items-center gap-4">
             <Link
               href="/library/tier-list"
-              aria-label="View library as a tier list"
               className="group inline-flex items-center gap-2.5 rounded-lg border border-border bg-card px-3 py-2 transition-colors hover:border-primary"
             >
               <span className="flex items-center gap-px" aria-hidden>

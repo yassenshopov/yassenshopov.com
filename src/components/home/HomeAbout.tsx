@@ -31,7 +31,7 @@ export function HomeAbout() {
                 />
               </div>
             </div>
-            <div className="absolute -bottom-4 -right-3 sm:-right-5 flex items-center gap-2 rounded-xl bg-card px-3 py-2 shadow-lg ring-1 ring-border">
+            <div className="absolute -bottom-4 -right-3 sm:-right-5 flex items-center gap-2 rounded-xl bg-card px-3 py-2 ring-1 ring-border">
               <Sparkles className="h-4 w-4 text-primary" aria-hidden="true" />
               <span className="text-xs sm:text-sm font-medium text-card-foreground">
                 Building in public since 2020

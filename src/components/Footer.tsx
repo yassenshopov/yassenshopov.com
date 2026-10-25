@@ -130,7 +130,7 @@ export function Footer() {
             <KitNewsletterForm variant="inline" />
             <Link
               href={`mailto:${CONTACT_EMAIL}`}
-              className="mt-5 inline-flex items-center gap-2 text-sm text-foreground/60 transition-colors hover:text-foreground"
+              className="mt-5 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               <Mail className="h-4 w-4" aria-hidden="true" />
               {CONTACT_EMAIL}
