@@ -87,56 +87,180 @@ function fbm3(noise: Noise3, x: number, y: number, z: number, octaves: number) {
   return sum / norm;
 }
 
+type CloudLobe = { ox: number; oy: number; rx: number; ry: number };
+
 type CloudParams = {
   nFreq: number;
   warp: number;
-  cx: number;
-  cy: number;
-  rx: number;
-  ry: number;
+  lobes: CloudLobe[];
+  edgeChaos: number;
 };
 
-/* Paint one cumulus slice (at time z), pixel by pixel, into `target`. */
-function paintCloud(target: HTMLCanvasElement, noise: Noise3, p: CloudParams, z: number) {
+function lobeCentroid(lobes: CloudLobe[]) {
+  let ox = 0;
+  let oy = 0;
+  for (const l of lobes) {
+    ox += l.ox;
+    oy += l.oy;
+  }
+  const n = lobes.length;
+  return { cx: ox / n, cy: oy / n };
+}
+
+function lobeBounds(lobes: CloudLobe[]) {
+  const { cx, cy } = lobeCentroid(lobes);
+  let rx = 0;
+  let ry = 0;
+  for (const l of lobes) {
+    rx = Math.max(rx, Math.abs(l.ox - cx) + l.rx);
+    ry = Math.max(ry, Math.abs(l.oy - cy) + l.ry);
+  }
+  return { cx, cy, rx, ry };
+}
+
+/* Merged soft blobs + noise carve — breaks the uniform ellipse silhouette. */
+function cloudSilhouetteMask(
+  u: number,
+  v: number,
+  p: CloudParams,
+  noise: Noise3,
+  z: number,
+  w: number,
+  h: number
+): number {
+  let merge = 0;
+  for (const l of p.lobes) {
+    const dx = (u - l.ox) / l.rx;
+    const dy = (v - l.oy) / l.ry;
+    const d = Math.sqrt(dx * dx + dy * dy);
+    merge = Math.max(merge, 1 - smoothstep(0.28, 1.04, d));
+  }
+  if (merge <= 0) return 0;
+
+  const x = u * w;
+  const y = v * h;
+  const wu = u + p.warp * 0.5 * (noise(x * p.nFreq * 2.6, y * p.nFreq * 2.6, z + 3) - 0.5);
+  const wv =
+    v + p.warp * 0.5 * (noise(x * p.nFreq * 2.6 + 37, y * p.nFreq * 2.6 + 37, z + 3) - 0.5);
+  const carve = fbm3(noise, wu * 5.4, wv * 5.4, z * 0.45, 3);
+  const { cx, cy } = lobeCentroid(p.lobes);
+  const angle = Math.atan2(v - cy, u - cx);
+  const rim = fbm3(noise, Math.cos(angle) * 3.2, Math.sin(angle) * 3.2, z * 0.25 + 9, 3);
+  const wisp = fbm3(noise, wu * 11, wv * 11, z + 21, 2);
+
+  const organic =
+    merge * (0.56 + 0.54 * carve) * (0.76 + p.edgeChaos * (rim - 0.5)) + merge * wisp * 0.12;
+  return clamp01(organic);
+}
+
+type CloudFieldSample = {
+  alpha: number;
+  bright: number;
+  shape: number;
+};
+
+/* Shared density field for one cumulus slice (time = z). */
+function sampleCloudField(
+  noise: Noise3,
+  p: CloudParams,
+  z: number,
+  u: number,
+  v: number,
+  w: number,
+  h: number
+): CloudFieldSample | null {
+  const mask = cloudSilhouetteMask(u, v, p, noise, z, w, h);
+  if (mask <= 0) return null;
+
+  const x = u * w;
+  const y = v * h;
+  const topLight = 1 - v;
+  const wx = x + p.warp * h * (noise(x * p.nFreq * 2, y * p.nFreq * 2, z) - 0.5);
+  const wy = y + p.warp * h * (noise(x * p.nFreq * 2 + 50, y * p.nFreq * 2 + 50, z) - 0.5);
+  const n = fbm3(noise, wx * p.nFreq, wy * p.nFreq, z, 4);
+  const shape = n * (0.72 + 1.12 * mask);
+  const alpha = smoothstep(0.24, 0.48, shape);
+  if (alpha <= 0.003) return null;
+
+  const bright = clamp01(0.62 + 0.32 * topLight + 0.45 * (shape - 0.5));
+  return { alpha, bright, shape };
+}
+
+/** Sparse → dense letters; a few symbols mixed in at render time. */
+const CLOUD_ASCII_LETTERS = 'aceorstwxzmnluvijdfghkpbqy';
+const CLOUD_ASCII_SYMBOLS = '`.,:;+*#@()';
+const CLOUD_ASCII_TRAIL = '.,:;*+';
+
+/* Paint one cloud as a grid of white monospace glyphs (morphs each frame via z). */
+function paintCloudAscii(target: HTMLCanvasElement, noise: Noise3, p: CloudParams, z: number) {
   const w = target.width;
   const h = target.height;
   const ctx = target.getContext('2d')!;
-  const img = ctx.createImageData(w, h);
-  const data = img.data;
+  ctx.clearRect(0, 0, w, h);
 
-  const shadow = [168, 186, 210]; // cool, soft underside
-  const lit = [255, 255, 255]; // sunlit top
+  const cell = 5;
+  const cols = Math.ceil(w / cell);
+  const rows = Math.ceil(h / cell);
+  ctx.font = `500 ${cell}px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace`;
+  ctx.textBaseline = 'top';
 
-  for (let y = 0; y < h; y += 1) {
-    const v = y / h;
-    const topLight = 1 - v;
-    for (let x = 0; x < w; x += 1) {
-      const u = x / w;
-      const dx = (u - p.cx) / p.rx;
-      const dy = (v - p.cy) / p.ry;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      const mask = 1 - smoothstep(0.5, 1.05, dist);
-      if (mask <= 0) continue;
+  const shadow = [188, 206, 228];
+  const lit = [255, 255, 255];
 
-      // Domain warp (also evolving with z) → turbulent, natural boundaries.
-      const wx = x + p.warp * h * (noise(x * p.nFreq * 2, y * p.nFreq * 2, z) - 0.5);
-      const wy = y + p.warp * h * (noise(x * p.nFreq * 2 + 50, y * p.nFreq * 2 + 50, z) - 0.5);
-      const n = fbm3(noise, wx * p.nFreq, wy * p.nFreq, z, 4);
+  for (let row = 0; row < rows; row += 1) {
+    const v = (row + 0.5) / rows;
+    for (let col = 0; col < cols; col += 1) {
+      const u = (col + 0.5) / cols;
+      let sample = sampleCloudField(noise, p, z, u, v, w, h);
+      let trail = false;
 
-      // Fuller body: more of the masked area reads as solid, edges stay wispy.
-      const shape = n * (0.62 + 0.95 * mask);
-      const alpha = smoothstep(0.4, 0.62, shape);
-      if (alpha <= 0.003) continue;
+      const bounds = lobeBounds(p.lobes);
+      if (!sample && v > bounds.cy) {
+        const dx = (u - bounds.cx) / (bounds.rx * 0.75);
+        const dy = (v - bounds.cy) / (bounds.ry * 1.4);
+        const inWake = dx * dx + dy * dy <= 1.15;
+        const depth = (v - bounds.cy) / bounds.ry;
+        if (inWake && depth > 0.15 && depth < 1.15) {
+          const trailNoise = fbm3(noise, u * 14, v * 9 + z * 0.25, z + 40, 2);
+          const trailAlpha = smoothstep(0.42, 0.78, trailNoise) * (1 - depth * 0.55) * 0.42;
+          if (trailAlpha > 0.04) {
+            sample = { alpha: trailAlpha, bright: 0.88, shape: 0.28 };
+            trail = true;
+          }
+        }
+      }
 
-      const bright = clamp01(0.5 + 0.4 * topLight + 0.5 * (shape - 0.5));
-      const idx = (y * w + x) * 4;
-      data[idx] = shadow[0] + (lit[0] - shadow[0]) * bright;
-      data[idx + 1] = shadow[1] + (lit[1] - shadow[1]) * bright;
-      data[idx + 2] = shadow[2] + (lit[2] - shadow[2]) * bright;
-      data[idx + 3] = Math.round(alpha * 255);
+      if (!sample) continue;
+
+      const { alpha, bright, shape } = sample;
+      const jitter = noise(col * 0.67, row * 0.91, z * 2.1);
+      const t = clamp01(shape * 0.82 + jitter * 0.18);
+      const trailIdx = Math.floor(jitter * CLOUD_ASCII_TRAIL.length) % CLOUD_ASCII_TRAIL.length;
+      let ch: string;
+      if (trail) {
+        ch = CLOUD_ASCII_TRAIL[trailIdx];
+      } else if (jitter < 0.2) {
+        const symIdx = Math.min(
+          CLOUD_ASCII_SYMBOLS.length - 1,
+          Math.floor(t * CLOUD_ASCII_SYMBOLS.length)
+        );
+        ch = CLOUD_ASCII_SYMBOLS[symIdx];
+      } else {
+        const letIdx = Math.min(
+          CLOUD_ASCII_LETTERS.length - 1,
+          Math.floor(t * CLOUD_ASCII_LETTERS.length)
+        );
+        ch = CLOUD_ASCII_LETTERS[letIdx];
+      }
+
+      const r = Math.round(shadow[0] + (lit[0] - shadow[0]) * bright);
+      const g = Math.round(shadow[1] + (lit[1] - shadow[1]) * bright);
+      const b = Math.round(shadow[2] + (lit[2] - shadow[2]) * bright);
+      const a = Math.min(1, alpha * (trail ? 0.7 : 1.06));
+      ctx.fillStyle = `rgba(${r},${g},${b},${a})`;
+      ctx.fillText(ch, col * cell, row * cell);
     }
   }
-  ctx.putImageData(img, 0, 0);
 }
 
 type CloudDef = {
@@ -152,13 +276,13 @@ type CloudDef = {
 // centred hero copy. Each entry's span (left → left+width) stays out of the
 // roughly 0.32–0.66 centre band.
 const CLOUDS: CloudDef[] = [
-  { left: -0.1, width: 0.3, opacity: 1, duration: 95, start: 0.1, seed: 1207 },
-  { left: 0.04, width: 0.18, opacity: 0.95, duration: 130, start: 0.52, seed: 3391 },
-  { left: 0.13, width: 0.18, opacity: 1, duration: 78, start: 0.8, seed: 5023 },
-  { left: 0.67, width: 0.16, opacity: 0.96, duration: 145, start: 0.3, seed: 6619 },
-  { left: 0.8, width: 0.3, opacity: 1, duration: 70, start: 0.62, seed: 7741 },
-  { left: 0.72, width: 0.2, opacity: 0.95, duration: 112, start: 0.18, seed: 9133 },
-  { left: 0.91, width: 0.18, opacity: 0.92, duration: 160, start: 0.92, seed: 10487 },
+  { left: -0.1, width: 0.28, opacity: 1, duration: 95, start: 0.1, seed: 1207 },
+  { left: 0.04, width: 0.17, opacity: 0.95, duration: 130, start: 0.52, seed: 3391 },
+  { left: 0.1, width: 0.17, opacity: 1, duration: 78, start: 0.8, seed: 5023 },
+  { left: 0.67, width: 0.15, opacity: 0.96, duration: 145, start: 0.3, seed: 6619 },
+  { left: 0.78, width: 0.28, opacity: 1, duration: 70, start: 0.62, seed: 7741 },
+  { left: 0.7, width: 0.19, opacity: 0.95, duration: 112, start: 0.18, seed: 9133 },
+  { left: 0.9, width: 0.17, opacity: 0.92, duration: 160, start: 0.92, seed: 10487 },
 ];
 
 function buildStarField(count: number, seed: number, maxSize: number) {
@@ -298,32 +422,37 @@ export function HomeHeroSky() {
       canvas.width = Math.floor(W * dpr);
       canvas.height = Math.floor(H * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'high';
+      ctx.imageSmoothingEnabled = false;
 
       clouds = CLOUDS.map((def) => {
-        const w = Math.max(140, Math.round(def.width * W));
-        const h = Math.round(w / 1.9);
+        const w = Math.max(148, Math.round(def.width * W));
+        const h = Math.round(w / 1.82);
         // Low internal resolution so we can re-render every frame; upscaled on draw.
-        const iw = Math.min(Math.max(90, Math.round(w * 0.42)), 150);
-        const ih = Math.round(iw / 1.9);
+        const iw = Math.min(Math.max(112, Math.round(w * 0.58)), 200);
+        const ih = Math.round(iw / 1.82);
         const noise = makeNoise3(def.seed);
         const r = seeded(def.seed * 17 + 3);
-        // Mask kept well inside the buffer (cy + ry stays < ~0.95) so the cloud
-        // never touches an edge and gets cropped.
+        const lobeCount = 3 + Math.floor(r() * 4);
+        const lobes: CloudLobe[] = [];
+        for (let i = 0; i < lobeCount; i += 1) {
+          lobes.push({
+            ox: 0.5 + (r() - 0.5) * 0.64,
+            oy: 0.47 + (r() - 0.5) * 0.5,
+            rx: 0.14 + r() * 0.24,
+            ry: 0.12 + r() * 0.22,
+          });
+        }
         const params: CloudParams = {
-          nFreq: (2.5 + r() * 0.8) / ih,
-          warp: 0.14,
-          cx: 0.5,
-          cy: 0.5 + (r() - 0.5) * 0.04,
-          rx: 0.46 + r() * 0.05,
-          ry: 0.4 + r() * 0.04,
+          nFreq: (2.4 + r() * 0.75) / ih,
+          warp: 0.14 + r() * 0.08,
+          lobes,
+          edgeChaos: 0.4 + r() * 0.32,
         };
         const buf = document.createElement('canvas');
         buf.width = iw;
         buf.height = ih;
         const phase = def.seed % 97;
-        paintCloud(buf, noise, params, phase);
+        paintCloudAscii(buf, noise, params, phase);
         const travel = H + h + 80;
         return {
           noise,
@@ -364,7 +493,7 @@ export function HomeHeroSky() {
       if (isLight()) {
         const z = t * zSpeed;
         for (const c of clouds) {
-          paintCloud(c.buf, c.noise, c.params, z + c.phase); // re-render each frame → fluid morph
+          paintCloudAscii(c.buf, c.noise, c.params, z + c.phase); // re-render each frame → fluid morph
           c.y -= c.speed * dt;
           if (c.y + c.h < -40) c.y = H + 40;
           ctx.globalAlpha = c.opacity;
@@ -406,6 +535,14 @@ export function HomeHeroSky() {
       {/* ----------------------------- LIGHT: blue sky + procedural clouds ----------------------------- */}
       <div className="absolute inset-0 transition-opacity duration-700 dark:opacity-0 in-[.olive]:opacity-0">
         <div className="absolute inset-0" style={{ backgroundColor: '#11a1da' }} />
+        <div
+          className="absolute inset-0 opacity-[0.22]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,0.14) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.14) 1px, transparent 1px)',
+            backgroundSize: '20px 20px',
+          }}
+        />
         <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
       </div>
 

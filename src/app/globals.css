@@ -386,7 +386,7 @@
 /* -------------------------------------------------------------------------
  * Home hero — theme-aware animated sky
  *
- * Light:  crisp blue sky with soft, fluffy clouds drifting across.
+ * Light:  crisp blue sky with ASCII clouds drifting across.
  * Dark:   night sky with a twinkling, slowly drifting starfield + shooting stars.
  * Olive:  warm canopy with leaves tumbling down.
  *
@@ -395,7 +395,7 @@
  * prefer reduced motion (handled in the component by omitting the animation).
  * ------------------------------------------------------------------------- */
 
-/* Clouds are generated pixel-by-pixel on a <canvas> (see HomeHeroSky). */
+/* Clouds are ASCII glyphs on a <canvas> grid (see HomeHeroSky). */
 
 /* Star layer: 1px anchor that paints the whole field via box-shadow. */
 .hero-stars {
