@@ -9171,5 +9171,28 @@
         "status": "completed"
       }
     ]
+  },
+  {
+    "id": "333",
+    "title": "Bad Poems",
+    "director": "Gábor Reisz",
+    "type": "movie",
+    "genre": [
+      "Comedy",
+      "Drama"
+    ],
+    "description": "Heartbroken after his girlfriend leaves for Paris, 33-year-old Tamás wallows in self-pity and drifts through flashbacks of love and growing up, wondering if he only knows love when it is already gone.",
+    "coverImage": "/resources/images/library/bad-poems.jpg",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt6755366/"
+    },
+    "year": 2018,
+    "externalUrl": "https://www.imdb.com/title/tt6755366/",
+    "entries": [
+      {
+        "dateCompleted": "2026-11-12",
+        "status": "completed"
+      }
+    ]
   }
 ]
