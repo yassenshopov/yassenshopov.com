@@ -1664,7 +1664,11 @@
         "44",
         "45",
         "46",
-        "47"
+        "47",
+        "334"
+      ],
+      "adaptations": [
+        "334"
       ],
       "prequel": "42"
     },
@@ -9191,6 +9195,51 @@
     "entries": [
       {
         "dateCompleted": "2026-11-12",
+        "status": "completed"
+      }
+    ]
+  },
+  {
+    "id": "334",
+    "title": "The Hunger Games: Sunrise on the Reaping (2026)",
+    "director": "Francis Lawrence",
+    "type": "movie",
+    "genre": [
+      "Dystopian",
+      "Drama",
+      "Adaptation"
+    ],
+    "description": "Twenty-four years before Katniss volunteered, Panem wakes on the morning of the reaping for the 50th Hunger Games — the Second Quarter Quell — and sixteen-year-old Haymitch Abernathy is among the tributes.",
+    "coverImage": "/resources/images/library/the-hunger-games-sunrise-on-the-reaping-2026.jpg",
+    "series": "The Hunger Games",
+    "seriesOrder": 5,
+    "relationships": {
+      "basedOn": [
+        "52"
+      ],
+      "sameUniverse": [
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "52"
+      ]
+    },
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt32558705/"
+    },
+    "year": 2026,
+    "topics": [
+      "Dystopian",
+      "Political",
+      "Survival",
+      "Young Adult (YA)"
+    ],
+    "externalUrl": "https://www.imdb.com/title/tt32558705/",
+    "entries": [
+      {
+        "dateCompleted": "2026-11-18",
         "status": "completed"
       }
     ]
