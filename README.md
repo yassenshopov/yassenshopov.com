@@ -112,6 +112,10 @@ build rather than rendering broken. Reading time is derived automatically.
 
 ### Add a library item
 
+`dateCompleted` / `dateStarted` use the real calendar year (ISO `YYYY-MM-DD`). When
+logging something watched "today" or "yesterday", anchor on the actual current
+date—not a stale year.
+
 Append to `src/data/library-items.json` (validated by `data/library.server.ts`):
 
 ```jsonc
