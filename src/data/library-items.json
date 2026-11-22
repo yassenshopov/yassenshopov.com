@@ -5643,7 +5643,39 @@
     "links": {
       "imdb": "https://imdb.com/title/tt15239678"
     },
-    "coverImage": "/resources/images/library/dune-part-two.jpg"
+    "coverImage": "/resources/images/library/dune-part-two.jpg",
+    "entries": [
+      {
+        "dateCompleted": "2025-11-21",
+        "status": "completed"
+      }
+    ],
+    "relationships": {
+      "sequel": "335"
+    }
+  },
+  {
+    "id": "335",
+    "title": "Dune: Part Three",
+    "type": "movie",
+    "rating": null,
+    "status": "want-to-watch",
+    "genre": [],
+    "description": "Emperor Paul Atreides faces the fallout from his ascent to power as political plots and a galaxy-wide holy war endanger the future only he can see.",
+    "year": 2026,
+    "externalUrl": "https://www.imdb.com/title/tt31378509/",
+    "director": "Denis Villeneuve",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt31378509/"
+    },
+    "coverImage": "/resources/images/library/dune-part-three.jpg",
+    "relationships": {
+      "prequel": "130",
+      "sameUniverse": [
+        "129",
+        "130"
+      ]
+    }
   },
   {
     "id": "131",
