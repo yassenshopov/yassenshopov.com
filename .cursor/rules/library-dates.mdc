@@ -1,0 +1,13 @@
+---
+description: Calendar year for library watch/read dates (avoid stale "today" metadata)
+globs: src/data/library-items.json
+alwaysApply: false
+---
+
+# Library entry dates
+
+When adding or editing `dateCompleted` / `dateStarted`:
+
+1. **Anchor the calendar year** on the conversation `<timestamp>` (or the user's explicit date). If `user_info` "Today's date" disagrees with that timestamp, trust the timestamp.
+2. **Relative phrasing** ("yesterday", "today", "last night") is relative to that anchor, not to guessed years.
+3. **Sanity check** before finishing: skim the newest `dateCompleted` values in this file (recent ones use `2026-*`). A new "just watched" entry should match that era unless the user says otherwise.
