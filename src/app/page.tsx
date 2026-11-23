@@ -11,9 +11,9 @@ export default function Home() {
   return (
     <Layout>
       <HomeHero />
+      <HomeSelectedWork />
       <HomeDisciplines />
       <HomeStats />
-      <HomeSelectedWork />
       <HomeTechStack />
       <HomeAbout />
       <HomeCTA />

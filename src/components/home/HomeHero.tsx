@@ -120,9 +120,9 @@ export function HomeHero() {
       </motion.div>
 
       <motion.button
-        onClick={() => scrollToId('what-i-do')}
+        onClick={() => scrollToId('selected-work')}
         style={{ opacity: arrowOpacity }}
-        aria-label="Scroll to what I do"
+        aria-label="Scroll to selected work"
         className="group absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-white/80 hover:text-white transition-colors"
       >
         <span className="text-[0.65rem] md:text-xs uppercase tracking-[0.22em]">Take a look</span>

@@ -15,7 +15,7 @@ test.describe('critical paths', () => {
     // the reduced-motion / no-JS fallbacks).
     await page.goto('/');
     await expect(page.getByRole('heading', { name: /what i do/i })).toBeVisible();
-    await expect(page.getByRole('heading', { name: /selected work/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /^projects$/i })).toBeVisible();
   });
 
   test('blog list navigates into a post', async ({ page }) => {

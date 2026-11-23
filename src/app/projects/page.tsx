@@ -88,13 +88,13 @@ export default function ProjectsPage() {
               <p className="mb-10 text-lg text-muted-foreground">{project.tagline}</p>
 
               <div
-                className={`mt-6 grid gap-0 lg:grid-rows-2 ${
+                className={`mt-6 grid gap-3 md:gap-4 lg:grid-rows-2 ${
                   index % 2 === 0 ? 'lg:grid-cols-[2fr_1fr]' : 'lg:grid-cols-[1fr_2fr]'
                 }`}
               >
                 <button
                   type="button"
-                  className={`relative h-full overflow-hidden bg-card aspect-video sm:aspect-4/3 lg:aspect-auto lg:row-span-2 lg:min-h-[420px] transition focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                  className={`relative h-full overflow-hidden border border-border/60 bg-card aspect-video sm:aspect-4/3 lg:aspect-auto lg:row-span-2 lg:min-h-[420px] transition focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/60 ${
                     index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'
                   }`}
                   onClick={() => project.images[0] && handleOpenImage(index, 0)}
@@ -114,7 +114,7 @@ export default function ProjectsPage() {
                 </button>
                 <button
                   type="button"
-                  className={`relative h-full overflow-hidden bg-card aspect-video sm:aspect-4/3 lg:aspect-auto lg:min-h-[200px] transition focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                  className={`relative h-full overflow-hidden border border-border/60 bg-card aspect-video sm:aspect-4/3 lg:aspect-auto lg:min-h-[200px] transition focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/60 ${
                     index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'
                   }`}
                   onClick={() => project.images[1] && handleOpenImage(index, 1)}
@@ -134,7 +134,7 @@ export default function ProjectsPage() {
                 </button>
                 <button
                   type="button"
-                  className={`relative h-full overflow-hidden bg-card aspect-video sm:aspect-4/3 lg:aspect-auto lg:min-h-[200px] transition focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                  className={`relative h-full overflow-hidden border border-border/60 bg-card aspect-video sm:aspect-4/3 lg:aspect-auto lg:min-h-[200px] transition focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/60 ${
                     index % 2 === 0 ? 'lg:order-3' : 'lg:order-2'
                   }`}
                   onClick={() => project.images[2] && handleOpenImage(index, 2)}
