@@ -16,6 +16,9 @@ import {
   Activity,
   Swords,
   Map,
+  Monitor,
+  Plug,
+  Calendar,
 } from 'lucide-react';
 import { type IconType } from 'react-icons';
 import {
@@ -30,6 +33,8 @@ import {
   SiTypescript,
   SiZod,
   SiGraphql,
+  SiElectron,
+  SiVite,
 } from 'react-icons/si';
 
 type TechBadgeStyle = {
@@ -218,6 +223,32 @@ export const techStack: Record<string, TechBadgeMeta> = {
     linkHref: 'https://graphql.org/',
     linkLabel: 'Learn more',
   },
+  Electron: {
+    label: 'Electron',
+    icon: SiElectron,
+    style: {
+      bg: 'bg-[#47848f]/15 dark:bg-[#47848f]/10',
+      text: 'text-[#2f5f68] dark:text-[#7eb8c4]',
+      border: 'border-[#47848f]/40 dark:border-[#47848f]/30',
+      hover: 'hover:bg-[#47848f]/25 dark:hover:bg-[#47848f]/20',
+    },
+    description: 'Cross-platform desktop apps with web tech.',
+    linkHref: 'https://www.electronjs.org/',
+    linkLabel: 'Learn more',
+  },
+  Vite: {
+    label: 'Vite',
+    icon: SiVite,
+    style: {
+      bg: 'bg-[#646cff]/15 dark:bg-[#646cff]/10',
+      text: 'text-[#4b52d9] dark:text-[#a5abff]',
+      border: 'border-[#646cff]/40 dark:border-[#646cff]/30',
+      hover: 'hover:bg-[#646cff]/25 dark:hover:bg-[#646cff]/20',
+    },
+    description: 'Fast frontend build tool and dev server.',
+    linkHref: 'https://vite.dev/',
+    linkLabel: 'Learn more',
+  },
 };
 
 export const getTechBadgeMeta = (tag: string): TechBadgeMeta => {
@@ -239,11 +270,34 @@ const techSolidColors: Record<string, string> = {
   TypeScript: '#3178c6',
   Zod: '#3068b7',
   GraphQL: '#e10098',
+  Electron: '#47848f',
+  Vite: '#646cff',
 };
 
 export const getTechColor = (tag: string): string => techSolidColors[tag] ?? '#3f3f46';
 
 export const projects = [
+  {
+    title: 'Notch',
+    tagline: 'A Dynamic Island for your Windows desktop',
+    description:
+      'An always-on-top, click-through Electron overlay that lives in the top-center notch: weather, Spotify, GitHub, Strava, markets, calendar, and system controls in a collapsing pill. Expand for full panels, OAuth-backed integrations, and a generated year wallpaper from your contribution graph.',
+    images: [
+      '/resources/images/projects/notch1.png',
+      '/resources/images/projects/notch2.png',
+      '/resources/images/projects/notch3.png',
+    ],
+    liveUrl: 'https://github.com/yassenshopov/notch',
+    stats: [
+      { icon: Monitor, value: 12, suffix: '+', label: 'Island faces & panels' },
+      { icon: Plug, value: 5, suffix: '+', label: 'OAuth integrations' },
+      { icon: Calendar, value: 52, suffix: ' wk', label: 'GitHub heatmap on wallpaper' },
+    ],
+    tags: ['Electron', 'React', 'TypeScript', 'TailwindCSS', 'Vite'],
+    featured: true,
+    impact:
+      'Keeping glanceable life and dev context one click away without stealing focus from the apps you are actually using.',
+  },
   {
     title: 'PokemonPalette',
     tagline: 'Color inspiration from your favorite Pokemon',
