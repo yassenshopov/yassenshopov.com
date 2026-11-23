@@ -4,8 +4,12 @@ import { Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { motion } from 'framer-motion';
-import { ArrowLeft, BookOpen, Clapperboard, Monitor, Sparkles } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
+import {
+  LibraryTabList,
+  LibraryTabTrigger,
+  libraryTabSizeClass,
+} from '@/components/library/LibraryTabBar';
 import { toast } from 'sonner';
 import dynamic from 'next/dynamic';
 import Layout from '@/components/Layout';
@@ -33,14 +37,6 @@ import {
 const LibraryModal = dynamic(() => import('@/components/library/LibraryModal'), { ssr: false });
 
 const TIER_EDIT_ENABLED = process.env.NODE_ENV === 'development';
-
-const BOARD_ICONS: Record<TierBoardId, typeof BookOpen> = {
-  fiction: BookOpen,
-  nonfiction: BookOpen,
-  movies: Clapperboard,
-  series: Monitor,
-  'anime-manga': Sparkles,
-};
 
 const BOARD_IDS = new Set<string>(TIER_BOARDS.map((b) => b.id));
 
@@ -94,19 +90,6 @@ function LibraryTierListContent({ allItems }: { allItems: LibraryItem[] }) {
     () => allItems.filter((item) => itemMatchesBoard(item, board)),
     [allItems, board]
   );
-
-  // Number of *ranked* items on each board (excludes the unranked pool) so the
-  // tab badges convey how filled-out each board is, not just the shared pool.
-  const rankedCounts = useMemo(() => {
-    const counts = {} as Record<TierBoardId, number>;
-    for (const b of TIER_BOARDS) {
-      const layout = tierState[b.id];
-      let total = 0;
-      for (const t of TIERS) total += layout?.[t.id]?.length ?? 0;
-      counts[b.id] = total;
-    }
-    return counts;
-  }, [tierState]);
 
   // Ordered display order in the visible tiers (used for modal prev/next).
   const orderedItems = useMemo(() => {
@@ -252,54 +235,24 @@ function LibraryTierListContent({ allItems }: { allItems: LibraryItem[] }) {
           </div>
         </div>
 
-        <div
-          role="tablist"
+        <LibraryTabList
           aria-label="Tier list board"
-          className="w-full overflow-x-auto border-t border-border bg-background/60 backdrop-blur-xs scrollbar-none [&::-webkit-scrollbar]:hidden"
+          className="w-full overflow-x-auto scrollbar-none [&::-webkit-scrollbar]:hidden"
         >
-          <div className="flex">
-            {TIER_BOARDS.map((b) => {
-              const Icon = BOARD_ICONS[b.id];
-              const isActive = board === b.id;
-              const count = rankedCounts[b.id];
-              return (
-                <button
-                  key={b.id}
-                  role="tab"
-                  aria-selected={isActive}
-                  onClick={() => selectBoard(b.id)}
-                  className={[
-                    'relative flex flex-1 items-center justify-center gap-2.5 whitespace-nowrap px-5 py-4 text-xs font-bold uppercase tracking-[0.16em] outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:py-5 sm:text-sm',
-                    isActive
-                      ? 'text-foreground'
-                      : 'text-muted-foreground hover:bg-muted/40 hover:text-foreground',
-                  ].join(' ')}
-                >
-                  <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
-                  <span>{b.label}</span>
-                  {count > 0 && (
-                    <span
-                      className={[
-                        'text-[10px] font-semibold tracking-normal tabular-nums sm:text-xs',
-                        isActive ? 'text-primary' : 'text-muted-foreground/70',
-                      ].join(' ')}
-                    >
-                      {count}
-                    </span>
-                  )}
-                  {isActive && (
-                    <motion.span
-                      layoutId="tier-board-underline"
-                      transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-                      aria-hidden
-                      className="absolute inset-x-0 bottom-0 h-[2px] bg-foreground"
-                    />
-                  )}
-                </button>
-              );
-            })}
+          <div className="flex min-w-full">
+            {TIER_BOARDS.map((b) => (
+              <LibraryTabTrigger
+                key={b.id}
+                isActive={board === b.id}
+                onSelect={() => selectBoard(b.id)}
+                underlineLayoutId="tier-board-tab"
+                className={`min-w-0 flex-1 whitespace-nowrap sm:px-5 ${libraryTabSizeClass}`}
+              >
+                {b.label}
+              </LibraryTabTrigger>
+            ))}
           </div>
-        </div>
+        </LibraryTabList>
       </section>
 
       <section className="container mx-auto px-4 py-10">

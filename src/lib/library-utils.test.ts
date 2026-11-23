@@ -10,6 +10,7 @@ import {
   getPrimaryEntryForYear,
   resolveEntryPresentation,
   calculateStatistics,
+  initialLibraryItemsToShow,
 } from './library-utils';
 
 function makeItem(overrides: Partial<LibraryItem> & { id: string }): LibraryItem {
@@ -200,5 +201,30 @@ describe('resolveEntryPresentation', () => {
     expect(view.title).toBe('The Bear');
     expect(view.coverImage).toBe('/default.jpg');
     expect(view.byline).toBe('Christopher Storer · Season 5');
+  });
+});
+
+describe('initialLibraryItemsToShow', () => {
+  it('loads through the newest year even when that exceeds the default page size', () => {
+    const items = [
+      makeItem({
+        id: '1',
+        entries: [{ status: 'completed', dateCompleted: '2026-01-01' }],
+      }),
+      makeItem({
+        id: '2',
+        entries: [{ status: 'completed', dateCompleted: '2026-02-01' }],
+      }),
+      makeItem({
+        id: '3',
+        entries: [{ status: 'completed', dateCompleted: '2026-03-01' }],
+      }),
+      makeItem({
+        id: '4',
+        entries: [{ status: 'completed', dateCompleted: '2025-01-01' }],
+      }),
+    ];
+
+    expect(initialLibraryItemsToShow(items)).toBe(3);
   });
 });

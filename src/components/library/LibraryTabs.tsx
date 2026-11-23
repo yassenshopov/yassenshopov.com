@@ -1,72 +1,38 @@
 'use client';
 
-import { BookOpen, Clapperboard } from 'lucide-react';
 import type { LibraryCategory } from '@/hooks/useLibrary';
+import {
+  LibraryTabList,
+  LibraryTabTrigger,
+  libraryTabSizeClass,
+} from '@/components/library/LibraryTabBar';
 
 interface LibraryTabsProps {
   category: LibraryCategory;
   onChange: (next: LibraryCategory) => void;
-  bookCount: number;
-  watchableCount: number;
 }
 
-const TABS: Array<{
-  value: LibraryCategory;
-  label: string;
-  icon: typeof BookOpen;
-  countKey: 'bookCount' | 'watchableCount';
-}> = [
-  { value: 'books', label: 'Books', icon: BookOpen, countKey: 'bookCount' },
-  { value: 'watchables', label: 'Movies & Series', icon: Clapperboard, countKey: 'watchableCount' },
+const TABS: Array<{ value: LibraryCategory; label: string }> = [
+  { value: 'books', label: 'Books' },
+  { value: 'watchables', label: 'Movies & Series' },
 ];
 
-export default function LibraryTabs({
-  category,
-  onChange,
-  bookCount,
-  watchableCount,
-}: LibraryTabsProps) {
-  const counts = { bookCount, watchableCount };
+const UNDERLINE_LAYOUT_ID = 'library-category-tab';
 
+export default function LibraryTabs({ category, onChange }: LibraryTabsProps) {
   return (
-    <div
-      role="tablist"
-      aria-label="Library category"
-      className="w-full grid grid-cols-2 border-y bg-background"
-    >
-      {TABS.map((tab) => {
-        const Icon = tab.icon;
-        const isActive = category === tab.value;
-        return (
-          <button
-            key={tab.value}
-            role="tab"
-            aria-selected={isActive}
-            onClick={() => onChange(tab.value)}
-            className={[
-              'relative flex items-center justify-center gap-3 px-4 py-5 sm:py-6',
-              'text-xs sm:text-sm font-bold uppercase tracking-[0.18em] transition-colors',
-              isActive
-                ? 'text-foreground'
-                : 'text-muted-foreground hover:text-foreground hover:bg-muted/40',
-            ].join(' ')}
-          >
-            <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
-            <span>{tab.label}</span>
-            <span
-              className={[
-                'ml-1 text-xs font-semibold tracking-normal tabular-nums',
-                isActive ? 'text-primary' : 'text-muted-foreground',
-              ].join(' ')}
-            >
-              {counts[tab.countKey]}
-            </span>
-            {isActive && (
-              <span aria-hidden className="absolute inset-x-0 bottom-0 h-[2px] bg-foreground" />
-            )}
-          </button>
-        );
-      })}
-    </div>
+    <LibraryTabList aria-label="Library category" className="grid w-full grid-cols-2">
+      {TABS.map((tab) => (
+        <LibraryTabTrigger
+          key={tab.value}
+          isActive={category === tab.value}
+          onSelect={() => onChange(tab.value)}
+          underlineLayoutId={UNDERLINE_LAYOUT_ID}
+          className={libraryTabSizeClass}
+        >
+          {tab.label}
+        </LibraryTabTrigger>
+      ))}
+    </LibraryTabList>
   );
 }

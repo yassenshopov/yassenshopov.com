@@ -10,7 +10,6 @@ import { TIERS } from '@/data/library-tiers';
 import LibraryHero from '@/components/library/LibraryHero';
 import LibraryTabs from '@/components/library/LibraryTabs';
 import LibraryItemCard from '@/components/library/LibraryItemCard';
-import LibraryResults from '@/components/library/LibraryResults';
 import LibraryItemSkeleton from '@/components/library/LibraryItemSkeleton';
 import LibraryTableOfContents, {
   type LibraryTocSection,
@@ -21,11 +20,15 @@ import { SectionHeading } from '@/components/SectionHeading';
 import { useLibrary } from '@/hooks/useLibrary';
 import { Input } from '@/components/ui/input';
 import { entryTimestamp, type LibraryEntry, type LibraryItem } from '@/data/library';
-import { getPrimaryEntryForYear } from '@/lib/library-utils';
+import {
+  getPrimaryEntryForYear,
+  lastItemIndexForLibraryYear,
+  LIBRARY_UNDATED_YEAR,
+} from '@/lib/library-utils';
 
 const LibraryModal = dynamic(() => import('@/components/library/LibraryModal'), { ssr: false });
 
-const UNDATED_KEY = 'undated';
+const UNDATED_KEY = LIBRARY_UNDATED_YEAR;
 
 interface LibraryOccurrence {
   item: LibraryItem;
@@ -144,8 +147,6 @@ export function LibraryView({ items }: { items: LibraryItem[] }) {
     }
     return { bookCount: books, movieCount: movies, seriesCount: series };
   }, [allItems]);
-  const watchableCount = movieCount + seriesCount;
-
   // The hero strip should reflect the whole catalog (matching the tabs and the
   // marquee), not just completed items. `getStatistics` filters to completed,
   // so we override the type counts here while keeping its derived fields.
@@ -168,30 +169,28 @@ export function LibraryView({ items }: { items: LibraryItem[] }) {
   // every year they happened. Pagination still operates on items (via
   // `sortedItems`), so a book with three entries contributes one slot to the
   // infinite-scroll counter but three cards in the rendered grid.
+  const allOccurrencesByYear = useMemo(
+    () => groupOccurrencesByYear(toOccurrences(allSortedItems)),
+    [allSortedItems]
+  );
+
   const { visibleByYear, visibleYearKeys } = useMemo(() => {
     const grouped = groupOccurrencesByYear(toOccurrences(sortedItems));
     return { visibleByYear: grouped, visibleYearKeys: sortYearKeys(Object.keys(grouped)) };
   }, [sortedItems]);
 
-  // Build ToC sections from the full filtered list so users can jump to a
-  // year even before infinite scroll has loaded it.
+  // Full-catalog counts; `itemsToReveal` matches item pagination (not occurrence totals).
   const tocSections: LibraryTocSection[] = useMemo(() => {
-    const allByYear = groupOccurrencesByYear(toOccurrences(allSortedItems));
-    const allYearKeys = sortYearKeys(Object.keys(allByYear));
-    let cumulative = 0;
-    return allYearKeys.map((key) => {
-      const count = allByYear[key].length;
-      cumulative += count;
-      return {
-        key,
-        label: labelForYear(key),
-        count,
-        cumulativeCount: cumulative,
-      };
-    });
+    const allYearKeys = sortYearKeys(Object.keys(allOccurrencesByYear));
+    return allYearKeys.map((key) => ({
+      key,
+      label: labelForYear(key),
+      count: allOccurrencesByYear[key].length,
+      itemsToReveal: lastItemIndexForLibraryYear(allSortedItems, key),
+    }));
     // labelForYear only depends on `category` (via undatedLabel).
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [allSortedItems, category]);
+  }, [allOccurrencesByYear, allSortedItems, category]);
 
   // Infinite scroll
   useEffect(() => {
@@ -247,20 +246,17 @@ export function LibraryView({ items }: { items: LibraryItem[] }) {
       <LibraryHero stats={heroStats} covers={heroCovers} />
 
       {tocSections.length > 1 && (
-        <LibraryTableOfContents sections={tocSections} onJumpTo={revealItemsUpTo} />
+        <LibraryTableOfContents
+          sections={tocSections}
+          mountedSectionKeys={visibleYearKeys}
+          onJumpTo={revealItemsUpTo}
+        />
       )}
 
-      <LibraryTabs
-        category={category}
-        onChange={setCategory}
-        bookCount={bookCount}
-        watchableCount={watchableCount}
-      />
+      <LibraryTabs category={category} onChange={setCategory} />
 
       <div className="container mx-auto px-4 py-6">
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <LibraryResults sortedItemsLength={allSortedItems.length} searchQuery={searchQuery} />
-
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-end">
           <div className="flex items-center gap-4">
             <Link
               href="/library/tier-list"
@@ -326,9 +322,6 @@ export function LibraryView({ items }: { items: LibraryItem[] }) {
                     label={ariaLabel}
                     className="mb-8"
                     headingClassName="text-5xl md:text-6xl"
-                    aside={`${occurrencesInYear.length} ${
-                      occurrencesInYear.length === 1 ? 'item' : 'items'
-                    }`}
                   />
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5">

@@ -9,6 +9,7 @@ import {
   getSeriesInfo as getSeriesInfoUtil,
   getRelationshipLabel as getRelationshipLabelUtil,
   calculateStatistics,
+  initialLibraryItemsToShow,
 } from '@/lib/library-utils';
 
 export type LibraryCategory = 'books' | 'watchables';
@@ -37,7 +38,6 @@ export function useLibrary(allItems: LibraryItem[]) {
 
   useEffect(() => {
     localStorage.setItem('library-category', category);
-    setItemsToShow(ITEMS_PER_PAGE);
   }, [category]);
 
   // Filter to the active category (books vs movies+series)
@@ -76,6 +76,11 @@ export function useLibrary(allItems: LibraryItem[]) {
     withTs.sort((a, b) => b.ts - a.ts);
     return withTs.map((entry) => entry.item);
   }, [filteredItems]);
+
+  // Newest year section fully on first paint; reset when category/search changes.
+  useEffect(() => {
+    setItemsToShow(initialLibraryItemsToShow(allSortedItems));
+  }, [allSortedItems]);
 
   const sortedItems = useMemo(
     () => allSortedItems.slice(0, itemsToShow),
@@ -133,10 +138,8 @@ export function useLibrary(allItems: LibraryItem[]) {
 
   const showMoreItems = () => {
     setIsLoadingMore(true);
-    setTimeout(() => {
-      setItemsToShow((prev) => prev + ITEMS_PER_PAGE);
-      setIsLoadingMore(false);
-    }, 300);
+    setItemsToShow((prev) => prev + ITEMS_PER_PAGE);
+    setIsLoadingMore(false);
   };
 
   // Ensure at least `count` items are rendered. Rounded up to the next page

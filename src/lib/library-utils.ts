@@ -78,6 +78,65 @@ export function getPrimaryEntryForYear(
  * Returns an empty array for wishlist items so callers can fall back to an
  * "undated" bucket.
  */
+/** Year bucket key for wishlist / watchlist items without engagement dates. */
+export const LIBRARY_UNDATED_YEAR = 'undated';
+
+/** Distinct occurrence year keys for one item (re-reads → multiple keys). */
+export function occurrenceYearKeysForItem(item: LibraryItem): string[] {
+  const entries = item.entries ?? [];
+  if (entries.length === 0) return [LIBRARY_UNDATED_YEAR];
+
+  const seen = new Set<string>();
+  const keys: string[] = [];
+  for (const entry of entries) {
+    const dateStr = entry.dateCompleted || entry.dateStarted;
+    const yearKey = dateStr ? new Date(dateStr).getFullYear().toString() : LIBRARY_UNDATED_YEAR;
+    if (seen.has(yearKey)) continue;
+    seen.add(yearKey);
+    keys.push(yearKey);
+  }
+  return keys;
+}
+
+export function sortLibraryYearKeys(keys: string[]): string[] {
+  return [...keys].sort((a, b) => {
+    if (a === LIBRARY_UNDATED_YEAR) return 1;
+    if (b === LIBRARY_UNDATED_YEAR) return -1;
+    return Number(b) - Number(a);
+  });
+}
+
+export function firstLibraryYearKey(items: LibraryItem[]): string | null {
+  const keys = new Set<string>();
+  for (const item of items) {
+    for (const key of occurrenceYearKeysForItem(item)) {
+      keys.add(key);
+    }
+  }
+  const sorted = sortLibraryYearKeys([...keys]);
+  return sorted[0] ?? null;
+}
+
+/** Last 1-based index in `items` so every card for `yearKey` can render. */
+export function lastItemIndexForLibraryYear(items: LibraryItem[], yearKey: string): number {
+  let lastIndex = 0;
+  for (let i = 0; i < items.length; i++) {
+    if (occurrenceYearKeysForItem(items[i]).includes(yearKey)) {
+      lastIndex = i + 1;
+    }
+  }
+  return lastIndex;
+}
+
+/** Initial paginated slice — the full newest year section, no spill into the next. */
+export function initialLibraryItemsToShow(items: LibraryItem[]): number {
+  if (items.length === 0) return 0;
+  const firstYear = firstLibraryYearKey(items);
+  if (!firstYear) return items.length;
+  const throughFirstYear = lastItemIndexForLibraryYear(items, firstYear);
+  return throughFirstYear > 0 ? Math.min(items.length, throughFirstYear) : items.length;
+}
+
 export const getEntryYears = (item: LibraryItem): number[] => {
   if (!item.entries || item.entries.length === 0) return [];
   const years = new Set<number>();
