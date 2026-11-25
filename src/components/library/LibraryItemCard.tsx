@@ -34,19 +34,6 @@ function getFallbackIcon(type: LibraryItem['type']) {
   }
 }
 
-function CurrentlyOnLine({ type }: { type: LibraryItem['type'] }) {
-  const verb = type === 'book' ? 'Reading' : 'Watching';
-  return (
-    <p className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
-      <span className="relative flex h-1.5 w-1.5" aria-hidden>
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
-        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
-      </span>
-      Currently {verb}
-    </p>
-  );
-}
-
 function LibraryItemCard({ item, entry, onItemClick }: LibraryItemCardProps) {
   const presentation = resolveEntryPresentation(item, entry);
   const showDeck = item.type === 'series' && (presentation.coverImages?.length ?? 0) >= 2;
@@ -243,10 +230,7 @@ function LibraryItemCard({ item, entry, onItemClick }: LibraryItemCardProps) {
         {presentation.byline && (
           <p className="text-sm text-muted-foreground line-clamp-1">by {presentation.byline}</p>
         )}
-        <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
-          <TierBadge itemId={item.id} />
-          {item.status === 'in-progress' && <CurrentlyOnLine type={item.type} />}
-        </div>
+        <TierBadge itemId={item.id} />
       </div>
     </button>
   );
