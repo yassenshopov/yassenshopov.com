@@ -9275,5 +9275,29 @@
         "status": "completed"
       }
     ]
+  },
+  {
+    "id": "336",
+    "title": "Clayface",
+    "director": "James Watkins",
+    "type": "movie",
+    "genre": [
+      "Horror",
+      "Thriller",
+      "Superhero"
+    ],
+    "description": "A rising Hollywood star is horrifically disfigured and turns to an experimental treatment that restores his face but warps his grip on reality, spiraling into monstrous revenge.",
+    "coverImage": "/resources/images/library/clayface-2026.jpg",
+    "links": {
+      "imdb": "https://www.imdb.com/title/tt34890576/"
+    },
+    "year": 2026,
+    "externalUrl": "https://www.imdb.com/title/tt34890576/",
+    "entries": [
+      {
+        "dateCompleted": "2026-11-25",
+        "status": "completed"
+      }
+    ]
   }
 ]
