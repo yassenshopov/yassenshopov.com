@@ -222,25 +222,31 @@
   {
     "id": "9",
     "title": "Undercover",
-    "creator": "Nico Moolenaar",
+    "creator": "Victor Bojinov",
     "type": "series",
     "genre": [
       "Crime",
       "Drama",
       "Thriller"
     ],
-    "description": "Undercover agents infiltrate a drug ring, but their mission becomes complicated when personal and professional lines blur.",
-    "coverImage": "/resources/images/library/undercover.webp",
+    "description": "A Bulgarian crime drama following undercover cop Martin, who infiltrates Sofia's drug underworld while his cover identity and personal life steadily unravel.",
+    "coverImage": "/resources/images/library/undercover-season-6.jpg",
     "links": {
-      "imdb": "https://www.imdb.com/title/tt9016974/"
+      "imdb": "https://www.imdb.com/title/tt1909015/"
     },
-    "year": 2011,
-    "externalUrl": "https://www.imdb.com/title/tt1909015/",
+    "year": 2016,
+    "externalUrl": "https://www.imdb.com/title/tt1909015/episodes/?season=6",
     "entries": [
       {
         "dateCompleted": "2024-12-01",
         "status": "completed",
         "rating": 4
+      },
+      {
+        "dateStarted": "2026-11-20",
+        "status": "in-progress",
+        "subtitle": "Season 6",
+        "coverImage": "/resources/images/library/undercover-season-6.jpg"
       }
     ]
   },
