@@ -240,7 +240,15 @@
       {
         "dateCompleted": "2024-12-01",
         "status": "completed",
-        "rating": 4
+        "rating": 4,
+        "subtitle": "Seasons 1–5",
+        "coverImages": [
+          "/resources/images/library/undercover-season-1.webp",
+          "/resources/images/library/undercover-season-2.webp",
+          "/resources/images/library/undercover-season-3.webp",
+          "/resources/images/library/undercover-season-4.webp",
+          "/resources/images/library/undercover-season-5.webp"
+        ]
       },
       {
         "dateStarted": "2026-11-20",
