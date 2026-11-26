@@ -9313,5 +9313,34 @@
         "status": "completed"
       }
     ]
+  },
+  {
+    "id": "337",
+    "title": "Kitchen Confidential",
+    "author": "Anthony Bourdain",
+    "type": "book",
+    "genre": [
+      "Memoir",
+      "Non-fiction",
+      "Food"
+    ],
+    "description": "Anthony Bourdain's outrageous, candid memoir of twenty-five years in the restaurant business — from the underbelly of New York kitchens to the highs of haute cuisine.",
+    "coverImage": "/resources/images/library/kitchen-confidential.jpg",
+    "links": {
+      "goodreads": "https://www.goodreads.com/book/show/33313.Kitchen_Confidential"
+    },
+    "year": 2000,
+    "topics": [
+      "Food",
+      "Memoir",
+      "Non-fiction"
+    ],
+    "externalUrl": "https://www.goodreads.com/book/show/33313.Kitchen_Confidential",
+    "entries": [
+      {
+        "dateStarted": "2026-11-26",
+        "status": "in-progress"
+      }
+    ]
   }
 ]
